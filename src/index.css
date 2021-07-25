@@ -5,9 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/abcd-1024x1024.png);
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
