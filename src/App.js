@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          This is the start of the pizzery website! I am very excited! Today I will start developing the website
         </p>
         <a
           className="App-link"
