@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './App.css';
+
+// Use useEffect for when clicking the button
 
 function UpperSide() {
 return (
@@ -71,7 +72,7 @@ function Slideshow() {
   );
 }
 
-function MiddleSide() {
+function Main() {
 return (
   <div className="container d-inline-flex text-center text-white">
     <div className="p-3">
@@ -90,7 +91,7 @@ return (
   );
 }
 
-function Footer() {
+function Footer(year) {
   return (
     <footer className="position-relative">
     <div className="text-white bg-dark position-absolute container-fluid text-center">
@@ -98,6 +99,7 @@ function Footer() {
 +40754 911 062
 +40790 649 803
 9:00 - 23:00 Luni - Duminica</p>
+      <p>Copyright {year} </p>
     </div>
     </footer>
   );
@@ -108,8 +110,8 @@ function App() {
     <>
     <UpperSide></UpperSide>
     <Slideshow></Slideshow>
-    <MiddleSide></MiddleSide>
-    <Footer></Footer>
+    <Main></Main>
+    <Footer year={new Date().getFullYear()}></Footer>
     </>
   );
 }
