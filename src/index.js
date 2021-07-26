@@ -1,28 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 import './App.css';
 
 function UpperSide() {
 return (
-  <div className="container-fluid">
-    <p className="d-inline p-2">MEDIEVAL PIZZA</p>
-    <p className="d-inline p-2 float-right">We make food with love, not love with food</p>
-    <hr color="red" width="80%"></hr>
-    <h2>We are now open for ONLINE ORDERS!</h2>
-  </div>);
+  <section className>
+  <div id="upper-first" className="container-fluid p-2">
+    <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
+    <h5 className="d-inline p-2 float-end me-5 text-secondary">We make food with love, not love with food</h5>
+  </div>
+  <div id="upper-second" className="container-fluid p-4 text-secondary border-top border-bottom border-danger">
+    <h1 className="d-inline ms-5 display-3 fw-normal">We are now open for</h1><br></br>
+    <h1 className="d-inline ms-5 display-1 fw-bolder">ONLINE ORDERS!</h1>
+    <Button></Button>
+  </div>
+  </section>);
 }
 
 function Button() {
 return (
-  <button>Meniu & Comanda</button>
+  <button type="button" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button>
 );
 }
 
 
 function Slideshow() {
-  const pictures = ["https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/226-1-scaled-e1617704481484.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/12183-scaled-e1617704565414.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/8117-scaled.jpg"];
+  const pictures = ["https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/226-1-scaled-e1617704481484.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/12183-scaled-e1617704565414.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/8117-scaled.jpg"];
   const delay = 2500;
   const [index, setIndex] = React.useState(0);
   const timeoutRef = React.useRef(null);
@@ -56,35 +60,40 @@ function Slideshow() {
       >
         {pictures.map((img, index) => (
           <img
-            className="slide"
+            className="slide container-fluid"
             key={index}
             src={img}
             alt="new">
             </img>
         ))}
       </div>
-
     </div>
   );
 }
 
 function MiddleSide() {
 return (
-  <div>
-    <h3>Pizza</h3>
-    <img width="620" height="930" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
-    <h3>Burgers</h3>
-    <img width="620" height="931" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
-    <h3>Chifle</h3>
-    <img width="620" height="931" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
+  <div className="container d-inline-flex text-center text-white">
+    <div className="p-3">
+      <h3 className="display-3">Pizza</h3>
+      <img width="400" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
+    </div>
+    <div className="p-3">
+      <img width="400" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
+      <h3 className="display-3">Burgers</h3>
+    </div>
+    <div className="p-3">
+      <h3 className="display-3">Chifle</h3>
+      <img width="400" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
+    </div>  
   </div>
   );
 }
 
 function Footer() {
   return (
-    <footer>
-    <div>
+    <footer className="position-relative">
+    <div className="text-white bg-dark position-absolute container-fluid text-center">
       <p>905500 Str. Petru Maior 20, Mangalia ( In spatele Scolii nr.2 )
 +40754 911 062
 +40790 649 803
@@ -97,13 +106,10 @@ function Footer() {
 function App() {
   return (
     <>
-    <body>
     <UpperSide></UpperSide>
-    <Button></Button>
     <Slideshow></Slideshow>
     <MiddleSide></MiddleSide>
     <Footer></Footer>
-    </body>
     </>
   );
 }

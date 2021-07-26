@@ -5,9 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/abcd-1024x1024.png);
+  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/abcd-1024x1024.png), url(https://medievalpizza.com/wp-content/uploads/2021/04/Untitled-2.jpg);
   background-repeat: no-repeat;
   background-position: center;
-
 }
 
+#upper-first {
+  background-image: linear-gradient(
+    160deg
+    , #000000 0%, #281911 100%);
+}
+
+#upper-second {
+  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/abcd-1024x1024.png), url(https://medievalpizza.com/wp-content/uploads/2021/04/Untitled-2.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto auto;
+}
+
+button {
+  height: 80px;
+  width: 150px;
+}
