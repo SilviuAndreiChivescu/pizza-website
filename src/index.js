@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 // Use useEffect for when clicking the button
 
-function UpperSide() {
+function UpperSide({onClick}) {
 return (
   <section className>
   <div id="upper-first" className="container-fluid p-2 brown-color">
@@ -14,17 +14,16 @@ return (
   <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
     <h1 className="d-inline ms-5 display-3 fw-normal">We are now open for</h1><br></br>
     <h1 className="d-inline ms-5 display-1 fw-bolder">ONLINE ORDERS!</h1>
-    <Button></Button>
+    <button onClick={onClick} type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button>
   </div>
   </section>);
 }
 
-function Button() {
-return (
-  <button type="button" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button>
-);
+function Window() {
+  return(
+    <div style={{backgroundColor: "red", width: "400px"}}>Here will be the pizza shit and order shit</div>
+  )
 }
-
 
 function Slideshow() {
   const pictures = ["https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/226-1-scaled-e1617704481484.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/12183-scaled-e1617704565414.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/8117-scaled.jpg"];
@@ -76,15 +75,15 @@ function Main() {
 return (
   <section className="container d-flex text-center text-white mb-5 mt-5 justify-content-center">
     <div className="p-3">
-      <h3 className="display-3">Pizza</h3>
+      <h3 className="display-3 fw-bold">Pizza</h3>
       <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
     </div>
     <div className="p-3">
       <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
-      <h3 className="display-3">Burgers</h3>
+      <h3 className="display-3 fw-bold">Burgers</h3>
     </div>
     <div className="p-3">
-      <h3 className="display-3">Chifle</h3>
+      <h3 className="display-3 fw-bold">Chifle</h3>
       <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
     </div>  
   </section>
@@ -106,9 +105,11 @@ function Footer({year}) {
 }
 
 function App() {
+  const [showWindow, setShowWindow] = useState(false);
   return (
     <>
-    <UpperSide></UpperSide>
+    <UpperSide onClick={() => setShowWindow(true)}></UpperSide>
+    {showWindow ? <Window /> : null}
     <Slideshow></Slideshow>
     <Main></Main>
     <Footer year={new Date().getFullYear()}></Footer>

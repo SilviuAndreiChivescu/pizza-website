@@ -37,13 +37,13 @@ body {
 }
 
 #upper-second {
-  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/abcd-1024x1024.png), url(https://medievalpizza.com/wp-content/uploads/2021/04/Untitled-2.jpg);
+  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/Untitled-2.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto auto;
 }
 
-button {
+#button-firstPage {
   height: 80px;
   width: 150px;
 }
