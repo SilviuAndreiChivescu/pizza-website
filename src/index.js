@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Menu, Home } from "./pages"
 
-// Use useEffect for when clicking the button
 
-function UpperSide({onClick}) {
+function UpperSide() {
 return (
   <section className>
   <div id="upper-first" className="container-fluid p-2 brown-color">
@@ -14,15 +15,9 @@ return (
   <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
     <h1 className="d-inline ms-5 display-3 fw-normal">We are now open for</h1><br></br>
     <h1 className="d-inline ms-5 display-1 fw-bolder">ONLINE ORDERS!</h1>
-    <button onClick={onClick} type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button>
+    <button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button>
   </div>
   </section>);
-}
-
-function Window() {
-  return(
-    <div style={{backgroundColor: "red", width: "400px"}}>Here will be the pizza shit and order shit</div>
-  )
 }
 
 function Slideshow() {
@@ -105,22 +100,25 @@ function Footer({year}) {
 }
 
 function App() {
-  const [showWindow, setShowWindow] = useState(false);
   return (
     <>
-    <UpperSide onClick={() => setShowWindow(true)}></UpperSide>
-    {showWindow ? <Window /> : null}
-    <Slideshow></Slideshow>
-    <Main></Main>
-    <Footer year={new Date().getFullYear()}></Footer>
+    <Routes>
+      <Route path="/" element={<Home />}>
+        <UpperSide></UpperSide>
+        <Slideshow></Slideshow>
+        <Main></Main>
+        <Footer year={new Date().getFullYear()}></Footer>
+      </Route>
+      <Route path="/menu" element={<Menu />} />
+    </Routes>
     </>
   );
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 
