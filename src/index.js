@@ -7,11 +7,11 @@ import './index.css';
 function UpperSide() {
 return (
   <section className>
-  <div id="upper-first" className="container-fluid p-2">
+  <div id="upper-first" className="container-fluid p-2 brown-color">
     <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
     <h5 className="d-inline p-2 float-end me-5 text-secondary">We make food with love, not love with food</h5>
   </div>
-  <div id="upper-second" className="container-fluid p-4 text-secondary border-top border-bottom border-danger">
+  <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
     <h1 className="d-inline ms-5 display-3 fw-normal">We are now open for</h1><br></br>
     <h1 className="d-inline ms-5 display-1 fw-bolder">ONLINE ORDERS!</h1>
     <Button></Button>
@@ -61,7 +61,7 @@ function Slideshow() {
       >
         {pictures.map((img, index) => (
           <img
-            className="slide container-fluid"
+            className="slide p-0 container-fluid"
             key={index}
             src={img}
             alt="new">
@@ -74,27 +74,27 @@ function Slideshow() {
 
 function Main() {
 return (
-  <div className="container d-inline-flex text-center text-white">
+  <section className="container d-flex text-center text-white mb-5 mt-5 justify-content-center">
     <div className="p-3">
       <h3 className="display-3">Pizza</h3>
-      <img width="400" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
+      <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
     </div>
     <div className="p-3">
-      <img width="400" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
+      <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
       <h3 className="display-3">Burgers</h3>
     </div>
     <div className="p-3">
       <h3 className="display-3">Chifle</h3>
-      <img width="400" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
+      <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
     </div>  
-  </div>
+  </section>
   );
 }
 
-function Footer(year) {
+function Footer({year}) {
   return (
     <footer className="position-relative">
-    <div className="text-white bg-dark position-absolute container-fluid text-center">
+    <div className="text-white position-absolute container-fluid text-center brown-color p-2">
       <p>905500 Str. Petru Maior 20, Mangalia ( In spatele Scolii nr.2 )
 +40754 911 062
 +40790 649 803
