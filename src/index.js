@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { Menu, Home } from "./pages"
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import { Menu, Home, Whoops404 } from "./pages"
 
 
 function UpperSide() {
 return (
   <section className>
-  <div id="upper-first" className="container-fluid p-2 brown-color">
+  <div className="container-fluid p-2 brown-color">
     <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
-    <h5 className="d-inline p-2 float-end me-5 text-secondary">We make food with love, not love with food</h5>
+    <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
   </div>
   <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
-    <h1 className="d-inline ms-5 display-3 fw-normal">We are now open for</h1><br></br>
-    <h1 className="d-inline ms-5 display-1 fw-bolder">ONLINE ORDERS!</h1>
-    <button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button>
+    <h1 className="d-inline ms-5 display-3 fw-normal">De acum puteti</h1><br></br>
+    <h1 className="d-inline ms-5 display-1 fw-bolder">COMANDA ONLINE!</h1>
+    <Link to="menu"><button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button></Link>
   </div>
   </section>);
 }
@@ -75,7 +75,7 @@ return (
     </div>
     <div className="p-3">
       <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
-      <h3 className="display-3 fw-bold">Burgers</h3>
+      <h3 className="display-3 fw-bold">Burgări</h3>
     </div>
     <div className="p-3">
       <h3 className="display-3 fw-bold">Chifle</h3>
@@ -103,13 +103,9 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<Home />}>
-        <UpperSide></UpperSide>
-        <Slideshow></Slideshow>
-        <Main></Main>
-        <Footer year={new Date().getFullYear()}></Footer>
-      </Route>
+      <Route path="/" element={<Home /> } />
       <Route path="/menu" element={<Menu />} />
+      <Route path="*" element={<Whoops404 />} />
     </Routes>
     </>
   );
@@ -122,6 +118,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+export {UpperSide, Slideshow, Main, Footer}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
