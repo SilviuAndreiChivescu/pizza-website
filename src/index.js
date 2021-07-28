@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
@@ -7,17 +7,73 @@ import { Menu, Home, Whoops404 } from "./pages"
 
 function UpperSide() {
 return (
-  <section className>
-  <div className="container-fluid p-2 brown-color">
+  <section>
+  <div id="upper-first" className="container-fluid p-2 brown-color position-fixed">
     <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
     <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
   </div>
-  <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
-    <h1 className="d-inline ms-5 display-3 fw-normal">De acum puteti</h1><br></br>
-    <h1 className="d-inline ms-5 display-1 fw-bolder">COMANDA ONLINE!</h1>
-    <Link to="menu"><button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button></Link>
-  </div>
   </section>);
+}
+
+function UpperSideSecond() {
+  return(
+    <section>
+    <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
+      <h1 className="d-inline ms-5 display-3 fw-normal">De acum puteti</h1><br></br>
+      <h1 className="d-inline ms-5 display-1 fw-bolder">COMANDA ONLINE!</h1>
+      <Link to="menu"><button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button></Link>
+  </div>
+  </section>
+  );
+}
+
+function UpperSideSecondMenu() {
+  return(
+    <img className="container-fluid p-0" height="500px" src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
+  );
+}
+
+function MainMenu() {
+  // const data =[{"name":"test1"},{"name":"test2"}];
+  const data =[{"tip": "Pizza"},{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"tip": "Burgari"}, {"name": "burger1"}];
+  return(
+      <>
+      <nav className="d-flex justify-content-between bg-secondary p-3">
+        <a href="#">Pizza</a>
+        <a href="#">Burgări</a>
+        <a href="#">Chifle coapte pe vatră</a> 
+        <a href="#">Sandwich</a>  
+        <a href="#">Sucuri si Bere</a>   
+      </nav>
+      <div className="mb-5">
+        <ul className="text-white">
+        {data.map(function(d, idx, idx2){
+          return (<li key={idx}>{d.tip}<li key={idx2}>{d.name}</li></li>)
+        })}
+        </ul>
+      </div>
+      </> )
+}
+
+function CartNotOpened(setPopUp) {
+  return(
+    <section onClick={setPopUp.setPopUp} style={{cursor: "pointer"}} className="bg-dark text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3">
+    <button className="btn btn-primary">Open Cart</button>
+    <p className="r">Vezi cosul</p>
+    <p>20 lei</p>
+  </section>
+  )
+}
+
+function Checkout(setPopUp) {
+  return(
+    <>
+    <section className="container-fluid vh-100 bg-white">
+      <h1>This will be the cart</h1>
+      <button onClick={setPopUp.setPopUp}>Close cart</button>
+    </section>
+    </>
+  )
 }
 
 function Slideshow() {
@@ -118,7 +174,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export {UpperSide, Slideshow, Main, Footer}
+export {UpperSide, UpperSideSecond, UpperSideSecondMenu, MainMenu, CartNotOpened, Checkout, Slideshow, Main, Footer}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
