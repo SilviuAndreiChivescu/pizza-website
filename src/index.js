@@ -8,7 +8,7 @@ import { Menu, Home, Whoops404 } from "./pages"
 function UpperSide() {
 return (
   <section>
-  <div id="upper-first" className="container-fluid p-2 brown-color position-fixed">
+  <div id="upper-first" className="container-fluid p-2 brown-color">
     <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
     <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
   </div>
@@ -34,8 +34,8 @@ function UpperSideSecondMenu() {
 }
 
 function MainMenu() {
-  const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}];
-  const burgari =[{"name": "pizza3"},{"name": "burger1"}];
+  const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}];
+  const burgari =[{"name": "burger2"},{"name": "burger1"}];
   const chifle =[{"name": "chifla1"}, {"name": "chifla2"}];
   return(
       <>
@@ -48,21 +48,34 @@ function MainMenu() {
       </nav>
       <div className="mb-5">
         <ul className="text-white">
-        {/* <p className="display-5" key={idx}>{d.tip}</p> */}
           <p>Pizza</p>
-          <div className="d-inline-flex justify-content-between">
-        {pizzas.map(function(d, idx){
-          return (<div style={{width: "250px"}} className="bg-white text-dark"><li key={idx}>{d.name}</li></div>)
-        })}
+          <div className="d-flex flex-wrap">
+            {pizzas.map(function(d, idx){
+            return (
+            <div style={{width: "250px"}} className="m-1 bg-white text-dark">
+              <li key={idx}>{d.name}<br></br>Continut<br></br>Pret</li>
+            </div>)
+            })}
           </div>
           <p>Burgari</p>
-        {burgari.map(function(d, idx){
-          return (<div style={{width: "250px"}} className="bg-white text-dark"><li key={idx}>{d.name}</li></div>)
-        })} 
+          <div className="d-flex flex-wrap">
+            {burgari.map(function(d, idx){
+              return (
+              <div style={{width: "250px"}} className="m-1 bg-white text-dark">
+                <li key={idx}>{d.name}</li>
+              </div>)
+            })}
+          </div> 
           <p>Chifle</p>
-          {chifle.map(function(d, idx){
-          return (<div style={{width: "250px"}} className="bg-white text-dark"><li key={idx}>{d.name}</li></div>)
-        })}           
+          <div className="d-flex flex-wrap">
+            {chifle.map(function(d, idx){
+              return (
+              <div style={{width: "250px"}} className="m-1 bg-white text-dark">
+                <li key={idx}>{d.name}</li>
+              </div>)
+            })}
+          </div> 
+                    
         </ul>
       </div>
       </> )
