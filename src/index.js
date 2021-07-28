@@ -34,8 +34,9 @@ function UpperSideSecondMenu() {
 }
 
 function MainMenu() {
-  // const data =[{"name":"test1"},{"name":"test2"}];
-  const data =[{"tip": "Pizza"},{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"tip": "Burgari"}, {"name": "burger1"}];
+  const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}];
+  const burgari =[{"name": "pizza3"},{"name": "burger1"}];
+  const chifle =[{"name": "chifla1"}, {"name": "chifla2"}];
   return(
       <>
       <nav className="d-flex justify-content-between bg-secondary p-3">
@@ -47,9 +48,21 @@ function MainMenu() {
       </nav>
       <div className="mb-5">
         <ul className="text-white">
-        {data.map(function(d, idx, idx2){
-          return (<li key={idx}>{d.tip}<li key={idx2}>{d.name}</li></li>)
+        {/* <p className="display-5" key={idx}>{d.tip}</p> */}
+          <p>Pizza</p>
+          <div className="d-inline-flex justify-content-between">
+        {pizzas.map(function(d, idx){
+          return (<div style={{width: "250px"}} className="bg-white text-dark"><li key={idx}>{d.name}</li></div>)
         })}
+          </div>
+          <p>Burgari</p>
+        {burgari.map(function(d, idx){
+          return (<div style={{width: "250px"}} className="bg-white text-dark"><li key={idx}>{d.name}</li></div>)
+        })} 
+          <p>Chifle</p>
+          {chifle.map(function(d, idx){
+          return (<div style={{width: "250px"}} className="bg-white text-dark"><li key={idx}>{d.name}</li></div>)
+        })}           
         </ul>
       </div>
       </> )
