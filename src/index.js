@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import { Menu, Home, Whoops404 } from "./pages"
 import Modal from './Modal/Modal'
 import './Modal/Modal.css'
-
+import { FaShoppingBag } from 'react-icons/fa';
 
 // TODO: 
 // Change <a> with <Link>
@@ -106,10 +106,13 @@ function MainMenu() {
 
 function CartNotOpened(setPopUp) {
   return(
-    <section onClick={setPopUp.setPopUp} style={{cursor: "pointer"}} className="bg-dark text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3">
-    <button className="btn btn-primary">Open Cart</button>
-    <p className="r">Vezi cosul tau</p>
-    <p>20 lei</p>
+    <section onClick={setPopUp.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
+      <div className="row">
+        <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
+        <h4 className="col ps-0">0</h4>
+      </div>
+      <h5 className="fw-bold">Vezi cosul tau</h5>
+      <h4 className="fw-bold">20 lei</h4>
   </section>
   )
 }
