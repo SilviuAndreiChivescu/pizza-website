@@ -58,7 +58,7 @@ function MainMenu() {
   }
 
   return(
-      <>
+      <section className="bg-white">
       <nav className="d-flex justify-content-between bg-secondary p-3">
         <a href="#">Pizza</a>
         <a href="#">Burgări</a>
@@ -66,14 +66,14 @@ function MainMenu() {
         <a href="#">Sandwich</a>  
         <a href="#">Sucuri si Bere</a>   
       </nav>
-      <div className="mb-5">
-        <ul className="text-white">
-          <p>Pizza</p>
+      <div className="">
+        <ul className="text-dark">
+          <p className="ps-3 fs-3 fw-bold">Pizza</p>
           <div className="d-flex flex-wrap">
             {pizzas.map(function(d, idx){
             return (
-            <div onClick={ () => { setShow(true); getContentForModal(d.name) } } style={{width: "250px"}} className="m-1 bg-white text-dark">
-              <li key={idx}>{d.name}<br></br>Continut<br></br>Pret</li>
+            <div onClick={ () => { setShow(true); getContentForModal(d.name) } } style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
+              <li className="fw-bold" key={idx}>{d.name}</li><p className="text-secondary mt-2 mb-2">Continut</p><p className="fw-bolder mb-0">Pret</p>
             </div>)
             })}
           </div>
@@ -101,14 +101,14 @@ function MainMenu() {
       <Modal title={content} onClose={ () => setShow(false) } show={show}> 
                 <p> This is modal body</p>
       </Modal>     
-      </> )
+      </section> )
 }
 
 function CartNotOpened(setPopUp) {
   return(
     <section onClick={setPopUp.setPopUp} style={{cursor: "pointer"}} className="bg-dark text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3">
     <button className="btn btn-primary">Open Cart</button>
-    <p className="r">Vezi cosul</p>
+    <p className="r">Vezi cosul tau</p>
     <p>20 lei</p>
   </section>
   )
