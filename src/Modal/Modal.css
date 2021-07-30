@@ -13,6 +13,10 @@
     pointer-events: none;
 }
 
+.black-bg {
+    background-color: #000000;
+}
+
 .modal.enter-done {
     opacity: 1;
     pointer-events: visible;
@@ -35,10 +39,6 @@
     background-color: #fff;
     transform: translateY(-200px);
     transition: all 0.3s ease-in-out;
-}
-
-.modal-header, .modal-footer {
-    padding: 10px;
 }
 
 .modal-title {

@@ -99,7 +99,9 @@ function MainMenu() {
         </ul>
       </div>
       <Modal title={content} onClose={ () => setShow(false) } show={show}> 
-                <p> This is modal body</p>
+                <img style={{maxWidth: "100%"}} src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
+                <p className="pt-3"> Here will go the content of the particular pizza /burger</p>
+                <h5 className="fw-bold">10 lei</h5>
       </Modal>     
       </section> )
 }
