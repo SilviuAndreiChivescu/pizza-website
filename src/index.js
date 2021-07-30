@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import { Menu, Home, Whoops404 } from "./pages"
+import Modal from './Modal/Modal'
+import './Modal/Modal.css'
 
+
+// TODO: 
+// Change <a> with <Link>
+// Change boostrap 5 with react-bootstrap 
+// Make a loading page
+// Put each component and page as for "best practices for react"
+// If needed to have a submit button for the modal, use it(i have written it but I have not pass to <Modal onSubmit={myFunction}), if not, delete the comment in Modal.js
 
 function UpperSide() {
 return (
@@ -37,12 +46,23 @@ function MainMenu() {
   const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}];
   const burgari =[{"name": "burger2"},{"name": "burger1"}];
   const chifle =[{"name": "chifla1"}, {"name": "chifla2"}];
+
+  // useState to show the modal
+  const [show, setShow] = useState(false);
+
+  // useState for content for modal
+  const [content, setContent] = useState(null);
+
+  function getContentForModal(data) {
+      setContent(data)   
+  }
+
   return(
       <>
       <nav className="d-flex justify-content-between bg-secondary p-3">
         <a href="#">Pizza</a>
         <a href="#">Burgări</a>
-        <a href="#">Chifle coapte pe vatră</a> 
+        <a href="#chifle">Chifle coapte pe vatră</a> 
         <a href="#">Sandwich</a>  
         <a href="#">Sucuri si Bere</a>   
       </nav>
@@ -52,7 +72,7 @@ function MainMenu() {
           <div className="d-flex flex-wrap">
             {pizzas.map(function(d, idx){
             return (
-            <div style={{width: "250px"}} className="m-1 bg-white text-dark">
+            <div onClick={ () => { setShow(true); getContentForModal(d.name) } } style={{width: "250px"}} className="m-1 bg-white text-dark">
               <li key={idx}>{d.name}<br></br>Continut<br></br>Pret</li>
             </div>)
             })}
@@ -66,7 +86,7 @@ function MainMenu() {
               </div>)
             })}
           </div> 
-          <p>Chifle</p>
+          <p id="chifle">Chifle</p>
           <div className="d-flex flex-wrap">
             {chifle.map(function(d, idx){
               return (
@@ -78,6 +98,9 @@ function MainMenu() {
                     
         </ul>
       </div>
+      <Modal title={content} onClose={ () => setShow(false) } show={show}> 
+                <p> This is modal body</p>
+      </Modal>     
       </> )
 }
 

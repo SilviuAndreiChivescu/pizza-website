@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import {Link, useLocation} from "react-router-dom"
 import {UpperSide, UpperSideSecond, UpperSideSecondMenu, Slideshow, Main, MainMenu, Checkout, Footer, CartNotOpened} from "./index.js"
 
 export function Menu() {
-    // useState to make the cart appear
+    // useState to show the cart
     const [popUp, setPopUp] = useState(true);
+
     return (
         <>
+        {/* Conditional rendering for showing the cart */}
         {popUp ? 
         <>
-            <UpperSide />
+            <UpperSide />       
             <UpperSideSecondMenu />
             <MainMenu />
             <Link to="/">Home</Link>
-            <CartNotOpened setPopUp={() => setPopUp(false)} />
+            <CartNotOpened setPopUp={ () => setPopUp(false) } />
         </>
 
         : <Checkout setPopUp={() => setPopUp(true)} /> }
