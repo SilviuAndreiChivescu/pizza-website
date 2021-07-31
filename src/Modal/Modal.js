@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
+import ModalLogic from "./ModalLogic"
 import "./Modal.css"
 
 const Modal = props => {
@@ -20,15 +21,7 @@ const Modal = props => {
                 </div>
                 <div className="modal-body">{props.children}</div>
                 <div className="modal-footer">
-                    <div className="row container-fluid">
-                        <div className="col d-inline-flex fs-3">
-                            {/* HERE I LEFT OF, I WAS DOIGN THE DESIGN OF THE -1+ button for adding items in the modal */}
-                            <div><button className="border-1 bg-light">-</button></div>
-                            <div>1</div>
-                            <div><button className="border-1 bg-light">+</button></div>
-                        </div>
-                        <div className="col"><button>Adauga in cos</button></div>
-                    </div>
+                    <ModalLogic onClose={props.onClose} />
                 </div>
             </div>
         </div>
