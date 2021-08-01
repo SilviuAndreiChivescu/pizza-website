@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import {Link, useLocation} from "react-router-dom"
-import {UpperSide, UpperSideSecond, UpperSideSecondMenu, Slideshow, Main, MainMenu, Checkout, Footer, CartNotOpened} from "./index.js"
+import {UpperSide, UpperSideSecond, Slideshow, Main, MainMenu, Checkout, Footer, CartNotOpened} from "./index.js"
 
 export function Menu() {
-    // useState to show the cart - set to true after finishing <Checkout / >
-    const [popUp, setPopUp] = useState(false);
+    // useState to show the cart
+    const [popUp, setPopUp] = useState(true);
 
     return (
         <>
@@ -12,7 +12,7 @@ export function Menu() {
         {popUp ? 
         <>
             <UpperSide />       
-            <UpperSideSecondMenu />
+            <Slideshow />
             <MainMenu />
             <Link to="/">Home</Link>
             <CartNotOpened setPopUp={ () => setPopUp(false) } />

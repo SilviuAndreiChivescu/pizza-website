@@ -14,12 +14,18 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // Make a loading page
 // Put each component and page as for "best practices for react"
 // If needed to have a submit button for the modal, use it(i have written it but I have not pass to <Modal onSubmit={myFunction}), if not, delete the comment in Modal.js
+// Redux
+
 
 function UpperSide() {
 return (
   <section>
   <div id="upper-first" className="container-fluid p-2 brown-color">
     <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
+    <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i class="fab fa-lg fa-facebook me-2 text-white"></i></a>
+    <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i class="fab fa-lg fa-instagram me-2 text-white"></i></a>
+    <a href="tel:+40754%20911%20062"><i class="fas fa-lg fa-phone-square me-2 text-white"></i></a>
+    <i class="fas fa-lg fa-info-circle text-white"></i>
     <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
   </div>
   </section>);
@@ -34,12 +40,6 @@ function UpperSideSecond() {
       <Link to="menu"><button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button></Link>
   </div>
   </section>
-  );
-}
-
-function UpperSideSecondMenu() {
-  return(
-    <img className="container-fluid p-0" height="500px" src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
   );
 }
 
@@ -128,19 +128,31 @@ function Checkout(setPopUp) {
     <section className="container-fluid vh-100 bg-white text-center">
 
       <h1>Cosul tau</h1>
+      {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
       <div className="text-secondary border-top border-bottom border-1 border-secondary">
         <img className="img-fluid mt-5" src={iconEmptyBasket} style={{width: "70px"}} />
         <h5 className="mb-5">Adauga mancare gustoasa din meniu si apoi plaseaza comanda</h5>
       </div>
+
+      <div className="row container-fluid ">
+            <div className="col d-inline-flex ps-0 justify-content-center pt-3 border-top border-1 border-secondary">
+            <p>2 X </p>
+            <p className="ps-2 pe-2">Pizza casei</p>
+            <div className=""><button className="border-1 border-dark bg-light rounded-start" style={{width: "30px"}}>-</button></div>
+            <div><button className="border-1 border-dark bg-light rounded-end" style={{width: "30px"}}>+</button></div>
+            <p className="ps-2 pe-2">10.00 lei</p>
+            </div>
+        </div>
 
       <div className="mb-5 border-bottom border-1 border-secondary">
         <p className="mt-2">Sub-total: 10lei</p>
         <p className="fw-bold">Total: 20lei</p>
       </div>
 
-      <div>
+      <div className="mb-5 border-bottom border-1 border-secondary">
         <p>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 19:00. Va multumim !</p>
-        <p>Luam comenzi! (for this I have to look tmorrow at </p>
+        <p>Luam comenzi! (for this I have to look tmorrow at DIniasi and make it so if it is past our hours, to show not taking orders!</p>
+        <p>Luni-Duminica: 9:00-23:00</p>
       </div>
 
       <button onClick={setPopUp.setPopUp}>Close cart</button>
@@ -247,7 +259,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export {UpperSide, UpperSideSecond, UpperSideSecondMenu, MainMenu, CartNotOpened, Checkout, Slideshow, Main, Footer}
+export {UpperSide, UpperSideSecond, MainMenu, CartNotOpened, Checkout, Slideshow, Main, Footer}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
