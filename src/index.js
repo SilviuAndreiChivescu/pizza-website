@@ -6,6 +6,7 @@ import { Menu, Home, Whoops404 } from "./pages"
 import Modal from './Modal/Modal'
 import './Modal/Modal.css'
 import { FaShoppingBag } from 'react-icons/fa';
+import iconEmptyBasket from './images/iconEmptyBasket.svg';
 
 // TODO: 
 // Change <a> with <Link>
@@ -124,8 +125,24 @@ function CartNotOpened(setPopUp) {
 function Checkout(setPopUp) {
   return(
     <>
-    <section className="container-fluid vh-100 bg-white">
-      <h1>This will be the cart</h1>
+    <section className="container-fluid vh-100 bg-white text-center">
+
+      <h1>Cosul tau</h1>
+      <div className="text-secondary border-top border-bottom border-1 border-secondary">
+        <img className="img-fluid mt-5" src={iconEmptyBasket} style={{width: "70px"}} />
+        <h5 className="mb-5">Adauga mancare gustoasa din meniu si apoi plaseaza comanda</h5>
+      </div>
+
+      <div className="mb-5 border-bottom border-1 border-secondary">
+        <p className="mt-2">Sub-total: 10lei</p>
+        <p className="fw-bold">Total: 20lei</p>
+      </div>
+
+      <div>
+        <p>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 19:00. Va multumim !</p>
+        <p>Luam comenzi! (for this I have to look tmorrow at </p>
+      </div>
+
       <button onClick={setPopUp.setPopUp}>Close cart</button>
     </section>
     </>
