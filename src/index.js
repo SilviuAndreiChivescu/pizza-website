@@ -4,7 +4,6 @@ import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import { Menu, Home, Whoops404 } from "./pages"
 import Modal from './Modal/Modal'
-import { cartItemsToExport as cartItems } from './Modal/ModalLogic';
 import './Modal/Modal.css'
 import { FaShoppingBag } from 'react-icons/fa';
 
@@ -108,11 +107,13 @@ function MainMenu() {
 }
 
 function CartNotOpened(setPopUp) {
+  const cartItems = parseInt(window.localStorage.getItem('myCartItems'));
+
   return(
     <section onClick={setPopUp.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
       <div className="row">
         <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
-        <h4 className="col ps-0">{cartItems}</h4>
+        <h4 className="col ps-0">{Number.isNaN(cartItems) ? 0 : cartItems}</h4>
       </div>
       <h5 className="fw-bold">Vezi cosul tau</h5>
       <h4 className="fw-bold">20 lei</h4>
