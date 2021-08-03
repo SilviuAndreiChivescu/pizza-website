@@ -18,10 +18,11 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // If needed to have a submit button for the modal, use it(i have written it but I have not pass to <Modal onSubmit={myFunction}), if not, delete the comment in Modal.js
 // Redux
 // Make search input for menu after finishing with the db
-// Delete slideshow from menu page see how it looks
+// Restrict the key from MAPS API when uploading it to github
 
 
-// Aici am ramas, voiam sa fac info modal sau cv ca la diniasi cu chestii plm
+
+// Aici am ramas, voiam sa fac info modal GOOGLE MAPS API, did not finish with it and then finish the modal
 function UpperSide() {
   const [show, setShow] = useState(false);
   return (
@@ -30,11 +31,9 @@ function UpperSide() {
       <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
       <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i class="fab fa-lg fa-facebook me-2 text-white"></i></a>
       <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i class="fab fa-lg fa-instagram me-2 text-white"></i></a>
-      <a href="tel:+40754%20911%20062"><i class="fas fa-lg fa-phone-square me-2 text-white"></i></a>
+      <a href="tel:0754911062"><i class="fas fa-lg fa-phone-square me-2 text-white"></i></a>
       <i style={{cursor: "pointer"}} class="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
-      <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show}>
-        <p> This is modalInfo body </p>
-      </ModalInfo>
+      <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show} />
       <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
     </div>
     </section>);
@@ -69,7 +68,7 @@ function MainMenu() {
 
   return(
       <section className="bg-white">
-      <nav className="d-flex justify-content-between bg-secondary p-3">
+      <nav className="d-flex justify-content-between bg-secondary p-3 w-100">
         <a href="#">Pizza</a>
         <a href="#">Burgări</a>
         <a href="#chifle">Chifle coapte pe vatră</a> 

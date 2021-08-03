@@ -12,7 +12,6 @@ export function Menu() {
         {popUp ? 
         <>
             <UpperSide />       
-            <Slideshow />
             <MainMenu />
             <Link to="/">Home</Link>
             <CartNotOpened setPopUp={ () => setPopUp(false) } />
