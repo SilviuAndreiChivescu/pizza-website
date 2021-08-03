@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import { Menu, Home, Whoops404 } from "./pages"
 import Modal from './Modal/Modal'
 import './Modal/Modal.css'
+import ModalInfo from './ModalInfo/ModalInfo'
+import './ModalInfo/ModalInfo.css'
 import { FaShoppingBag } from 'react-icons/fa';
 import iconEmptyBasket from './images/iconEmptyBasket.svg';
 
@@ -15,20 +17,27 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // Put each component and page as for "best practices for react"
 // If needed to have a submit button for the modal, use it(i have written it but I have not pass to <Modal onSubmit={myFunction}), if not, delete the comment in Modal.js
 // Redux
+// Make search input for menu after finishing with the db
+// Delete slideshow from menu page see how it looks
 
 
+// Aici am ramas, voiam sa fac info modal sau cv ca la diniasi cu chestii plm
 function UpperSide() {
-return (
-  <section>
-  <div id="upper-first" className="container-fluid p-2 brown-color">
-    <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
-    <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i class="fab fa-lg fa-facebook me-2 text-white"></i></a>
-    <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i class="fab fa-lg fa-instagram me-2 text-white"></i></a>
-    <a href="tel:+40754%20911%20062"><i class="fas fa-lg fa-phone-square me-2 text-white"></i></a>
-    <i class="fas fa-lg fa-info-circle text-white"></i>
-    <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
-  </div>
-  </section>);
+  const [show, setShow] = useState(false);
+  return (
+    <section>
+    <div id="upper-first" className="container-fluid p-2 brown-color">
+      <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
+      <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i class="fab fa-lg fa-facebook me-2 text-white"></i></a>
+      <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i class="fab fa-lg fa-instagram me-2 text-white"></i></a>
+      <a href="tel:+40754%20911%20062"><i class="fas fa-lg fa-phone-square me-2 text-white"></i></a>
+      <i style={{cursor: "pointer"}} class="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
+      <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show}>
+        <p> This is modalInfo body </p>
+      </ModalInfo>
+      <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
+    </div>
+    </section>);
 }
 
 function UpperSideSecond() {
