@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
-import { Menu, Home, Whoops404 } from "./pages"
-import Modal from './Modal/Modal'
-import './Modal/Modal.css'
-import ModalInfo from './ModalInfo/ModalInfo'
-import './ModalInfo/ModalInfo.css'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Menu, Home, Whoops404 } from "./pages";
+import Modal from './Modal/Modal';
+import './Modal/Modal.css';
+import ModalInfo from './ModalInfo/ModalInfo';
+import './ModalInfo/ModalInfo.css';
 import { FaShoppingBag } from 'react-icons/fa';
 import iconEmptyBasket from './images/iconEmptyBasket.svg';
 
@@ -177,6 +177,7 @@ function CartOpened(props) {
 }
 
 function Checkout() {
+
   return(
     <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
       <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3">
@@ -184,6 +185,61 @@ function Checkout() {
         <h5 className="pt-3">This is the checkout</h5>
         <h5><i className="pt-3 fas fa-bars"></i></h5>
       </header>
+      <form>
+        <h5>Adresa de livrare:</h5>
+        <label htmlFor="prenumeInput">
+          Prenume *<br></br>
+          <input id="prenumeInput" type="text" name="prenume" required/>
+        </label>
+        <label htmlFor="numeInput">
+          Nume *<br></br>
+          <input id="numeInput" type="text" name="nume" required/>
+        </label><br></br>
+        <label htmlFor="adresaInput">
+          Adresa * <br></br>
+          <input id="adresaInput" type="text" name="adresa" placeholder="Nume strada, numar etc." required/>
+        </label>
+        <label htmlFor="orasInput">
+          Oras * <br></br>
+          <input id="orasInput" type="text" name="oras" required/>
+        </label><br></br>
+        <label htmlFor="telefonInput">
+          Telefon * <br></br>
+          <input id="telefonInput" type="tel" name="telefon" required/>
+        </label>
+        <label htmlFor="emailInput">
+          E-mail * <br></br>
+          <input id="emailInput" type="text" name="e-mail" required/>
+        </label>
+        <br></br>
+        <p className="mb-0">Cand se va face livrarea / servirea? *</p>
+        <div>
+          <input type="radio" id="catMaiRepede" name="timp" value="catMaiRepede" checked />
+          <label htmlFor="catMaiRepede">Cat mai repede</label>
+        </div>
+        <div>
+          <input type="radio" id="alege" name="timp" value="alege" />
+          <label htmlFor="alege">Alege data si ora!</label>
+        </div>
+        <p className="mb-0">Metoda de livrare</p>
+        <div>
+          <input type="radio" id="livrareLaDomiciliu" name="livrarea" value="livrareLaDomiciliu" checked />
+          <label htmlFor="livrareLaDomiciliu">Livrare la domiciliu</label>
+        </div>
+        <div>
+          <input type="radio" id="alege" name="livrarea" value="ridicarePersonala" />
+          <label htmlFor="ridicarePersonala">Ridicare personala</label>
+        </div>
+        <input type="checkbox" id="datele" name="datele" value="true" />
+        <label for="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
+        <input type="checkbox" id="conditiile" name="conditiile" value="true" required />
+        <label for="conditiile"> Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *</label><br></br>
+        <input type="checkbox" id="cont" name="cont" value="true" />
+        <label for="cont"> Creezi un cont?</label><br></br>
+        {/* AICI AM RAMAS, CONTINUAM DE TERMINAT UI PENTRU CHECKOUT PAGE */}
+        <button className="container black-bg text-white border border-2 border-dark rounded p-2">PLASEAZA COMANDA</button>
+      </form>
+      
       
     </section>
   )
