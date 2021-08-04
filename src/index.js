@@ -12,29 +12,34 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 
 // TODO: 
 // Change <a> with <Link>
-// Change boostrap 5 with react-bootstrap 
+// Change boostrap 5 with react-bootstrap (Last after refactoring code with best practices)
 // Make a loading page
 // Put each component and page as for "best practices for react"
 // If needed to have a submit button for the modal, use it(i have written it but I have not pass to <Modal onSubmit={myFunction}), if not, delete the comment in Modal.js
 // Redux
 // Make search input for menu after finishing with the db
-// Restrict the key from MAPS API when uploading it to github
+// Put image(svg) downloaded from Illustration idk, for Checkout
+// Use props at the functions. because if I don't, I still have to put double the name of what I am passing(U know what I am talking about)
+// Make icon-menu like a side nav that opens, with the necessary things, like Privacy policy and IDK, ask maiu and search for this
+// Check for something that sees what npm modules are not used and then uninstall them.
+// Use useEffect instead of refresh page when adding to cart, and maybe u can use it for more stuff(I think for this I need to use async and await)
+// See if async with await is usefull for this project
+// Hide the key for the db as it shoulf if I should
+// Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 
 
-
-// Aici am ramas, voiam sa fac info modal GOOGLE MAPS API, did not finish with it and then finish the modal
 function UpperSide() {
   const [show, setShow] = useState(false);
   return (
     <section>
     <div id="upper-first" className="container-fluid p-2 brown-color">
       <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
-      <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i class="fab fa-lg fa-facebook me-2 text-white"></i></a>
-      <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i class="fab fa-lg fa-instagram me-2 text-white"></i></a>
-      <a href="tel:0754911062"><i class="fas fa-lg fa-phone-square me-2 text-white"></i></a>
-      <i style={{cursor: "pointer"}} class="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
+      <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i className="fab fa-lg fa-facebook me-2 text-white"></i></a>
+      <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i className="fab fa-lg fa-instagram me-2 text-white"></i></a>
+      <a href="tel:0754911062"><i className="fas fa-lg fa-phone-square me-2 text-white"></i></a>
+      <i style={{cursor: "pointer"}} className="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
       <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show} />
-      <h5 className="d-inline p-2 float-end me-5 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
+      <h5 className="d-inline p-2 float-end me-3 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare. <i className="fas fa-bars ms-3"></i></h5>
     </div>
     </section>);
 }
@@ -130,13 +135,15 @@ function CartNotOpened(setPopUp) {
   )
 }
 
-function Checkout(setPopUp) {
+function CartOpened(props) {
   return(
     <>
-    <section className="container-fluid vh-100 bg-white text-center">
-
-      <h1>Cosul tau</h1>
-      {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
+    <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
+      <div className="d-inline-flex pt-3">
+        <h1>Cosul tau</h1>
+        <button className="bg-white text-dark border-0 fs-4" onClick={props.setPopUp}>X</button>
+        {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
+      </div>
       <div className="text-secondary border-top border-bottom border-1 border-secondary">
         <img className="img-fluid mt-5" src={iconEmptyBasket} style={{width: "70px"}} />
         <h5 className="mb-5">Adauga mancare gustoasa din meniu si apoi plaseaza comanda</h5>
@@ -157,15 +164,28 @@ function Checkout(setPopUp) {
         <p className="fw-bold">Total: 20lei</p>
       </div>
 
-      <div className="mb-5 border-bottom border-1 border-secondary">
+      {/* The below div, will show up only when it's past our delivery hours */}
+      {/* <div className="mb-5 border-bottom border-1 border-secondary">
         <p>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 19:00. Va multumim !</p>
         <p>Luam comenzi! (for this I have to look tmorrow at DIniasi and make it so if it is past our hours, to show not taking orders!</p>
         <p>Luni-Duminica: 9:00-23:00</p>
-      </div>
-
-      <button onClick={setPopUp.setPopUp}>Close cart</button>
+      </div> */}
+      <div className="container"><button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button></div>
     </section>
     </>
+  )
+}
+
+function Checkout() {
+  return(
+    <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
+      <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3">
+        <h5 className="fs-1">&#8592;</h5>
+        <h5 className="pt-3">This is the checkout</h5>
+        <h5><i className="pt-3 fas fa-bars"></i></h5>
+      </header>
+      
+    </section>
   )
 }
 
@@ -267,7 +287,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export {UpperSide, UpperSideSecond, MainMenu, CartNotOpened, Checkout, Slideshow, Main, Footer}
+export {UpperSide, UpperSideSecond, MainMenu, CartNotOpened, CartOpened, Checkout, Slideshow, Main, Footer}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

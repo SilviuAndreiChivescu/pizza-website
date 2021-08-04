@@ -23,8 +23,8 @@ const modalInfo = props => {
                             <div style={{lineHeight: "1.2"}} className="pt-2">
                                 <p className="fw-bold">Pizzeria Medieval</p>
                                 <p className="">Str. Petru Maior 20, Mangalia, 905500(In spatele Scolii nr.2)</p>
-                                <a className="text-decoration-none text-dark" href="tel:0754911062"><p><i class="fas fa-lg fa-phone-square me-2"></i>0754 911 062</p></a>
-                                <a className="text-decoration-none text-dark" href="tel:0790649803"><p><i class="fas fa-lg fa-phone-square me-2"></i>0790 649 803</p></a>
+                                <a className="text-decoration-none text-dark" href="tel:0754911062"><p><i className="fas fa-lg fa-phone-square me-2"></i>0754 911 062</p></a>
+                                <a className="text-decoration-none text-dark" href="tel:0790649803"><p><i className="fas fa-lg fa-phone-square me-2"></i>0790 649 803</p></a>
                             </div>
                         </div>
                         <div className="m-4 p-4 shadow bg-white">

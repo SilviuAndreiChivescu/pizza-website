@@ -1,26 +1,25 @@
 import React, { useState } from "react"
 import {Link, useLocation} from "react-router-dom"
-import {UpperSide, UpperSideSecond, Slideshow, Main, MainMenu, Checkout, Footer, CartNotOpened} from "./index.js"
+import {UpperSide, UpperSideSecond, Slideshow, Main, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
 
 export function Menu() {
     // useState to show the cart
-    const [popUp, setPopUp] = useState(true);
+    const [popUp, setPopUp] = useState("checkout");
 
-    return (
-        <>
         {/* Conditional rendering for showing the cart */}
-        {popUp ? 
-        <>
-            <UpperSide />       
-            <MainMenu />
-            <Link to="/">Home</Link>
-            <CartNotOpened setPopUp={ () => setPopUp(false) } />
-        </>
-
-        : <Checkout setPopUp={() => setPopUp(true)} /> }
-        </>
+        if (popUp == "noCart") {
+            return(
+            <>
+                <UpperSide />       
+                <MainMenu />
+                <Link to="/">Home</Link>
+                <CartNotOpened setPopUp={ () => setPopUp("cart") } />
+            </>
+            )
+        }
+        else if (popUp == "cart") { return <CartOpened setPopUp={() => setPopUp("noCart")} setPopUpCheckout={() => setPopUp("checkout")} /> }
+        else { return <Checkout /> }
         
-    )
 }
 
 export function Home() {

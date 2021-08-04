@@ -68,3 +68,7 @@ nav > a:hover {
 ul {
   list-style-type: none;
 }
+
+.black-bg {
+  background-color: #000000;
+}
