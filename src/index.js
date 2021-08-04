@@ -26,6 +26,7 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // See if async with await is usefull for this project
 // Hide the key for the db as it shoulf if I should
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
+// Put "Termenii si conditiile" as Diniasi website
 
 
 function UpperSide() {
@@ -177,71 +178,80 @@ function CartOpened(props) {
 }
 
 function Checkout() {
+  // useState for if the user decides to choose a time to get his food
+  const [timp, setTimp] = useState(true);
+
 
   return(
-    <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
-      <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3">
+    <>
+      <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
         <h5 className="fs-1">&#8592;</h5>
         <h5 className="pt-3">This is the checkout</h5>
         <h5><i className="pt-3 fas fa-bars"></i></h5>
       </header>
-      <form>
-        <h5>Adresa de livrare:</h5>
-        <label htmlFor="prenumeInput">
-          Prenume *<br></br>
-          <input id="prenumeInput" type="text" name="prenume" required/>
-        </label>
-        <label htmlFor="numeInput">
-          Nume *<br></br>
-          <input id="numeInput" type="text" name="nume" required/>
-        </label><br></br>
-        <label htmlFor="adresaInput">
-          Adresa * <br></br>
-          <input id="adresaInput" type="text" name="adresa" placeholder="Nume strada, numar etc." required/>
-        </label>
-        <label htmlFor="orasInput">
-          Oras * <br></br>
-          <input id="orasInput" type="text" name="oras" required/>
-        </label><br></br>
-        <label htmlFor="telefonInput">
-          Telefon * <br></br>
-          <input id="telefonInput" type="tel" name="telefon" required/>
-        </label>
-        <label htmlFor="emailInput">
-          E-mail * <br></br>
-          <input id="emailInput" type="text" name="e-mail" required/>
-        </label>
-        <br></br>
-        <p className="mb-0">Cand se va face livrarea / servirea? *</p>
-        <div>
-          <input type="radio" id="catMaiRepede" name="timp" value="catMaiRepede" checked />
-          <label htmlFor="catMaiRepede">Cat mai repede</label>
-        </div>
-        <div>
-          <input type="radio" id="alege" name="timp" value="alege" />
-          <label htmlFor="alege">Alege data si ora!</label>
-        </div>
-        <p className="mb-0">Metoda de livrare</p>
-        <div>
-          <input type="radio" id="livrareLaDomiciliu" name="livrarea" value="livrareLaDomiciliu" checked />
-          <label htmlFor="livrareLaDomiciliu">Livrare la domiciliu</label>
-        </div>
-        <div>
-          <input type="radio" id="alege" name="livrarea" value="ridicarePersonala" />
-          <label htmlFor="ridicarePersonala">Ridicare personala</label>
-        </div>
-        <input type="checkbox" id="datele" name="datele" value="true" />
-        <label for="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
-        <input type="checkbox" id="conditiile" name="conditiile" value="true" required />
-        <label for="conditiile"> Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *</label><br></br>
-        <input type="checkbox" id="cont" name="cont" value="true" />
-        <label for="cont"> Creezi un cont?</label><br></br>
-        {/* AICI AM RAMAS, CONTINUAM DE TERMINAT UI PENTRU CHECKOUT PAGE */}
-        <button className="container black-bg text-white border border-2 border-dark rounded p-2">PLASEAZA COMANDA</button>
-      </form>
-      
-      
-    </section>
+      <section className="container-fluid h-100 bg-white">
+        <form className="p-5 fs-5 shadow bg-body rounded me-5 ms-5">
+          <h3>Adresa de livrare:</h3>
+          <label className="me-5 mt-4" htmlFor="prenumeInput">
+            Prenume *<br></br>
+            <input className="fs-4" id="prenumeInput" type="text" name="prenume" required/>
+          </label>
+          <label className="me-5 mt-4" htmlFor="numeInput">
+            Nume *<br></br>
+            <input className="fs-4" id="numeInput" type="text" name="nume" required/>
+          </label>
+          <label className="me-5 mt-4" htmlFor="adresaInput">
+            Adresa * <br></br>
+            <input className="fs-4" id="adresaInput" type="text" name="adresa" placeholder="Nume strada, numar etc." required/>
+          </label>
+          <label className="me-5 mt-4" htmlFor="orasInput">
+            Oras * <br></br>
+            <input className="fs-4" id="orasInput" type="text" name="oras" required/>
+          </label>
+          <label className="me-5 mt-4" htmlFor="telefonInput">
+            Telefon * <br></br>
+            <input className="fs-4" id="telefonInput" type="tel" name="telefon" required/>
+          </label>
+          <label className="mt-4" htmlFor="emailInput">
+            E-mail * <br></br>
+            <input className="fs-4" id="emailInput" type="text" name="e-mail" required/>
+          </label>
+          <br></br>
+          <p className="mb-0">Cand se va face livrarea / servirea? *</p>
+          {/* AM RAMAS AICI INCERCAND SA IAU VALOAREA DE LA INPUT URILE ALEA SI SA FAC TREABA GEN SA APARA ALT INPUT UNDE SELECTEAZA DATA SI ORA PT pIZZA */}
+          <div>
+            <input type="radio" id="catMaiRepede" name="timp" value="true" defaultChecked />
+            <label className="me-5" htmlFor="catMaiRepede">Cat mai repede</label>
+            <input type="radio" id="alege" name="timp" value="false" />
+            <label htmlFor="alege">Alege data si ora!</label>
+          </div>
+          <p className="mb-0">Metoda de livrare</p>
+          <div>
+            <input type="radio" id="livrareLaDomiciliu" name="livrarea" value="livrareLaDomiciliu" checked />
+            <label htmlFor="livrareLaDomiciliu">Livrare la domiciliu</label>
+          </div>
+          <div>
+            <input type="radio" id="alege" name="livrarea" value="ridicarePersonala" />
+            <label htmlFor="ridicarePersonala">Ridicare personala</label>
+          </div>
+          <label htmlFor="alteInformatiiInput">
+            Alte informatii (optional) <br></br>
+            <input id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
+          </label><br></br>
+          <input type="checkbox" id="datele" name="datele" value="true" />
+          <label htmlFor="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
+          <input type="checkbox" id="conditiile" name="conditiile" value="true" required />
+          <label htmlFor="conditiile"> Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *</label><br></br>
+          <input type="checkbox" id="cont" name="cont" value="true" />
+          <label htmlFor="cont"> Creezi un cont?</label><br></br>
+          <h3>Comanda ta</h3>
+          <p>2X Pizza medieval mare</p>
+          <p>20.00 lei</p>
+          <p>Total: 20.00lei</p>
+          <button className="container black-bg text-white border border-2 border-dark rounded p-2">PLASEAZA COMANDA</button>
+        </form>
+      </section>
+    </>
   )
 }
 
