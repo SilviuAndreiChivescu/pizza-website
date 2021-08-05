@@ -177,15 +177,18 @@ function CartOpened(props) {
   )
 }
 
-function Checkout() {
+function Checkout(props) {
   // useState for if the user decides to choose a time to get his food
-  const [timp, setTimp] = useState(true);
+  const [timp, setTimp] = useState(false);
 
+  const ChooseHour = () => {
+    return <input className="ms-4" id="alege" type="time" name="timp" min="09:00" max="23:00" />
+  }
 
   return(
     <>
       <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
-        <h5 className="fs-1">&#8592;</h5>
+        <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
         <h5 className="pt-3">This is the checkout</h5>
         <h5><i className="pt-3 fas fa-bars"></i></h5>
       </header>
@@ -217,37 +220,42 @@ function Checkout() {
             <input className="fs-4" id="emailInput" type="text" name="e-mail" required/>
           </label>
           <br></br>
-          <p className="mb-0">Cand se va face livrarea / servirea? *</p>
-          {/* AM RAMAS AICI INCERCAND SA IAU VALOAREA DE LA INPUT URILE ALEA SI SA FAC TREABA GEN SA APARA ALT INPUT UNDE SELECTEAZA DATA SI ORA PT pIZZA */}
-          <div>
-            <input type="radio" id="catMaiRepede" name="timp" value="true" defaultChecked />
-            <label className="me-5" htmlFor="catMaiRepede">Cat mai repede</label>
-            <input type="radio" id="alege" name="timp" value="false" />
-            <label htmlFor="alege">Alege data si ora!</label>
+          <p className="mt-3">Cand se va face livrarea / servirea? *</p>
+          <div className="mt-2 mb-2">
+            <input type="radio" id="catMaiRepede" name="timp" onClick={() => setTimp(false)} defaultChecked />
+            <label className="ms-2 me-5" htmlFor="catMaiRepede">Cat mai repede</label>
+            <input type="radio" id="alege" name="timp" onClick={() => setTimp(true)} />
+            <label className="ms-2" htmlFor="alege">Alege ora!</label>
+            { timp ? <ChooseHour /> : null }
           </div>
-          <p className="mb-0">Metoda de livrare</p>
+          <p className="mb-1">Metoda de livrare</p>
           <div>
-            <input type="radio" id="livrareLaDomiciliu" name="livrarea" value="livrareLaDomiciliu" checked />
+            <input className="me-2" type="radio" id="livrareLaDomiciliu" name="livrarea" value="livrareLaDomiciliu" checked />
             <label htmlFor="livrareLaDomiciliu">Livrare la domiciliu</label>
           </div>
           <div>
-            <input type="radio" id="alege" name="livrarea" value="ridicarePersonala" />
+            <input className="me-2" type="radio" id="ridicarePersonala" name="livrarea" value="ridicarePersonala" />
             <label htmlFor="ridicarePersonala">Ridicare personala</label>
           </div>
-          <label htmlFor="alteInformatiiInput">
-            Alte informatii (optional) <br></br>
-            <input id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
+          <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
+            Alte informatii (optional)
+            <input className="ms-3 fs-4" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
           </label><br></br>
           <input type="checkbox" id="datele" name="datele" value="true" />
-          <label htmlFor="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
-          <input type="checkbox" id="conditiile" name="conditiile" value="true" required />
-          <label htmlFor="conditiile"> Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *</label><br></br>
+          <label className="ms-2" htmlFor="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
+          <div className="d-inline-flex">
+            <input className="mt-2" type="checkbox" id="conditiile" name="conditiile" value="true" required />
+            <label className="ms-2" htmlFor="conditiile"> Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *</label><br></br>
+          </div>
           <input type="checkbox" id="cont" name="cont" value="true" />
-          <label htmlFor="cont"> Creezi un cont?</label><br></br>
-          <h3>Comanda ta</h3>
-          <p>2X Pizza medieval mare</p>
-          <p>20.00 lei</p>
-          <p>Total: 20.00lei</p>
+          <label className="ms-2" htmlFor="cont"> Creezi un cont?</label><br></br>
+          <h2 className="mt-4 mb-4">Comanda ta</h2>
+          <div className="d-inline-flex mb-3">
+            <p>2 X</p>
+            <p className="ms-5"> Pizza medieval mare</p>
+            <p className="ms-5">20.00 lei</p>
+          </div>
+          <p className="border-top border-2 fs-3">Total: <strong>20.00lei</strong></p>
           <button className="container black-bg text-white border border-2 border-dark rounded p-2">PLASEAZA COMANDA</button>
         </form>
       </section>
