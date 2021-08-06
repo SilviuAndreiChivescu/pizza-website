@@ -140,11 +140,9 @@ function CartNotOpened(props) {
 function CartOpened(props) {
   return(
     <>
+    <SecondNavBar setPopUp={props.setPopUp} title={"Cosul tau"} />
     <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
-      <div className="d-inline-flex pt-3">
-        <h1>Cosul tau</h1>
-        {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
-      </div>
+      {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
       <div className="text-secondary border-top border-bottom border-1 border-secondary">
         <img className="img-fluid mt-5" src={iconEmptyBasket} style={{width: "70px"}} />
         <h5 className="mb-5">Adauga mancare gustoasa din meniu si apoi plaseaza comanda</h5>
@@ -172,12 +170,21 @@ function CartOpened(props) {
         <p>Luni-Duminica: 9:00-23:00</p>
       </div> */}
       <div className="container">
-        <button className="black-bg text-white border border-2 border-dark rounded p-2 me-5" onClick={props.setPopUp}>Inapoi la Meniu</button>
         <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
       </div>
     </section>
     </>
   )
+}
+
+function SecondNavBar(props) {
+  return(
+    <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
+    <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
+    <h5 className="pt-3 me-3">{props.title}</h5>
+    <h5><i className="pt-3 fas fa-bars"></i></h5>
+  </header>
+  );
 }
 
 function Checkout(props) {
@@ -190,11 +197,7 @@ function Checkout(props) {
 
   return(
     <>
-      <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
-        <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
-        <h5 className="pt-3">Aici dai comanda</h5>
-        <h5><i className="pt-3 fas fa-bars"></i></h5>
-      </header>
+      <SecondNavBar setPopUp={props.setPopUp} title={"Aici dai comanda"} />
       <section className="container-fluid h-100 bg-white">
         <form className="p-5 fs-5 shadow bg-body rounded me-5 ms-5">
           <h3>Adresa de livrare:</h3>
