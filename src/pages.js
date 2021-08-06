@@ -4,7 +4,7 @@ import {UpperSide, UpperSideSecond, Slideshow, Main, MainMenu, CartOpened, Check
 
 export function Menu() {
     // useState to show the cart
-    const [popUp, setPopUp] = useState("noCart");
+    const [popUp, setPopUp] = useState("cart");
 
         {/* Conditional rendering for showing the cart */}
         if (popUp == "noCart") {

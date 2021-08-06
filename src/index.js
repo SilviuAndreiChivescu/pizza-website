@@ -138,18 +138,32 @@ function CartNotOpened(props) {
 }
 
 function CartOpened(props) {
+// AICI AM RAMAS INCERCAND SA COMPAR DATA DE ACU CU ORELE NOASTRE DE LIVRARE + SA INTRODUC SA APARA DIVU DIN VAR PastDeliveryHours CAND E PESTE 23:, si BUTONU CAND E INTRE 9-23
+  // const today = new Date('December 25, 2017');
+  // const pastDevlieryHours = new Date('December 25, 2017 01:30:00');
+  // const time = today.getHours() + ':' + today.getMinutes();
+  // console.log(time);
+
+  const PastDeliveryHours = () => {
+    return(
+      <div className="mb-5 text-secondary">
+        <h5>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 23:00. Va multumim !</h5>
+      </div>
+    );
+  }
+
   return(
     <>
     <SecondNavBar setPopUp={props.setPopUp} title={"Cosul tau"} />
     <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
       {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
-      <div className="text-secondary border-top border-bottom border-1 border-secondary">
+      <div className="text-secondary border-bottom border-2 border-secondary">
         <img className="img-fluid mt-5" src={iconEmptyBasket} style={{width: "70px"}} />
         <h5 className="mb-5">Adauga mancare gustoasa din meniu si apoi plaseaza comanda</h5>
       </div>
 
       <div className="row container-fluid ">
-            <div className="col d-inline-flex ps-0 justify-content-center pt-3 border-top border-1 border-secondary">
+            <div className="col d-inline-flex ps-0 justify-content-center pt-3">
             <p>2 X </p>
             <p className="ps-2 pe-2">Pizza casei</p>
             <div className=""><button className="border-1 border-dark bg-light rounded-start" style={{width: "30px"}}>-</button></div>
@@ -158,20 +172,16 @@ function CartOpened(props) {
             </div>
         </div>
 
-      <div className="mb-5 border-bottom border-1 border-secondary">
+      <div className="mb-5 border-bottom border-2 border-secondary">
         <p className="mt-2">Sub-total: 10lei</p>
         <p className="fw-bold">Total: 20lei</p>
       </div>
 
       {/* The below div, will show up only when it's past our delivery hours */}
-      {/* <div className="mb-5 border-bottom border-1 border-secondary">
-        <p>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 19:00. Va multumim !</p>
-        <p>Luam comenzi! (for this I have to look tmorrow at DIniasi and make it so if it is past our hours, to show not taking orders!</p>
-        <p>Luni-Duminica: 9:00-23:00</p>
-      </div> */}
-      <div className="container">
+      <PastDeliveryHours />
+      {/* <div className="container">
         <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
-      </div>
+      </div> */}
     </section>
     </>
   )
