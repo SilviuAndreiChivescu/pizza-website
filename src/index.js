@@ -11,17 +11,18 @@ import { FaShoppingBag } from 'react-icons/fa';
 import iconEmptyBasket from './images/iconEmptyBasket.svg';
 
 // TODO: 
-// Change <a> with <Link>
+// See how it looks in mobile look and make it beautiful
+// SLIDER IMAGE MAKE IT FULL WIDTH FOR EVERY SCREEN
+// Change <a> with <Link> because <a> triggers a refresh page and that is not ok with react because it resets states
 // Change boostrap 5 with react-bootstrap (Last after refactoring code with best practices)
 // Make a loading page
 // Put each component and page as for "best practices for react"
 // If needed to have a submit button for the modal, use it(i have written it but I have not pass to <Modal onSubmit={myFunction}), if not, delete the comment in Modal.js
-// Redux
+// Redux if needed
 // Make search input for menu after finishing with the db
 // Put image(svg) downloaded from Illustration idk, for Checkout
-// Use props at the functions. because if I don't, I still have to put double the name of what I am passing(U know what I am talking about)
 // Make icon-menu like a side nav that opens, with the necessary things, like Privacy policy and IDK, ask maiu and search for this
-// Check for something that sees what npm modules are not used and then uninstall them.
+// Check if there are npm modules unused and uninstall them
 // Use useEffect instead of refresh page when adding to cart, and maybe u can use it for more stuff(I think for this I need to use async and await)
 // See if async with await is usefull for this project
 // Hide the key for the db as it shoulf if I should
@@ -34,13 +35,13 @@ function UpperSide() {
   return (
     <section>
     <div id="upper-first" className="container-fluid p-2 brown-color">
-      <img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img>
+      <Link to="/"><img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img></Link>
       <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i className="fab fa-lg fa-facebook me-2 text-white"></i></a>
       <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i className="fab fa-lg fa-instagram me-2 text-white"></i></a>
       <a href="tel:0754911062"><i className="fas fa-lg fa-phone-square me-2 text-white"></i></a>
       <i style={{cursor: "pointer"}} className="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
       <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show} />
-      <h5 className="d-inline p-2 float-end me-3 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare. <i className="fas fa-bars ms-3"></i></h5>
+      <h5 style={{cursor: "default"}} className="d-inline p-2 float-end me-3 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare. <i className="fas fa-bars ms-3"></i></h5>
     </div>
     </section>);
 }
@@ -73,9 +74,9 @@ function MainMenu() {
   }
 
   return(
-      <section className="bg-white">
+      <section style={{backgroundColor: "#efeff4"}}>
       <nav className="d-flex justify-content-between bg-secondary p-3 w-100">
-        <a href="#">Pizza</a>
+        <a href="#pizza">Pizza</a>
         <a href="#">Burgări</a>
         <a href="#chifle">Chifle coapte pe vatră</a> 
         <a href="#">Sandwich</a>  
@@ -83,7 +84,7 @@ function MainMenu() {
       </nav>
       <div className="">
         <ul className="text-dark">
-          <p className="ps-3 fs-3 fw-bold">Pizza</p>
+          <p id="pizza" className="ps-3 fs-3 fw-bold">Pizza</p>
           <div className="d-flex flex-wrap">
             {pizzas.map(function(d, idx){
             return (
@@ -121,11 +122,11 @@ function MainMenu() {
       </section> )
 }
 
-function CartNotOpened(setPopUp) {
+function CartNotOpened(props) {
   const cartItems = parseInt(window.localStorage.getItem('myCartItems'));
 
   return(
-    <section onClick={setPopUp.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
+    <section onClick={props.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
       <div className="row">
         <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
         <h4 className="col ps-0">{Number.isNaN(cartItems) ? 0 : cartItems}</h4>
@@ -142,7 +143,6 @@ function CartOpened(props) {
     <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
       <div className="d-inline-flex pt-3">
         <h1>Cosul tau</h1>
-        <button className="bg-white text-dark border-0 fs-4" onClick={props.setPopUp}>X</button>
         {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
       </div>
       <div className="text-secondary border-top border-bottom border-1 border-secondary">
@@ -171,7 +171,10 @@ function CartOpened(props) {
         <p>Luam comenzi! (for this I have to look tmorrow at DIniasi and make it so if it is past our hours, to show not taking orders!</p>
         <p>Luni-Duminica: 9:00-23:00</p>
       </div> */}
-      <div className="container"><button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button></div>
+      <div className="container">
+        <button className="black-bg text-white border border-2 border-dark rounded p-2 me-5" onClick={props.setPopUp}>Inapoi la Meniu</button>
+        <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
+      </div>
     </section>
     </>
   )
@@ -189,7 +192,7 @@ function Checkout(props) {
     <>
       <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
         <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
-        <h5 className="pt-3">This is the checkout</h5>
+        <h5 className="pt-3">Aici dai comanda</h5>
         <h5><i className="pt-3 fas fa-bars"></i></h5>
       </header>
       <section className="container-fluid h-100 bg-white">
@@ -312,18 +315,24 @@ function Slideshow() {
 function Main() {
 return (
   <section className="container d-flex text-center text-white mb-5 mt-5 justify-content-center">
-    <div className="p-3">
-      <h3 className="display-3 fw-bold">Pizza</h3>
-      <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
-    </div>
-    <div className="p-3">
-      <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
-      <h3 className="display-3 fw-bold">Burgări</h3>
-    </div>
-    <div className="p-3">
-      <h3 className="display-3 fw-bold">Chifle</h3>
-      <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
-    </div>  
+    <Link style={{textDecoration: "none"}} to="menu">
+        <div className="p-3">
+        <h3 className="display-3 fw-bold text-white">Pizza</h3>
+        <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
+      </div>
+    </Link>
+    <Link style={{textDecoration: "none"}} to="menu">
+      <div className="p-3">
+        <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
+        <h3 className="display-3 fw-bold text-white">Burgări</h3>
+      </div>
+    </Link>
+    <Link style={{textDecoration: "none"}} to="menu">
+      <div className="p-3">
+        <h3 className="display-3 fw-bold text-white">Chifle</h3>
+        <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
+      </div>
+    </Link>  
   </section>
   );
 }

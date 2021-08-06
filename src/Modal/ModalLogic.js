@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-function ModalLogic(onClose) {
+function ModalLogic(props) {
     const [clicks, setClicks] = useState(1);
 
     function IncrementItem() {
@@ -32,7 +32,7 @@ function ModalLogic(onClose) {
             <div><button className="border-1 border-dark bg-light" style={{width: "50px", pointerEvents: "none"}}>{clicks}</button></div>
             <div><button onClick={() => IncrementItem()} className="border-1 border-dark bg-light rounded-end" style={{width: "50px"}}>+</button></div>
             </div>
-            <div onClick={() => {RefreshPage(); AddToCart()}} className="col pe-0 ps-0"><button onClick={onClose.onClose} className="container-fluid black-bg text-white border border-2 border-dark rounded p-2">Adauga in cos</button></div> 
+            <div onClick={() => {RefreshPage(); AddToCart()}} className="col pe-0 ps-0"><button onClick={props.onClose} className="container-fluid black-bg text-white border border-2 border-dark rounded p-2">Adauga in cos</button></div> 
         </div>
     );
 
