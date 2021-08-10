@@ -11,6 +11,9 @@ import { FaShoppingBag } from 'react-icons/fa';
 import iconEmptyBasket from './images/iconEmptyBasket.svg';
 
 // TODO: 
+// use useEffect when console.log something that is state depenendent, because it will give you the real time value, not the value that was when you would console.log, because when you would console.log normally, it will run asynch, and you don't want that
+// Div s from Menu with the Pizza and its text, make it a component
+// when using setState for let's say, increment by 1, don't just put setCount(count+1), !!put setCount(currCount => currCount + 1)
 // See how it looks in mobile look and make it beautiful
 // SLIDER IMAGE MAKE IT FULL WIDTH FOR EVERY SCREEN
 // Change <a> with <Link> because <a> triggers a refresh page and that is not ok with react because it resets states
@@ -179,9 +182,9 @@ function CartOpened(props) {
 
       {/* The below div, will show up only when it's past our delivery hours */}
       <PastDeliveryHours />
-      {/* <div className="container">
+      <div className="container">
         <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
-      </div> */}
+      </div>
     </section>
     </>
   )
