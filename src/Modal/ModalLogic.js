@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 function ModalLogic(props) {
     const [clicks, setClicks] = useState(1);
 
+// Am ramas aici unde ma gandeam cum sa fac gen cu cart db si/sau localStorage gen sa iau mancarea de pe modal sa o bag undeva sa o am in cart si in cartnotopened
     function IncrementItem() {
-        setClicks(parseInt(clicks) + 1)
+        setClicks(currClicks => currClicks + 1)
     }
     function DecreaseItem() {
         if (clicks <= 1) return;
-        setClicks(parseInt(clicks) - 1)
+        setClicks(currClicks => currClicks - 1)
     }
     function AddToCart() {
         if (window.localStorage.getItem('myCartItems') != null) {

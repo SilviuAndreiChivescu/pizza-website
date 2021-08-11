@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Axios from 'axios'
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Menu, Home, Whoops404 } from "./pages";
+import { Menu, Whoops404, Mysql } from "./pages";
 import Modal from './Modal/Modal';
 import './Modal/Modal.css';
 import ModalInfo from './ModalInfo/ModalInfo';
@@ -15,7 +16,6 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // Div s from Menu with the Pizza and its text, make it a component
 // when using setState for let's say, increment by 1, don't just put setCount(count+1), !!put setCount(currCount => currCount + 1)
 // See how it looks in mobile look and make it beautiful
-// SLIDER IMAGE MAKE IT FULL WIDTH FOR EVERY SCREEN
 // Change <a> with <Link> because <a> triggers a refresh page and that is not ok with react because it resets states
 // Change boostrap 5 with react-bootstrap (Last after refactoring code with best practices)
 // Make a loading page
@@ -31,6 +31,7 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // Hide the key for the db as it shoulf if I should
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 // Put "Termenii si conditiile" as Diniasi website
+// Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly & make navbar for all pages the same component
 
 
 function UpperSide() {
@@ -49,20 +50,9 @@ function UpperSide() {
     </section>);
 }
 
-function UpperSideSecond() {
-  return(
-    <section>
-    <div id="upper-second" className="container-fluid p-1 text-secondary border-top border-bottom border-danger">
-      <h1 className="d-inline ms-5 display-3 fw-normal">De acum puteti</h1><br></br>
-      <h1 className="d-inline ms-5 display-1 fw-bolder">COMANDA ONLINE!</h1>
-      <Link to="menu"><button type="button" id="button-firstPage" className="btn btn-danger d-inline float-end me-5">Meniu & Comanda</button></Link>
-  </div>
-  </section>
-  );
-}
-
 function MainMenu() {
-  const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}];
+  // Below was just an example from when I was building the application
+  // const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}];
   const burgari =[{"name": "burger2"},{"name": "burger1"}];
   const chifle =[{"name": "chifla1"}, {"name": "chifla2"}];
 
@@ -70,10 +60,34 @@ function MainMenu() {
   const [show, setShow] = useState(false);
 
   // useState for content for modal
-  const [content, setContent] = useState(null);
-
+  const [content, setContent] = useState([]);
   function getContentForModal(data) {
       setContent(data)   
+  }
+
+  // The below useState is used to display on the front-end all my info from db
+  const [pizzas, setPizzas] = useState([]);
+
+  // Get pizza category from db
+  useEffect(() => {
+    Axios.get('http://localhost:3001/api/getPizza').then((response) => {
+        setPizzas(response.data);
+    });
+  }, []);
+
+  const PizzaSize = () => {
+    if (content.Category == 'pizza') {
+      return(
+        <div className="mt-2 mb-2">
+          <input type="radio" id="mica" name="timp" defaultChecked />
+          <label className="ms-2 me-5" htmlFor="mica">Mica</label>
+          <input type="radio" id="medie" name="timp" />
+          <label className="ms-2 me-5" htmlFor="medie">Medie</label>
+          <input type="radio" id="mare" name="timp" />
+          <label className="ms-2" htmlFor="mare">Mare</label>
+        </div>
+      );}
+    else return null;
   }
 
   return(
@@ -89,10 +103,10 @@ function MainMenu() {
         <ul className="text-dark">
           <p id="pizza" className="ps-3 fs-3 fw-bold">Pizza</p>
           <div className="d-flex flex-wrap">
-            {pizzas.map(function(d, idx){
+            {pizzas.map((val) => {
             return (
-            <div onClick={ () => { setShow(true); getContentForModal(d.name) } } style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
-              <li className="fw-bold" key={idx}>{d.name}</li><p className="text-secondary mt-2 mb-2">Continut</p><p className="fw-bolder mb-0">Pret</p>
+            <div onClick={ () => {setShow(true); getContentForModal({Name: val.Name, Description: val.Description, Price: val.Price, Category: val.Category})}} style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
+              <li className="fw-bold">{val.Name}</li><p className="text-secondary mt-2 mb-2">{val.Description}</p><p className="fw-bolder mb-0">{val.Price} lei</p>
             </div>)
             })}
           </div>
@@ -117,22 +131,28 @@ function MainMenu() {
                     
         </ul>
       </div>
-      <Modal title={content} onClose={ () => setShow(false) } show={show}> 
+      <Modal Price={content.Price} Description={content.Description} title={content.Name} onClose={ () => setShow(false) } show={show}> 
                 <img style={{maxWidth: "100%"}} src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
-                <p className="pt-3"> Here will go the content of the particular pizza /burger</p>
-                <h5 className="fw-bold">10 lei</h5>
+                <p className="pt-3">{content.Description}</p>
+                <h5 className="fw-bold">{content.Price} lei</h5>
+                <PizzaSize />
+                <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
+                  Alte informatii (optional)
+                  <input className="ms-3" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
+                </label><br></br>
       </Modal>     
       </section> )
 }
 
 function CartNotOpened(props) {
-  const cartItems = parseInt(window.localStorage.getItem('myCartItems'));
+  // this below was used to take clicks from local storage and display how many items in the cart, but not going to use it anymore
+  // const cartItems = parseInt(window.localStorage.getItem('myCartItems'));
 
   return(
     <section onClick={props.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
       <div className="row">
         <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
-        <h4 className="col ps-0">{Number.isNaN(cartItems) ? 0 : cartItems}</h4>
+        <h4 className="col ps-0">0</h4>
       </div>
       <h5 className="fw-bold">Vezi cosul tau</h5>
       <h4 className="fw-bold">20 lei</h4>
@@ -141,18 +161,24 @@ function CartNotOpened(props) {
 }
 
 function CartOpened(props) {
-// AICI AM RAMAS INCERCAND SA COMPAR DATA DE ACU CU ORELE NOASTRE DE LIVRARE + SA INTRODUC SA APARA DIVU DIN VAR PastDeliveryHours CAND E PESTE 23:, si BUTONU CAND E INTRE 9-23
-  // const today = new Date('December 25, 2017');
-  // const pastDevlieryHours = new Date('December 25, 2017 01:30:00');
-  // const time = today.getHours() + ':' + today.getMinutes();
-  // console.log(time);
+  const today = new Date();
+  const time = today.getHours() + ':' + today.getMinutes();
 
-  const PastDeliveryHours = () => {
-    return(
-      <div className="mb-5 text-secondary">
-        <h5>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 23:00. Va multumim !</h5>
-      </div>
-    );
+  const DeliveryHours = () => {
+    if (time > '22:29' && time < '8:59') {
+      return(
+        <div className="mb-5 text-secondary">
+          <h5>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 22:30. Va multumim !</h5>
+        </div>
+      );
+      }
+    else {
+      return(
+        <div className="container">
+          <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
+        </div>
+      );
+    }
   }
 
   return(
@@ -179,12 +205,7 @@ function CartOpened(props) {
         <p className="mt-2">Sub-total: 10lei</p>
         <p className="fw-bold">Total: 20lei</p>
       </div>
-
-      {/* The below div, will show up only when it's past our delivery hours */}
-      <PastDeliveryHours />
-      <div className="container">
-        <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
-      </div>
+      <DeliveryHours />
     </section>
     </>
   )
@@ -256,10 +277,6 @@ function Checkout(props) {
             <input className="me-2" type="radio" id="ridicarePersonala" name="livrarea" value="ridicarePersonala" />
             <label htmlFor="ridicarePersonala">Ridicare personala</label>
           </div>
-          <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
-            Alte informatii (optional)
-            <input className="ms-3 fs-4" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
-          </label><br></br>
           <input type="checkbox" id="datele" name="datele" value="true" />
           <label className="ms-2" htmlFor="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
           <div className="d-inline-flex">
@@ -282,77 +299,6 @@ function Checkout(props) {
   )
 }
 
-function Slideshow() {
-  const pictures = ["https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/226-1-scaled-e1617704481484.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/12183-scaled-e1617704565414.jpg", "https:\/\/medievalpizza.com\/wp-content\/uploads\/2021\/04\/8117-scaled.jpg"];
-  const delay = 2500;
-  const [index, setIndex] = React.useState(0);
-  const timeoutRef = React.useRef(null);
-
-  function resetTimeout() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }
-
-  React.useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(
-      () =>
-        setIndex((prevIndex) =>
-          prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
-        ),
-      delay
-    );
-
-    return () => {
-      resetTimeout();
-    };
-  }, [index]);
-
-  return (
-    <div className="slideshow">
-      <div
-        className="slideshowSlider"
-        style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-      >
-        {pictures.map((img, index) => (
-          <img
-            className="slide p-0 container-fluid"
-            key={index}
-            src={img}
-            alt="new">
-            </img>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Main() {
-return (
-  <section className="container d-flex text-center text-white mb-5 mt-5 justify-content-center">
-    <Link style={{textDecoration: "none"}} to="menu">
-        <div className="p-3">
-        <h3 className="display-3 fw-bold text-white">Pizza</h3>
-        <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/237-683x1024.jpg" alt="Pizza"></img>
-      </div>
-    </Link>
-    <Link style={{textDecoration: "none"}} to="menu">
-      <div className="p-3">
-        <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2141-682x1024.jpg" alt="Burgers"></img>
-        <h3 className="display-3 fw-bold text-white">Burgări</h3>
-      </div>
-    </Link>
-    <Link style={{textDecoration: "none"}} to="menu">
-      <div className="p-3">
-        <h3 className="display-3 fw-bold text-white">Chifle</h3>
-        <img className="transition-transform" width="350" height="500" src="https://medievalpizza.com/wp-content/uploads/2021/04/2366-682x1024.jpg"></img>
-      </div>
-    </Link>  
-  </section>
-  );
-}
-
 function Footer({year}) {
   return (
     <footer className="position-relative">
@@ -371,9 +317,10 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<Home /> } />
-      <Route path="/menu" element={<Menu />} />
+      {/* <Route path="/" element={<Home /> } /> */}
+      <Route path="/" element={<Menu />} />
       <Route path="*" element={<Whoops404 />} />
+      <Route path="/mysql" element={<Mysql />} />
     </Routes>
     </>
   );
@@ -386,7 +333,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export {UpperSide, UpperSideSecond, MainMenu, CartNotOpened, CartOpened, Checkout, Slideshow, Main, Footer}
+export {UpperSide, MainMenu, CartNotOpened, CartOpened, Checkout, Footer}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
