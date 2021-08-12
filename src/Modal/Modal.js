@@ -21,7 +21,7 @@ const Modal = props => {
                     </div>
                     <div className="modal-body">{props.children}</div>
                     <div className="modal-footer">
-                        <ModalLogic Price={props.Price} Description={props.Description} title={props.title} onClose={props.onClose} />
+                        <ModalLogic Price={props.Price} title={props.title} onClose={props.onClose} />
                     </div>
                 </div>
             </div>

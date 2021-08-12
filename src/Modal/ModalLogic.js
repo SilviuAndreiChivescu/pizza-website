@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios'
 
 function ModalLogic(props) {
     const [clicks, setClicks] = useState(1);
 
-// Am ramas aici unde ma gandeam cum sa fac gen cu cart db si/sau localStorage gen sa iau mancarea de pe modal sa o bag undeva sa o am in cart si in cartnotopened
     function IncrementItem() {
         setClicks(currClicks => currClicks + 1)
     }
@@ -12,19 +11,21 @@ function ModalLogic(props) {
         if (clicks <= 1) return;
         setClicks(currClicks => currClicks - 1)
     }
-    function AddToCart() {
-        if (window.localStorage.getItem('myCartItems') != null) {
-            var items = parseInt(window.localStorage.getItem('myCartItems'));
-            items += clicks;
-            window.localStorage.setItem('myCartItems', items);
-        }
-        else window.localStorage.setItem('myCartItems', clicks);
 
-    }
-    // Refresh page to get the actual number of cartItems in the <CartNotOpened />
-    function RefreshPage() {
-        window.location.reload();
-    }
+    const submit = () => {
+        Axios.post('http://localhost:3001/api/insertCart', 
+        {Product: props.title, How_many: clicks, Price: props.Price})
+        // This below is: we are pushing inside our products array, the new insert so that you don't need to refresh page in order to get new info [dont know if I need it here]
+        // setProducts([
+        //     ...products,
+        //     {Name: Name, Price: Price},
+        // ]);
+
+    };
+    // useEffect(() => {
+    //     Axios.post('http://localhost:3001/api/insertCart', 
+    //     {Product: product, How_many: clicks, Price: price})
+    //     }, [product]);
 
     return(
         <div className="row container-fluid">
@@ -33,7 +34,7 @@ function ModalLogic(props) {
             <div><button className="border-1 border-dark bg-light" style={{width: "50px", pointerEvents: "none"}}>{clicks}</button></div>
             <div><button onClick={() => IncrementItem()} className="border-1 border-dark bg-light rounded-end" style={{width: "50px"}}>+</button></div>
             </div>
-            <div onClick={() => {RefreshPage(); AddToCart()}} className="col pe-0 ps-0"><button onClick={props.onClose} className="container-fluid black-bg text-white border border-2 border-dark rounded p-2">Adauga in cos</button></div> 
+            <div onClick={submit} className="col pe-0 ps-0"><button onClick={props.onClose} className="container-fluid black-bg text-white border border-2 border-dark rounded p-2">Adauga in cos</button></div> 
         </div>
     );
 

@@ -14,17 +14,29 @@ app.use(cors());
 app.use(express.json());
 
 // cart table
-// app.post('/api/insertCart', (req, res) => {
+// Insert into cart table
+app.post('/api/insertCart', (req, res) => {
 
-//     const Name = req.body.UserId
-    
-//     const sqlInsert = "INSERT INTO products (Name, Price, Description, Image, Category) VALUES (?, ?, ?, ?, ?)"
-//     db.query(sqlInsert, [Name, Price, Description, Image, Category], (err, result) => {
-//         console.log(result)
-//     })
-// })
+    const Product = req.body.Product
+    const How_many = req.body.How_many
+    const Price = req.body.Price
 
-// products table 
+    const sqlInsert = "INSERT INTO cart (Product, How_many, Price) VALUES (?, ?, ?)"
+    db.query(sqlInsert, [Product, How_many, Price], (err, result) => {
+        console.log(result)
+    })
+})
+
+// get SUM of How_many from cart table
+app.get('/api/getHowMany', (req, res) => {
+    const sqlSelect = "SELECT SUM(How_many) FROM medieval.cart;";
+    db.query(sqlSelect, (err, result) => {
+        res.send(result);
+    })
+})
+
+
+// PRODUCTS TABLE 
 
 // get all data
 app.get('/api/get', (req, res) => {

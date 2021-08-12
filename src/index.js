@@ -14,7 +14,8 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // TODO: 
 // use useEffect when console.log something that is state depenendent, because it will give you the real time value, not the value that was when you would console.log, because when you would console.log normally, it will run asynch, and you don't want that
 // Div s from Menu with the Pizza and its text, make it a component
-// when using setState for let's say, increment by 1, don't just put setCount(count+1), !!put setCount(currCount => currCount + 1)
+//   !when using setState for let's say, increment by 1, don't just put setCount(count+1), !!put setCount(currCount => currCount + 1)
+//   !ALSO for when toggling from false to true, use setState(currState => !currState)
 // See how it looks in mobile look and make it beautiful
 // Change <a> with <Link> because <a> triggers a refresh page and that is not ok with react because it resets states
 // Change boostrap 5 with react-bootstrap (Last after refactoring code with best practices)
@@ -27,12 +28,13 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 // Make icon-menu like a side nav that opens, with the necessary things, like Privacy policy and IDK, ask maiu and search for this
 // Check if there are npm modules unused and uninstall them
 // Use useEffect instead of refresh page when adding to cart, and maybe u can use it for more stuff(I think for this I need to use async and await)
+// When using useEffect and in the dependency array you will put an object, due to referencing of that obj, it might give an unexpected result. SO when using useEffect and want to be dependent of an object, use useMemo() [look it up if needed]
 // See if async with await is usefull for this project
 // Hide the key for the db as it shoulf if I should
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 // Put "Termenii si conditiile" as Diniasi website
 // Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly & make navbar for all pages the same component
-
+// see how index.html should look like and make it clean
 
 function UpperSide() {
   const [show, setShow] = useState(false);
@@ -145,14 +147,19 @@ function MainMenu() {
 }
 
 function CartNotOpened(props) {
-  // this below was used to take clicks from local storage and display how many items in the cart, but not going to use it anymore
-  // const cartItems = parseInt(window.localStorage.getItem('myCartItems'));
+
+    const [cartItems, setCartItems] = useState(0);
+    useEffect(() => {
+      Axios.get('http://localhost:3001/api/getHowMany').then((response) => {
+          setCartItems(response.data[0]["SUM(How_many)"]);
+      });
+    }, []);
 
   return(
     <section onClick={props.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
       <div className="row">
         <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
-        <h4 className="col ps-0">0</h4>
+        <h4 className="col ps-0">{cartItems}</h4>
       </div>
       <h5 className="fw-bold">Vezi cosul tau</h5>
       <h4 className="fw-bold">20 lei</h4>

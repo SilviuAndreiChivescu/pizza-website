@@ -5,7 +5,7 @@ import {UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "
 
 export function Menu() {
     // useState to show the cart
-    const [popUp, setPopUp] = useState("cart");
+    const [popUp, setPopUp] = useState("noCart");
 
         {/* Conditional rendering for showing the cart */}
         if (popUp == "noCart") {
@@ -13,7 +13,6 @@ export function Menu() {
             <>
                 <UpperSide />       
                 <MainMenu />
-                <Link to="/">Home</Link>
                 <CartNotOpened setPopUp={ () => setPopUp("cart") } />
             </>
             )
