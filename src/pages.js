@@ -12,8 +12,8 @@ export function Menu() {
             return(
             <>
                 <UpperSide />       
-                <MainMenu />
-                <CartNotOpened setPopUp={ () => setPopUp("cart") } />
+                <MainMenu setPopUp={ () => setPopUp("cart") } />
+                {/* <CartNotOpened /> */}
             </>
             )
         }

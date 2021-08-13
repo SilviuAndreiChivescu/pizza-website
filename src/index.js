@@ -52,7 +52,7 @@ function UpperSide() {
     </section>);
 }
 
-function MainMenu() {
+function MainMenu(props) {
   // Below was just an example from when I was building the application
   // const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}];
   const burgari =[{"name": "burger2"},{"name": "burger1"}];
@@ -66,6 +66,9 @@ function MainMenu() {
   function getContentForModal(data) {
       setContent(data)   
   }
+
+  // useState to toggle to request api to get data for cartnotopened
+  const [isToggled, setIsToggled] = useState(false);
 
   // The below useState is used to display on the front-end all my info from db
   const [pizzas, setPizzas] = useState([]);
@@ -134,18 +137,20 @@ function MainMenu() {
         </ul>
       </div>
       <Modal Price={content.Price} Description={content.Description} title={content.Name} onClose={ () => setShow(false) } show={show}> 
-                <img style={{maxWidth: "100%"}} src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
-                <p className="pt-3">{content.Description}</p>
-                <h5 className="fw-bold">{content.Price} lei</h5>
-                <PizzaSize />
-                <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
-                  Alte informatii (optional)
-                  <input className="ms-3" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
-                </label><br></br>
-      </Modal>     
+        <img style={{maxWidth: "100%"}} src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
+        <p className="pt-3">{content.Description}</p>
+        <h5 className="fw-bold">{content.Price} lei</h5>
+        <PizzaSize />
+        <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
+          Alte informatii (optional)
+          <input className="ms-3" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
+        </label><br></br>
+      </Modal>
+      <CartNotOpened setPopUp={props.setPopUp} />     
       </section> )
 }
 
+// Am ramas aici, voiam sa pun componenta asta de sub in componenta de sus pt ca sa pot da useEffect cand se schimba showul, sa iau data noua de la db api (trebuie sa schimb chestii si pe la pages, pt ca eu pasez la asta de sub un prop, si va trebui sa l pasez la cea de sus, dupa la asta, easy pez but no time atm) ; NU MERGE CA GEN VEDE DOAR CAND SHOW DEVINE TRUE CAND APARE MODAL, dar nu si cand devine fals inapoi, mare bataie de cap fmm
 function CartNotOpened(props) {
 
     const [cartItems, setCartItems] = useState(0);
