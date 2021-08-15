@@ -20,10 +20,10 @@ app.post('/api/insertCart', (req, res) => {
     const Product = req.body.Product
     const How_many = req.body.How_many
     const Price = req.body.Price
-
     const sqlInsert = "INSERT INTO cart (Product, How_many, Price) VALUES (?, ?, ?)"
     db.query(sqlInsert, [Product, How_many, Price], (err, result) => {
-        console.log(result)
+        if(err) console.log(err);
+        console.log(result);
     })
 })
 
@@ -31,6 +31,8 @@ app.post('/api/insertCart', (req, res) => {
 app.get('/api/getHowMany', (req, res) => {
     const sqlSelect = "SELECT SUM(How_many) FROM medieval.cart;";
     db.query(sqlSelect, (err, result) => {
+        if(err) console.log(err);
+        console.log(result);
         res.send(result);
     })
 })
@@ -42,6 +44,7 @@ app.get('/api/getHowMany', (req, res) => {
 app.get('/api/get', (req, res) => {
     const sqlSelect = "SELECT * FROM products";
     db.query(sqlSelect, (err, result) => {
+        if(err) console.log(err);
         res.send(result);
     })
 })
@@ -64,7 +67,7 @@ app.post('/api/insert', (req, res) => {
     
     const sqlInsert = "INSERT INTO products (Name, Price, Description, Image, Category) VALUES (?, ?, ?, ?, ?)"
     db.query(sqlInsert, [Name, Price, Description, Image, Category], (err, result) => {
-        console.log(result)
+        // console.log(result)
     })
 })
 

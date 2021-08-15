@@ -16,26 +16,6 @@ body {
     , #000000 0%, #281911 100%);
 }
 
-#upper-second {
-  background-image: url(https://medievalpizza.com/wp-content/uploads/2021/04/Untitled-2.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto auto;
-}
-
-#button-firstPage {
-  height: 80px;
-  width: 150px;
-}
-
-.transition-transform {
-  transition: transform .3s;
-}
-
-.transition-transform:hover {
-  transform: scale(1.07);
-}
-
 nav > a {
   text-decoration: none;
   color: white;

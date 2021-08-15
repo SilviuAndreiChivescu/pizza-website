@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react"
 import {Link, useLocation} from "react-router-dom"
 import Axios from 'axios'
-import {UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
+import {NavBar, UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
 import SignIn from './SignIn'
 
 export function Autentificare() {
@@ -16,7 +16,7 @@ export function Menu() {
         if (popUp == "noCart") {
             return(
             <>
-                <UpperSide />       
+                <NavBar />       
                 <MainMenu setPopUp={ () => setPopUp("cart") } />
                 {/* <CartNotOpened /> */}
             </>

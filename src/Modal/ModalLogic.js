@@ -15,6 +15,11 @@ function ModalLogic(props) {
     const submit = () => {
         Axios.post('http://localhost:3001/api/insertCart', 
         {Product: props.Name, How_many: clicks, Price: props.Price})
+        setTimeout(() => {
+            Axios.get('http://localhost:3001/api/getHowMany').then((response) => {
+                props.cartItems(response.data[0]["SUM(How_many)"]);
+            });
+        }, 1000)
         // This below is: we are pushing inside our products array, the new insert so that you don't need to refresh page in order to get new info [dont know if I need it here]
         // setProducts([
         //     ...products,

@@ -14,7 +14,6 @@ import iconEmptyBasket from './images/iconEmptyBasket.svg';
 import Drawer from './Drawer';
 
 // TODO: 
-// Div s from Menu with the Pizza and its text, make it a component
 // Make search input for menu after finishing with the db
 // File Structure - Put each component and page as for "best practices for react" ( draw it on paper if necessary, see the connections between components)
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them
@@ -24,7 +23,8 @@ import Drawer from './Drawer';
 // IN RELATION WITH ABOVE TODO, Dobra said use localStorage for not loggined users and cart table if account & USE ENCRYPT PASSWORD for pass and save only the encryption in the db
 // Material UI check
 
-// By the end, make only one Modal and use it for both uses
+// By the end, make only one Modal and use it for both uses and The NavBar
+// FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Clean index.html
 // Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly & make navbar for all pages the same component
 // Put image(svg) downloaded from Illustration idk, for Checkout when having food in cart
@@ -46,22 +46,35 @@ import Drawer from './Drawer';
 // When using useEffect and in the dependency array you will put an object, due to referencing of that obj, it might give an unexpected result. SO when using useEffect and want to be dependent of an object, use useMemo() [look it up if needed]
 // See if async with await is usefull for this project
 
-function UpperSide() {
+
+// AM RAMAS AICI, INCERCAND DACA POT SA FAC UN SINGUR COMPONENT NAVBAR din care sa pun la copii chestiile specifice, sa fol Navbaru nou la toate 3 "paginile"
+export function NavBar() {
   const [show, setShow] = useState(false);
   return (
     <section>
-    <div id="upper-first" className="container-fluid p-2 brown-color">
-      <Link to="/"><img className="d-inline p-2 ms-5" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img></Link>
-      <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i className="fab fa-lg fa-facebook me-2 text-white"></i></a>
-      <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i className="fab fa-lg fa-instagram me-2 text-white"></i></a>
-      <a href="tel:0754911062"><i className="fas fa-lg fa-phone-square me-2 text-white"></i></a>
-      <i style={{cursor: "pointer"}} className="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
-      <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show} />
-      <h5 style={{cursor: "default"}} className="d-inline p-2 float-end me-3 text-secondary">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.
-        <Drawer Icon={<i className="fas fa-bars ms-3"></i>} /> 
-      </h5>
+    <div className="container-fluid p-2 black-bg d-flex justify-content-between">
+      <Link to="/"><img className="d-inline p-2 ms-2" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img></Link>
+      <div className="mt-2">
+        <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i className="fab fa-lg fa-facebook me-2 text-white"></i></a>
+        <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i className="fab fa-lg fa-instagram me-2 text-white"></i></a>
+        <a href="tel:0754911062"><i className="fas fa-lg fa-phone-square me-2 text-white"></i></a>
+        <i style={{cursor: "pointer"}} className="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
+        <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show} />
+      </div>
+      <h5 style={{cursor: "default"}} className="d-inline p-2 text-secondary ms-5">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
+      <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} /> 
     </div>
     </section>);
+}
+
+function SecondNavBar(props) {
+  return(
+    <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
+    <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
+    <h5 className="pt-3 me-3">{props.title}</h5>
+    <h5><i className="pt-3 fas fa-bars"></i></h5>
+  </header>
+  );
 }
 
 function MainMenu(props) {
@@ -89,7 +102,7 @@ function MainMenu(props) {
     });
   }, []);
 
-  const [example, setExample] = useState(true);
+  const [cartItems, setCartItems] = useState(0);
   
 
   const PizzaSize = () => {
@@ -105,7 +118,17 @@ function MainMenu(props) {
         </div>
       );}
     else return null;
-  }
+  };
+
+  // The box in which the recipes are shown in the Menu
+  const FoodBox = (props) => {
+    return(
+      <div onClick={ () => {setShow(true); getContentForModal({Name: props.Name, Description: props.Description, Price: props.Price, Category: props.Category})}} style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
+        <li className="fw-bold">{props.Name}</li>
+        <p style={{height: "120px"}} className="text-secondary mt-2 mb-2">{props.Description}</p>
+        <p className="fw-bolder mb-0 ">{props.Price} lei</p>
+      </div>)
+  };
 
   return(
       <section style={{backgroundColor: "#efeff4"}}> 
@@ -121,11 +144,7 @@ function MainMenu(props) {
           <p id="pizza" className="ps-3 fs-3 fw-bold">Pizza</p>
           <div className="d-flex flex-wrap">
             {pizzas.map((val) => {
-            return (
-            <div onClick={ () => {setShow(true); getContentForModal({Name: val.Name, Description: val.Description, Price: val.Price, Category: val.Category})}} style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
-              <li className="fw-bold">{val.Name}</li><p className="text-secondary mt-2 mb-2">{val.Description}</p><p className="fw-bolder mb-0">{val.Price} lei</p>
-            </div>)
-            })}
+            return ( <FoodBox Name={val.Name} Description={val.Description} Price={val.Price} Category={val.Category} /> )})}
           </div>
           {/* <p>Burgari</p>
           <div className="d-flex flex-wrap">
@@ -158,29 +177,30 @@ function MainMenu(props) {
           <input className="ms-3" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
         </label><br></br>
         <div className="modal-footer">
-            <ModalLogic Price={content.Price} Name={content.Name} onClose={ () =>setShow(currShow => !currShow) } />
+            <ModalLogic Price={content.Price} Name={content.Name} cartItems={(e) => setCartItems(e)} onClose={ () => setShow(currShow => !currShow) } />
         </div>
       </Modal>
       
-      <CartNotOpened setPopUp={props.setPopUp} />    
+      <CartNotOpened cartItems={cartItems} setPopUp={props.setPopUp} />    
       </section> )
 }
 
 function CartNotOpened(props) {
 
-  const [cartItems, setCartItems] = useState(0);
+  // THIS WAS TO GET DATA FOR HOW_MANY, but I MOVED IT INTO MODALLOGIC(SUBMIT FUNCTION) TRYING TO SOLVE IT
+  // const [cartItems, setCartItems] = useState(0);
 
-  useEffect(() => {
-    Axios.get('http://localhost:3001/api/getHowMany').then((response) => {
-        setCartItems(response.data[0]["SUM(How_many)"]);
-    });
-  }, []);
+  // useEffect(() => {
+  //   Axios.get('http://localhost:3001/api/getHowMany').then((response) => {
+  //       setCartItems(response.data[0]["SUM(How_many)"]);
+  //   });
+  // }, []);
 
   return(
     <section onClick={props.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
       <div className="row">
         <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
-        <h4 className="col ps-0">{cartItems}</h4>
+        <h4 className="col ps-0">{props.cartItems}</h4>
       </div>
       <h5 className="fw-bold">Vezi cosul tau</h5>
       <h4 className="fw-bold">20 lei</h4>
@@ -239,15 +259,6 @@ function CartOpened(props) {
   )
 }
 
-function SecondNavBar(props) {
-  return(
-    <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
-    <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
-    <h5 className="pt-3 me-3">{props.title}</h5>
-    <h5><i className="pt-3 fas fa-bars"></i></h5>
-  </header>
-  );
-}
 
 function Checkout(props) {
   // useState for if the user decides to choose a time to get his food
@@ -362,7 +373,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export {UpperSide, MainMenu, CartNotOpened, CartOpened, Checkout, Footer}
+export { MainMenu, CartNotOpened, CartOpened, Checkout, Footer}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
