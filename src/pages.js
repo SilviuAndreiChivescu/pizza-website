@@ -2,6 +2,11 @@ import React, { useState, useEffect, useReducer } from "react"
 import {Link, useLocation} from "react-router-dom"
 import Axios from 'axios'
 import {UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
+import SignIn from './SignIn'
+
+export function Autentificare() {
+    return <SignIn />
+}
 
 export function Menu() {
     // useState to show the cart
