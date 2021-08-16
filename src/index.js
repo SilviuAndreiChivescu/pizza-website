@@ -8,20 +8,18 @@ import Modal from './Modal/Modal';
 import ModalLogic from "./Modal/ModalLogic";
 import './Modal/Modal.css';
 import { FaShoppingBag } from 'react-icons/fa';
-import iconEmptyBasket from './images/iconEmptyBasket.svg';
-import Drawer from './Drawer';
+
 
 // TODO: 
-// Make search input for menu after finishing with the db
 // File Structure - Put each component and page as for "best practices for react" ( draw it on paper if necessary, see the connections between components)
-// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them
-// Try to make that feature when user adds something in cart from Modal, to get real time updates in the CartNotOpened (maybe with refresh at the begging if can't find something else)
-// Dobra said something about Mongus library for query of MongoDb, see if it is in video of that guy on yt with connection between react and mongodb
 // About the cart: Maybe use a state with an json object inside the application to which I add the food, maybe I don't need a db for this, maybe the "cart table" will be updated only at the end(when user press order), and up to that I store it in localStorage if anything
+//   Try to make that feature when user adds something in cart from Modal, to get real time updates in the CartNotOpened (maybe with refresh at the begging if can't find something else)
+// Dobra said something about Mongus library for query of MongoDb, see if it is in video of that guy on yt with connection between react and mongodb
 // IN RELATION WITH ABOVE TODO, Dobra said use localStorage for not loggined users and cart table if account & USE ENCRYPT PASSWORD for pass and save only the encryption in the db
 // Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props. Then u can use prop1 instead of props.prop1
+// Make search input for menu after finishing with the db
+// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Also do the Forgot password for SignIn component
 
-// By the end, make only one Modal
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Clean index.html
 // Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly & make navbar for all pages the same component
@@ -45,50 +43,6 @@ import Drawer from './Drawer';
 // See if async with await is usefull for this project
 // Material UI check
 
-
-export function NavBar() {
-  const [show, setShow] = useState(false);
-  return (
-    <header>
-    <div className="container-fluid p-2 black-bg d-flex justify-content-between">
-      <Link to="/"><img className="d-inline p-2 ms-2" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img></Link>
-      <div className="mt-2">
-        <a href="https://www.facebook.com/pizzamedievalmangalia/" target="_blank"><i className="fab fa-lg fa-facebook me-2 text-white"></i></a>
-        <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i className="fab fa-lg fa-instagram me-2 text-white"></i></a>
-        <a href="tel:0754911062"><i className="fas fa-lg fa-phone-square me-2 text-white"></i></a>
-        <i style={{cursor: "pointer"}} className="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
-        <Modal Name="Despre noi" onClose={ () =>  setShow(currShow => !currShow) } show={show}>
-          <div className="m-4 p-4 shadow bg-white">
-            <div className="border-bottom"><p>Contact</p></div>
-            <div style={{lineHeight: "1.2"}} className="pt-2">
-              <p className="fw-bold">Pizzeria Medieval</p>
-              <p className="">Str. Petru Maior 20, Mangalia, 905500(In spatele Scolii nr.2)</p>
-              <a className="text-decoration-none text-dark" href="tel:0754911062"><p><i className="fas fa-lg fa-phone-square me-2"></i>0754 911 062</p></a>
-              <a className="text-decoration-none text-dark" href="tel:0790649803"><p><i className="fas fa-lg fa-phone-square me-2"></i>0790 649 803</p></a>
-            </div>
-          </div>
-          <div className="m-4 p-4 shadow bg-white">
-            <div className="border-bottom"><p>Orar de livrari</p></div>
-            <div className="pt-2"><p>Luni-Duminica: 9:00-23:00</p></div>
-          </div>
-          <div className="moadalInfo-footer"></div>          
-        </Modal>
-      </div>
-      <h5 style={{cursor: "default"}} className="d-inline p-2 text-secondary ms-5">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
-      <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} /> 
-    </div>
-    </header>);
-}
-
-export function CartAndCheckoutNavBar(props) {
-  return(
-    <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
-    <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
-    <h5 className="pt-3 me-3">{props.title}</h5>
-    <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} />
-  </header>
-  );
-}
 
 function MainMenu(props) {
   // Below was just an example from when I was building the application
@@ -221,147 +175,6 @@ function CartNotOpened(props) {
   )
 }
 
-function CartOpened(props) {
-  const today = new Date();
-  const time = today.getHours() + ':' + today.getMinutes();
-
-  const DeliveryHours = () => {
-    if (time > '22:29' && time < '8:59') {
-      return(
-        <div className="mb-5 text-secondary">
-          <h5>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 22:30. Va multumim !</h5>
-        </div>
-      );
-    }
-    else {
-      return(
-        <div className="container">
-          <button onClick={props.setPopUpCheckout} className="black-bg text-white border border-2 border-dark rounded p-2">Comanda</button>
-        </div>
-      );
-    }
-  }
-
-  return(
-    <>
-    <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
-      {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
-      <div className="text-secondary border-bottom border-2 border-secondary">
-        <img className="img-fluid mt-5" src={iconEmptyBasket} style={{width: "70px"}} />
-        <h5 className="mb-5">Adauga mancare gustoasa din meniu si apoi plaseaza comanda</h5>
-      </div>
-
-      <div className="row container-fluid ">
-            <div className="col d-inline-flex ps-0 justify-content-center pt-3">
-            <p>2 X </p>
-            <p className="ps-2 pe-2">Pizza casei</p>
-            <div className=""><button className="border-1 border-dark bg-light rounded-start" style={{width: "30px"}}>-</button></div>
-            <div><button className="border-1 border-dark bg-light rounded-end" style={{width: "30px"}}>+</button></div>
-            <p className="ps-2 pe-2">10.00 lei</p>
-            </div>
-        </div>
-
-      <div className="mb-5 border-bottom border-2 border-secondary">
-        <p className="mt-2">Sub-total: 10lei</p>
-        <p className="fw-bold">Total: 20lei</p>
-      </div>
-      <DeliveryHours />
-    </section>
-    </>
-  )
-}
-
-
-function Checkout(props) {
-  // useState for if the user decides to choose a time to get his food
-  const [timp, setTimp] = useState(false);
-
-  const ChooseHour = () => {
-    return <input className="ms-4" id="alege" type="time" name="timp" min="09:00" max="23:00" />
-  }
-
-  return(
-    <>
-      <section className="container-fluid h-100 bg-white">
-        <form className="p-5 fs-5 shadow bg-body rounded me-5 ms-5">
-          <h3>Adresa de livrare:</h3>
-          <label className="me-5 mt-4" htmlFor="prenumeInput">
-            Prenume *<br></br>
-            <input className="fs-4" id="prenumeInput" type="text" name="prenume" required/>
-          </label>
-          <label className="me-5 mt-4" htmlFor="numeInput">
-            Nume *<br></br>
-            <input className="fs-4" id="numeInput" type="text" name="nume" required/>
-          </label>
-          <label className="me-5 mt-4" htmlFor="adresaInput">
-            Adresa * <br></br>
-            <input className="fs-4" id="adresaInput" type="text" name="adresa" placeholder="Nume strada, numar etc." required/>
-          </label>
-          <label className="me-5 mt-4" htmlFor="orasInput">
-            Oras * <br></br>
-            <input className="fs-4" id="orasInput" type="text" name="oras" required/>
-          </label>
-          <label className="me-5 mt-4" htmlFor="telefonInput">
-            Telefon * <br></br>
-            <input className="fs-4" id="telefonInput" type="tel" name="telefon" required/>
-          </label>
-          <label className="mt-4" htmlFor="emailInput">
-            E-mail * <br></br>
-            <input className="fs-4" id="emailInput" type="text" name="e-mail" required/>
-          </label>
-          <br></br>
-          <p className="mt-3">Cand se va face livrarea / servirea? *</p>
-          <div className="mt-2 mb-2">
-            <input type="radio" id="catMaiRepede" name="timp" onClick={() => setTimp(false)} defaultChecked />
-            <label className="ms-2 me-5" htmlFor="catMaiRepede">Cat mai repede</label>
-            <input type="radio" id="alege" name="timp" onClick={() => setTimp(true)} />
-            <label className="ms-2" htmlFor="alege">Alege ora!</label>
-            { timp ? <ChooseHour /> : null }
-          </div>
-          <p className="mb-1">Metoda de livrare</p>
-          <div>
-            <input className="me-2" type="radio" id="livrareLaDomiciliu" name="livrarea" value="livrareLaDomiciliu" checked />
-            <label htmlFor="livrareLaDomiciliu">Livrare la domiciliu</label>
-          </div>
-          <div>
-            <input className="me-2" type="radio" id="ridicarePersonala" name="livrarea" value="ridicarePersonala" />
-            <label htmlFor="ridicarePersonala">Ridicare personala</label>
-          </div>
-          <input type="checkbox" id="datele" name="datele" value="true" />
-          <label className="ms-2" htmlFor="datele"> Pastreaza-mi datele pentru urmatoarea comanda</label><br></br>
-          <div className="d-inline-flex">
-            <input className="mt-2" type="checkbox" id="conditiile" name="conditiile" value="true" required />
-            <label className="ms-2" htmlFor="conditiile"> Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *</label><br></br>
-          </div>
-          <input type="checkbox" id="cont" name="cont" value="true" />
-          <label className="ms-2" htmlFor="cont"> Creezi un cont?</label><br></br>
-          <h2 className="mt-4 mb-4">Comanda ta</h2>
-          <div className="d-inline-flex mb-3">
-            <p>2 X</p>
-            <p className="ms-5"> Pizza medieval mare</p>
-            <p className="ms-5">20.00 lei</p>
-          </div>
-          <p className="border-top border-2 fs-3">Total: <strong>20.00lei</strong></p>
-          <button className="container black-bg text-white border border-2 border-dark rounded p-2">PLASEAZA COMANDA</button>
-        </form>
-      </section>
-    </>
-  )
-}
-
-function Footer({year}) {
-  return (
-    <footer className="position-relative">
-    <div className="text-white position-absolute container-fluid text-center brown-color p-2">
-      <p>905500 Str. Petru Maior 20, Mangalia ( In spatele Scolii nr.2 )
-+40754 911 062
-+40790 649 803
-9:00 - 23:00 Luni - Duminica</p>
-      <p>Copyright {year} </p>
-    </div>
-    </footer>
-  );
-}
 
 function App() {
   return (
@@ -384,7 +197,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export { MainMenu, CartNotOpened, CartOpened, Checkout, Footer}
+export { MainMenu, CartNotOpened}
 export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

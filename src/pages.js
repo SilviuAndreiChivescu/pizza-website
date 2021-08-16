@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useReducer } from "react"
 import {Link, useLocation} from "react-router-dom"
 import Axios from 'axios'
-import {NavBar, CartAndCheckoutNavBar, UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
+import { UpperSide, MainMenu, Footer, CartNotOpened} from "./index.js"
+import NavBar from './components/NavBar.js'
+import CartAndCheckoutNavBar from "./components/CartAndCheckoutNavBar.js"
+import CartOpen from "./components/CartOpen.js"
+import Checkout from "./components/Checkout.js"
 import SignIn from './SignIn'
 
 export function Autentificare() {
@@ -26,7 +30,7 @@ export function Menu() {
             return (
                 <>
                     <CartAndCheckoutNavBar setPopUp={() => setPopUp("noCart")} title={"Cosul tau"} />
-                    <CartOpened  setPopUpCheckout={() => setPopUp("checkout")} /> 
+                    <CartOpen  setPopUpCheckout={() => setPopUp("checkout")} /> 
                 </>
             );
         }
@@ -148,7 +152,7 @@ export function Mysql() {
 //         <UpperSideSecond />
 //         <Slideshow></Slideshow>
 //         <Main></Main>
-//         <Footer year={new Date().getFullYear()}></Footer>
+//         <Footer />
 //         </>
 //     )
 // }
