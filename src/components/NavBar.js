@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import Modal from '../Modal/Modal';
-import '../Modal/Modal.css';
-import Drawer from '../Drawer';
+import Modal from './Modal/Modal';
+import './Modal/Modal.css';
+import Drawer from './Drawer';
 
 export default function NavBar() {
     const [show, setShow] = useState(false);

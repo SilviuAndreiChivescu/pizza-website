@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useReducer } from "react"
-import {Link, useLocation} from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import { useLocation} from "react-router-dom"
 import Axios from 'axios'
-import { UpperSide, MainMenu, Footer, CartNotOpened} from "./index.js"
+import MainMenu from "./components/MainMenu.js"
 import NavBar from './components/NavBar.js'
 import CartAndCheckoutNavBar from "./components/CartAndCheckoutNavBar.js"
 import CartOpen from "./components/CartOpen.js"
 import Checkout from "./components/Checkout.js"
-import SignIn from './SignIn'
+import SignIn from './components/SignIn.js'
 
 export function Autentificare() {
     return <SignIn />
@@ -17,7 +17,7 @@ export function Menu() {
     const [popUp, setPopUp] = useState("noCart");
 
         {/* Conditional rendering for showing the cart */}
-        if (popUp == "noCart") {
+        if (popUp === "noCart") {
             return(
             <>
                 <NavBar />       
@@ -26,7 +26,7 @@ export function Menu() {
             </>
             )
         }
-        else if (popUp == "cart") { 
+        else if (popUp === "cart") { 
             return (
                 <>
                     <CartAndCheckoutNavBar setPopUp={() => setPopUp("noCart")} title={"Cosul tau"} />
@@ -144,18 +144,6 @@ export function Mysql() {
         </div>
     )
 }
-
-// export function Home() {
-//     return (
-//         <>
-//         <UpperSide />
-//         <UpperSideSecond />
-//         <Slideshow></Slideshow>
-//         <Main></Main>
-//         <Footer />
-//         </>
-//     )
-// }
 
 export function Whoops404() {
     let location = useLocation();

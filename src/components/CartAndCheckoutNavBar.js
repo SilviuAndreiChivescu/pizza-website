@@ -1,4 +1,4 @@
-import Drawer from '../Drawer';
+import Drawer from './Drawer';
 
 export default function CartAndCheckoutNavBar(props) {
     return(
