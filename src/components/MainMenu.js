@@ -6,10 +6,6 @@ import './Modal/Modal.css';
 import { FaShoppingBag } from 'react-icons/fa';
 
 export default function MainMenu(props) {
-    // Below was just an example from when I was building the application
-    // const pizzas =[{"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza2"}, {"name": "pizza3"}, {"name": "pizza1"}];
-    const burgari =[{"name": "burger2"},{"name": "burger1"}];
-    const chifle =[{"name": "chifla1"}, {"name": "chifla2"}];
   
     // useState to show the modal
     const [show, setShow] = useState(false);
@@ -48,7 +44,7 @@ export default function MainMenu(props) {
       else return null;
     };
   
-    // The box in which the recipes are shown in the Menu
+    // The box in which the title &b price are shown in the Menu
     const FoodBox = (props) => {
       return(
         <div onClick={ () => {setShow(true); getContentForModal({Name: props.Name, Description: props.Description, Price: props.Price, Category: props.Category})}} style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
