@@ -7,8 +7,6 @@ import { Menu, Whoops404, Mysql, Autentificare } from "./pages";
 import Modal from './Modal/Modal';
 import ModalLogic from "./Modal/ModalLogic";
 import './Modal/Modal.css';
-import ModalInfo from './ModalInfo/ModalInfo';
-import './ModalInfo/ModalInfo.css';
 import { FaShoppingBag } from 'react-icons/fa';
 import iconEmptyBasket from './images/iconEmptyBasket.svg';
 import Drawer from './Drawer';
@@ -47,7 +45,7 @@ import Drawer from './Drawer';
 // See if async with await is usefull for this project
 // Material UI check
 
-// AM RAMAS AICI, INCERCAND DACA POT SA FAC UN SINGUR COMPONENT NAVBAR din care sa pun la copii chestiile specifice, sa fol Navbaru nou la toate 3 "paginile"
+
 export function NavBar() {
   const [show, setShow] = useState(false);
   return (
@@ -59,7 +57,22 @@ export function NavBar() {
         <a href="https://www.instagram.com/medievalpizzamangalia/" target="_blank"><i className="fab fa-lg fa-instagram me-2 text-white"></i></a>
         <a href="tel:0754911062"><i className="fas fa-lg fa-phone-square me-2 text-white"></i></a>
         <i style={{cursor: "pointer"}} className="fas fa-lg fa-info-circle text-white" onClick={() => setShow(true)}></i>
-        <ModalInfo title="Despre noi" onClose={() => setShow(false)} show={show} />
+        <Modal Name="Despre noi" onClose={ () =>  setShow(currShow => !currShow) } show={show}>
+          <div className="m-4 p-4 shadow bg-white">
+            <div className="border-bottom"><p>Contact</p></div>
+            <div style={{lineHeight: "1.2"}} className="pt-2">
+              <p className="fw-bold">Pizzeria Medieval</p>
+              <p className="">Str. Petru Maior 20, Mangalia, 905500(In spatele Scolii nr.2)</p>
+              <a className="text-decoration-none text-dark" href="tel:0754911062"><p><i className="fas fa-lg fa-phone-square me-2"></i>0754 911 062</p></a>
+              <a className="text-decoration-none text-dark" href="tel:0790649803"><p><i className="fas fa-lg fa-phone-square me-2"></i>0790 649 803</p></a>
+            </div>
+          </div>
+          <div className="m-4 p-4 shadow bg-white">
+            <div className="border-bottom"><p>Orar de livrari</p></div>
+            <div className="pt-2"><p>Luni-Duminica: 9:00-23:00</p></div>
+          </div>
+          <div className="moadalInfo-footer"></div>          
+        </Modal>
       </div>
       <h5 style={{cursor: "default"}} className="d-inline p-2 text-secondary ms-5">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
       <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} /> 
@@ -167,7 +180,7 @@ function MainMenu(props) {
                     
         </ul>
       </div>
-      <Modal Price={content.Price} Description={content.Description} Name={content.Name} onClose={ () =>  setShow(currShow => !currShow) } show={show}> 
+      <Modal Name={content.Name} onClose={ () =>  setShow(currShow => !currShow) } show={show}> 
         <img style={{maxWidth: "100%"}} src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"></img>
         <p className="pt-3">{content.Description}</p>
         <h5 className="fw-bold">{content.Price} lei</h5>
