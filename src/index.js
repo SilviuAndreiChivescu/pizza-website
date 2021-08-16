@@ -21,9 +21,9 @@ import Drawer from './Drawer';
 // Dobra said something about Mongus library for query of MongoDb, see if it is in video of that guy on yt with connection between react and mongodb
 // About the cart: Maybe use a state with an json object inside the application to which I add the food, maybe I don't need a db for this, maybe the "cart table" will be updated only at the end(when user press order), and up to that I store it in localStorage if anything
 // IN RELATION WITH ABOVE TODO, Dobra said use localStorage for not loggined users and cart table if account & USE ENCRYPT PASSWORD for pass and save only the encryption in the db
-// Material UI check
+// Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props. Then u can use prop1 instead of props.prop1
 
-// By the end, make only one Modal and use it for both uses and The NavBar
+// By the end, make only one Modal
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Clean index.html
 // Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly & make navbar for all pages the same component
@@ -45,13 +45,13 @@ import Drawer from './Drawer';
 // ALSO for when toggling from false to true, use setState(currState => !currState)
 // When using useEffect and in the dependency array you will put an object, due to referencing of that obj, it might give an unexpected result. SO when using useEffect and want to be dependent of an object, use useMemo() [look it up if needed]
 // See if async with await is usefull for this project
-
+// Material UI check
 
 // AM RAMAS AICI, INCERCAND DACA POT SA FAC UN SINGUR COMPONENT NAVBAR din care sa pun la copii chestiile specifice, sa fol Navbaru nou la toate 3 "paginile"
 export function NavBar() {
   const [show, setShow] = useState(false);
   return (
-    <section>
+    <header>
     <div className="container-fluid p-2 black-bg d-flex justify-content-between">
       <Link to="/"><img className="d-inline p-2 ms-2" src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"></img></Link>
       <div className="mt-2">
@@ -64,15 +64,15 @@ export function NavBar() {
       <h5 style={{cursor: "default"}} className="d-inline p-2 text-secondary ms-5">Nu există sentiment mai plăcut în lume decât o cutie de pizza caldă pe picioare.</h5>
       <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} /> 
     </div>
-    </section>);
+    </header>);
 }
 
-function SecondNavBar(props) {
+export function CartAndCheckoutNavBar(props) {
   return(
     <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
     <h5 style={{cursor: "pointer"}} onClick={props.setPopUp} className="fs-1">&#8592;</h5>
     <h5 className="pt-3 me-3">{props.title}</h5>
-    <h5><i className="pt-3 fas fa-bars"></i></h5>
+    <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} />
   </header>
   );
 }
@@ -219,7 +219,7 @@ function CartOpened(props) {
           <h5>Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul 09:00 - 22:30. Va multumim !</h5>
         </div>
       );
-      }
+    }
     else {
       return(
         <div className="container">
@@ -231,7 +231,6 @@ function CartOpened(props) {
 
   return(
     <>
-    <SecondNavBar setPopUp={props.setPopUp} title={"Cosul tau"} />
     <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
       {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
       <div className="text-secondary border-bottom border-2 border-secondary">
@@ -270,7 +269,6 @@ function Checkout(props) {
 
   return(
     <>
-      <SecondNavBar setPopUp={props.setPopUp} title={"Aici dai comanda"} />
       <section className="container-fluid h-100 bg-white">
         <form className="p-5 fs-5 shadow bg-body rounded me-5 ms-5">
           <h3>Adresa de livrare:</h3>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react"
 import {Link, useLocation} from "react-router-dom"
 import Axios from 'axios'
-import {NavBar, UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
+import {NavBar, CartAndCheckoutNavBar, UpperSide, MainMenu, CartOpened, Checkout, Footer, CartNotOpened} from "./index.js"
 import SignIn from './SignIn'
 
 export function Autentificare() {
@@ -22,8 +22,22 @@ export function Menu() {
             </>
             )
         }
-        else if (popUp == "cart") { return <CartOpened setPopUp={() => setPopUp("noCart")} setPopUpCheckout={() => setPopUp("checkout")} /> }
-        else { return <Checkout setPopUp={() => setPopUp("cart")} /> }
+        else if (popUp == "cart") { 
+            return (
+                <>
+                    <CartAndCheckoutNavBar setPopUp={() => setPopUp("noCart")} title={"Cosul tau"} />
+                    <CartOpened  setPopUpCheckout={() => setPopUp("checkout")} /> 
+                </>
+            );
+        }
+        else { 
+            return (
+                <>
+                    <CartAndCheckoutNavBar setPopUp={() => setPopUp("cart")} title={"Aici dai comanda"} />
+                    <Checkout /> 
+                </>
+            )
+        }
         
 }
 
