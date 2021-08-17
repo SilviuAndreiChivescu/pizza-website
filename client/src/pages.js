@@ -13,8 +13,12 @@ export function Autentificare() {
 }
 
 export function Menu() {
+
+    // state to read/get
+    const [productsList, setProductsList] = useState([]);
+
     // useState to show the cart
-    const [popUp, setPopUp] = useState("noCart");
+    const [popUp, setPopUp] = useState("cart");
 
         {/* Conditional rendering for showing the cart */}
         if (popUp === "noCart") {
@@ -30,7 +34,7 @@ export function Menu() {
             return (
                 <>
                     <CartAndCheckoutNavBar setPopUp={() => setPopUp("noCart")} title={"Cosul tau"} />
-                    <CartOpen  setPopUpCheckout={() => setPopUp("checkout")} /> 
+                    <CartOpen setProductsList={(e) => setProductsList(e)} productsList={productsList} setPopUpCheckout={() => setPopUp("checkout")} /> 
                 </>
             );
         }
@@ -46,11 +50,47 @@ export function Menu() {
 }
 
 export function MongoDB() {
+    // States to post
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
+    // dont forget to add this setNumberOfProduct on the modalLogic
+    const [numberOfProduct, setNumberOfProduct] = useState(1);
 
     const addToList = () => {
-        Axios.post('http://localhost:3001/insert', {name: name, price: price});
+        Axios.post('http://localhost:3001/insert', {name: name, price: price, numberOfProduct: numberOfProduct});
+        setProductsList([
+            ...productsList,
+            {Name: name, Price: price, NumberOfProduct: numberOfProduct},
+        ]);
+    }
+    // state to read/get
+    const [productsList, setProductsList] = useState([]);
+
+    useEffect(() => {
+        Axios.get('http://localhost:3001/read').then((response) => {
+            setProductsList(response.data);
+        });
+    }, []);
+
+    // state to update
+    const [newName, setNewName] = useState('');
+
+    const updateProduct = (id) => {
+        Axios.put('http://localhost:3001/update', {id: id, newName: newName})
+    }
+
+    const [newNumberOfProduct, setNewNumberOfProduct] = useState(0);
+    const updateNumberOfProduct = (id) => {
+        Axios.put('', {id: id, newNumberOfProduct: newNumberOfProduct})
+    }
+    // this below is to make the onChange to update the number in the useState
+    // onChange={(event) => setNewNumberOfProduct(event.target.value)
+    // and this to send the request to update
+    // onClick={() => updateProduct(val._id)}
+    
+    const deleteProduct = (id) => {
+        Axios.delete(`http://localhost:3001/delete/${id}`)
+
     }
 
     return (
@@ -62,9 +102,22 @@ export function MongoDB() {
             <label>Product price</label><br></br>
             <input type="number" onChange={(event) => {setPrice(event.target.value)}} /><br></br>
             <button className="mt-3" onClick={addToList} >Add to List</button>
+            <h1>Products List</h1>
+
+            {productsList.map((val, key) => {
+                return (
+                <div key={key}>
+                    <h1>{val.Name} for {val.Price}</h1> 
+                    <input onChange={(event) => setNewName(event.target.value)} type="text" placeholder='New product name'/>
+                    <button onClick={() => updateProduct(val._id)}>Update</button>
+                    <button onClick={() => deleteProduct(val._id)}>Delete</button>
+                </div> 
+                );
+            })}
         </div>
     );
 }
+// ******** END MongoDB ********
 
 export function Mysql() {
     const [Name, setName] = useState("");
