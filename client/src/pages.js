@@ -13,20 +13,27 @@ export function Autentificare() {
 }
 
 export function Menu() {
-
-    // state to read/get
+    // state to read/get from MongoDB
     const [productsList, setProductsList] = useState([]);
+    const [cartList, setCartList] = useState([]);
+    useEffect(() => {
+        Axios.get('http://localhost:3001/read').then((response) => {
+            setProductsList(response.data);
+        });
+        Axios.get("http://localhost:3001/readFromCart").then((response) => {
+            setCartList(response.data);
+        });
+    }, []);
 
     // useState to show the cart
-    const [popUp, setPopUp] = useState("cart");
+    const [popUp, setPopUp] = useState("noCart");
 
         {/* Conditional rendering for showing the cart */}
         if (popUp === "noCart") {
             return(
             <>
                 <MenuNavBar />       
-                <MainMenu setPopUp={ () => setPopUp("cart") } />
-                {/* <CartNotOpened /> */}
+                <MainMenu setCartList={(e) => setCartList(e)} cartList={cartList} productsList={productsList} setPopUp={ () => setPopUp("cart") } />
             </>
             )
         }
@@ -34,7 +41,7 @@ export function Menu() {
             return (
                 <>
                     <CartAndCheckoutNavBar setPopUp={() => setPopUp("noCart")} title={"Cosul tau"} />
-                    <CartOpen setProductsList={(e) => setProductsList(e)} productsList={productsList} setPopUpCheckout={() => setPopUp("checkout")} /> 
+                    <CartOpen setProductsList={(e) => setProductsList(e)} productsList={productsList} cartList={cartList} setPopUpCheckout={() => setPopUp("checkout")} /> 
                 </>
             );
         }
@@ -78,19 +85,9 @@ export function MongoDB() {
     const updateProduct = (id) => {
         Axios.put('http://localhost:3001/update', {id: id, newName: newName})
     }
-
-    const [newNumberOfProduct, setNewNumberOfProduct] = useState(0);
-    const updateNumberOfProduct = (id) => {
-        Axios.put('', {id: id, newNumberOfProduct: newNumberOfProduct})
-    }
-    // this below is to make the onChange to update the number in the useState
-    // onChange={(event) => setNewNumberOfProduct(event.target.value)
-    // and this to send the request to update
-    // onClick={() => updateProduct(val._id)}
     
     const deleteProduct = (id) => {
         Axios.delete(`http://localhost:3001/delete/${id}`)
-
     }
 
     return (

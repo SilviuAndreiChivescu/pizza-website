@@ -16,16 +16,6 @@ export default function MainMenu(props) {
         setContent(data)   
     }
   
-    // The below useState is used to display on the front-end all my info from db
-    const [pizzas, setPizzas] = useState([]);
-  
-    // Get pizza category from db
-    useEffect(() => {
-      Axios.get('http://localhost:3001/api/getPizza').then((response) => {
-          setPizzas(response.data);
-      });
-    }, []);
-  
     const [cartItems, setCartItems] = useState(0);
     
   
@@ -44,12 +34,12 @@ export default function MainMenu(props) {
       else return null;
     };
   
-    // The box in which the title &b price are shown in the Menu
+    // The box in which the title & price are shown in the Menu
     const FoodBox = (props) => {
       return(
-        <div onClick={ () => {setShow(true); getContentForModal({Name: props.Name, Description: props.Description, Price: props.Price, Category: props.Category})}} style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
+        <div onClick={ () => {setShow(true); getContentForModal({Name: props.Name, Price: props.Price})}} style={{width: "250px"}} className="p-3 m-1 bg-white text-dark shadow bg-body rounded">
           <li key={"props.key"} className="fw-bold">{props.Name}</li>
-          <p style={{height: "120px"}} className="text-secondary mt-2 mb-2">{props.Description}</p>
+          <p style={{height: "120px"}} className="text-secondary mt-2 mb-2">Description</p>
           <p className="fw-bolder mb-0 ">{props.Price} lei</p>
         </div>)
     };
@@ -67,8 +57,8 @@ export default function MainMenu(props) {
           <ul className="text-dark">
             <p id="pizza" className="ps-3 fs-3 fw-bold">Pizza</p>
             <div className="d-flex flex-wrap">
-              {pizzas.map((val) => {
-              return ( <FoodBox key={val.ProductID} Name={val.Name} Description={val.Description} Price={val.Price} Category={val.Category} /> )})}
+              {props.productsList.map((val) => {
+              return ( <FoodBox key={val._id} Name={val.Name} Price={val.Price} /> )})}
             </div>
             {/* <p>Burgari</p>
             <div className="d-flex flex-wrap">
@@ -101,7 +91,7 @@ export default function MainMenu(props) {
             <input className="ms-3" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
           </label><br></br>
           <div className="modal-footer">
-              <ModalLogic Price={content.Price} Name={content.Name} cartItems={(e) => setCartItems(e)} onClose={ () => setShow(currShow => !currShow) } />
+              <ModalLogic setCartList={props.setCartList} cartList={props.cartList} Price={content.Price} Name={content.Name} cartItems={(e) => setCartItems(e)} onClose={ () => setShow(currShow => !currShow) } />
           </div>
         </Modal>
         

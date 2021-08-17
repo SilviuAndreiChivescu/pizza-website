@@ -1,5 +1,5 @@
 import iconEmptyBasket from '../images/iconEmptyBasket.svg';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Axios from 'axios';
 
 export default function CartOpen(props) {
@@ -26,23 +26,59 @@ export default function CartOpen(props) {
     // state to make functionality of buttons to increment or decrease the numberOfProduct
     // const [clicks, setClicks] = useState(1);
     // AICI AM RAMAS ICNERCARND SA FAC LA CART GEN SA SE UPDATEZE SI FRONT-ENDUL DUPA CE DAU UPDATE LA MONGODB
-    function IncrementItem(newClicks, id) {
-        Axios.put('http://localhost:3001/update', {id: id, newNumberOfProduct: newClicks + 1})
-
+    function IncrementItem(numberOfProduct, id) {
+      Axios.put('http://localhost:3001/updateCart', {id: id, newNumberOfProduct: numberOfProduct + 1});
     }
-    
-    useEffect(() => {
-      Axios.get('http://localhost:3001/read').then((response) => {
-          props.setProductsList(response.data);
-      });
-  }, []);
-    // function DecreaseItem(id) {
-    //     if (clicks < 1) {
-    //       Axios.delete(`http://localhost:3001/delete/${id}`)
-    //     };
-    //     setClicks(currClicks => currClicks - 1)
+    // async function DecreaseItem(numberOfProduct, id) {
+    //   // Delete item if numberOfProduct is 0
+    //   if (numberOfProduct === 0) {
+    //     try {
+    //       await Axios.delete(`http://localhost:3001/deleteFromCart/${id}`);
+    //       return;
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   } else if (numberOfProduct > 0) {
+    //     try {
+    //       await Axios.put('http://localhost:3001/updateCart', {id: id, newNumberOfProduct: numberOfProduct - 1});
+    //     } catch (err) {
+    //       console.log(err);
+    //     }       
+    //   }
     // }
-  
+  // AICI AM RAMAS INCERCAND SA REZOLV EROARE DIN SERVER GEN CAND STERG DIN CART PRODUSU, PRIMESC O EROARE
+  function DecreaseItem(numberOfProduct, id) {
+    try {
+      Axios.put('http://localhost:3001/updateCart', {id: id, newNumberOfProduct: numberOfProduct - 1});
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function DeleteProduct(id) {
+    Axios.delete(`http://localhost:3001/deleteFromCart/${id}`);
+  }
+
+  const CartOpenLogic = (props) => {
+    const [numberOfProduct, setNumberOfProduct] = useState(props.val.numberOfProduct);
+    // If numberOfProduct is 0, delete the product from list and from db
+    if (numberOfProduct === 0) {
+      DeleteProduct(props.val._id);
+      return null;
+    }
+    return(
+      <div key={props.val._id} className="row container-fluid ">
+        <div className="col d-inline-flex ps-0 justify-content-center pt-3">
+          <p>{numberOfProduct} X </p>
+          <p className="ps-2 pe-2">{props.val.Name}</p>
+          <div className=""><button onClick={() => {setNumberOfProduct(currNumber => currNumber - 1); DecreaseItem(numberOfProduct, props.val._id)}} className="border-1 border-dark bg-light rounded-start" style={{width: "30px"}}>-</button></div>
+          <div><button onClick={() => {setNumberOfProduct(currNumber => currNumber + 1); IncrementItem(numberOfProduct, props.val._id)}} className="border-1 border-dark bg-light rounded-end" style={{width: "30px"}}>+</button></div>
+          <p className="ps-2 pe-2">{props.val.Price}</p>
+        </div>
+      </div>
+    );
+  }
+
     return(
       <>
       <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
@@ -54,29 +90,10 @@ export default function CartOpen(props) {
 
         {/* Aici vine productsList NOTE!!!
          change key to id see if it is ok
-          I only want to display it for now, after that i have to change to make it find the product if it is already and add to its number
         */}
-        {/* {productsList.map((val, key) => {
-                return (
-                <div key={key}>
-                    <h1>{val.Name} for {val.Price}</h1>
-                    <input onChange={(event) => setNewName(event.target.value)} type="text" placeholder='New product name'/>
-                    <button onClick={() => updateProduct(val._id)}>Update</button>
-                    <button onClick={() => deleteProduct(val._id)}>Delete</button>
-                </div> 
-                );
-            })} */}
-        {props.productsList.map((val, key) => {
+        {props.cartList.map((val) => {
           return (
-              <div key={key} className="row container-fluid ">
-                    <div className="col d-inline-flex ps-0 justify-content-center pt-3">
-                    <p>{val.numberOfProduct} X </p>
-                    <p className="ps-2 pe-2">{val.Name}</p>
-                    {/* <div className=""><button onClick={() => DecreaseItem(val._id)} className="border-1 border-dark bg-light rounded-start" style={{width: "30px"}}>-</button></div> */}
-                    <div><button onClick={() => IncrementItem(val.numberOfProduct, val._id)} className="border-1 border-dark bg-light rounded-end" style={{width: "30px"}}>+</button></div>
-                    <p className="ps-2 pe-2">{val.Price}</p>
-                    </div>
-              </div>
+            <CartOpenLogic val={val} />
           );
         })}
   
