@@ -6,6 +6,7 @@ import { Menu, Whoops404, Mysql, MongoDB, Autentificare } from "./pages";
 
 // TODO: 
 // File Structure - Routes
+// Delete node_modules because they are commonly not uploaded to github, due to the package-json file which helps you install when u clone the repo
 // About the cart: Maybe use a state with an json object inside the application to which I add the food, maybe I don't need a db for this, maybe the "cart table" will be updated only at the end(when user press order), and up to that I store it in localStorage if anything
 //   Try to make that feature when user adds something in cart from Modal, to get real time updates in the CartNotOpened (maybe with refresh at the begging if can't find something else)
 // IN RELATION WITH ABOVE TODO, Dobra said use localStorage for not loggined users and cart table if account & USE ENCRYPT PASSWORD for pass and save only the encryption in the db

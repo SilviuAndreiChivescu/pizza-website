@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios'
 
 function ModalLogic(props) {
@@ -12,6 +12,7 @@ function ModalLogic(props) {
         setNumberOfProduct(currClicks => currClicks - 1)
     }
 
+    // Add the product to the Cart Collection
     const submit = () => {
         Axios.post('http://localhost:3001/insertIntoCart', 
         {Name: props.Name, numberOfProduct: numberOfProduct, Price: props.Price});
@@ -20,11 +21,6 @@ function ModalLogic(props) {
             {Name: props.Name, numberOfProduct: numberOfProduct, Price: props.Price},
         ]);
     };
-    
-    // useEffect(() => {
-    //     Axios.post('http://localhost:3001/api/insertCart', 
-    //     {Product: product, How_many: clicks, Price: price})
-    //     }, [product]);
 
     return(
         <div className="row container-fluid">

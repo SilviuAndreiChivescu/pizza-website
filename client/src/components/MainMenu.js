@@ -15,10 +15,7 @@ export default function MainMenu(props) {
     function getContentForModal(data) {
         setContent(data)   
     }
-  
-    const [cartItems, setCartItems] = useState(0);
-    
-  
+
     const PizzaSize = () => {
       if (content.Category === 'pizza') {
         return(
@@ -91,33 +88,24 @@ export default function MainMenu(props) {
             <input className="ms-3" id="alteInformatiiInput" type="text" name="e-mail" placeholder="Fara ardei, etc." />
           </label><br></br>
           <div className="modal-footer">
-              <ModalLogic setCartList={props.setCartList} cartList={props.cartList} Price={content.Price} Name={content.Name} cartItems={(e) => setCartItems(e)} onClose={ () => setShow(currShow => !currShow) } />
+              <ModalLogic setCartList={props.setCartList} cartList={props.cartList} Price={content.Price} Name={content.Name} onClose={ () => setShow(currShow => !currShow) } />
           </div>
         </Modal>
         
-        <CartNotOpened cartItems={cartItems} setPopUp={props.setPopUp} />    
+        <CartNotOpened price={props.price} numberOfProduct={props.numberOfProduct} cartList={props.cartList} setPopUp={props.setPopUp} />    
         </section> )
   }
   
   function CartNotOpened(props) {
-  
-    // THIS WAS TO GET DATA FOR HOW_MANY, but I MOVED IT INTO MODALLOGIC(SUBMIT FUNCTION) TRYING TO SOLVE IT
-    // const [cartItems, setCartItems] = useState(0);
-  
-    // useEffect(() => {
-    //   Axios.get('http://localhost:3001/api/getHowMany').then((response) => {
-    //       setCartItems(response.data[0]["SUM(How_many)"]);
-    //   });
-    // }, []);
-  
+
     return(
       <section onClick={props.setPopUp} style={{cursor: "pointer", backgroundColor: "#000000"}} className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2">
         <div className="row">
           <h5 className="col" style={{backgroundColor: "#000000"}}><FaShoppingBag /></h5>
-          <h4 className="col ps-0">{props.cartItems}</h4>
+          <h4 className="col ps-0">{props.numberOfProduct}</h4>
         </div>
         <h5 className="fw-bold">Vezi cosul tau</h5>
-        <h4 className="fw-bold">20 lei</h4>
+        <h4 className="fw-bold">{props.price} lei</h4>
     </section>
     )
   }

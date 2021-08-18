@@ -13,6 +13,9 @@ export function Autentificare() {
 }
 
 export function Menu() {
+    // useState to show the cart
+    const [popUp, setPopUp] = useState("noCart");
+
     // state to read/get from MongoDB
     const [productsList, setProductsList] = useState([]);
     const [cartList, setCartList] = useState([]);
@@ -23,17 +26,34 @@ export function Menu() {
         Axios.get("http://localhost:3001/readFromCart").then((response) => {
             setCartList(response.data);
         });
-    }, []);
+    }, [popUp]);
 
-    // useState to show the cart
-    const [popUp, setPopUp] = useState("noCart");
+    // This is for MainMenu > CartNotOpened
+    // Get numberOfProduct of all products from Cart Collection
+    const [numberOfProduct, setNumberOfProduct] = useState(0);
+    // Get Price of all products from Cart Collection
+    const [price, setPrice] = useState(0);
+
+    useEffect(() => {
+        // This is for numberOfProducts
+        setNumberOfProduct(cartList.map((e, key) => {
+            return cartList[key].numberOfProduct;
+        }).reduce((total, value) => total + value, 0));
+
+        // This is for price
+        setPrice(cartList.map((e, key) => {
+        return cartList[key].numberOfProduct * cartList[key].Price;
+        }).reduce((total, value) => total + value, 0));
+
+    }, [cartList]);
+    // ******** END OF MainMenu > CartNotOpened ********
 
         {/* Conditional rendering for showing the cart */}
         if (popUp === "noCart") {
             return(
             <>
                 <MenuNavBar />       
-                <MainMenu setCartList={(e) => setCartList(e)} cartList={cartList} productsList={productsList} setPopUp={ () => setPopUp("cart") } />
+                <MainMenu price={price} numberOfProduct={numberOfProduct} cartList={cartList} setCartList={(e) => setCartList(e)} cartList={cartList} productsList={productsList} setPopUp={ () => setPopUp("cart") } />
             </>
             )
         }
@@ -41,7 +61,7 @@ export function Menu() {
             return (
                 <>
                     <CartAndCheckoutNavBar setPopUp={() => setPopUp("noCart")} title={"Cosul tau"} />
-                    <CartOpen setProductsList={(e) => setProductsList(e)} productsList={productsList} cartList={cartList} setPopUpCheckout={() => setPopUp("checkout")} /> 
+                    <CartOpen setPrice={(e) => setPrice(e)} price={price} cartList={cartList} setProductsList={(e) => setProductsList(e)} productsList={productsList} cartList={cartList} setPopUpCheckout={() => setPopUp("checkout")} /> 
                 </>
             );
         }

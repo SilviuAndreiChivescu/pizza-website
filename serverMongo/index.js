@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const mongoPassword = require('./mongoPassword')
 
 const ProductsModel = require('./models/Products');
 const CartModel = require('./models/Cart');
@@ -10,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-    'mongodb+srv://Andrew:descarcare@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority', 
+    mongoPassword, 
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true,
@@ -125,6 +126,7 @@ app.put("/updateCart", async (req, res) => {
 
 app.delete("/deleteFromCart/:id", async (req, res) => {
     const id = req.params.id;
+    
     res.send(id);
     
     try {
