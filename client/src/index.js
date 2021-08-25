@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { Menu, Whoops404, Mysql, MongoDB, Autentificare } from "./pages";
 
 // AICI AM RAMAS!!, IN PRIMU RAND, DAI COMMIT PANA SA INCEPI SA INTEGREZI FAZA CU OBIECTU SI LOCAL STORAGE, DAI
