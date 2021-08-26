@@ -16,19 +16,15 @@ export function Menu() {
   // useState to show the cart
   const [popUp, setPopUp] = useState("noCart");
 
-  // AM RAMAS AICI INCERCAND SA PUN SI SA IAU CART DIN LOCALSTORAGE
+  // !!!!AM RAMAS AICI INCERCAND SA PUN SI SA IAU CART DIN LOCALSTORAGE!!!
   // START OF DOING STATE OBJECT
   const [cart, setCart] = useState([]);
-  useEffect(() => {
-    console.log(cart);
-    window.localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
 
   const sendToLocalStorage = () => {
-    localStorage.setItem("cart", cart);
+    window.localStorage.setItem("cart", JSON.stringify(cart));
   };
   useEffect(() => {
-    // window.addEventListener("beforeunload", sendToLocalStorage);
+    window.addEventListener("beforeunload", sendToLocalStorage());
     // setCart(JSON.parse(localStorage.getItem("cart")));
     console.log(window.localStorage.getItem("cart"));
   }, []);
@@ -36,16 +32,11 @@ export function Menu() {
 
   // state to read/get from MongoDB
   const [productsList, setProductsList] = useState([]);
-  const [cartList, setCartList] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
       setProductsList(response.data);
     });
-
-    Axios.get("http://localhost:3001/readFromCart").then((response) => {
-      setCartList(response.data);
-    });
-  }, [popUp]);
+  }, []);
 
   // This is for MainMenu > CartNotOpened
   // Get numberOfProduct of all products from Cart Collection
@@ -85,8 +76,6 @@ export function Menu() {
           setCart={(e) => setCart(e)}
           price={price}
           numberOfProduct={numberOfProduct}
-          cartList={cartList}
-          setCartList={(e) => setCartList(e)}
           productsList={productsList}
           setPopUp={() => setPopUp("cart")}
         />
@@ -102,12 +91,7 @@ export function Menu() {
         <CartOpen
           cart={cart}
           setCart={(e) => setCart(e)}
-          setCartList={() => setPrice()}
-          setPrice={(e) => setPrice(e)}
           price={price}
-          cartList={cartList}
-          setProductsList={(e) => setProductsList(e)}
-          productsList={productsList}
           setPopUpCheckout={() => setPopUp("checkout")}
         />
       </>

@@ -8,6 +8,7 @@ import { Menu, Whoops404, MongoDB, Autentificare } from "./pages";
 // I
 
 // !!! TO DO FIRST, local storage to store cart items(state object, I have searched and it works(see my mobile browser tab)) and display them between states at first. Then send it to cart(orders) collection. Add an onclose event to the unload of browser (I have an opened tab on mobile browser)
+// MATERIAL UI first for things MAIU sent pic on whatsapp from diniasi after taking the order
 // Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
 // Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
 // IF ABOVE IS GOING OK, AFTER THIS START DOING AUTHENTHIFICATION WITH AUTH0
