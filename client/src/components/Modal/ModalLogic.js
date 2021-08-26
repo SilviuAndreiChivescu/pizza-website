@@ -1,32 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
 function ModalLogic(props) {
+  // START OF DOING STATE OBJECT
+  // ***** END OF STATE OBJECT *****
+
   const [numberOfProduct, setNumberOfProduct] = useState(1);
 
-  function incrementItem() {
+  const incrementItem = () => {
     setNumberOfProduct((currClicks) => currClicks + 1);
-  }
-  function decreaseItem() {
+  };
+  const decreaseItem = () => {
     if (numberOfProduct <= 1) return;
     setNumberOfProduct((currClicks) => currClicks - 1);
-  }
-
+  };
+  // AICI AM RAMAS, INCERCAND SA FAC CA ATUNCI CAND AI DEJA OBIECTU RESPECTIV IN CART OBJECT, SA NU ADAUGE PESTE, SA SCHIMBE NUMBEROFPRODUCT
   // Add the product to the Cart Collection
   const submit = () => {
-    Axios.post("http://localhost:3001/insertIntoCart", {
-      Name: props.Name,
-      numberOfProduct: numberOfProduct,
-      Price: props.Price,
-    });
-    props.setCartList([
-      ...props.cartList,
-      {
-        Name: props.Name,
-        numberOfProduct: numberOfProduct,
-        Price: props.Price,
-      },
-    ]);
+    // Check if Product is already in Cart
+    let filteredProduct = props.cart.filter(
+      (value) => value.Name === props.Name
+    );
+    // If product is not in cart, add it
+    if (filteredProduct.length === 0) {
+      props.setCart((prevState) => [
+        ...prevState,
+        {
+          Name: props.Name,
+          numberOfProduct: numberOfProduct,
+          Price: props.Price,
+        },
+      ]);
+    }
+    // If product is in cart, add number of product to previous number of product for particular product
+    else {
+      var newArr = props.cart.map((value) => {
+        if (value.Name === props.Name) {
+          value.numberOfProduct += numberOfProduct;
+        }
+        return value;
+      });
+      props.setCart(newArr);
+    }
   };
 
   return (
@@ -59,7 +74,7 @@ function ModalLogic(props) {
           </button>
         </div>
       </div>
-      <div onClick={submit} className="col pe-0 ps-0">
+      <div onClick={() => submit()} className="col pe-0 ps-0">
         <button
           onClick={props.onClose}
           className="container-fluid black-bg text-white border border-2 border-dark rounded p-2"

@@ -2,15 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Menu, Whoops404, MongoDB, Autentificare } from "./pages";
 
-import { Menu, Whoops404, Mysql, MongoDB, Autentificare } from "./pages";
-
-// AICI AM RAMAS!!, IN PRIMU RAND, DAI COMMIT PANA SA INCEPI SA INTEGREZI FAZA CU OBIECTU SI LOCAL STORAGE, DAI
-// UN COMIT CU NUMELE CA BEFORE IMPLEMENTING OBIECTU SI LOCAL STORAGE !!!
 // TODO:
 // I
 
-// !!! TO DO FIRST, local storage to store cart items and display them between states at first. Then send it to cart(orders) collection. Add an onclose event to the unload of browser (I have an opened tab on mobile browser)
+// !!! TO DO FIRST, local storage to store cart items(state object, I have searched and it works(see my mobile browser tab)) and display them between states at first. Then send it to cart(orders) collection. Add an onclose event to the unload of browser (I have an opened tab on mobile browser)
+// Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
+// Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
 // IF ABOVE IS GOING OK, AFTER THIS START DOING AUTHENTHIFICATION WITH AUTH0
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
 
@@ -45,6 +44,7 @@ import { Menu, Whoops404, Mysql, MongoDB, Autentificare } from "./pages";
 
 // GOOD TO KNOW
 
+// if using useState and useEffect to fetch data and set it as state and then display it, you should put both functions inside a function call useDisplayName(), and add a return value inside it, and that is a custom hook you can reuse, then inside where you need your custom hook, just declare a variable and put it = useDisplayName();
 // use useEffect when console.log something that is state depenendent, because it will give you the real time value, not the value that was when you would console.log, because when you would console.log normally, it will run asynch, and you don't want that
 // when using setState for let's say, increment by 1, don't just put setCount(count+1), !!put setCount(currCount => currCount + 1)
 // ALSO for when toggling from false to true, use setState(currState => !currState)
@@ -52,6 +52,7 @@ import { Menu, Whoops404, Mysql, MongoDB, Autentificare } from "./pages";
 // See if async with await is usefull for this project
 // Material UI check
 // Cica useEffect daca nu i dai nici un argument, o sa dea run de fiecare data cand un state din componenta respectiva se va schimba.
+// <React.strictmode> makes ur code render two times at the begging
 // using compound components u can pass a state to multiple components
 // Switch to TS at some point
 
@@ -63,7 +64,6 @@ function App() {
         <Route path="/" element={<Menu />} />
         <Route path="*" element={<Whoops404 />} />
         <Route path="/autentificare" element={<Autentificare />} />
-        <Route path="/mysql" element={<Mysql />} />
         <Route path="/mongodb" element={<MongoDB />} />
       </Routes>
     </>

@@ -124,6 +124,8 @@ export default function MainMenu(props) {
         <br></br>
         <div className="modal-footer">
           <ModalLogic
+            cart={props.cart}
+            setCart={props.setCart}
             setCartList={props.setCartList}
             cartList={props.cartList}
             Price={content.Price}
