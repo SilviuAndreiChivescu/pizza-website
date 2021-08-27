@@ -8,6 +8,8 @@ import CartOpen from "./components/CartOpen.js";
 import Checkout from "./components/Checkout.js";
 import SignIn from "./components/SignIn.js";
 
+import { useBeforeunload } from "react-beforeunload";
+
 export function Autentificare() {
   return <SignIn />;
 }
@@ -16,21 +18,21 @@ export function Menu() {
   // useState to show the cart
   const [popUp, setPopUp] = useState("noCart");
 
-  // !!!!AM RAMAS AICI INCERCAND SA PUN SI SA IAU CART DIN LOCALSTORAGE!!!
-  // START OF DOING STATE OBJECT
-  const [cart, setCart] = useState([]);
+  // ***** Shopping Cart *****
+  // Initiate cart with previous cart from localStorage if exists else empty array
+  const [cart, setCart] = useState(
+    JSON.parse(window.localStorage.getItem("cart")) || []
+  );
 
-  const sendToLocalStorage = () => {
-    window.localStorage.setItem("cart", JSON.stringify(cart));
-  };
-  useEffect(() => {
-    window.addEventListener("beforeunload", sendToLocalStorage());
-    // setCart(JSON.parse(localStorage.getItem("cart")));
-    console.log(window.localStorage.getItem("cart"));
-  }, []);
-  // ***** END OF STATE OBJECT *****
+  // Before unload of page, put cart in localStorage && remove cart from localStorage after setting it to the cart state array
+  useBeforeunload(
+    window.localStorage.removeItem("cart"),
+    window.localStorage.setItem("cart", JSON.stringify(cart))
+  );
 
-  // state to read/get from MongoDB
+  // ***** END OF Shopping Cart *****
+
+  // state to read/get products from MongoDB products collection
   const [productsList, setProductsList] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
@@ -38,16 +40,16 @@ export function Menu() {
     });
   }, []);
 
-  // This is for MainMenu > CartNotOpened
-  // Get numberOfProduct of all products from Cart Collection
-  const [numberOfProduct, setNumberOfProduct] = useState(0);
-  // Get Price of all products from Cart Collection
-  const [price, setPrice] = useState(0);
+  // This is for MainMenu > CartNotOpened & for Total price in CartOpen
+  // Get totalNumberOfProduct from cart state
+  const [totalNumberOfProduct, setTotalNumberOfProduct] = useState(0);
+  // Get totalPrice of all products from cart state
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // THE BELOW USEEFFECT IS MADE FOR THE STATE OBJECT THINGY UPDATE AND IT WORKS - DELETE LATER
   useEffect(() => {
-    // This is for numberOfProducts
-    setNumberOfProduct(
+    // This is for totalNumberOfProducts
+    setTotalNumberOfProduct(
       cart
         .map((e, key) => {
           return cart[key].numberOfProduct;
@@ -55,8 +57,8 @@ export function Menu() {
         .reduce((total, value) => total + value, 0)
     );
 
-    // This is for price
-    setPrice(
+    // This is for totalPrice
+    setTotalPrice(
       cart
         .map((e, key) => {
           return cart[key].numberOfProduct * cart[key].Price;
@@ -74,8 +76,8 @@ export function Menu() {
         <MainMenu
           cart={cart}
           setCart={(e) => setCart(e)}
-          price={price}
-          numberOfProduct={numberOfProduct}
+          totalPrice={totalPrice}
+          totalNumberOfProduct={totalNumberOfProduct}
           productsList={productsList}
           setPopUp={() => setPopUp("cart")}
         />
@@ -91,7 +93,7 @@ export function Menu() {
         <CartOpen
           cart={cart}
           setCart={(e) => setCart(e)}
-          price={price}
+          totalPrice={totalPrice}
           setPopUpCheckout={() => setPopUp("checkout")}
         />
       </>
@@ -113,7 +115,6 @@ export function MongoDB() {
   // States to post
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  // dont forget to add this setNumberOfProduct on the modalLogic
   const [numberOfProduct, setNumberOfProduct] = useState(1);
 
   const addToList = () => {

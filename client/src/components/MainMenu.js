@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import Axios from "axios";
+import { useState } from "react";
 import Modal from "./Modal/Modal.js";
 import ModalLogic from "./Modal/ModalLogic";
 import "./Modal/Modal.css";
@@ -130,14 +129,15 @@ export default function MainMenu(props) {
             cartList={props.cartList}
             Price={content.Price}
             Name={content.Name}
+            ID={content._id}
             onClose={() => setShow((currShow) => !currShow)}
           />
         </div>
       </Modal>
 
       <CartNotOpened
-        price={props.price}
-        numberOfProduct={props.numberOfProduct}
+        totalPrice={props.totalPrice}
+        totalNumberOfProduct={props.totalNumberOfProduct}
         cartList={props.cartList}
         setPopUp={props.setPopUp}
       />
@@ -156,10 +156,10 @@ function CartNotOpened(props) {
         <h5 className="col" style={{ backgroundColor: "#000000" }}>
           <FaShoppingBag />
         </h5>
-        <h4 className="col ps-0">{props.numberOfProduct}</h4>
+        <h4 className="col ps-0">{props.totalNumberOfProduct}</h4>
       </div>
       <h5 className="fw-bold">Vezi cosul tau</h5>
-      <h4 className="fw-bold">{props.price} lei</h4>
+      <h4 className="fw-bold">{props.totalPrice} lei</h4>
     </section>
   );
 }

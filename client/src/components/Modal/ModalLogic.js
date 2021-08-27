@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import React, { useState } from "react";
 
 function ModalLogic(props) {
-  // START OF DOING STATE OBJECT
-  // ***** END OF STATE OBJECT *****
-
   const [numberOfProduct, setNumberOfProduct] = useState(1);
 
   const incrementItem = () => {
@@ -14,10 +10,10 @@ function ModalLogic(props) {
     if (numberOfProduct <= 1) return;
     setNumberOfProduct((currClicks) => currClicks - 1);
   };
-  // AICI AM RAMAS, INCERCAND SA FAC CA ATUNCI CAND AI DEJA OBIECTU RESPECTIV IN CART OBJECT, SA NU ADAUGE PESTE, SA SCHIMBE NUMBEROFPRODUCT
-  // Add the product to the Cart Collection
+
+  // Add / Update the product to the cart State Array
   const submit = () => {
-    // Check if Product is already in Cart
+    // Check if Product is already in cart
     let filteredProduct = props.cart.filter(
       (value) => value.Name === props.Name
     );
@@ -26,13 +22,14 @@ function ModalLogic(props) {
       props.setCart((prevState) => [
         ...prevState,
         {
+          ID: props.ID,
           Name: props.Name,
           numberOfProduct: numberOfProduct,
           Price: props.Price,
         },
       ]);
     }
-    // If product is in cart, add number of product to previous number of product for particular product
+    // If product is in cart, add number of product to previous number of product for that particular product
     else {
       var newArr = props.cart.map((value) => {
         if (value.Name === props.Name) {

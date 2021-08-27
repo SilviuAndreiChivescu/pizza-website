@@ -29,7 +29,7 @@ export default function CartOpen(props) {
         })}
 
         <div className="mb-5 border-bottom border-2 border-secondary">
-          <p className="fw-bold">Total: {props.price} lei</p>
+          <p className="fw-bold">Total: {props.totalPrice} lei</p>
         </div>
         <DeliveryHours setPopUpCheckout={props.setPopUpCheckout} />
       </section>
@@ -38,17 +38,21 @@ export default function CartOpen(props) {
 }
 
 const CartOpenLogic = (props) => {
+  // Initiate a state for each product in list
   const [numberOfProduct, setNumberOfProduct] = useState(
-    props.value.numberOfProduct
+    () => props.value.numberOfProduct
   );
   const incrementItem = (Name) => {
+    // Increment the particular state
     setNumberOfProduct((prevNumber) => prevNumber + 1);
+    // Create a new cart array
     var newArr = props.cart.map((value) => {
       if (value.Name === Name) {
         value.numberOfProduct += 1;
       }
       return value;
     });
+    // Set the new Array as cart array
     props.setCart(newArr);
   };
   const decreaseItem = (Name) => {

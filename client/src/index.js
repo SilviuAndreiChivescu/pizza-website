@@ -5,26 +5,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Menu, Whoops404, MongoDB, Autentificare } from "./pages";
 
 // TODO:
-// I
+// I   - LATER, RENAME CART COLLECTION TO ORDERS COLLECTION AND SEND CART STATE IN IT WHEN ORDER IS SENT
 
-// !!! TO DO FIRST, local storage to store cart items(state object, I have searched and it works(see my mobile browser tab)) and display them between states at first. Then send it to cart(orders) collection. Add an onclose event to the unload of browser (I have an opened tab on mobile browser)
 // MATERIAL UI first for things MAIU sent pic on whatsapp from diniasi after taking the order
 // Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
 // Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
 // IF ABOVE IS GOING OK, AFTER THIS START DOING AUTHENTHIFICATION WITH AUTH0
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
 
-// (THE FOLLOWING WERE FROM BEFORE I SAID I WOULD UPDATE TO JSON OBJECT AS CART AND SEND TO CART COLLECTION AT THE END ALL THE ORDER DATA(ALSO CHANGE CART COLLECTION NAME TO ORDERS))
-// set useEffect from pagex.js to listen to show state as well so that when u go back an forth from cart to menu state, to get updated reults
-// Make a function that does setTotalPrice and call it from runAll function, maybe it will run at the end. IF NOT, run it with timeout, see if works
-// Try making an object with the useState from CartOpen because it might get updated differently
-// useReduccer to solve the bug I had with price of product and total price?
-
 // II
 // Context api instead of distructering the array with props
 // File Structure - Routes ( make folder with name Pages / Routes, and inside it make folder with each page and inside should be "about-us.jsx" , 'abouts-us.css'. You can make a index.js file inside your Pages folder, in which u just import and then export the pages, so it makes routing easier)
 // Make validation folder inside client and inside do validation functions to validate password or email or phone number.
-// Delete node_modules from github because they are commonly not uploaded to github, due to the package-json file which helps you install when u clone the repo
 // Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props OR DESTRUCTURE IT INSIDE YOUR FUNCTION (). Then u can use prop1 instead of props.prop1
 // Make search input for menu after finishing with the db
 // You don't need class components, change them if u have any
@@ -37,7 +29,7 @@ import { Menu, Whoops404, MongoDB, Autentificare } from "./pages";
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 // Change boostrap 5 with react-bootstrap (Last and if needed)
 // Change <a> with <Link> because <a> triggers a refresh page(check if so) and that is not ok with react because it resets states
-// Redux if needed or Context API (seen about it and it is nice)
+// Redux if needed or Context API (seen about it and it is nice, but redux is a good skill tbh)
 // Optimize for mobile(maybe bootstrap will do it for me)
 // Hide the key for the db as it shoulf if I should
 // Unit tests?
