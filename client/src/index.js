@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Menu, Whoops404, MongoDB, Autentificare } from "./pages";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
 // I   - LATER, RENAME CART COLLECTION TO ORDERS COLLECTION AND SEND CART STATE IN IT WHEN ORDER IS SENT
@@ -64,9 +65,15 @@ function App() {
 }
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <Auth0Provider
+    domain="dev-6rdeed8o.eu.auth0.com"
+    clientId="10Iwn9shn6ROfe3HTASmfmvDJ5l5QHEz"
+    redirectUri="http://localhost:3000/"
+  >
+    <Router>
+      <App />
+    </Router>
+  </Auth0Provider>,
   document.getElementById("root")
 );
 

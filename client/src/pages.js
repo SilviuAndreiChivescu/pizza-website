@@ -10,11 +10,30 @@ import SignIn from "./components/SignIn.js";
 
 import { useBeforeunload } from "react-beforeunload";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 export function Autentificare() {
   return <SignIn />;
 }
 
 export function Menu() {
+  // For login
+  const Profile = () => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <div>
+          <p>This is how you take user email. MENU PAGE {user.email}</p>
+        </div>
+      )
+    );
+  };
+  // **** END LOGIN ****
   // useState to show the cart
   const [popUp, setPopUp] = useState("noCart");
 
@@ -73,6 +92,7 @@ export function Menu() {
     return (
       <>
         <MenuNavBar />
+        <Profile />
         <MainMenu
           cart={cart}
           setCart={(e) => setCart(e)}
