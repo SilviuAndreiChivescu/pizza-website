@@ -2,7 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Menu, Whoops404, MongoDB, Autentificare } from "./pages";
+import {
+  Menu,
+  Whoops404,
+  MongoDB,
+  Autentificare,
+  ComenzileMele,
+} from "./pages";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
@@ -57,6 +63,7 @@ function App() {
         {/* <Route path="/" element={<Home /> } /> */}
         <Route path="/" element={<Menu />} />
         <Route path="*" element={<Whoops404 />} />
+        <Route path="/comenzilemele" element={<ComenzileMele />} />
         <Route path="/autentificare" element={<Autentificare />} />
         <Route path="/mongodb" element={<MongoDB />} />
       </Routes>

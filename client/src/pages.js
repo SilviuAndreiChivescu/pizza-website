@@ -16,6 +16,40 @@ export function Autentificare() {
   return <SignIn />;
 }
 
+// AM RAMAS AICI INCERCAND SA DAU QUERY LA MONGODB PENTRU TOATE COMENZILE LA ANUMIT EMAIL, TREBUIE SA DAU MAP DE DOUA ORI PESTE RESPONSE.DATA din USEEFFECT SAU NUJ.
+// TODO REDIRECT THIS TO MAIN PAGE IF IS NOT AUTHENTIFICATED
+export function ComenzileMele() {
+  const [historyProductList, setHistoryProductList] = useState([]);
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
+      setHistoryProductList(response.data);
+      console.log(response.data[0].Cart);
+    });
+  }, []);
+  // if (isAuthenticated)
+  //   Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
+  //     // setHistoryProductList(response.data);
+  //     console.log(response.data);
+  //   });
+  // return <div>Comenzile</div>;
+  // return historyProductList.map(() => {
+  //   return <div>{historyProductList}</div>;
+  // });
+
+  // Trying to query get with find particular email - WORKS
+  // const [historyProductList, setHistoryProductList] = useState([]);
+  // useEffect(() => {
+  //   Axios.get("http://localhost:3001/read").then((response) => {
+  //     setHistoryProductList(response.data);
+  //     console.log(response.data);
+  //   });
+  // }, []);
+  return historyProductList.map((e) => {
+    return <div>0</div>;
+  });
+}
+
 export function Menu() {
   // For login
   const Profile = () => {
@@ -65,7 +99,6 @@ export function Menu() {
   // Get totalPrice of all products from cart state
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // THE BELOW USEEFFECT IS MADE FOR THE STATE OBJECT THINGY UPDATE AND IT WORKS - DELETE LATER
   useEffect(() => {
     // This is for totalNumberOfProducts
     setTotalNumberOfProduct(
@@ -87,7 +120,7 @@ export function Menu() {
   }, [cart]);
   // ******** END OF MainMenu > CartNotOpened ********
 
-  /* Conditional rendering for showing the cart */
+  /* Conditional rendering for showing noCart, cart and checkout elements */
   if (popUp === "noCart") {
     return (
       <>

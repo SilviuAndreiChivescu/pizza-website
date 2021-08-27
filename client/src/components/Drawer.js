@@ -21,19 +21,19 @@ export default function Drawer(props) {
 
     setState({ ...state, [anchor]: open });
   };
-  // **** LogIn ****
+  // **** IF LOGGED IN ****
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
 
-  const LogOut = () => {
+  const LoggedIN = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
       return <div>Loading ...</div>;
     }
 
-    return (
-      isAuthenticated && (
+    const LogOut = () => {
+      return (
         <ListItem
           button
           key="Log Out"
@@ -41,10 +41,26 @@ export default function Drawer(props) {
         >
           <ListItemText primary="Log Out" />
         </ListItem>
+      );
+    };
+    const History = () => {
+      return (
+        <ListItem component={Link} to="/comenzilemele" button key="History">
+          <ListItemText primary="Comenzile mele" />
+        </ListItem>
+      );
+    };
+
+    return (
+      isAuthenticated && (
+        <>
+          <History />
+          <LogOut />
+        </>
       )
     );
   };
-  // **** END LogIn ****
+  // **** END IF LOGGED IN ****
   const list = (anchor) => (
     <div
       className="mt-4 ms-3 me-3"
@@ -60,7 +76,7 @@ export default function Drawer(props) {
         >
           <ListItemText primary="Autentificare" />
         </ListItem>
-        <LogOut />
+        <LoggedIN />
         <ListItem button key="Privacy Policy">
           <ListItemText primary="Privacy Policy" />
         </ListItem>
