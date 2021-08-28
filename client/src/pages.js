@@ -25,6 +25,14 @@ export function ComenzileMele() {
     Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
       setHistoryProductList(response.data);
       console.log(response.data[0].Cart);
+
+      // AM RAMAS AICI, INCERCAND SA ACCESEZ O DATA CART DIN ATATEA NESTED ARRAYS AND OBJECTS. I FIND THIS VERY NOT OK AND I DON'T THINK THIS IS THE WAY, GOOGLE IT OR SMTHING
+      const history = historyProductList.map((e, index) => {
+        return historyProductList[index].Cart.map((value, index2) => {
+          return historyProductList[index].Cart[index2];
+        });
+      });
+      console.log(history);
     });
   }, []);
   // if (isAuthenticated)
@@ -35,6 +43,12 @@ export function ComenzileMele() {
   // return <div>Comenzile</div>;
   // return historyProductList.map(() => {
   //   return <div>{historyProductList}</div>;
+  // });
+
+  // return historyProductList.map((e) => {
+  //   return historyProductList[e].Cart.map((e) => {
+  //     return <h1>{historyProductList[e].Cart[e]}</h1>;
+  //   });
   // });
 
   // Trying to query get with find particular email - WORKS
