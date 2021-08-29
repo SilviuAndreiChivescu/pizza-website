@@ -12,56 +12,43 @@ import { useBeforeunload } from "react-beforeunload";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
+// DELETE THIS LATER BECAUSE NOT USED ANYMORE SINCE AUTH0
 export function Autentificare() {
   return <SignIn />;
 }
 
-// AM RAMAS AICI INCERCAND SA DAU QUERY LA MONGODB PENTRU TOATE COMENZILE LA ANUMIT EMAIL, TREBUIE SA DAU MAP DE DOUA ORI PESTE RESPONSE.DATA din USEEFFECT SAU NUJ.
-// TODO REDIRECT THIS TO MAIN PAGE IF IS NOT AUTHENTIFICATED
 export function ComenzileMele() {
   const [historyProductList, setHistoryProductList] = useState([]);
   const { user, isAuthenticated } = useAuth0();
+  const [stateOfPage, setStateOfPage] = useState("loading");
   useEffect(() => {
     Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
-      setHistoryProductList(response.data);
-      console.log(response.data[0].Cart);
-
-      // AM RAMAS AICI, INCERCAND SA ACCESEZ O DATA CART DIN ATATEA NESTED ARRAYS AND OBJECTS. I FIND THIS VERY NOT OK AND I DON'T THINK THIS IS THE WAY, GOOGLE IT OR SMTHING
-      const history = historyProductList.map((e, index) => {
-        return historyProductList[index].Cart.map((value, index2) => {
-          return historyProductList[index].Cart[index2];
-        });
+      // To get data from request
+      var data = response.data;
+      // To get the orders from data
+      var orders = data.map((e) => {
+        return e.Cart;
       });
-      console.log(history);
+      setHistoryProductList(orders);
+      setStateOfPage("loaded");
     });
   }, []);
-  // if (isAuthenticated)
-  //   Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
-  //     // setHistoryProductList(response.data);
-  //     console.log(response.data);
-  //   });
-  // return <div>Comenzile</div>;
-  // return historyProductList.map(() => {
-  //   return <div>{historyProductList}</div>;
-  // });
 
-  // return historyProductList.map((e) => {
-  //   return historyProductList[e].Cart.map((e) => {
-  //     return <h1>{historyProductList[e].Cart[e]}</h1>;
-  //   });
-  // });
-
-  // Trying to query get with find particular email - WORKS
-  // const [historyProductList, setHistoryProductList] = useState([]);
-  // useEffect(() => {
-  //   Axios.get("http://localhost:3001/read").then((response) => {
-  //     setHistoryProductList(response.data);
-  //     console.log(response.data);
-  //   });
-  // }, []);
-  return historyProductList.map((e) => {
-    return <div>0</div>;
-  });
+  if (stateOfPage === "loading") return <div>Loading...</div>;
+  else if (stateOfPage === "loaded") {
+    return historyProductList.map((e, idx) => {
+      return (
+        <div key={idx}>
+          <h5>Comanda {idx}.</h5>
+          <ul>
+            {e.map((element, index) => {
+              return <li>{element.Name}</li>;
+            })}
+          </ul>
+        </div>
+      );
+    });
+  }
 }
 
 export function Menu() {

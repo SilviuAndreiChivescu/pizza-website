@@ -54,7 +54,7 @@ app.get("/read", (req, res) => {
 app.get("/read/:email", (req, res) => {
   const email = req.params.email;
   try {
-    OrdersModel.find({ Email: email }, (err, result) => {
+    OrdersModel.find({ Email: email }, { Cart: 1 }, (err, result) => {
       res.send(result);
     });
   } catch (err) {
