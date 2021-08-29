@@ -10,7 +10,7 @@ import CartOpen from "../components/CartOpen.js";
 import Checkout from "../components/Checkout.js";
 import History from "../components/History";
 
-export default function Menu() {
+export default function Main() {
   // The state of Application
   const [appState, setAppState] = useState("loading");
 
@@ -39,9 +39,8 @@ export default function Menu() {
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
       setProductsList(response.data);
+      setAppState("loaded");
     });
-
-    setAppState("loaded");
   }, []);
 
   // This is for MainMenu > CartNotOpened & for Total price in CartOpen
@@ -73,7 +72,7 @@ export default function Menu() {
 
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <div>Loading</div>;
-  else {
+  else if (appState === "loaded") {
     /* Conditional rendering for showing noCart, cart, checkout, history components */
     if (popUp === "noCart") {
       return (

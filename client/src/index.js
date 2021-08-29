@@ -3,14 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MongoDB } from "./pages";
-import Menu from "./Routes/Menu";
+import Main from "./Routes/Main";
 import Whoops404 from "./Routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
 
-// MATERIAL UI first for things MAIU sent pic on whatsapp from diniasi after taking the order
-// Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
+// plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
+// Think about users collection, how and when will I be getting the data and enter it into my users collection
+
+// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
 
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
 // Delete SignIn component since not used anymore with Auth0, but see if you want to keep copyright function from it
@@ -18,13 +20,13 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // II
 // Context api instead of distructering the array with props
-// File Structure - Routes ( make folder with name Pages / Routes, and inside it make folder with each page and inside should be "about-us.jsx" , 'abouts-us.css'. You can make a index.js file inside your Pages folder, in which u just import and then export the pages, so it makes routing easier)
-// Make validation folder inside client and inside do validation functions to validate password or email or phone number.
+// "about-us.jsx"
 // CONTEXT API OR Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props OR DESTRUCTURE IT INSIDE YOUR FUNCTION (). Then u can use prop1 instead of props.prop1
 // Make search input for menu after finishing with the db
 // You don't need class components, change them if u have any
-// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
+
 // Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
+// Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
 
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Clean index.html
@@ -58,7 +60,7 @@ function App() {
     <>
       <Routes>
         {/* <Route path="/" element={<Home /> } /> */}
-        <Route path="/" element={<Menu />} />
+        <Route path="/" element={<Main />} />
         <Route path="*" element={<Whoops404 />} />
         <Route path="/mongodb" element={<MongoDB />} />
       </Routes>
