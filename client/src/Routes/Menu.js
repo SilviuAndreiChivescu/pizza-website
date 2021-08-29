@@ -11,23 +11,12 @@ import Checkout from "../components/Checkout.js";
 import History from "../components/History";
 
 export default function Menu() {
-  // For login
-  const Profile = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+  // The state of Application
+  const [appState, setAppState] = useState("loading");
 
-    if (isLoading) {
-      return <div>Loading ...</div>;
-    }
+  // **** Auth0 ****
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
-    return (
-      isAuthenticated && (
-        <div>
-          <p>This is how you take user email. MENU PAGE {user.email}</p>
-        </div>
-      )
-    );
-  };
-  // **** END LOGIN ****
   // useState to show the cart
   const [popUp, setPopUp] = useState("noCart");
 
@@ -51,6 +40,8 @@ export default function Menu() {
     Axios.get("http://localhost:3001/read").then((response) => {
       setProductsList(response.data);
     });
+
+    setAppState("loaded");
   }, []);
 
   // This is for MainMenu > CartNotOpened & for Total price in CartOpen
@@ -80,52 +71,55 @@ export default function Menu() {
   }, [cart]);
   // ******** END OF MainMenu > CartNotOpened ********
 
-  /* Conditional rendering for showing noCart, cart and checkout elements */
-  if (popUp === "noCart") {
-    return (
-      <>
-        <MenuNavBar setPopUp={() => setPopUp("history")} />
-        <Profile />
-        <MainMenu
-          cart={cart}
-          setCart={(e) => setCart(e)}
-          totalPrice={totalPrice}
-          totalNumberOfProduct={totalNumberOfProduct}
-          productsList={productsList}
-          setPopUp={() => setPopUp("cart")}
-        />
-      </>
-    );
-  } else if (popUp === "cart") {
-    return (
-      <>
-        <CartAndCheckoutNavBar
-          setPopUp={() => setPopUp("noCart")}
-          title={"Cosul tau"}
-        />
-        <CartOpen
-          cart={cart}
-          setCart={(e) => setCart(e)}
-          totalPrice={totalPrice}
-          setPopUpCheckout={() => setPopUp("checkout")}
-        />
-      </>
-    );
-  } else if (popUp === "checkout") {
-    return (
-      <>
-        <CartAndCheckoutNavBar
-          setPopUp={() => setPopUp("cart")}
-          title={"Aici dai comanda"}
-        />
-        <Checkout />
-      </>
-    );
-  } else if (popUp === "history") {
-    return (
-      <>
-        <History />
-      </>
-    );
+  // Conditional rendering to render only if all data is received
+  if (appState === "loading" || isLoading) return <div>Loading</div>;
+  else {
+    /* Conditional rendering for showing noCart, cart, checkout, history components */
+    if (popUp === "noCart") {
+      return (
+        <>
+          <MenuNavBar setPopUp={() => setPopUp("history")} />
+          <MainMenu
+            cart={cart}
+            setCart={(e) => setCart(e)}
+            totalPrice={totalPrice}
+            totalNumberOfProduct={totalNumberOfProduct}
+            productsList={productsList}
+            setPopUp={() => setPopUp("cart")}
+          />
+        </>
+      );
+    } else if (popUp === "cart") {
+      return (
+        <>
+          <CartAndCheckoutNavBar
+            setPopUp={() => setPopUp("noCart")}
+            title={"Cosul tau"}
+          />
+          <CartOpen
+            cart={cart}
+            setCart={(e) => setCart(e)}
+            totalPrice={totalPrice}
+            setPopUpCheckout={() => setPopUp("checkout")}
+          />
+        </>
+      );
+    } else if (popUp === "checkout") {
+      return (
+        <>
+          <CartAndCheckoutNavBar
+            setPopUp={() => setPopUp("cart")}
+            title={"Aici dai comanda"}
+          />
+          <Checkout />
+        </>
+      );
+    } else if (popUp === "history") {
+      return (
+        <>
+          <History />
+        </>
+      );
+    }
   }
 }
