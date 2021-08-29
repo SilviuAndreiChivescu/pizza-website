@@ -2,13 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {
-  Menu,
-  Whoops404,
-  MongoDB,
-  Autentificare,
-  ComenzileMele,
-} from "./pages";
+import { MongoDB } from "./pages";
+import Menu from "./Routes/Menu";
+import Whoops404 from "./Routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
@@ -18,6 +14,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
 // Delete SignIn component since not used anymore with Auth0, but see if you want to keep copyright function from it
+// DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
 
 // II
 // Context api instead of distructering the array with props
