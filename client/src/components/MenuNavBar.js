@@ -5,6 +5,7 @@ import "./Modal/Modal.css";
 import Drawer from "./Drawer";
 
 export default function MenuNavBar(props) {
+  // State for modal
   const [show, setShow] = useState(false);
   return (
     <header>
@@ -13,18 +14,21 @@ export default function MenuNavBar(props) {
           <img
             className="d-inline p-2 ms-2"
             src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"
+            alt="medieval pizza logo"
           ></img>
         </Link>
         <div className="mt-2">
           <a
             href="https://www.facebook.com/pizzamedievalmangalia/"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fab fa-lg fa-facebook me-2 text-white"></i>
           </a>
           <a
             href="https://www.instagram.com/medievalpizzamangalia/"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fab fa-lg fa-instagram me-2 text-white"></i>
           </a>

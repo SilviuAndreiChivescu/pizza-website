@@ -9,6 +9,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
 
+// contex.api today
+
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
 // Think about users collection, how and when will I be getting the data and enter it into my users collection
 

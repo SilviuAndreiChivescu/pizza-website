@@ -9,6 +9,7 @@ import CartAndCheckoutNavBar from "../components/CartAndCheckoutNavBar.js";
 import CartOpen from "../components/CartOpen.js";
 import Checkout from "../components/Checkout.js";
 import History from "../components/History";
+import Loading from "../components/Loading";
 
 export default function Main() {
   // The state of Application
@@ -71,7 +72,7 @@ export default function Main() {
   // ******** END OF MainMenu > CartNotOpened ********
 
   // Conditional rendering to render only if all data is received
-  if (appState === "loading" || isLoading) return <div>Loading</div>;
+  if (appState === "loading" || isLoading) return <Loading />;
   else if (appState === "loaded") {
     /* Conditional rendering for showing noCart, cart, checkout, history components */
     if (popUp === "noCart") {
