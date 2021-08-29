@@ -13,11 +13,6 @@ import { useBeforeunload } from "react-beforeunload";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
-// DELETE THIS LATER BECAUSE NOT USED ANYMORE SINCE AUTH0
-export function Autentificare() {
-  return <SignIn />;
-}
-
 export function Menu() {
   // For login
   const Profile = () => {

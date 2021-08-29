@@ -12,22 +12,22 @@ import {
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
-// I   - LATER, RENAME CART COLLECTION TO ORDERS COLLECTION AND SEND CART STATE IN IT WHEN ORDER IS SENT
 
 // MATERIAL UI first for things MAIU sent pic on whatsapp from diniasi after taking the order
 // Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
-// Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
-// IF ABOVE IS GOING OK, AFTER THIS START DOING AUTHENTHIFICATION WITH AUTH0
+
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
+// Delete SignIn component since not used anymore with Auth0, but see if you want to keep copyright function from it
 
 // II
 // Context api instead of distructering the array with props
 // File Structure - Routes ( make folder with name Pages / Routes, and inside it make folder with each page and inside should be "about-us.jsx" , 'abouts-us.css'. You can make a index.js file inside your Pages folder, in which u just import and then export the pages, so it makes routing easier)
 // Make validation folder inside client and inside do validation functions to validate password or email or phone number.
-// Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props OR DESTRUCTURE IT INSIDE YOUR FUNCTION (). Then u can use prop1 instead of props.prop1
+// CONTEXT API OR Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props OR DESTRUCTURE IT INSIDE YOUR FUNCTION (). Then u can use prop1 instead of props.prop1
 // Make search input for menu after finishing with the db
 // You don't need class components, change them if u have any
-// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Also do the Forgot password for SignIn component
+// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
+// Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
 
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Clean index.html
@@ -63,7 +63,6 @@ function App() {
         {/* <Route path="/" element={<Home /> } /> */}
         <Route path="/" element={<Menu />} />
         <Route path="*" element={<Whoops404 />} />
-        <Route path="/autentificare" element={<Autentificare />} />
         <Route path="/mongodb" element={<MongoDB />} />
       </Routes>
     </>

@@ -27,7 +27,7 @@ export default function History() {
           <h5>Comanda {idx}.</h5>
           <ul>
             {e.map((element, index) => {
-              return <li>{element.Name}</li>;
+              return <li key={index}>{element.Name}</li>;
             })}
           </ul>
         </div>
