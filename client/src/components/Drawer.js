@@ -8,6 +8,61 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Drawer(props) {
+  // **** Authentification dependent ****
+  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
+
+  // If user is logged in
+  const LoggedIN = () => {
+    // LogOut button
+    const LogOut = () => {
+      return (
+        <ListItem
+          button
+          key="Log Out"
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          <ListItemText primary="Deconecteaza-te" />
+        </ListItem>
+      );
+    };
+
+    // History button
+    const History = () => {
+      return (
+        <ListItem onClick={props.setPopUp} button key="History">
+          <ListItemText primary="Comenzile mele" />
+        </ListItem>
+      );
+    };
+
+    return (
+      <>
+        <History />
+        <LogOut />
+      </>
+    );
+  };
+
+  // If user is NOT logged in
+  const NotLoggedIn = () => {
+    // Log in button
+    const LogIn = () => {
+      return (
+        <ListItem onClick={() => loginWithRedirect()} button key="Log In">
+          <ListItemText primary="Autentificare" />
+        </ListItem>
+      );
+    };
+
+    return (
+      <>
+        <LogIn />
+      </>
+    );
+  };
+  // **** END Authentification dependent ****
+
+  // **** Drawer functionality ****
   const [state, setState] = React.useState({ right: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -21,46 +76,7 @@ export default function Drawer(props) {
 
     setState({ ...state, [anchor]: open });
   };
-  // **** IF LOGGED IN ****
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
 
-  const LoggedIN = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-
-    if (isLoading) {
-      return <div>Loading ...</div>;
-    }
-
-    const LogOut = () => {
-      return (
-        <ListItem
-          button
-          key="Log Out"
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          <ListItemText primary="Log Out" />
-        </ListItem>
-      );
-    };
-    const History = () => {
-      return (
-        <ListItem onClick={props.setPopUp} button key="History">
-          <ListItemText primary="Comenzile mele" />
-        </ListItem>
-      );
-    };
-
-    return (
-      isAuthenticated && (
-        <>
-          <History />
-          <LogOut />
-        </>
-      )
-    );
-  };
-  // **** END IF LOGGED IN ****
   const list = (anchor) => (
     <div
       className="mt-4 ms-3 me-3"
@@ -69,14 +85,8 @@ export default function Drawer(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem
-          onClick={() => loginWithRedirect()}
-          button
-          key="Autentificare"
-        >
-          <ListItemText primary="Autentificare" />
-        </ListItem>
-        <LoggedIN />
+        {isAuthenticated ? <LoggedIN /> : <NotLoggedIn />}
+
         <ListItem button key="Privacy Policy">
           <ListItemText primary="Privacy Policy" />
         </ListItem>
