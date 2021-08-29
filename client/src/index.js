@@ -18,19 +18,19 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Delete SignIn component since not used anymore with Auth0, but see if you want to keep copyright function from it
 // DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
 
+// Design History component
+
 // II
-// Context api instead of distructering the array with props
 // "about-us.jsx"
 // CONTEXT API OR Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props OR DESTRUCTURE IT INSIDE YOUR FUNCTION (). Then u can use prop1 instead of props.prop1
 // Make search input for menu after finishing with the db
-// You don't need class components, change them if u have any
 
+// You don't need class components, change them if u have any
 // Check if for each setState I have that depends on the prev value, I have that function call like setState(prevState => prevState + 1)
 // Use lazy initiator for useState hooks if u initiate it to a function. If not, that function will be called everytime the state updates(see ss taken on phone)
-
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Clean index.html
-// Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly & make navbar for all pages the same component
+// Delete all non used components that were used in the Home page but I deleted it & rename all components acordinagly
 // Put image(svg) downloaded from Illustration idk, for Checkout when having food in cart
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 // Change boostrap 5 with react-bootstrap (Last and if needed)

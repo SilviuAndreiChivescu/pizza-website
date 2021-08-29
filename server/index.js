@@ -50,19 +50,6 @@ app.get("/read", (req, res) => {
   }
 });
 
-// Read all data from Orders collection for particular user
-app.get("/read/:email", (req, res) => {
-  const email = req.params.email;
-  try {
-    OrdersModel.find({ Email: email }, { Cart: 1 }, (err, result) => {
-      res.send(result);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-// **** END OF ORDERS COLLECTION
-
 app.put("/update", async (req, res) => {
   const newNumberOfProduct = req.body.newNumberOfProduct;
   const id = req.body.id;
@@ -88,9 +75,9 @@ app.delete("/delete/:id", async (req, res) => {
     console.log(err);
   }
 });
-// ************ END OF Products Collection ************
+// **** END OF Products Collection ****
 
-// ************ Orders collection ************
+// **** Orders collection ****
 app.post("/insertIntoOrders", async (req, res) => {
   const email = req.body.Email;
   const cart = req.body.Cart;
@@ -109,16 +96,18 @@ app.post("/insertIntoOrders", async (req, res) => {
   }
 });
 
-app.get("/readFromOrders", (req, res) => {
+// Read all Cart data from Orders collection for a particular user(received from params)
+app.get("/read/:email", (req, res) => {
+  const email = req.params.email;
   try {
-    CartModel.find({}, (err, result) => {
+    OrdersModel.find({ Email: email }, { Cart: 1 }, (err, result) => {
       res.send(result);
     });
   } catch (err) {
     console.log(err);
   }
 });
-// ************ END OF ORDERS COLLECTION ************
+// **** END OF ORDERS COLLECTION ****
 app.listen(3001, () => {
   console.log("Server running on port 3001");
 });
