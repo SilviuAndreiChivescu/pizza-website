@@ -45,7 +45,7 @@ export default function Drawer(props) {
     };
     const History = () => {
       return (
-        <ListItem component={Link} to="/comenzilemele" button key="History">
+        <ListItem onClick={props.setPopUp} button key="History">
           <ListItemText primary="Comenzile mele" />
         </ListItem>
       );

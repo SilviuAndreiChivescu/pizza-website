@@ -63,7 +63,6 @@ function App() {
         {/* <Route path="/" element={<Home /> } /> */}
         <Route path="/" element={<Menu />} />
         <Route path="*" element={<Whoops404 />} />
-        <Route path="/comenzilemele" element={<ComenzileMele />} />
         <Route path="/autentificare" element={<Autentificare />} />
         <Route path="/mongodb" element={<MongoDB />} />
       </Routes>

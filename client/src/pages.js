@@ -7,6 +7,7 @@ import CartAndCheckoutNavBar from "./components/CartAndCheckoutNavBar.js";
 import CartOpen from "./components/CartOpen.js";
 import Checkout from "./components/Checkout.js";
 import SignIn from "./components/SignIn.js";
+import History from "./components/History";
 
 import { useBeforeunload } from "react-beforeunload";
 
@@ -15,40 +16,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 // DELETE THIS LATER BECAUSE NOT USED ANYMORE SINCE AUTH0
 export function Autentificare() {
   return <SignIn />;
-}
-
-export function ComenzileMele() {
-  const [historyProductList, setHistoryProductList] = useState([]);
-  const { user, isAuthenticated } = useAuth0();
-  const [stateOfPage, setStateOfPage] = useState("loading");
-  useEffect(() => {
-    Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
-      // To get data from request
-      var data = response.data;
-      // To get the orders from data
-      var orders = data.map((e) => {
-        return e.Cart;
-      });
-      setHistoryProductList(orders);
-      setStateOfPage("loaded");
-    });
-  }, []);
-
-  if (stateOfPage === "loading") return <div>Loading...</div>;
-  else if (stateOfPage === "loaded") {
-    return historyProductList.map((e, idx) => {
-      return (
-        <div key={idx}>
-          <h5>Comanda {idx}.</h5>
-          <ul>
-            {e.map((element, index) => {
-              return <li>{element.Name}</li>;
-            })}
-          </ul>
-        </div>
-      );
-    });
-  }
 }
 
 export function Menu() {
@@ -125,7 +92,7 @@ export function Menu() {
   if (popUp === "noCart") {
     return (
       <>
-        <MenuNavBar />
+        <MenuNavBar setPopUp={() => setPopUp("history")} />
         <Profile />
         <MainMenu
           cart={cart}
@@ -152,7 +119,7 @@ export function Menu() {
         />
       </>
     );
-  } else {
+  } else if (popUp === "checkout") {
     return (
       <>
         <CartAndCheckoutNavBar
@@ -160,6 +127,12 @@ export function Menu() {
           title={"Aici dai comanda"}
         />
         <Checkout />
+      </>
+    );
+  } else if (popUp === "history") {
+    return (
+      <>
+        <History />
       </>
     );
   }
