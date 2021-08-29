@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../context";
 
 function ModalLogic(props) {
   const [numberOfProduct, setNumberOfProduct] = useState(1);
@@ -10,16 +11,16 @@ function ModalLogic(props) {
     if (numberOfProduct <= 1) return;
     setNumberOfProduct((currClicks) => currClicks - 1);
   };
+  // Get state via context API
+  const { cart, setCart } = useContext(AppContext);
 
   // Add / Update the product to the cart State Array
   const submit = () => {
     // Check if Product is already in cart
-    let filteredProduct = props.cart.filter(
-      (value) => value.Name === props.Name
-    );
+    let filteredProduct = cart.filter((value) => value.Name === props.Name);
     // If product is not in cart, add it
     if (filteredProduct.length === 0) {
-      props.setCart((prevState) => [
+      setCart((prevState) => [
         ...prevState,
         {
           ID: props.ID,
@@ -31,13 +32,13 @@ function ModalLogic(props) {
     }
     // If product is in cart, add number of product to previous number of product for that particular product
     else {
-      var newArr = props.cart.map((value) => {
+      var newArr = cart.map((value) => {
         if (value.Name === props.Name) {
           value.numberOfProduct += numberOfProduct;
         }
         return value;
       });
-      props.setCart(newArr);
+      setCart(newArr);
     }
   };
 
