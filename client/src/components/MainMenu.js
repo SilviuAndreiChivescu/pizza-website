@@ -139,7 +139,7 @@ export default function MainMenu(props) {
         totalPrice={props.totalPrice}
         totalNumberOfProduct={props.totalNumberOfProduct}
         cartList={props.cartList}
-        setPopUp={props.setPopUp}
+        setPageState={props.setPageState}
       />
     </section>
   );
@@ -148,7 +148,7 @@ export default function MainMenu(props) {
 function CartNotOpened(props) {
   return (
     <section
-      onClick={props.setPopUp}
+      onClick={props.setPageState}
       style={{ cursor: "pointer", backgroundColor: "#000000" }}
       className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2"
     >

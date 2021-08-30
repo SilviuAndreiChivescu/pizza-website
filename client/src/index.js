@@ -9,12 +9,12 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
 
-// Check if app is working as normal now that I have downgraded to no Context API. Commit changes with "Downgrades to no Context.API due to re-rendering problem and starts implemenenting redux"
 // contex.api (it's ok only if using a context sharing a single value only due to re rendering, see if it may be helpful down the project)
 
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
 // Think about users collection, how and when will I be getting the data and enter it into my users collection
 
+// Think about some components that are not shared, they should be in the folder parent that is shared or the most parent element
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
 
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
@@ -25,7 +25,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // II
 // "about-us.jsx"
-// CONTEXT API OR Use Array Destructing when having more props. Do this const {prop1, prop2, prop3} = props OR DESTRUCTURE IT INSIDE YOUR FUNCTION (). Then u can use prop1 instead of props.prop1
+// const {prop1, prop2, prop3} = props
 // Make search input for menu after finishing with the db
 
 // You don't need class components, change them if u have any
@@ -38,7 +38,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 // Change boostrap 5 with react-bootstrap (Last and if needed)
 // Change <a> with <Link> because <a> triggers a refresh page(check if so) and that is not ok with react because it resets states
-// Redux if needed or Context API (seen about it and it is nice, but redux is a good skill tbh)
+// Redux(read a lot about this and I think i fit in the situation where I don't really need it in my App, this might change later)
 // Optimize for mobile(maybe bootstrap will do it for me)
 // Hide the key for the db as it shoulf if I should
 // Unit tests?

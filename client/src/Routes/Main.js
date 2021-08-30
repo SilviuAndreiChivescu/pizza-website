@@ -11,6 +11,7 @@ import Checkout from "../components/Checkout.js";
 import History from "../components/History";
 import Loading from "../components/Loading";
 
+// START BY COMMITING AND SAYING WHAT YOU GOING TO DO: CLEANING UP CODE, start by renaming popUp state to something meaninful
 export default function Main() {
   // The state of Application
   const [appState, setAppState] = useState("loading");
@@ -18,8 +19,8 @@ export default function Main() {
   // **** Auth0 ****
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  // useState to show the cart
-  const [popUp, setPopUp] = useState("noCart");
+  // State to display between pages (noCart, cart, checkout, history)
+  const [pageState, setPageState] = useState("noCart");
 
   // ***** Shopping Cart *****
   // Initiate cart with previous cart from localStorage if exists else empty array
@@ -75,46 +76,46 @@ export default function Main() {
   if (appState === "loading" || isLoading) return <Loading />;
   else if (appState === "loaded") {
     /* Conditional rendering for showing noCart, cart, checkout, history components */
-    if (popUp === "noCart") {
+    if (pageState === "noCart") {
       return (
         <>
-          <MenuNavBar setPopUp={() => setPopUp("history")} />
+          <MenuNavBar setPageState={setPageState} />
           <MainMenu
             cart={cart}
             setCart={(e) => setCart(e)}
             totalPrice={totalPrice}
             totalNumberOfProduct={totalNumberOfProduct}
             productsList={productsList}
-            setPopUp={() => setPopUp("cart")}
+            setPageState={() => setPageState("cart")}
           />
         </>
       );
-    } else if (popUp === "cart") {
+    } else if (pageState === "cart") {
       return (
         <>
           <CartAndCheckoutNavBar
-            setPopUp={() => setPopUp("noCart")}
+            setPageState={() => setPageState("noCart")}
             title={"Cosul tau"}
           />
           <CartOpen
             cart={cart}
             setCart={(e) => setCart(e)}
             totalPrice={totalPrice}
-            setPopUpCheckout={() => setPopUp("checkout")}
+            setPopUpCheckout={() => setPageState("checkout")}
           />
         </>
       );
-    } else if (popUp === "checkout") {
+    } else if (pageState === "checkout") {
       return (
         <>
           <CartAndCheckoutNavBar
-            setPopUp={() => setPopUp("cart")}
+            setPageState={() => setPageState("cart")}
             title={"Aici dai comanda"}
           />
           <Checkout />
         </>
       );
-    } else if (popUp === "history") {
+    } else if (pageState === "history") {
       return (
         <>
           <History />

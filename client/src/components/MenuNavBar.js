@@ -5,6 +5,7 @@ import "./Modal/Modal.css";
 import Drawer from "./Drawer";
 
 export default function MenuNavBar(props) {
+  const { setPageState } = props;
   // State for modal
   const [show, setShow] = useState(false);
   return (
@@ -93,7 +94,7 @@ export default function MenuNavBar(props) {
           picioare.
         </h5>
         <Drawer
-          setPopUp={props.setPopUp}
+          setPageState={setPageState}
           Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>}
         />
       </div>
