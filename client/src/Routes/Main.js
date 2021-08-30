@@ -4,8 +4,7 @@ import { useBeforeunload } from "react-beforeunload";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import MainMenu from "../components/MainMenu.js";
-import MenuNavBar from "../components/MenuNavBar.js";
-import CartAndCheckoutNavBar from "../components/CartAndCheckoutNavBar.js";
+import NavBar from "../components/NavBar";
 import CartOpen from "../components/CartOpen.js";
 import Checkout from "../components/Checkout.js";
 import History from "../components/History";
@@ -76,7 +75,11 @@ export default function Main() {
   const NoCart = () => {
     return (
       <>
-        <MenuNavBar setPageState={setPageState} />
+        <NavBar
+          title={"Orice comanda va fi confirmata in 5 minute."}
+          pageState={pageState}
+          setPageState={setPageState}
+        />
         <MainMenu
           cart={cart}
           setCart={(e) => setCart(e)}
@@ -92,9 +95,10 @@ export default function Main() {
   const Cart = () => {
     return (
       <>
-        <CartAndCheckoutNavBar
-          setPageState={setPageState}
+        <NavBar
           title={"Cosul tau"}
+          pageState={pageState}
+          setPageState={setPageState}
         />
         <CartOpen
           cart={cart}
@@ -109,9 +113,10 @@ export default function Main() {
   const CheckoutPage = () => {
     return (
       <>
-        <CartAndCheckoutNavBar
-          setPageState={setPageState}
+        <NavBar
           title={"Aici dai comanda"}
+          pageState={pageState}
+          setPageState={setPageState}
         />
         <Checkout />
       </>
