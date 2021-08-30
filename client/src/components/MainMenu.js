@@ -23,7 +23,11 @@ export default function MainMenu(props) {
       <div
         onClick={() => {
           setShow(true);
-          getContentForModal({ Name: val.Name, Price: val.Price });
+          getContentForModal({
+            Name: val.Name,
+            Price: val.Price,
+            Category: val.Category,
+          });
         }}
         style={{ width: "250px" }}
         className="p-3 m-1 bg-white text-dark shadow bg-body rounded"
@@ -38,8 +42,10 @@ export default function MainMenu(props) {
       </div>
     );
   };
-  // Aici am ramas, facand clean up gen si ma gandeam dc nu merge pizzasize asta cu category ala, si gen intre timp fac curat si incerc sa rez asta
+
+  // Content of Modal in this NoCart Page
   const ModalBody = () => {
+    // If the product is pizza, make options for size
     const PizzaSize = () => {
       if (content.Category === "pizza") {
         return (
@@ -60,6 +66,7 @@ export default function MainMenu(props) {
         );
       } else return null;
     };
+
     return (
       <>
         <img
@@ -120,17 +127,7 @@ export default function MainMenu(props) {
                 <div style={{width: "250px"}} className="m-1 bg-white text-dark">
                   <li key={idx}>{d.name}</li>
                 </div>)
-              })}
-            </div> 
-            <p id="chifle">Chifle</p>
-            <div className="d-flex flex-wrap">
-              {chifle.map(function(d, idx){
-                return (
-                <div style={{width: "250px"}} className="m-1 bg-white text-dark">
-                  <li key={idx}>{d.name}</li>
-                </div>)
-              })}
-            </div>  */}
+              })}*/}
         </ul>
       </div>
       <Modal
@@ -150,7 +147,7 @@ export default function MainMenu(props) {
     </section>
   );
 }
-
+/// Am ramas aici, sa ma uit la CartNotOpened refactoring abit
 function CartNotOpened(props) {
   return (
     <section
