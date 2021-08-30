@@ -11,7 +11,6 @@ import Checkout from "../components/Checkout.js";
 import History from "../components/History";
 import Loading from "../components/Loading";
 
-// START BY COMMITING AND SAYING WHAT YOU GOING TO DO: CLEANING UP CODE, start by renaming popUp state to something meaninful
 export default function Main() {
   // The state of Application
   const [appState, setAppState] = useState("loading");
@@ -19,8 +18,8 @@ export default function Main() {
   // **** Auth0 ****
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  // State to display between pages (noCart, cart, checkout, history)
-  const [pageState, setPageState] = useState("noCart");
+  // State to display between pages (NoCart, Cart, Checkout, History) - can be found before return at the end
+  const [pageState, setPageState] = useState("NoCart");
 
   // ***** Shopping Cart *****
   // Initiate cart with previous cart from localStorage if exists else empty array
@@ -72,49 +71,63 @@ export default function Main() {
   }, [cart]);
   // ******** END OF MainMenu > CartNotOpened ********
 
+  // NOW MAKE FROM THE TWO NAVBARS, MAKE ONLY ONE AND REUSEIT, and keep inside that component the particular changes, like a function that you call if the pageState is ...
+  // Pages
+  const NoCart = () => {
+    return (
+      <>
+        <MenuNavBar setPageState={setPageState} />
+        <MainMenu
+          cart={cart}
+          setCart={(e) => setCart(e)}
+          totalPrice={totalPrice}
+          totalNumberOfProduct={totalNumberOfProduct}
+          productsList={productsList}
+          setPageState={() => setPageState("Cart")}
+        />
+      </>
+    );
+  };
+
+  const Cart = () => {
+    return (
+      <>
+        <CartAndCheckoutNavBar
+          setPageState={setPageState}
+          title={"Cosul tau"}
+        />
+        <CartOpen
+          cart={cart}
+          setCart={(e) => setCart(e)}
+          totalPrice={totalPrice}
+          setPageState={setPageState}
+        />
+      </>
+    );
+  };
+
+  const CheckoutPage = () => {
+    return (
+      <>
+        <CartAndCheckoutNavBar
+          setPageState={setPageState}
+          title={"Aici dai comanda"}
+        />
+        <Checkout />
+      </>
+    );
+  };
+
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;
   else if (appState === "loaded") {
     /* Conditional rendering for showing noCart, cart, checkout, history components */
-    if (pageState === "noCart") {
-      return (
-        <>
-          <MenuNavBar setPageState={setPageState} />
-          <MainMenu
-            cart={cart}
-            setCart={(e) => setCart(e)}
-            totalPrice={totalPrice}
-            totalNumberOfProduct={totalNumberOfProduct}
-            productsList={productsList}
-            setPageState={() => setPageState("cart")}
-          />
-        </>
-      );
-    } else if (pageState === "cart") {
-      return (
-        <>
-          <CartAndCheckoutNavBar
-            setPageState={() => setPageState("noCart")}
-            title={"Cosul tau"}
-          />
-          <CartOpen
-            cart={cart}
-            setCart={(e) => setCart(e)}
-            totalPrice={totalPrice}
-            setPopUpCheckout={() => setPageState("checkout")}
-          />
-        </>
-      );
-    } else if (pageState === "checkout") {
-      return (
-        <>
-          <CartAndCheckoutNavBar
-            setPageState={() => setPageState("cart")}
-            title={"Aici dai comanda"}
-          />
-          <Checkout />
-        </>
-      );
+    if (pageState === "NoCart") {
+      return <NoCart />;
+    } else if (pageState === "Cart") {
+      return <Cart />;
+    } else if (pageState === "Checkout") {
+      return <CheckoutPage />;
     } else if (pageState === "history") {
       return (
         <>

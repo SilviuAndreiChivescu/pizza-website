@@ -5,7 +5,7 @@ export default function CartAndCheckoutNavBar(props) {
     <header className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
       <h5
         style={{ cursor: "pointer" }}
-        onClick={props.setPageState}
+        onClick={() => props.setPageState("Cart")}
         className="fs-1"
       >
         &#8592;
