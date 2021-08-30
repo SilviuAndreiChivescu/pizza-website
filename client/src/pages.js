@@ -13,6 +13,7 @@ export function MongoDB() {
       name: name,
       price: price,
       numberOfProduct: numberOfProduct,
+      category: "pizza",
     });
     setProductsList([
       ...productsList,

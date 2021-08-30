@@ -16,95 +16,52 @@ export default function MainMenu(props) {
     setContent(data);
   }
 
-  const PizzaSize = () => {
-    if (content.Category === "pizza") {
-      return (
-        <div className="mt-2 mb-2">
-          <input type="radio" id="mica" name="timp" defaultChecked />
-          <label className="ms-2 me-5" htmlFor="mica">
-            Mica
-          </label>
-          <input type="radio" id="medie" name="timp" />
-          <label className="ms-2 me-5" htmlFor="medie">
-            Medie
-          </label>
-          <input type="radio" id="mare" name="timp" />
-          <label className="ms-2" htmlFor="mare">
-            Mare
-          </label>
-        </div>
-      );
-    } else return null;
-  };
-
   // The box in which the title & price are shown in the Menu
   const FoodBox = (props) => {
+    const { val } = props;
     return (
       <div
         onClick={() => {
           setShow(true);
-          getContentForModal({ Name: props.Name, Price: props.Price });
+          getContentForModal({ Name: val.Name, Price: val.Price });
         }}
         style={{ width: "250px" }}
         className="p-3 m-1 bg-white text-dark shadow bg-body rounded"
       >
         <li key={"props.key"} className="fw-bold">
-          {props.Name}
+          {val.Name}
         </li>
         <p style={{ height: "120px" }} className="text-secondary mt-2 mb-2">
           Description
         </p>
-        <p className="fw-bolder mb-0 ">{props.Price} lei</p>
+        <p className="fw-bolder mb-0 ">{val.Price} lei</p>
       </div>
     );
   };
-
-  return (
-    <section style={{ backgroundColor: "#efeff4" }}>
-      <nav className="d-flex justify-content-between bg-secondary p-3 w-100">
-        <a href="#pizza">Pizza</a>
-        <a href="#">Burgări</a>
-        <a href="#chifle">Chifle coapte pe vatră</a>
-        <a href="#">Sandwich</a>
-        <a href="#">Sucuri si Bere</a>
-      </nav>
-      <div className="">
-        <ul className="text-dark">
-          <p id="pizza" className="ps-3 fs-3 fw-bold">
-            Pizza
-          </p>
-          <div className="d-flex flex-wrap">
-            {productsList.map((val) => {
-              return (
-                <FoodBox key={val._id} Name={val.Name} Price={val.Price} />
-              );
-            })}
+  // Aici am ramas, facand clean up gen si ma gandeam dc nu merge pizzasize asta cu category ala, si gen intre timp fac curat si incerc sa rez asta
+  const ModalBody = () => {
+    const PizzaSize = () => {
+      if (content.Category === "pizza") {
+        return (
+          <div className="mt-2 mb-2">
+            <input type="radio" id="mica" name="timp" defaultChecked />
+            <label className="ms-2 me-5" htmlFor="mica">
+              Mica
+            </label>
+            <input type="radio" id="medie" name="timp" />
+            <label className="ms-2 me-5" htmlFor="medie">
+              Medie
+            </label>
+            <input type="radio" id="mare" name="timp" />
+            <label className="ms-2" htmlFor="mare">
+              Mare
+            </label>
           </div>
-          {/* <p>Burgari</p>
-            <div className="d-flex flex-wrap">
-              {burgari.map(function(d, idx){
-                return (
-                <div style={{width: "250px"}} className="m-1 bg-white text-dark">
-                  <li key={idx}>{d.name}</li>
-                </div>)
-              })}
-            </div> 
-            <p id="chifle">Chifle</p>
-            <div className="d-flex flex-wrap">
-              {chifle.map(function(d, idx){
-                return (
-                <div style={{width: "250px"}} className="m-1 bg-white text-dark">
-                  <li key={idx}>{d.name}</li>
-                </div>)
-              })}
-            </div>  */}
-        </ul>
-      </div>
-      <Modal
-        Name={content.Name}
-        onClose={() => setShow((currShow) => !currShow)}
-        show={show}
-      >
+        );
+      } else return null;
+    };
+    return (
+      <>
         <img
           style={{ maxWidth: "100%" }}
           src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"
@@ -133,6 +90,55 @@ export default function MainMenu(props) {
             onClose={() => setShow((currShow) => !currShow)}
           />
         </div>
+      </>
+    );
+  };
+
+  return (
+    <section style={{ backgroundColor: "#efeff4" }}>
+      <nav className="d-flex justify-content-between bg-secondary p-3 w-100">
+        <a href="#pizza">Pizza</a>
+        <a href="#">Burgări</a>
+        <a href="#chifle">Chifle coapte pe vatră</a>
+        <a href="#">Sandwich</a>
+        <a href="#">Sucuri si Bere</a>
+      </nav>
+      <div className="">
+        <ul className="text-dark">
+          <p id="pizza" className="ps-3 fs-3 fw-bold">
+            Pizza
+          </p>
+          <div className="d-flex flex-wrap">
+            {productsList.map((val) => {
+              return <FoodBox key={val._id} val={val} />;
+            })}
+          </div>
+          {/* <p>Burgari</p>
+            <div className="d-flex flex-wrap">
+              {burgari.map(function(d, idx){
+                return (
+                <div style={{width: "250px"}} className="m-1 bg-white text-dark">
+                  <li key={idx}>{d.name}</li>
+                </div>)
+              })}
+            </div> 
+            <p id="chifle">Chifle</p>
+            <div className="d-flex flex-wrap">
+              {chifle.map(function(d, idx){
+                return (
+                <div style={{width: "250px"}} className="m-1 bg-white text-dark">
+                  <li key={idx}>{d.name}</li>
+                </div>)
+              })}
+            </div>  */}
+        </ul>
+      </div>
+      <Modal
+        Name={content.Name}
+        onClose={() => setShow((currShow) => !currShow)}
+        show={show}
+      >
+        <ModalBody />
       </Modal>
 
       <CartNotOpened

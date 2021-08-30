@@ -20,7 +20,7 @@ export default function Main() {
   // State to display between pages (NoCart, Cart, Checkout, History) - can be found before return at the end
   const [pageState, setPageState] = useState("NoCart");
 
-  // ***** Shopping Cart *****
+  // **** Shopping Cart ****
   // Initiate cart with previous cart from localStorage if exists else empty array
   const [cart, setCart] = useState(
     JSON.parse(window.localStorage.getItem("cart")) || []
@@ -32,7 +32,7 @@ export default function Main() {
     window.localStorage.setItem("cart", JSON.stringify(cart))
   );
 
-  // ***** END OF Shopping Cart *****
+  // **** END OF Shopping Cart ****
 
   // state to read/get products from MongoDB products collection
   const [productsList, setProductsList] = useState([]);
@@ -43,7 +43,7 @@ export default function Main() {
     });
   }, []);
 
-  // This is for MainMenu > CartNotOpened & for Total price in CartOpen
+  // **** This is for MainMenu > CartNotOpened & for Total price in CartOpen ****
   // Get totalNumberOfProduct from cart state
   const [totalNumberOfProduct, setTotalNumberOfProduct] = useState(0);
   // Get totalPrice of all products from cart state
@@ -68,10 +68,9 @@ export default function Main() {
         .reduce((total, value) => total + value, 0)
     );
   }, [cart]);
-  // ******** END OF MainMenu > CartNotOpened ********
+  // **** END OF MainMenu > CartNotOpened ****
 
-  // NOW MAKE FROM THE TWO NAVBARS, MAKE ONLY ONE AND REUSEIT, and keep inside that component the particular changes, like a function that you call if the pageState is ...
-  // Pages
+  // **** Pages ****
   const NoCart = () => {
     return (
       <>
@@ -130,6 +129,7 @@ export default function Main() {
       </>
     );
   };
+  // **** END OF Pages ****
 
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;

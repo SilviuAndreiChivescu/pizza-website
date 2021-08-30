@@ -23,12 +23,14 @@ app.post("/insert", async (req, res) => {
   const name = req.body.name;
   const price = req.body.price;
   const numberOfProduct = req.body.numberOfProduct;
+  const category = req.body.category;
 
   const products = new ProductsModel({
     Name: name,
     Price: price,
     Description: "Acu bag din front-end",
     numberOfProduct: numberOfProduct,
+    Category: category,
   });
 
   try {

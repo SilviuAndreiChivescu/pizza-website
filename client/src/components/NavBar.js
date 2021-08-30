@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import "./Modal/Modal.css";
 import Drawer from "./Drawer";
@@ -50,6 +49,7 @@ export default function NavBar(props) {
     <header>
       <div className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
         <div className="mt-2">
+          {/* Render something different for each Page State */}
           {pageState === "NoCart" ? <NoCartNavBar /> : null}
           {pageState === "Cart" ? <CartNavBar /> : null}
           {pageState === "Checkout" ? <CheckoutNavBar /> : null}
