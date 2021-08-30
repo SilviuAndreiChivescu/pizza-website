@@ -30,7 +30,7 @@ export default function Drawer(props) {
     // History button
     const History = () => {
       return (
-        <ListItem onClick={() => setPageState("history")} button key="History">
+        <ListItem onClick={() => setPageState("History")} button key="History">
           <ListItemText primary="Comenzile mele" />
         </ListItem>
       );

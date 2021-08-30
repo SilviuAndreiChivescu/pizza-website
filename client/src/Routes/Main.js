@@ -118,22 +118,25 @@ export default function Main() {
     );
   };
 
+  const HistoryPage = () => {
+    return (
+      <>
+        <History />
+      </>
+    );
+  };
+
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;
   else if (appState === "loaded") {
-    /* Conditional rendering for showing noCart, cart, checkout, history components */
-    if (pageState === "NoCart") {
-      return <NoCart />;
-    } else if (pageState === "Cart") {
-      return <Cart />;
-    } else if (pageState === "Checkout") {
-      return <CheckoutPage />;
-    } else if (pageState === "history") {
-      return (
-        <>
-          <History />
-        </>
-      );
-    }
+    /* Conditional rendering for showing NoCart, Cart, Checkout, History pages that live inside this file */
+    return (
+      <>
+        {pageState === "NoCart" ? <NoCart /> : null}
+        {pageState === "Cart" ? <Cart /> : null}
+        {pageState === "Checkout" ? <CheckoutPage /> : null}
+        {pageState === "History" ? <HistoryPage /> : null}
+      </>
+    );
   }
 }
