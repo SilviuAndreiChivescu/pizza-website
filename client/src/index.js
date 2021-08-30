@@ -9,7 +9,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
 
-// contex.api today
+// Check if app is working as normal now that I have downgraded to no Context API. Commit changes with "Downgrades to no Context.API due to re-rendering problem and starts implemenenting redux"
+// contex.api (it's ok only if using a context sharing a single value only due to re rendering, see if it may be helpful down the project)
 
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
 // Think about users collection, how and when will I be getting the data and enter it into my users collection

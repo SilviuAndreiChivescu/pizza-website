@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
-import { AppContext } from "../../context";
 
 function ModalLogic(props) {
+  const { cart, setCart } = props;
+
   const [numberOfProduct, setNumberOfProduct] = useState(1);
 
   const incrementItem = () => {
@@ -11,8 +12,6 @@ function ModalLogic(props) {
     if (numberOfProduct <= 1) return;
     setNumberOfProduct((currClicks) => currClicks - 1);
   };
-  // Get state via context API
-  const { cart, setCart } = useContext(AppContext);
 
   // Add / Update the product to the cart State Array
   const submit = () => {

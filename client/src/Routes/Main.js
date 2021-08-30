@@ -11,8 +11,6 @@ import Checkout from "../components/Checkout.js";
 import History from "../components/History";
 import Loading from "../components/Loading";
 
-import { AppContext } from "../context";
-
 export default function Main() {
   // The state of Application
   const [appState, setAppState] = useState("loading");
@@ -79,7 +77,7 @@ export default function Main() {
     /* Conditional rendering for showing noCart, cart, checkout, history components */
     if (popUp === "noCart") {
       return (
-        <AppContext.Provider value={{ cart, setCart }}>
+        <>
           <MenuNavBar setPopUp={() => setPopUp("history")} />
           <MainMenu
             cart={cart}
@@ -89,7 +87,7 @@ export default function Main() {
             productsList={productsList}
             setPopUp={() => setPopUp("cart")}
           />
-        </AppContext.Provider>
+        </>
       );
     } else if (popUp === "cart") {
       return (

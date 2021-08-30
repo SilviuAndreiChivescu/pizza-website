@@ -5,6 +5,8 @@ import "./Modal/Modal.css";
 import { FaShoppingBag } from "react-icons/fa";
 
 export default function MainMenu(props) {
+  const { cart, setCart, productsList } = props;
+
   // useState to show the modal
   const [show, setShow] = useState(false);
 
@@ -72,7 +74,7 @@ export default function MainMenu(props) {
             Pizza
           </p>
           <div className="d-flex flex-wrap">
-            {props.productsList.map((val) => {
+            {productsList.map((val) => {
               return (
                 <FoodBox key={val._id} Name={val.Name} Price={val.Price} />
               );
@@ -123,6 +125,8 @@ export default function MainMenu(props) {
         <br></br>
         <div className="modal-footer">
           <ModalLogic
+            cart={cart}
+            setCart={setCart}
             Price={content.Price}
             Name={content.Name}
             ID={content._id}
