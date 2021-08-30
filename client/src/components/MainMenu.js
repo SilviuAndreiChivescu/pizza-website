@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "./Modal/Modal.js";
-import ModalLogic from "./Modal/ModalLogic";
+import { useQuantitySelector, addToCart } from "./Modal/ModalLogic";
 import "./Modal/Modal.css";
 import { FaShoppingBag } from "react-icons/fa";
 
@@ -44,7 +44,9 @@ export default function MainMenu(props) {
   };
 
   // Content of Modal in this NoCart Page
-  const ModalBody = () => {
+  const ModalBody = (props) => {
+    const { setShow } = props;
+
     // If the product is pizza, make options for size
     const PizzaSize = () => {
       if (content.Category === "pizza") {
@@ -67,6 +69,10 @@ export default function MainMenu(props) {
       } else return null;
     };
 
+    // Modal Logic
+    const { numberOfProduct, incrementItem, decreaseItem } =
+      useQuantitySelector();
+
     return (
       <>
         <img
@@ -88,18 +94,80 @@ export default function MainMenu(props) {
         </label>
         <br></br>
         <div className="modal-footer">
-          <ModalLogic
+          <div className="row container-fluid">
+            <div className="col d-inline-flex fs-3 ps-0">
+              <div>
+                <button
+                  onClick={() => decreaseItem()}
+                  className="border-1 border-dark bg-light rounded-start"
+                  style={{ width: "50px" }}
+                >
+                  -
+                </button>
+              </div>
+              <div>
+                <button
+                  className="border-1 border-dark bg-light"
+                  style={{ width: "50px", pointerEvents: "none" }}
+                >
+                  {numberOfProduct}
+                </button>
+              </div>
+              <div>
+                <button
+                  onClick={() => incrementItem()}
+                  className="border-1 border-dark bg-light rounded-end"
+                  style={{ width: "50px" }}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div
+              onClick={() => setShow((currShow) => !currShow)}
+              className="col pe-0 ps-0"
+            >
+              <button
+                onClick={() => {
+                  addToCart(cart, setCart, content, numberOfProduct);
+                }}
+                className="container-fluid black-bg text-white border border-2 border-dark rounded p-2"
+              >
+                Adauga in cos
+              </button>
+            </div>
+          </div>
+          {/* <ModalLogic
             cart={cart}
             setCart={setCart}
             Price={content.Price}
             Name={content.Name}
             ID={content._id}
             onClose={() => setShow((currShow) => !currShow)}
-          />
+          /> */}
         </div>
       </>
     );
   };
+  // The fixed bar from the bottom
+  function CartNotOpened(props) {
+    return (
+      <section
+        onClick={props.setPageState}
+        style={{ cursor: "pointer", backgroundColor: "#000000" }}
+        className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2"
+      >
+        <div className="row">
+          <h5 className="col" style={{ backgroundColor: "#000000" }}>
+            <FaShoppingBag />
+          </h5>
+          <h4 className="col ps-0">{props.totalNumberOfProduct}</h4>
+        </div>
+        <h5 className="fw-bold">Vezi cosul tau</h5>
+        <h4 className="fw-bold">{props.totalPrice} lei</h4>
+      </section>
+    );
+  }
 
   return (
     <section style={{ backgroundColor: "#efeff4" }}>
@@ -135,34 +203,14 @@ export default function MainMenu(props) {
         onClose={() => setShow((currShow) => !currShow)}
         show={show}
       >
-        <ModalBody />
+        <ModalBody setShow={setShow} />
       </Modal>
 
       <CartNotOpened
         totalPrice={props.totalPrice}
         totalNumberOfProduct={props.totalNumberOfProduct}
-        cartList={props.cartList}
         setPageState={props.setPageState}
       />
-    </section>
-  );
-}
-/// Am ramas aici, sa ma uit la CartNotOpened refactoring abit
-function CartNotOpened(props) {
-  return (
-    <section
-      onClick={props.setPageState}
-      style={{ cursor: "pointer", backgroundColor: "#000000" }}
-      className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2"
-    >
-      <div className="row">
-        <h5 className="col" style={{ backgroundColor: "#000000" }}>
-          <FaShoppingBag />
-        </h5>
-        <h4 className="col ps-0">{props.totalNumberOfProduct}</h4>
-      </div>
-      <h5 className="fw-bold">Vezi cosul tau</h5>
-      <h4 className="fw-bold">{props.totalPrice} lei</h4>
     </section>
   );
 }

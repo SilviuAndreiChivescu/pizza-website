@@ -8,6 +8,7 @@ import Whoops404 from "./Routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
+// Change numberOfProduct state, with quantity and change in db as well
 // NOW I WANT TO THINK ABOUT WHAT COMPONENTS ARE SHARED, THOSE I WANT TO KEEP THEM IN THEIR OWN FILE. THE REST ONES I WANT TO KEEP IT IN THE FILE THAT NEEDS IT, TO BE MORE CLEAN
 
 // contex.api (it's ok only if using a context sharing a single value only due to re rendering, see if it may be helpful down the project)
@@ -63,7 +64,6 @@ function App() {
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<Home /> } /> */}
         <Route path="/" element={<Main />} />
         <Route path="*" element={<Whoops404 />} />
         <Route path="/mongodb" element={<MongoDB />} />

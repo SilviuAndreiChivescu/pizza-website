@@ -35,43 +35,54 @@ export default function Main() {
   // **** END OF Shopping Cart ****
 
   // state to read/get products from MongoDB products collection
-  const [productsList, setProductsList] = useState([]);
-  useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setProductsList(response.data);
-      setAppState("loaded");
-    });
-  }, []);
+  const useProductsList = () => {
+    const [productsList, setProductsList] = useState([]);
+    useEffect(() => {
+      Axios.get("http://localhost:3001/read").then((response) => {
+        setProductsList(response.data);
+        setAppState("loaded");
+      });
+    }, []);
+
+    return { productsList };
+  };
+  const { productsList } = useProductsList();
 
   // **** This is for MainMenu > CartNotOpened & for Total price in CartOpen ****
-  // Get totalNumberOfProduct from cart state
-  const [totalNumberOfProduct, setTotalNumberOfProduct] = useState(0);
-  // Get totalPrice of all products from cart state
-  const [totalPrice, setTotalPrice] = useState(0);
+  const useTotalNoOfProductAndTotalPrice = (cart) => {
+    // Get totalNumberOfProduct from cart state
+    const [totalNumberOfProduct, setTotalNumberOfProduct] = useState(0);
+    // Get totalPrice of all products from cart state
+    const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
-    // This is for totalNumberOfProducts
-    setTotalNumberOfProduct(
-      cart
-        .map((e, key) => {
-          return cart[key].numberOfProduct;
-        })
-        .reduce((total, value) => total + value, 0)
-    );
+    useEffect(() => {
+      // This is for totalNumberOfProducts
+      setTotalNumberOfProduct(
+        cart
+          .map((e, key) => {
+            return cart[key].numberOfProduct;
+          })
+          .reduce((total, value) => total + value, 0)
+      );
 
-    // This is for totalPrice
-    setTotalPrice(
-      cart
-        .map((e, key) => {
-          return cart[key].numberOfProduct * cart[key].Price;
-        })
-        .reduce((total, value) => total + value, 0)
-    );
-  }, [cart]);
-  // **** END OF MainMenu > CartNotOpened ****
+      // This is for totalPrice
+      setTotalPrice(
+        cart
+          .map((e, key) => {
+            return cart[key].numberOfProduct * cart[key].Price;
+          })
+          .reduce((total, value) => total + value, 0)
+      );
+    }, [cart]);
+
+    return { totalNumberOfProduct, totalPrice };
+    // **** END OF MainMenu > CartNotOpened ****
+  };
+  const { totalNumberOfProduct, totalPrice } =
+    useTotalNoOfProductAndTotalPrice(cart);
 
   // **** Pages ****
-  const NoCart = () => {
+  const NoCartPage = () => {
     return (
       <>
         <NavBar
@@ -91,7 +102,7 @@ export default function Main() {
     );
   };
 
-  const Cart = () => {
+  const CartPage = () => {
     return (
       <>
         <NavBar
@@ -137,8 +148,8 @@ export default function Main() {
     /* Conditional rendering for showing NoCart, Cart, Checkout, History pages that live inside this file */
     return (
       <>
-        {pageState === "NoCart" ? <NoCart /> : null}
-        {pageState === "Cart" ? <Cart /> : null}
+        {pageState === "NoCart" ? <NoCartPage /> : null}
+        {pageState === "Cart" ? <CartPage /> : null}
         {pageState === "Checkout" ? <CheckoutPage /> : null}
         {pageState === "History" ? <HistoryPage /> : null}
       </>
