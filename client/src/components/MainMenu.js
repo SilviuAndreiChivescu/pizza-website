@@ -4,6 +4,8 @@ import { useQuantitySelector, useAddToCart } from "./Modal/ModalLogic";
 import "./Modal/Modal.css";
 import { FaShoppingBag } from "react-icons/fa";
 
+// AM RAMAS AICI< FACAND CURAT NUJ SI PRIN FILES N SHIT MAI GANDESTE TE
+
 export default function MainMenu(props) {
   const { cart, setCart, productsList } = props;
 

@@ -3,31 +3,31 @@ import Axios from "axios";
 import { useBeforeunload } from "react-beforeunload";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import MainMenu from "../components/MainMenu.js";
-import NavBar from "../components/NavBar";
-import CartOpen from "../components/CartOpen.js";
-import Checkout from "../components/Checkout.js";
-import History from "../components/History";
+import NoCartPage from "../Pages/NoCartPage";
+import CartPage from "../Pages/CartPage";
+import CheckoutPage from "../Pages/CheckoutPage";
+import HistoryPage from "../Pages/HistoryPage";
+
 import Loading from "../components/Loading";
+
+import { useAppState } from "../hooks/appState";
+import { usePageState } from "../hooks/pageState";
+import { useCart } from "../hooks/cart";
+import { useTotalNoOfProductAndTotalPrice } from "../hooks/totalNoOfProductAndTotalPrice";
+import { useProductsList } from "../hooks/productsList";
 
 export default function Main() {
   // The state of Application
-  const [appState, setAppState] = useState("loading");
+  const { appState, setAppState } = useAppState();
 
   // **** Auth0 ****
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  // State to display between pages (NoCart, Cart, Checkout, History) - can be found before return at the end
-  const [pageState, setPageState] = useState("NoCart");
+  // State to display between pages (NoCart, Cart, Checkout, History) - can be found before return at the end ( WORKING ON PUTING PAGE ON SEAPARTE FOLDER AND HOOKS IN THEIR OWN FILE)
+  const { pageState, setPageState } = usePageState();
 
   // **** Shopping Cart ****
-  // Initiate cart with previous cart from localStorage if exists else empty array
-  const useCart = () => {
-    const [cart, setCart] = useState(
-      JSON.parse(window.localStorage.getItem("cart")) || []
-    );
-    return { cart, setCart };
-  };
+  // Taking cart and setCart from useCart hook
   const { cart, setCart } = useCart();
 
   // Before unload of page, put cart in localStorage && remove cart from localStorage after setting it to the cart state array
@@ -39,112 +39,12 @@ export default function Main() {
   // **** END OF Shopping Cart ****
 
   // state to read/get products from MongoDB products collection
-  const useProductsList = () => {
-    const [productsList, setProductsList] = useState([]);
-    useEffect(() => {
-      Axios.get("http://localhost:3001/read").then((response) => {
-        setProductsList(response.data);
-        setAppState("loaded");
-      });
-    }, []);
-
-    return { productsList };
-  };
-  const { productsList } = useProductsList();
+  const { productsList } = useProductsList(setAppState);
 
   // **** This is for MainMenu > CartNotOpened & for Total price in CartOpen ****
-  const useTotalNoOfProductAndTotalPrice = (cart) => {
-    // Get totalNumberOfProduct from cart state
-    const [totalNumberOfProduct, setTotalNumberOfProduct] = useState(0);
-    // Get totalPrice of all products from cart state
-    const [totalPrice, setTotalPrice] = useState(0);
-
-    useEffect(() => {
-      // This is for totalNumberOfProducts
-      setTotalNumberOfProduct(
-        cart
-          .map((e, key) => {
-            return cart[key].numberOfProduct;
-          })
-          .reduce((total, value) => total + value, 0)
-      );
-
-      // This is for totalPrice
-      setTotalPrice(
-        cart
-          .map((e, key) => {
-            return cart[key].numberOfProduct * cart[key].Price;
-          })
-          .reduce((total, value) => total + value, 0)
-      );
-    }, [cart]);
-
-    return { totalNumberOfProduct, totalPrice };
-    // **** END OF MainMenu > CartNotOpened ****
-  };
   const { totalNumberOfProduct, totalPrice } =
     useTotalNoOfProductAndTotalPrice(cart);
-
-  // **** Pages ****
-  const NoCartPage = () => {
-    return (
-      <>
-        <NavBar
-          title={"Orice comanda va fi confirmata in 5 minute."}
-          pageState={pageState}
-          setPageState={setPageState}
-        />
-        <MainMenu
-          cart={cart}
-          setCart={(e) => setCart(e)}
-          totalPrice={totalPrice}
-          totalNumberOfProduct={totalNumberOfProduct}
-          productsList={productsList}
-          setPageState={() => setPageState("Cart")}
-        />
-      </>
-    );
-  };
-
-  const CartPage = () => {
-    return (
-      <>
-        <NavBar
-          title={"Cosul tau"}
-          pageState={pageState}
-          setPageState={setPageState}
-        />
-        <CartOpen
-          cart={cart}
-          setCart={(e) => setCart(e)}
-          totalPrice={totalPrice}
-          setPageState={setPageState}
-        />
-      </>
-    );
-  };
-
-  const CheckoutPage = () => {
-    return (
-      <>
-        <NavBar
-          title={"Aici dai comanda"}
-          pageState={pageState}
-          setPageState={setPageState}
-        />
-        <Checkout />
-      </>
-    );
-  };
-
-  const HistoryPage = () => {
-    return (
-      <>
-        <History />
-      </>
-    );
-  };
-  // **** END OF Pages ****
+  // **** END OF MainMenu > CartNotOpened ****
 
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;
@@ -152,9 +52,29 @@ export default function Main() {
     /* Conditional rendering for showing NoCart, Cart, Checkout, History pages that live inside this file */
     return (
       <>
-        {pageState === "NoCart" ? <NoCartPage /> : null}
-        {pageState === "Cart" ? <CartPage /> : null}
-        {pageState === "Checkout" ? <CheckoutPage /> : null}
+        {pageState === "NoCart" ? (
+          <NoCartPage
+            pageState={pageState}
+            setPageState={setPageState}
+            cart={cart}
+            setCart={setCart}
+            totalPrice={totalPrice}
+            totalNumberOfProduct={totalNumberOfProduct}
+            productsList={productsList}
+          />
+        ) : null}
+        {pageState === "Cart" ? (
+          <CartPage
+            pageState={pageState}
+            setPageState={setPageState}
+            cart={cart}
+            setCart={setCart}
+            totalPrice={totalPrice}
+          />
+        ) : null}
+        {pageState === "Checkout" ? (
+          <CheckoutPage pageState={pageState} setPageState={setPageState} />
+        ) : null}
         {pageState === "History" ? <HistoryPage /> : null}
       </>
     );

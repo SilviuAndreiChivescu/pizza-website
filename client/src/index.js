@@ -48,6 +48,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // GOOD TO KNOW
 
+// You can import state from folder, but do not import it again in the children except when you need a different state. If you need the same state, you have to pass it as props
+
 // if using useState and useEffect to fetch data and set it as state and then display it, you should put both functions inside a function call useDisplayName(), and add a return value inside it, and that is a custom hook you can reuse, then inside where you need your custom hook, just declare a variable and put it = useDisplayName();
 // use useEffect when console.log something that is state depenendent, because it will give you the real time value, not the value that was when you would console.log, because when you would console.log normally, it will run asynch, and you don't want that
 // when using setState for let's say, increment by 1, don't just put setCount(count+1), !!put setCount(currCount => currCount + 1)
