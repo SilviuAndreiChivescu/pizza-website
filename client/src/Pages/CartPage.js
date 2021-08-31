@@ -1,5 +1,5 @@
-import NavBar from "../components/NavBar";
-import CartOpen from "../components/CartOpen";
+import NavBar from "../shared components/NavBar";
+import CartOpen from "../shared components/CartOpen";
 
 export default function CartPage(props) {
   const { pageState, setPageState, cart, setCart, totalPrice } = props;

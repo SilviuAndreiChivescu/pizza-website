@@ -8,7 +8,7 @@ import CartPage from "../Pages/CartPage";
 import CheckoutPage from "../Pages/CheckoutPage";
 import HistoryPage from "../Pages/HistoryPage";
 
-import Loading from "../components/Loading";
+import Loading from "../shared components/Loading";
 
 import { useAppState } from "../hooks/appState";
 import { usePageState } from "../hooks/pageState";

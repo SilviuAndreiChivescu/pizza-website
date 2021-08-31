@@ -86,6 +86,7 @@ export default function Drawer(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+        {/* Rendering different depending on the user's authentification */}
         {isAuthenticated ? <LoggedIN /> : <NotLoggedIn />}
 
         <ListItem button key="Privacy Policy">

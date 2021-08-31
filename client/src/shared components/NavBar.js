@@ -7,7 +7,7 @@ export default function NavBar(props) {
   // Destructuring props
   const { pageState, setPageState, title } = props;
 
-  // State for modal with info
+  // State for Modal
   const [show, setShow] = useState(false);
 
   // Below can be found the particular differences NavBar has on each Page State
@@ -89,7 +89,7 @@ export default function NavBar(props) {
         onClose={() => setShow((currShow) => !currShow)}
         show={show}
       >
-        {/* ModalContent is locally for this component and can be found below this function */}
+        {/* ModalContent is locally and can be found below this function */}
         <ModalContent />
       </Modal>
     </header>
