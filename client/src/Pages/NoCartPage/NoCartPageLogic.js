@@ -12,5 +12,4 @@ const useContent = () => {
 
   return { content, setContent };
 };
-
 export { useShow, useContent };

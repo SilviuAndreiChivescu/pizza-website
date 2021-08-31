@@ -89,14 +89,14 @@ export default function NavBar(props) {
         onClose={() => setShow((currShow) => !currShow)}
         show={show}
       >
-        {/* ModalBody can be found below this function */}
-        <ModalBody />
+        {/* ModalContent is locally for this component and can be found below this function */}
+        <ModalContent />
       </Modal>
     </header>
   );
 }
 
-const ModalBody = () => {
+const ModalContent = () => {
   return (
     <>
       <div className="m-4 p-4 shadow bg-white">

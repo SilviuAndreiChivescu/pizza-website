@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-// The functions inside this file, does not apply to Modal from NavBar. That <Modal /> does not contain any logic.
-
 // Custom hook to handle the quantity
 const useQuantitySelector = () => {
   const [numberOfProduct, setNumberOfProduct] = useState(1);
