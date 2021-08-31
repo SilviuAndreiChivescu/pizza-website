@@ -36,7 +36,7 @@ const useAddToCart = () => {
     else {
       var newArr = cart.map((value) => {
         if (value.Name === content.Name) {
-          value.quantity += quantity;
+          value.Quantity += quantity;
         }
         return value;
       });

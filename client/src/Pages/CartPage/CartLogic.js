@@ -30,7 +30,7 @@ const useQuantitySelector = (cart, setCart, value) => {
     // Create a new cart array
     var newArr = cart.map((value) => {
       if (value.Name === Name) {
-        value.quantity += 1;
+        value.Quantity += 1;
       }
       return value;
     });
@@ -46,14 +46,14 @@ const useQuantitySelector = (cart, setCart, value) => {
       setQuantity((prevNumber) => prevNumber - 1);
       var newArr = cart.map((value) => {
         if (value.Name === Name) {
-          value.quantity -= 1;
+          value.Quantity -= 1;
         }
         return value;
       });
       setCart(newArr);
     }
   };
-  return { incrementItem, decreaseItem, quantity };
+  return { incrementItem, decreaseItem };
 };
 
 export { usePostToOrders, useQuantitySelector };

@@ -1,30 +1,23 @@
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
+import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
 import { usePostToOrders, useQuantitySelector } from "./CartLogic";
 
 export default function Cart(props) {
-  const { setPageState, cart, setCart } = props;
-
+  const { setPageState, cart, setCart, totalPrice } = props;
   return (
     <>
       <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
         {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
         <div className="text-secondary border-bottom border-2 border-secondary">
-          <img
-            className="img-fluid mt-5"
-            src={iconEmptyBasket}
-            style={{ width: "70px" }}
-          />
-          <h5 className="mb-5">
-            Adauga mancare gustoasa din meniu si apoi plaseaza comanda
-          </h5>
+          {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
         </div>
 
-        {props.cart.map((value) => {
+        {cart.map((value) => {
           return <FoodBox cart={cart} setCart={setCart} value={value} />;
         })}
 
         <div className="mb-5 border-bottom border-2 border-secondary">
-          <p className="fw-bold">Total: {props.totalPrice} lei</p>
+          <p className="fw-bold">Total: {totalPrice} lei</p>
         </div>
         <DeliveryHours cart={cart} setPageState={setPageState} />
       </section>
@@ -32,10 +25,37 @@ export default function Cart(props) {
   );
 }
 
+// The next two components are used to return different UI for when Cart state is empty or not.
+const NoProductInCart = () => {
+  return (
+    <>
+      <img
+        className="img-fluid mt-5"
+        src={iconEmptyBasket}
+        style={{ width: "70px" }}
+      />
+      <h5 className="mb-5">
+        Adauga mancare gustoasa din meniu si apoi plaseaza comanda
+      </h5>
+    </>
+  );
+};
+const ProductInCart = () => {
+  return (
+    <>
+      <img
+        className="img-fluid mt-5"
+        src={iconPizzaSharing}
+        style={{ width: "400px" }}
+      />
+    </>
+  );
+};
+
 // This Component is the row for particular item. It has option to add or substract from quantity.
 const FoodBox = (props) => {
   const { value, cart, setCart } = props;
-  const { incrementItem, decreaseItem, quantity } = useQuantitySelector(
+  const { incrementItem, decreaseItem } = useQuantitySelector(
     cart,
     setCart,
     value
@@ -44,7 +64,7 @@ const FoodBox = (props) => {
   return (
     <div key={value._id} className="row container-fluid ">
       <div className="col d-inline-flex ps-0 justify-content-center pt-3">
-        <p>{quantity} X </p>
+        <p>{value.Quantity} X </p>
         <p className="ps-2 pe-2">{value.Name}</p>
         <div>
           <button
