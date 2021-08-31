@@ -22,9 +22,13 @@ export default function Main() {
 
   // **** Shopping Cart ****
   // Initiate cart with previous cart from localStorage if exists else empty array
-  const [cart, setCart] = useState(
-    JSON.parse(window.localStorage.getItem("cart")) || []
-  );
+  const useCart = () => {
+    const [cart, setCart] = useState(
+      JSON.parse(window.localStorage.getItem("cart")) || []
+    );
+    return { cart, setCart };
+  };
+  const { cart, setCart } = useCart();
 
   // Before unload of page, put cart in localStorage && remove cart from localStorage after setting it to the cart state array
   useBeforeunload(
