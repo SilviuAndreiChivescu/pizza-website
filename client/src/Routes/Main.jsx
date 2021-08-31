@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
 import { useBeforeunload } from "react-beforeunload";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -20,7 +19,7 @@ export default function Main() {
   const { appState, setAppState } = useAppState();
 
   // **** Auth0 ****
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isLoading } = useAuth0();
 
   // State to display between pages (NoCart, Cart, Checkout, History) - can be found before return at the end ( WORKING ON PUTING PAGE ON SEAPARTE FOLDER AND HOOKS IN THEIR OWN FILE)
   const { pageState, setPageState } = usePageState();
