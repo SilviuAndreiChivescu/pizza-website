@@ -7,11 +7,14 @@ import CartPage from "../Pages/CartPage/CartPage";
 import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
 import HistoryPage from "../Pages/HistoryPage/HistoryPage";
 
-import { useAppState } from "../hooks/appState";
-import { usePageState } from "../hooks/pageState";
-import { useCart } from "../hooks/cart";
-import { useTotalNoOfProductAndTotalPrice } from "../hooks/totalNoOfProductAndTotalPrice";
-import { useProductsList } from "../hooks/productsList";
+import {
+  useAppState,
+  usePageState,
+  useCart,
+  useTotalNoOfProductAndTotalPrice,
+  useProductsList,
+} from "./MainLogic";
+
 import { CircularProgress } from "@material-ui/core";
 
 export default function Main() {
