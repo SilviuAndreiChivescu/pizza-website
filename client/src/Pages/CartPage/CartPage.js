@@ -1,5 +1,5 @@
-import NavBar from "../shared components/NavBar";
-import CartOpen from "../shared components/CartOpen";
+import NavBar from "../../shared components/NavBar";
+import Cart from "./Cart";
 
 export default function CartPage(props) {
   const { pageState, setPageState, cart, setCart, totalPrice } = props;
@@ -10,7 +10,7 @@ export default function CartPage(props) {
         pageState={pageState}
         setPageState={setPageState}
       />
-      <CartOpen
+      <Cart
         cart={cart}
         setCart={(e) => setCart(e)}
         totalPrice={totalPrice}
