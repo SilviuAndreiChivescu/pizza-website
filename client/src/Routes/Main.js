@@ -3,7 +3,7 @@ import Axios from "axios";
 import { useBeforeunload } from "react-beforeunload";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import NoCartPage from "../Pages/NoCartPage";
+import NoCartPage from "../Pages/NoCartPage/NoCartPage";
 import CartPage from "../Pages/CartPage";
 import CheckoutPage from "../Pages/CheckoutPage";
 import HistoryPage from "../Pages/HistoryPage";

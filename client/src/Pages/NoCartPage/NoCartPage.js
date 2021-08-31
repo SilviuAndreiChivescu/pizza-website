@@ -1,5 +1,6 @@
-import NavBar from "../components/NavBar";
-import MainMenu from "../components/MainMenu";
+import NavBar from "../../components/NavBar";
+import MainMenu from "../../components/MainMenu";
+import CartBar from "./components/CartBar";
 
 export default function NoCartPage(props) {
   const {
@@ -25,6 +26,10 @@ export default function NoCartPage(props) {
         totalPrice={totalPrice}
         totalNumberOfProduct={totalNumberOfProduct}
         productsList={productsList}
+      />
+      <CartBar
+        totalPrice={totalPrice}
+        totalNumberOfProduct={totalNumberOfProduct}
         setPageState={() => setPageState("Cart")}
       />
     </>
