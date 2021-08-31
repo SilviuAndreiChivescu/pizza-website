@@ -39,17 +39,17 @@ const useProductsList = (setAppState) => {
 
 // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage
 const useTotalNoOfProductAndTotalPrice = (cart) => {
-  // Get totalNumberOfProduct from cart state
-  const [totalNumberOfProduct, setTotalNumberOfProduct] = useState(0);
+  // Get totalQuantity from cart state
+  const [totalQuantity, setTotalQuantity] = useState(0);
   // Get totalPrice of all products from cart state
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    // This is for totalNumberOfProducts
-    setTotalNumberOfProduct(
+    // This is for totalQuantitys
+    setTotalQuantity(
       cart
         .map((e, key) => {
-          return cart[key].numberOfProduct;
+          return cart[key].Quantity;
         })
         .reduce((total, value) => total + value, 0)
     );
@@ -58,13 +58,13 @@ const useTotalNoOfProductAndTotalPrice = (cart) => {
     setTotalPrice(
       cart
         .map((e, key) => {
-          return cart[key].numberOfProduct * cart[key].Price;
+          return cart[key].Quantity * cart[key].Price;
         })
         .reduce((total, value) => total + value, 0)
     );
   }, [cart]);
 
-  return { totalNumberOfProduct, totalPrice };
+  return { totalQuantity, totalPrice };
 };
 
 export {

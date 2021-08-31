@@ -22,14 +22,14 @@ mongoose.set("useFindAndModify", false);
 app.post("/insert", async (req, res) => {
   const name = req.body.name;
   const price = req.body.price;
-  const numberOfProduct = req.body.numberOfProduct;
+  const quantity = req.body.quantity;
   const category = req.body.category;
 
   const products = new ProductsModel({
     Name: name,
     Price: price,
     Description: "Acu bag din front-end",
-    numberOfProduct: numberOfProduct,
+    Quantity: quantity,
     Category: category,
   });
 
@@ -58,7 +58,7 @@ app.put("/update", async (req, res) => {
 
   try {
     await ProductsModel.findById(id, (err, updatedProduct) => {
-      updatedProduct.numberOfProduct = newNumberOfProduct;
+      updatedProduct.quantity = newNumberOfProduct;
       updatedProduct.save();
     });
   } catch (err) {

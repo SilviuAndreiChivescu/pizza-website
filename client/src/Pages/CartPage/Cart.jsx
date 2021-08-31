@@ -35,7 +35,7 @@ export default function Cart(props) {
 // This Component is the row for particular item. It has option to add or substract from quantity.
 const FoodBox = (props) => {
   const { value, cart, setCart } = props;
-  const { incrementItem, decreaseItem, numberOfProduct } = useQuantitySelector(
+  const { incrementItem, decreaseItem, quantity } = useQuantitySelector(
     cart,
     setCart,
     value
@@ -44,7 +44,7 @@ const FoodBox = (props) => {
   return (
     <div key={value._id} className="row container-fluid ">
       <div className="col d-inline-flex ps-0 justify-content-center pt-3">
-        <p>{numberOfProduct} X </p>
+        <p>{quantity} X </p>
         <p className="ps-2 pe-2">{value.Name}</p>
         <div>
           <button
@@ -68,7 +68,7 @@ const FoodBox = (props) => {
             +
           </button>
         </div>
-        <p className="ps-2 pe-2">{value.Price * value.numberOfProduct} lei</p>
+        <p className="ps-2 pe-2">{value.Price * value.Quantity} lei</p>
       </div>
     </div>
   );

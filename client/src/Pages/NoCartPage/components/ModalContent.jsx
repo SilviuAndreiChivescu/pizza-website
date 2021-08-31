@@ -6,8 +6,7 @@ export default function ModalContent(props) {
 
   // **** From ModalContentLogic ****
 
-  const { numberOfProduct, incrementItem, decreaseItem } =
-    useQuantitySelector();
+  const { quantity, incrementItem, decreaseItem } = useQuantitySelector();
   const { addToCart } = useAddToCart();
 
   // **** END ModalContentLogic ****
@@ -69,7 +68,7 @@ export default function ModalContent(props) {
                 className="border-1 border-dark bg-light"
                 style={{ width: "50px", pointerEvents: "none" }}
               >
-                {numberOfProduct}
+                {quantity}
               </button>
             </div>
             <div>
@@ -86,7 +85,7 @@ export default function ModalContent(props) {
             <button
               onClick={() => {
                 onClose();
-                addToCart(cart, setCart, content, numberOfProduct);
+                addToCart(cart, setCart, content, quantity);
               }}
               className="container-fluid black-bg text-white border border-2 border-dark rounded p-2"
             >

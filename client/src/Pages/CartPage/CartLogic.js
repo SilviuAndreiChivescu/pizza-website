@@ -23,16 +23,14 @@ const usePostToOrders = () => {
 // This custom hook modifies the cart state, by increasing or decreasing quantity up to deleting it if quantity is 0.
 const useQuantitySelector = (cart, setCart, value) => {
   // Initiate a state for each product in list
-  const [numberOfProduct, setNumberOfProduct] = useState(
-    () => value.numberOfProduct
-  );
+  const [quantity, setQuantity] = useState(() => value.Quantity);
   const incrementItem = (Name) => {
     // Increment the particular state
-    setNumberOfProduct((prevNumber) => prevNumber + 1);
+    setQuantity((prevNumber) => prevNumber + 1);
     // Create a new cart array
     var newArr = cart.map((value) => {
       if (value.Name === Name) {
-        value.numberOfProduct += 1;
+        value.quantity += 1;
       }
       return value;
     });
@@ -40,22 +38,22 @@ const useQuantitySelector = (cart, setCart, value) => {
     setCart(newArr);
   };
   const decreaseItem = (Name) => {
-    // Delete item if numberOfProduct gets to 0
-    if (numberOfProduct === 1) {
+    // Delete item if quantity gets to 0
+    if (quantity === 1) {
       let filteredCart = cart.filter((value) => value.Name !== Name);
       setCart(filteredCart);
     } else {
-      setNumberOfProduct((prevNumber) => prevNumber - 1);
+      setQuantity((prevNumber) => prevNumber - 1);
       var newArr = cart.map((value) => {
         if (value.Name === Name) {
-          value.numberOfProduct -= 1;
+          value.quantity -= 1;
         }
         return value;
       });
       setCart(newArr);
     }
   };
-  return { incrementItem, decreaseItem, numberOfProduct };
+  return { incrementItem, decreaseItem, quantity };
 };
 
 export { usePostToOrders, useQuantitySelector };

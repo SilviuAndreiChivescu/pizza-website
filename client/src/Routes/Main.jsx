@@ -40,8 +40,7 @@ export default function Main() {
   const { productsList } = useProductsList(setAppState);
 
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
-  const { totalNumberOfProduct, totalPrice } =
-    useTotalNoOfProductAndTotalPrice(cart);
+  const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
 
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;
@@ -56,7 +55,7 @@ export default function Main() {
             cart={cart}
             setCart={setCart}
             totalPrice={totalPrice}
-            totalNumberOfProduct={totalNumberOfProduct}
+            totalQuantity={totalQuantity}
             productsList={productsList}
           />
         ) : null}

@@ -8,7 +8,6 @@ import Whoops404 from "./Routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
-// Change numberOfProduct state, with quantity and change in db as well ( ALL OPEN TABS ARE WHERE NUMBEROFPRODUCT LIVES, CHANGE THEM FIRST THING)
 // NOW I WANT TO THINK ABOUT WHAT COMPONENTS ARE SHARED, THOSE I WANT TO KEEP THEM IN THEIR OWN FILE. THE REST ONES I WANT TO KEEP IT IN THE FILE THAT NEEDS IT, TO BE MORE CLEAN
 
 // contex.api (it's ok only if using a context sharing a single value only due to re rendering, see if it may be helpful down the project)
@@ -20,7 +19,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
 
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
-// Delete SignIn component since not used anymore with Auth0, but see if you want to keep copyright function from it
 // DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
 
 // Design History component

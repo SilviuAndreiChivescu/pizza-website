@@ -2,22 +2,22 @@ import { useState } from "react";
 
 // Custom hook to handle the quantity
 const useQuantitySelector = () => {
-  const [numberOfProduct, setNumberOfProduct] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const incrementItem = () => {
-    setNumberOfProduct((currClicks) => currClicks + 1);
+    setQuantity((currClicks) => currClicks + 1);
   };
   const decreaseItem = () => {
-    if (numberOfProduct <= 1) return;
-    setNumberOfProduct((currClicks) => currClicks - 1);
+    if (quantity <= 1) return;
+    setQuantity((currClicks) => currClicks - 1);
   };
 
-  return { numberOfProduct, incrementItem, decreaseItem };
+  return { quantity, incrementItem, decreaseItem };
 };
 
 // Add / Update the product to the cart State Array
 const useAddToCart = () => {
-  const addToCart = (cart, setCart, content, numberOfProduct) => {
+  const addToCart = (cart, setCart, content, quantity) => {
     // Check if Product is already in cart
     let filteredProduct = cart.filter((value) => value.Name === content.Name);
     // If product is not in cart, add it
@@ -27,7 +27,7 @@ const useAddToCart = () => {
         {
           ID: content.ID,
           Name: content.Name,
-          numberOfProduct: numberOfProduct,
+          Quantity: quantity,
           Price: content.Price,
         },
       ]);
@@ -36,7 +36,7 @@ const useAddToCart = () => {
     else {
       var newArr = cart.map((value) => {
         if (value.Name === content.Name) {
-          value.numberOfProduct += numberOfProduct;
+          value.quantity += quantity;
         }
         return value;
       });

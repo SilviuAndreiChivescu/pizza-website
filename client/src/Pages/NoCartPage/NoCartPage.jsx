@@ -14,7 +14,7 @@ export default function NoCartPage(props) {
     cart,
     setCart,
     totalPrice,
-    totalNumberOfProduct,
+    totalQuantity,
     productsList,
   } = props;
 
@@ -35,7 +35,7 @@ export default function NoCartPage(props) {
         cart={cart}
         setCart={(e) => setCart(e)}
         totalPrice={totalPrice}
-        totalNumberOfProduct={totalNumberOfProduct}
+        totalQuantity={totalQuantity}
         productsList={productsList}
         setShow={setShow}
         setContent={setContent}
@@ -54,7 +54,7 @@ export default function NoCartPage(props) {
       </Modal>
       <CartBar
         totalPrice={totalPrice}
-        totalNumberOfProduct={totalNumberOfProduct}
+        totalQuantity={totalQuantity}
         setPageState={() => setPageState("Cart")}
       />
     </>
