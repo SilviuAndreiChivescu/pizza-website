@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLink as Link } from "react-router-hash-link";
 
 export default function Menu(props) {
   const { productsList, setShow, setContent } = props;
@@ -6,11 +7,11 @@ export default function Menu(props) {
   return (
     <section style={{ backgroundColor: "#efeff4" }}>
       <nav className="d-flex justify-content-between bg-secondary p-3 w-100">
-        <a href="#pizza">Pizza</a>
-        <a href="#">Burgări</a>
-        <a href="#chifle">Chifle coapte pe vatră</a>
-        <a href="#">Sandwich</a>
-        <a href="#">Sucuri si Bere</a>
+        <Link to="#pizza">Pizza</Link>
+        <Link to="#burgari">Burgări</Link>
+        <Link to="#chifle">Chifle coapte pe vatră</Link>
+        <Link to="#sandwich">Sandwich</Link>
+        <Link to="#bauturi">Bauturi</Link>
       </nav>
       <div className="">
         <ul className="text-dark">
