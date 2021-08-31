@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Modal from "./Modal/Modal";
-import "./Modal/Modal.css";
+import Modal from "./Modal";
+import "./Modal.css";
 import Drawer from "./Drawer";
 
 export default function NavBar(props) {

@@ -2,8 +2,8 @@ import NavBar from "../../shared components/NavBar";
 import Menu from "./components/Menu";
 import CartBar from "./components/CartBar";
 
-import Modal from "../../shared components/Modal/Modal";
-import "../../shared components/Modal/Modal.css";
+import Modal from "../../shared components/Modal";
+import "../../shared components/Modal.css";
 import ModalContent from "./components/ModalContent";
 import { useContent, useShow } from "./NoCartPageLogic";
 
