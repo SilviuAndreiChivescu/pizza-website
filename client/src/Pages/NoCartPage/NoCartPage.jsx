@@ -2,6 +2,10 @@ import NavBar from "../../components/NavBar";
 import MainMenu from "../../components/MainMenu";
 import CartBar from "./components/CartBar";
 
+import Modal from "../../components/Modal/Modal";
+import ModalContent from "./components/ModalContent";
+import { useContent, useShow } from "./NoCartPageLogic";
+
 export default function NoCartPage(props) {
   const {
     pageState,
@@ -12,6 +16,12 @@ export default function NoCartPage(props) {
     totalNumberOfProduct,
     productsList,
   } = props;
+
+  // Content for modal
+  const {content, setContent} = useContent();
+
+  // State to show modal
+  const {show, setShow} = useShow();
 
   return (
     <>
@@ -26,7 +36,16 @@ export default function NoCartPage(props) {
         totalPrice={totalPrice}
         totalNumberOfProduct={totalNumberOfProduct}
         productsList={productsList}
+        setShow={setShow}
+        setContent={setContent}
       />
+      <Modal
+        Name={content.Name}
+        onClose={() => setShow((currShow) => !currShow)}
+        show={show}
+      >
+        <ModalContent cart={cart} setCart={setCart} content={content} onClose={() => setShow((currShow) => !currShow)} />
+      </Modal>
       <CartBar
         totalPrice={totalPrice}
         totalNumberOfProduct={totalNumberOfProduct}
