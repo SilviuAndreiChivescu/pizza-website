@@ -18,16 +18,15 @@ import {
 import { CircularProgress } from "@material-ui/core";
 
 export default function Main() {
-  // The state of Application
+  // State of Application
   const { appState, setAppState } = useAppState();
 
   // **** Auth0 ****
   const { isLoading } = useAuth0();
 
-  // State to display between pages (NoCart, Cart, Checkout, History) - can be found before return at the end ( WORKING ON PUTING PAGE ON SEAPARTE FOLDER AND HOOKS IN THEIR OWN FILE)
+  // State to display between Pages (NoCartPage, CartPage, CheckoutPage, HistoryPage)
   const { pageState, setPageState } = usePageState();
 
-  // **** Shopping Cart ****
   // Taking cart and setCart from useCart hook
   const { cart, setCart } = useCart();
 
@@ -37,15 +36,12 @@ export default function Main() {
     window.localStorage.setItem("cart", JSON.stringify(cart))
   );
 
-  // **** END OF Shopping Cart ****
-
   // state to read/get products from MongoDB products collection
   const { productsList } = useProductsList(setAppState);
 
-  // **** This is for MainMenu > CartNotOpened & for Total price in CartOpen ****
+  // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
   const { totalNumberOfProduct, totalPrice } =
     useTotalNoOfProductAndTotalPrice(cart);
-  // **** END OF MainMenu > CartNotOpened ****
 
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;

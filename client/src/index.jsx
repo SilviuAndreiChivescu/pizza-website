@@ -8,7 +8,7 @@ import Whoops404 from "./Routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
-// Change numberOfProduct state, with quantity and change in db as well
+// Change numberOfProduct state, with quantity and change in db as well ( ALL OPEN TABS ARE WHERE NUMBEROFPRODUCT LIVES, CHANGE THEM FIRST THING)
 // NOW I WANT TO THINK ABOUT WHAT COMPONENTS ARE SHARED, THOSE I WANT TO KEEP THEM IN THEIR OWN FILE. THE REST ONES I WANT TO KEEP IT IN THE FILE THAT NEEDS IT, TO BE MORE CLEAN
 
 // contex.api (it's ok only if using a context sharing a single value only due to re rendering, see if it may be helpful down the project)
@@ -26,8 +26,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Design History component
 
 // II
-// "about-us.jsx"
-// const {prop1, prop2, prop3} = props
 // Make search input for menu after finishing with the db
 
 // You don't need class components, change them if u have any
