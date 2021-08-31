@@ -1,5 +1,5 @@
-import NavBar from "../shared components/NavBar";
-import Checkout from "../shared components/Checkout";
+import NavBar from "../../shared components/NavBar";
+import Checkout from "./Checkout";
 
 export default function CheckoutPage(props) {
   const { pageState, setPageState } = props;

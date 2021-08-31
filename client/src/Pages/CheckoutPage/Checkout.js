@@ -2,8 +2,8 @@ import { useState } from "react";
 
 export default function Checkout(props) {
   // useState for if the user decides to choose a time to get his food
-  const [timp, setTimp] = useState(false);
-
+  const [time, setTime] = useState(false);
+  // This component will render if time is ture
   const ChooseHour = () => {
     return (
       <input
@@ -90,7 +90,7 @@ export default function Checkout(props) {
               type="radio"
               id="catMaiRepede"
               name="timp"
-              onClick={() => setTimp(false)}
+              onClick={() => setTime(false)}
               defaultChecked
             />
             <label className="ms-2 me-5" htmlFor="catMaiRepede">
@@ -100,12 +100,12 @@ export default function Checkout(props) {
               type="radio"
               id="alege"
               name="timp"
-              onClick={() => setTimp(true)}
+              onClick={() => setTime(true)}
             />
             <label className="ms-2" htmlFor="alege">
               Alege ora!
             </label>
-            {timp ? <ChooseHour /> : null}
+            {time ? <ChooseHour /> : null}
           </div>
           <p className="mb-1">Metoda de livrare</p>
           <div>

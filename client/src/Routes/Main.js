@@ -5,16 +5,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import NoCartPage from "../Pages/NoCartPage/NoCartPage";
 import CartPage from "../Pages/CartPage/CartPage";
-import CheckoutPage from "../Pages/CheckoutPage";
-import HistoryPage from "../Pages/HistoryPage";
-
-import Loading from "../shared components/Loading";
+import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
+import HistoryPage from "../Pages/HistoryPage/HistoryPage";
 
 import { useAppState } from "../hooks/appState";
 import { usePageState } from "../hooks/pageState";
 import { useCart } from "../hooks/cart";
 import { useTotalNoOfProductAndTotalPrice } from "../hooks/totalNoOfProductAndTotalPrice";
 import { useProductsList } from "../hooks/productsList";
+import { CircularProgress } from "@material-ui/core";
 
 export default function Main() {
   // The state of Application
@@ -80,3 +79,18 @@ export default function Main() {
     );
   }
 }
+
+const Loading = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <CircularProgress disableShrink />
+    </div>
+  );
+};
