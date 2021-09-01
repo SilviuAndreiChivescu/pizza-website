@@ -1,10 +1,10 @@
 import Details from "../../shared components/Details";
 
-export default function ReceiptPage(props) {
+export default function TrackOrderPage(props) {
   const { cart, totalPrice } = props;
   return (
     <>
-      <h1>Receipt page</h1>
+      <h1>Track Order page</h1>
       <Details cart={cart} totalPrice={totalPrice} />
     </>
   );

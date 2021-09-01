@@ -1,3 +1,5 @@
+// This component is shared by ReceiptPage and TrackOrderPage
+
 export default function Details(props) {
   const { cart, totalPrice } = props;
   return (

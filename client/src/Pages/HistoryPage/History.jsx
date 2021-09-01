@@ -2,7 +2,7 @@ import { useHistoryData } from "./HistoryLogic";
 
 export default function History(props) {
   const { historyProductList } = useHistoryData();
-
+  const { setPageState } = props;
   return historyProductList.map((e, idx) => {
     return (
       <div key={idx}>
@@ -12,6 +12,7 @@ export default function History(props) {
             return <li key={index}>{element.Name}</li>;
           })}
         </ul>
+        <button onClick={() => setPageState("TrackOrder")}></button>
       </div>
     );
   });

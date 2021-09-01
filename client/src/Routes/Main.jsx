@@ -7,6 +7,7 @@ import CartPage from "../Pages/CartPage/CartPage";
 import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
 import HistoryPage from "../Pages/HistoryPage/HistoryPage";
 import ReceiptPage from "../Pages/ReceiptPage/ReceiptPage";
+import TrackOrderPage from "../Pages/TrackOrderPage/TrackOrderPage";
 
 import {
   useAppState,
@@ -72,9 +73,14 @@ export default function Main() {
         {pageState === "Checkout" ? (
           <CheckoutPage pageState={pageState} setPageState={setPageState} />
         ) : null}
-        {pageState === "History" ? <HistoryPage /> : null}
+        {pageState === "History" ? (
+          <HistoryPage setPageState={setPageState} />
+        ) : null}
         {pageState === "Receipt" ? (
           <ReceiptPage cart={cart} totalPrice={totalPrice} />
+        ) : null}
+        {pageState === "TrackOrder" ? (
+          <TrackOrderPage cart={cart} totalPrice={totalPrice} />
         ) : null}
       </>
     );
