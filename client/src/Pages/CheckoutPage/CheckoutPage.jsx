@@ -10,7 +10,7 @@ export default function CheckoutPage(props) {
         pageState={pageState}
         setPageState={setPageState}
       />
-      <Checkout />
+      <Checkout setPageState={setPageState} />
     </>
   );
 }

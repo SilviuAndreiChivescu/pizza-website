@@ -1,6 +1,6 @@
 import History from "./History";
 
-export default function HistoryPage() {
+export default function HistoryPage(props) {
   return (
     <>
       <History />

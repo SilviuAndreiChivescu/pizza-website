@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export default function Checkout(props) {
+  const { setPageState } = props;
+
   // useState for if the user decides to choose a time to get his food
   const [time, setTime] = useState(false);
   // This component will render if time is ture
@@ -174,6 +176,9 @@ export default function Checkout(props) {
           </p>
           <button className="container black-bg text-white border border-2 border-dark rounded p-2">
             PLASEAZA COMANDA
+          </button>
+          <button onClick={() => setPageState("Receipt")}>
+            See receipt - Delete later
           </button>
         </form>
       </section>

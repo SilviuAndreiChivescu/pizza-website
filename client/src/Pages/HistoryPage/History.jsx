@@ -1,6 +1,6 @@
 import { useHistoryData } from "./HistoryLogic";
 
-export default function History() {
+export default function History(props) {
   const { historyProductList } = useHistoryData();
 
   return historyProductList.map((e, idx) => {

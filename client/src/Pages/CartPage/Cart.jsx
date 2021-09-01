@@ -7,8 +7,8 @@ export default function Cart(props) {
   return (
     <>
       <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
-        {/* The below div is only when cart is empty, when not empty, show what I will code with buttons and meal */}
         <div className="text-secondary border-bottom border-2 border-secondary">
+          {/* When empty, show a different .svg */}
           {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
         </div>
 

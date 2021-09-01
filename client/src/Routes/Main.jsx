@@ -6,6 +6,7 @@ import NoCartPage from "../Pages/NoCartPage/NoCartPage";
 import CartPage from "../Pages/CartPage/CartPage";
 import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
 import HistoryPage from "../Pages/HistoryPage/HistoryPage";
+import ReceiptPage from "../Pages/ReceiptPage/ReceiptPage";
 
 import {
   useAppState,
@@ -72,6 +73,9 @@ export default function Main() {
           <CheckoutPage pageState={pageState} setPageState={setPageState} />
         ) : null}
         {pageState === "History" ? <HistoryPage /> : null}
+        {pageState === "Receipt" ? (
+          <ReceiptPage cart={cart} totalPrice={totalPrice} />
+        ) : null}
       </>
     );
   }
