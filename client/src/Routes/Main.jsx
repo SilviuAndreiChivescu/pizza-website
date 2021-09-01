@@ -8,6 +8,7 @@ import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
 import HistoryPage from "../Pages/HistoryPage/HistoryPage";
 import ReceiptPage from "../Pages/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "../Pages/TrackOrderPage/TrackOrderPage";
+import MyAccountPage from "../Pages/MyAccountPage/MyAccountPage";
 
 import {
   useAppState,
@@ -73,6 +74,7 @@ export default function Main() {
         {pageState === "Checkout" ? (
           <CheckoutPage pageState={pageState} setPageState={setPageState} />
         ) : null}
+        {pageState === "MyAccount" ? <MyAccountPage /> : null}
         {pageState === "History" ? (
           <HistoryPage setPageState={setPageState} />
         ) : null}

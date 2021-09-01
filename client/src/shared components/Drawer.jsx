@@ -14,6 +14,27 @@ export default function Drawer(props) {
 
   // If user is logged in
   const LoggedIN = () => {
+    // My account button
+    const MyAccount = () => {
+      return (
+        <ListItem
+          onClick={() => setPageState("MyAccount")}
+          button
+          key="MyAccount"
+        >
+          <ListItemText primary="Contul meu" />
+        </ListItem>
+      );
+    };
+
+    // History button
+    const History = () => {
+      return (
+        <ListItem onClick={() => setPageState("History")} button key="History">
+          <ListItemText primary="Comenzile mele" />
+        </ListItem>
+      );
+    };
     // LogOut button
     const LogOut = () => {
       return (
@@ -27,17 +48,9 @@ export default function Drawer(props) {
       );
     };
 
-    // History button
-    const History = () => {
-      return (
-        <ListItem onClick={() => setPageState("History")} button key="History">
-          <ListItemText primary="Comenzile mele" />
-        </ListItem>
-      );
-    };
-
     return (
       <>
+        <MyAccount />
         <History />
         <LogOut />
       </>
