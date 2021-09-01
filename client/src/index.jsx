@@ -10,18 +10,19 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // TODO:
 
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
+
 // Think about users collection, how and when will I be getting the data and enter it into my users collection
-
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
+// Maybe make it so that it takes pageState from localStorage, so that if u refresh u get to where u were, ofc with some exceptions if needed becauese of errors
 
+// Solve problem with Loading. Sometime it just stops on loading. Make a catch or something that when not finish to load, reload or smthing
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
-// DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
 
-// Design History component
+// Design (make plan) History component
+// DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
 
 // II
 // Make search input for menu after finishing with the db
-// Put image(svg) downloaded from Illustration idk, for Checkout when having food in cart
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Optimize for mobile(maybe bootstrap will do it for me)
 // Drawer component is in shared components folder, but it's used only by NavBar which is also in shared components. Think this through

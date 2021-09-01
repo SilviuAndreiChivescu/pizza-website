@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useBeforeunload } from "react-beforeunload";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -45,7 +45,7 @@ export default function Main() {
   // Conditional rendering to render only if all data is received
   if (appState === "loading" || isLoading) return <Loading />;
   else if (appState === "loaded") {
-    /* Conditional rendering for showing NoCart, Cart, Checkout, History pages that live inside this file */
+    /* Conditional rendering for showing NoCart, Cart, Checkout, History Pages */
     return (
       <>
         {pageState === "NoCart" ? (
