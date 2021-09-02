@@ -2,13 +2,13 @@ import React from "react";
 import { useBeforeunload } from "react-beforeunload";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import NoCartPage from "../Pages/NoCartPage/NoCartPage";
-import CartPage from "../Pages/CartPage/CartPage";
-import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
-import HistoryPage from "../Pages/HistoryPage/HistoryPage";
-import ReceiptPage from "../Pages/ReceiptPage/ReceiptPage";
-import TrackOrderPage from "../Pages/TrackOrderPage/TrackOrderPage";
-import MyAccountPage from "../Pages/MyAccountPage/MyAccountPage";
+import NoCartPage from "../pages/NoCartPage/NoCartPage";
+import CartPage from "../pages/CartPage/CartPage";
+import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
+import HistoryPage from "../pages/HistoryPage/HistoryPage";
+import ReceiptPage from "../pages/ReceiptPage/ReceiptPage";
+import TrackOrderPage from "../pages/TrackOrderPage/TrackOrderPage";
+import MyAccountPage from "../pages/MyAccountPage/MyAccountPage";
 
 // Custom hooks to encapsulate code
 import {

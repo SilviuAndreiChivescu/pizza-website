@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MongoDB } from "./pages";
-import Main from "./Routes/Main";
-import Whoops404 from "./Routes/Whoops404";
+import Main from "./routes/Main";
+import Whoops404 from "./routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
