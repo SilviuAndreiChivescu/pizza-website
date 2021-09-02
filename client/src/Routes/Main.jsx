@@ -10,6 +10,7 @@ import ReceiptPage from "../Pages/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "../Pages/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "../Pages/MyAccountPage/MyAccountPage";
 
+// Custom hooks to encapsulate code
 import {
   useAppState,
   usePageState,

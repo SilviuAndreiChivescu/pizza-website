@@ -12,7 +12,7 @@ export default function CartPage(props) {
       />
       <Cart
         cart={cart}
-        setCart={(e) => setCart(e)}
+        setCart={setCart}
         totalPrice={totalPrice}
         setPageState={setPageState}
       />

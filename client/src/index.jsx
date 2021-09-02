@@ -11,8 +11,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
 
-// Think about users collection, how and when will I be getting the data and enter it into my users collection
-// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them;
+// Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
 // Maybe make it so that it takes pageState from localStorage, so that if u refresh u get to where u were, ofc with some exceptions if needed becauese of errors
 
 // Solve problem with Loading. Sometime it just stops on loading. Make a catch or something that when not finish to load, reload or smthing
@@ -23,6 +22,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // II
 // Make search input for menu after finishing with the db
+// Auth0 redirect, make it in Romanian
 // FoodBox component maybe delete the ingredients, because they are in the modal anyway
 // Optimize for mobile(maybe bootstrap will do it for me)
 // Drawer component is in shared components folder, but it's used only by NavBar which is also in shared components. Think this through

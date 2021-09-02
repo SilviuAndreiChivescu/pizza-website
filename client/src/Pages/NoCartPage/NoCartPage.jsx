@@ -33,7 +33,7 @@ export default function NoCartPage(props) {
       />
       <Menu
         cart={cart}
-        setCart={(e) => setCart(e)}
+        setCart={setCart}
         totalPrice={totalPrice}
         totalQuantity={totalQuantity}
         productsList={productsList}
