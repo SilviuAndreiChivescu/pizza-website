@@ -1,6 +1,8 @@
 import React from "react";
 import { HashLink as Link } from "react-router-hash-link";
 
+import Card from "react-bootstrap/Card";
+
 export default function Menu(props) {
   const { productsList, setShow, setContent } = props;
 
@@ -30,8 +32,7 @@ export default function Menu(props) {
                       Category: val.Category,
                     });
                   }}
-                  style={{ width: "250px" }}
-                  className="p-3 m-1 bg-white text-dark shadow bg-body rounded"
+                  className={"m-4"}
                 >
                   <FoodBox key={val._id} val={val} />
                 </div>
@@ -49,13 +50,16 @@ const FoodBox = (props) => {
   const { val } = props;
   return (
     <>
-      <li key={"props.key"} className="fw-bold">
-        {val.Name}
-      </li>
-      <p style={{ height: "120px" }} className="text-secondary mt-2 mb-2">
-        Description
-      </p>
-      <p className="fw-bolder mb-0 ">{val.Price} lei</p>
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>{val.Name}</Card.Title>
+
+          <Card.Text>Description</Card.Text>
+          <Card.Subtitle className="mb-2 text-muted">
+            {val.Price} lei
+          </Card.Subtitle>
+        </Card.Body>
+      </Card>
     </>
   );
 };

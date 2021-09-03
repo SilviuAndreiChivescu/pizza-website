@@ -73,7 +73,12 @@ export default function Main() {
           />
         ) : null}
         {pageState === "Checkout" ? (
-          <CheckoutPage pageState={pageState} setPageState={setPageState} />
+          <CheckoutPage
+            pageState={pageState}
+            setPageState={setPageState}
+            cart={cart}
+            totalPrice={totalPrice}
+          />
         ) : null}
         {pageState === "MyAccount" ? <MyAccountPage /> : null}
         {pageState === "History" ? (

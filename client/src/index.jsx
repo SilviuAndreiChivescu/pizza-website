@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MongoDB } from "./pages";
 import Main from "./routes/Main";
@@ -10,6 +11,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // TODO:
 
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
+
+// You know when you put specific things for each page in NavBar. Well, now I think that I should put at least for the setPage prop, I should have it in NavBar's arguments <NavBar onClick={setPage} />
 
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
 // Maybe make it so that it takes pageState from localStorage, so that if u refresh u get to where u were, ofc with some exceptions if needed becauese of errors
