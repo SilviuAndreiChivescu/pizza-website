@@ -1,13 +1,18 @@
-// This component is shared by ReceiptPage and TrackOrderPage
+// This component is shared by ReceiptPage and TrackOrderPage and CheckoutPage
+
+import { Card } from "react-bootstrap";
 
 export default function Details(props) {
-  const { cart, totalPrice } = props;
+  const { cart, totalPrice, title } = props;
   return (
     <div>
-      {cart.map((value) => {
-        return <DetailsRow value={value} totalPrice={totalPrice} />;
-      })}
-      <h1>{totalPrice}</h1>
+      <Card>
+        <Card.Title>{title}</Card.Title>
+        {cart.map((value) => {
+          return <DetailsRow value={value} totalPrice={totalPrice} />;
+        })}
+        <Card.Body>Total: {totalPrice} lei</Card.Body>
+      </Card>
     </div>
   );
 }
@@ -15,10 +20,8 @@ export default function Details(props) {
 const DetailsRow = (props) => {
   const { value } = props;
   return (
-    <div key={value._id}>
-      <p>{value.Quantity} X </p>
-      <p>{value.Name}</p>
-      <p>{value.Price * value.Quantity} lei</p>
-    </div>
+    <Card.Body>
+      {value.Quantity} X {value.Name} {value.Price * value.Quantity} lei
+    </Card.Body>
   );
 };
