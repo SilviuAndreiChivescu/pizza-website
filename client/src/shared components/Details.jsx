@@ -7,6 +7,7 @@ export default function Details(props) {
   return (
     <Card className={"m-3"}>
       <Card.Title>{title}</Card.Title>
+      {props.children}
       {cart.map((value) => {
         return <DetailsRow value={value} totalPrice={totalPrice} />;
       })}

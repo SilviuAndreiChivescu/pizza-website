@@ -17,6 +17,7 @@ import {
   useCart,
   useTotalNoOfProductAndTotalPrice,
   useProductsList,
+  useLastOrder,
 } from "./MainLogic";
 
 import { CircularProgress } from "@material-ui/core";
@@ -39,6 +40,10 @@ export default function Main() {
     window.localStorage.removeItem("cart"),
     window.localStorage.setItem("cart", JSON.stringify(cart))
   );
+
+  // Last order for Receipt
+  const { lastOrder, setLastOrder, lastOrderTime, setLastOrderTime } =
+    useLastOrder();
 
   // state to read/get products from MongoDB products collection
   const { productsList } = useProductsList(setAppState);
@@ -78,6 +83,9 @@ export default function Main() {
             setPageState={setPageState}
             cart={cart}
             totalPrice={totalPrice}
+            setCart={setCart}
+            setLastOrder={setLastOrder}
+            setLastOrderTime={setLastOrderTime}
           />
         ) : null}
         {pageState === "MyAccount" ? <MyAccountPage /> : null}
@@ -85,7 +93,11 @@ export default function Main() {
           <HistoryPage setPageState={setPageState} />
         ) : null}
         {pageState === "Receipt" ? (
-          <ReceiptPage cart={cart} totalPrice={totalPrice} />
+          <ReceiptPage
+            lastOrder={lastOrder}
+            lastOrderTime={lastOrderTime}
+            totalPrice={totalPrice}
+          />
         ) : null}
         {pageState === "TrackOrder" ? (
           <TrackOrderPage cart={cart} totalPrice={totalPrice} />

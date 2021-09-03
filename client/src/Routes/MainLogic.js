@@ -17,7 +17,14 @@ const useCart = () => {
   return { cart, setCart };
 };
 
-// **** State to show Pages that live in Main.jsx Route
+// Last order is used to show on Receipt
+const useLastOrder = () => {
+  const [lastOrder, setLastOrder] = useState([]);
+  const [lastOrderTime, setLastOrderTime] = useState("");
+  return { lastOrder, setLastOrder, lastOrderTime, setLastOrderTime };
+};
+
+// **** State to show Pages that live in Main.jsx Route *********** NoCart
 const usePageState = () => {
   const [pageState, setPageState] = useState("NoCart");
 
@@ -37,7 +44,7 @@ const useProductsList = (setAppState) => {
   return { productsList };
 };
 
-// **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage
+// **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage. Also it has been used either one throught the application. MENTION LATER
 const useTotalNoOfProductAndTotalPrice = (cart) => {
   // Get totalQuantity from cart state
   const [totalQuantity, setTotalQuantity] = useState(0);
@@ -70,6 +77,7 @@ const useTotalNoOfProductAndTotalPrice = (cart) => {
 export {
   useAppState,
   useCart,
+  useLastOrder,
   usePageState,
   useProductsList,
   useTotalNoOfProductAndTotalPrice,
