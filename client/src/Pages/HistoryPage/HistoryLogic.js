@@ -4,6 +4,7 @@ import Axios from "axios";
 
 const useHistoryData = () => {
   const [historyProductList, setHistoryProductList] = useState([]);
+  const [idOfHistoryProductList, setIdOfHistoryProductList] = useState([]);
   const [timeOfOrder, setTimeOfOrder] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const { user } = useAuth0();
@@ -29,8 +30,15 @@ const useHistoryData = () => {
         })
         .reverse();
 
+      // To get id for orders from data
+      var ids = data.map((e) => {
+        return e._id;
+      });
+
       // Set the cart to historyProductList
       setHistoryProductList(orders);
+      // Set the ids to historyProductList
+      setIdOfHistoryProductList(ids);
       // Set the time to timeOfOrder
       setTimeOfOrder(times);
       // Confirm data is loaded
@@ -38,7 +46,12 @@ const useHistoryData = () => {
     });
   }, []);
 
-  return { historyProductList, timeOfOrder, loaded };
+  return {
+    historyProductList,
+    timeOfOrder,
+    loaded,
+    idOfHistoryProductList,
+  };
 };
 
 export { useHistoryData };

@@ -17,6 +17,12 @@ const useCart = () => {
   return { cart, setCart };
 };
 
+// State to pass id of order to TrackOrderPage
+const useIdOfOrder = () => {
+  const [idOfOrder, setIdOfOrder] = useState("");
+  return { idOfOrder, setIdOfOrder };
+};
+
 // Last order is used to show on Receipt
 const useLastOrder = () => {
   const [lastOrder, setLastOrder] = useState([]);
@@ -81,4 +87,5 @@ export {
   usePageState,
   useProductsList,
   useTotalNoOfProductAndTotalPrice,
+  useIdOfOrder,
 };

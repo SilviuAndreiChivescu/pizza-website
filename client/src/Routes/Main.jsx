@@ -18,6 +18,7 @@ import {
   useTotalNoOfProductAndTotalPrice,
   useProductsList,
   useLastOrder,
+  useIdOfOrder,
 } from "./MainLogic";
 
 import { CircularProgress } from "@material-ui/core";
@@ -41,9 +42,12 @@ export default function Main() {
     window.localStorage.setItem("cart", JSON.stringify(cart))
   );
 
-  // Last order for Receipt
+  // Last order for Receipt - MAYBE IMPLEMENT THE idOfOrder functionality to Receipt page as well TODO
   const { lastOrder, setLastOrder, lastOrderTime, setLastOrderTime } =
     useLastOrder();
+
+  // Pass ID to TrackOrderPage
+  const { idOfOrder, setIdOfOrder } = useIdOfOrder();
 
   // state to read/get products from MongoDB products collection
   const { productsList } = useProductsList(setAppState);
@@ -90,7 +94,10 @@ export default function Main() {
         ) : null}
         {pageState === "MyAccount" ? <MyAccountPage /> : null}
         {pageState === "History" ? (
-          <HistoryPage setPageState={setPageState} />
+          <HistoryPage
+            setIdOfOrder={setIdOfOrder}
+            setPageState={setPageState}
+          />
         ) : null}
         {pageState === "Receipt" ? (
           <ReceiptPage
@@ -100,7 +107,7 @@ export default function Main() {
           />
         ) : null}
         {pageState === "TrackOrder" ? (
-          <TrackOrderPage cart={cart} totalPrice={totalPrice} />
+          <TrackOrderPage idOfOrder={idOfOrder} cart={cart} />
         ) : null}
       </>
     );

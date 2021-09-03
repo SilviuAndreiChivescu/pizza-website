@@ -4,8 +4,9 @@ import { Card } from "react-bootstrap";
 import { useTotalNoOfProductAndTotalPrice } from "../../routes/MainLogic";
 
 export default function History(props) {
-  const { historyProductList, timeOfOrder, loaded } = useHistoryData();
-  const { setPageState } = props;
+  const { historyProductList, timeOfOrder, loaded, idOfHistoryProductList } =
+    useHistoryData();
+  const { setPageState, setIdOfOrder } = props;
   if (loaded) {
     return historyProductList.map((e, idx) => {
       return (
@@ -14,6 +15,8 @@ export default function History(props) {
           e={e}
           idx={idx}
           setPageState={setPageState}
+          idOfHistoryProductList={idOfHistoryProductList}
+          setIdOfOrder={setIdOfOrder}
         />
       );
     });
@@ -21,7 +24,14 @@ export default function History(props) {
 }
 
 const HistoryBody = (props) => {
-  const { e, idx, setPageState, timeOfOrder } = props;
+  const {
+    e,
+    idx,
+    setPageState,
+    timeOfOrder,
+    idOfHistoryProductList,
+    setIdOfOrder,
+  } = props;
   // Calculate total price for particular order using this custom hook
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(e);
   return (
@@ -41,12 +51,14 @@ const HistoryBody = (props) => {
             );
           })}
         </ul>
-        <p>{e._id}</p>
       </Card.Body>
 
       <CustomButton
         title={"Urmareste comanda"}
-        onClick={() => setPageState("TrackOrder")}
+        onClick={() => {
+          setIdOfOrder(idOfHistoryProductList[idx]);
+          setPageState("TrackOrder");
+        }}
       />
     </Card>
   );

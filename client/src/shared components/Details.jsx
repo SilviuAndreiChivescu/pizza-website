@@ -20,7 +20,7 @@ const DetailsRow = (props) => {
   const { value } = props;
   return (
     <Card.Body>
-      {value.Quantity} X {value.Name} {value.Price * value.Quantity} lei
+      {value.Quantity} X {value.Name} {value.Price} lei
     </Card.Body>
   );
 };

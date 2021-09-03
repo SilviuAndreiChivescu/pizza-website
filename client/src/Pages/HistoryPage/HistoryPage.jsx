@@ -1,10 +1,10 @@
 import History from "./History";
 
 export default function HistoryPage(props) {
-  const { setPageState } = props;
+  const { setPageState, setIdOfOrder } = props;
   return (
     <>
-      <History setPageState={setPageState} />
+      <History setIdOfOrder={setIdOfOrder} setPageState={setPageState} />
     </>
   );
 }

@@ -109,6 +109,19 @@ app.get("/read/:email", (req, res) => {
     console.log(err);
   }
 });
+
+// Read order find by idOfOrder for TracKOrderPage
+app.get("/readbyid/:id", (req, res) => {
+  const id = req.params.id;
+  try {
+    OrdersModel.find({ _id: id }, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // **** END OF ORDERS COLLECTION ****
 app.listen(3001, () => {
   console.log("Server running on port 3001");
