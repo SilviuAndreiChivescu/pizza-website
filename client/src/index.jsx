@@ -13,6 +13,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
 
 // You know when you put specific things for each page in NavBar. Well, now I think that I should put at least for the setPage prop, I should have it in NavBar's arguments <NavBar onClick={setPage} />
+// For history page, make that button track order only show when order is made not more than 50 mins ago && Maybe put address for each order as you did with time stamp
 
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
 // Maybe make it so that it takes pageState from localStorage, so that if u refresh u get to where u were, ofc with some exceptions if needed becauese of errors

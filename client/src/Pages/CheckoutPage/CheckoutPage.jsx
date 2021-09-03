@@ -2,7 +2,7 @@ import Details from "../../shared components/Details";
 import NavBar from "../../shared components/NavBar";
 import DeliveryDetails from "./DeliveryDetails";
 import CustomButton from "./CustomButton";
-import UserDetailsInputs from "./UserDetailsInputs";
+import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 
 export default function CheckoutPage(props) {
   const { pageState, setPageState, cart, totalPrice } = props;

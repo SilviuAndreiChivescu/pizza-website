@@ -22,6 +22,7 @@ export default function History(props) {
 
 const HistoryBody = (props) => {
   const { e, idx, setPageState, timeOfOrder } = props;
+  // Calculate total price for particular order using this custom hook
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(e);
   return (
     <Card key={idx} className={"m-3"}>
