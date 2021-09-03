@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Col, Row, Button } from "react-bootstrap";
+import CustomButton from "../pages/CheckoutPage/CustomButton";
 
 export default function UserDetailsInputs(props) {
+  const { readOnly } = props;
   return (
     <>
       <Form className={"m-5"}>
@@ -17,7 +19,7 @@ export default function UserDetailsInputs(props) {
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPhone">
             <Form.Label>Email *</Form.Label>
-            <Form.Control type="email" />
+            <Form.Control type="email" readOnly={readOnly} />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPhone">
             <Form.Label>Telefon *</Form.Label>
@@ -35,6 +37,8 @@ export default function UserDetailsInputs(props) {
             <Form.Control />
           </Form.Group>
         </Row>
+
+        <CustomButton title={"Salveaza noile informatii"} />
       </Form>
     </>
   );
