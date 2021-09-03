@@ -4,20 +4,41 @@ import Axios from "axios";
 
 const useHistoryData = () => {
   const [historyProductList, setHistoryProductList] = useState([]);
+  const [timeOfOrder, setTimeOfOrder] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const { user } = useAuth0();
   useEffect(() => {
     Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
       // To get data from request
       var data = response.data;
-      // To get the orders from data
-      var orders = data.map((e) => {
-        return e.Cart;
-      });
+
+      // To get the orders from data (using .reverse() to get most curent order at the top)
+      var orders = data
+        .map((e) => {
+          return e.Cart;
+        })
+        .reverse();
+
+      // To get times for orders from data (using .reverse() to get most curent time order at the top)
+      var times = data
+        .map((e) => {
+          var dateOfOrder = new Date(
+            parseInt(e._id.substring(0, 8), 16) * 1000
+          );
+          return dateOfOrder;
+        })
+        .reverse();
+
+      // Set the cart to historyProductList
       setHistoryProductList(orders);
+      // Set the time to timeOfOrder
+      setTimeOfOrder(times);
+      // Confirm data is loaded
+      setLoaded((prevValue) => !prevValue);
     });
   }, []);
 
-  return { historyProductList };
+  return { historyProductList, timeOfOrder, loaded };
 };
 
 export { useHistoryData };

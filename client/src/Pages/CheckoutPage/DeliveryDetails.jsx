@@ -14,7 +14,7 @@ export default function DeliveryDetails() {
     );
   };
   return (
-    <fieldset>
+    <fieldset className={"m-5"}>
       <Form.Label as="legend" column sm={2}>
         Cand se va face livrarea? *
       </Form.Label>

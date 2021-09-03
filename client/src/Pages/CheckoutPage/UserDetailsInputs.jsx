@@ -5,7 +5,7 @@ import { Col, Row, Button } from "react-bootstrap";
 export default function UserDetailsInputs(props) {
   return (
     <>
-      <Form>
+      <Form className={"m-5"}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridLastName">
             <Form.Label>Nume *</Form.Label>

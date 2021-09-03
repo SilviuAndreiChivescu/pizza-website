@@ -1,7 +1,7 @@
 import Details from "../../shared components/Details";
 import NavBar from "../../shared components/NavBar";
 import DeliveryDetails from "./DeliveryDetails";
-import SubmitButton from "./SubmitButton";
+import CustomButton from "./CustomButton";
 import UserDetailsInputs from "./UserDetailsInputs";
 
 export default function CheckoutPage(props) {
@@ -16,7 +16,7 @@ export default function CheckoutPage(props) {
       <UserDetailsInputs setPageState={setPageState} />
       <DeliveryDetails />
       <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-      <SubmitButton
+      <CustomButton
         title={"Plaseaza Comanda"}
         onClick={() => setPageState("Receipt")}
       />
