@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Col, Row, Button } from "react-bootstrap";
-import CustomButton from "../pages/CheckoutPage/CustomButton";
 
 export default function UserDetailsInputs(props) {
   const { readOnly } = props;
@@ -37,8 +36,7 @@ export default function UserDetailsInputs(props) {
             <Form.Control />
           </Form.Group>
         </Row>
-
-        <CustomButton title={"Salveaza noile informatii"} />
+        {props.children}
       </Form>
     </>
   );
