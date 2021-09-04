@@ -81,12 +81,18 @@ app.delete("/delete/:id", async (req, res) => {
 
 // **** Orders collection ****
 app.post("/insertIntoOrders", async (req, res) => {
+  const name = req.body.Name;
   const email = req.body.Email;
   const cart = req.body.Cart;
+  const address = req.body.Address;
+  const phoneNumber = req.body.PhoneNumber;
 
   const products = new OrdersModel({
+    Name: name,
     Email: email,
     Cart: cart,
+    Address: address,
+    PhoneNumber: phoneNumber,
   });
 
   try {

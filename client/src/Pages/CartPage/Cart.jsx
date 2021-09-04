@@ -1,6 +1,6 @@
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
-import { usePostToOrders, useQuantitySelector } from "./CartLogic";
+import { useQuantitySelector } from "./CartLogic";
 
 export default function Cart(props) {
   const { setPageState, cart, setCart, totalPrice } = props;
@@ -19,7 +19,7 @@ export default function Cart(props) {
         <div className="mb-5 border-bottom border-2 border-secondary">
           <p className="fw-bold">Total: {totalPrice} lei</p>
         </div>
-        <DeliveryHours cart={cart} setPageState={setPageState} />
+        <DeliveryHours setPageState={setPageState} />
       </section>
     </>
   );
@@ -96,13 +96,10 @@ const FoodBox = (props) => {
 
 // This function is to render the "Order" button depending on the time.
 const DeliveryHours = (props) => {
-  const { cart, setPageState } = props;
+  const { setPageState } = props;
 
   const today = new Date();
   const time = today.getHours() + ":" + today.getMinutes();
-
-  // Get from CartLogic function to post request to Orders collection
-  const { submit } = usePostToOrders();
 
   // Closed
   if (time > "22:29" && time < "8:59") {
@@ -119,7 +116,6 @@ const DeliveryHours = (props) => {
   else {
     return (
       <div className="container">
-        <button onClick={() => submit(cart)}>Send to orders collection</button>
         <button
           onClick={() => setPageState("Checkout")}
           className="black-bg text-white border border-2 border-dark rounded p-2"

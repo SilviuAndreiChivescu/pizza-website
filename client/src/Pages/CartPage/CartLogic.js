@@ -1,24 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import Axios from "axios";
 import { useState } from "react";
-
-// Post request to Orders collection - THIS SHOULD POST ORDERS TO ORDERS COLLECTIONS WHEN USER FINISHES AT CHECKOUT PAGE, BUT I TESTED IT HERE AND IT'S OK. MOVE LATER
-const usePostToOrders = () => {
-  const { user } = useAuth0();
-  const submit = (cart) => {
-    console.log(cart);
-    try {
-      Axios.post("http://localhost:3001/insertIntoOrders", {
-        Email: user.email,
-        Cart: cart,
-      });
-      console.log("Inserted data into Orders collection!");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  return { submit };
-};
 
 // This custom hook modifies the cart state, by increasing or decreasing quantity up to deleting it if quantity is 0.
 const useQuantitySelector = (cart, setCart, value) => {
@@ -56,4 +36,4 @@ const useQuantitySelector = (cart, setCart, value) => {
   return { incrementItem, decreaseItem };
 };
 
-export { usePostToOrders, useQuantitySelector };
+export { useQuantitySelector };

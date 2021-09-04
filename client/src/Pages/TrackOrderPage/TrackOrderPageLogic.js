@@ -5,11 +5,18 @@ import Axios from "axios";
 const useOrder = (id) => {
   const [loaded, setLoaded] = useState(false);
   const [order, setOrder] = useState([]);
+  // Below functionality commented is for when adding to Orders collection a Address field
+  // const [address, setAddress] = useState([]);
   useEffect(() => {
     Axios.get(`http://localhost:3001/readbyid/${id}`).then((response) => {
       var order = response.data.map((e) => {
         return e.Cart;
       });
+      // Below functionality commented is for when adding to Orders collection a Address field
+      // var address = response.data.map((e) => {
+      //   return e.address; - check here
+      // })
+      // setAddress();
       setOrder(order);
       setLoaded(true);
     });

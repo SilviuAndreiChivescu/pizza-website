@@ -13,7 +13,6 @@ export default function ReceiptPage(props) {
         totalPrice={totalPrice}
       >
         <p>Data: {lastOrderTime}</p>
-        <p>Se va livra in: 50 minute.</p>
       </Details>
     </>
   );
