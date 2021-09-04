@@ -2,43 +2,45 @@ import Form from "react-bootstrap/Form";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 
-export default function DeliveryDetails() {
+export default function DeliveryDetails(props) {
+  const { setDeliveryWay, setDeliveryTime } = props;
   // useState for if the user decides to choose a time to get his food
   const [time, setTime] = useState(false);
-  // This component will render if time is ture
-  const ChooseHour = () => {
-    return (
-      <Form.Group controlId="formGridFirstName">
-        <Form.Control type="time" />
-      </Form.Group>
-    );
-  };
+
   return (
     <fieldset className={"m-5"}>
       <Form.Label as="legend" column sm={2}>
         Cand se va face livrarea? *
       </Form.Label>
-      <Form.Group
-        onChange={() => setTime((time) => !time)}
-        as={Row}
-        className="mb-3"
-      >
+      <Form.Group as={Row} className="mb-3">
         <Col sm={10}>
           <Form.Check
+            onClick={(e) => {
+              setTime(false);
+              setDeliveryTime(e.target.value);
+            }}
             type="radio"
             label="Cat mai repede"
             name="deliveryTime"
+            value="Cat mai repede"
             id="repede"
           />
           <Form.Check
+            onChange={() => setTime(true)}
             type="radio"
             label="Alege ora"
             name="deliveryTime"
             id="alege"
           />
+          {time ? (
+            <Form.Control
+              onChange={(e) => setDeliveryTime(e.target.value)}
+              placeholder="Exemplu: 16:30"
+            />
+          ) : null}
         </Col>
       </Form.Group>
-      {time ? <ChooseHour /> : null}
+
       <Form.Label as="legend" column sm={2}>
         Metoda de livrare *
       </Form.Label>

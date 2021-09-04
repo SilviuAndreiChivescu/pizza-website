@@ -23,6 +23,8 @@ export default function UserDetailsInputs(props) {
             <Form.Label>Prenume *</Form.Label>
             <Form.Control onChange={(e) => setLastName(e.target.value)} />
           </Form.Group>
+        </Row>
+        <Row className="mb-e">
           <Form.Group as={Col} controlId="formGridPhone">
             <Form.Label>Email *</Form.Label>
             <Form.Control

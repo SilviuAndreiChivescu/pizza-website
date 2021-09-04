@@ -24,10 +24,10 @@ const OrdersSchema = new mongoose.Schema({
     type: Number,
     require: true,
   },
-  // DeliveryTime: {
-  //   type: String,
-  //   required: true,
-  // },
+  DeliveryTime: {
+    type: String,
+    required: true,
+  },
   // DeliveryWay: {
   //   type: String,
   //   required: true,

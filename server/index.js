@@ -86,6 +86,7 @@ app.post("/insertIntoOrders", async (req, res) => {
   const cart = req.body.Cart;
   const address = req.body.Address;
   const phoneNumber = req.body.PhoneNumber;
+  const deliveryTime = req.body.DeliveryTime;
 
   const products = new OrdersModel({
     Name: name,
@@ -93,6 +94,7 @@ app.post("/insertIntoOrders", async (req, res) => {
     Cart: cart,
     Address: address,
     PhoneNumber: phoneNumber,
+    DeliveryTime: deliveryTime,
   });
 
   try {

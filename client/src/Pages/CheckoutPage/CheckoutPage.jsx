@@ -25,18 +25,25 @@ export default function CheckoutPage(props) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
 
+  // States for DeliveryDetails TBC
+  const [deliveryTime, setDeliveryTime] = useState("");
+  const [deliveryWay, setDeliveryWay] = useState("");
+
   // Get from CartLogic function to post request to Orders collection
-  // use submit(Cart) to submit to orders collection
   const { submit } = usePostToOrders();
   const handleSubmit = () => {
-    // I will be using alert to show what i will be sending to Orders table
-    // alert(
-    //   `Submitting Name ${firstName} ${lastName}, Email: ${email}, PhoneNr.: ${phoneNo}. Adresa: ${address}, City: ${city}`
-    // );     firstName,
-
-    submit(firstName, lastName, email, cart, address, city, phoneNo);
+    submit(
+      firstName,
+      lastName,
+      email,
+      cart,
+      address,
+      city,
+      phoneNo,
+      deliveryTime
+    );
   };
-
+  // AICI AM RAMAS, TREBUIE SA FAC FUNCTIONALITATEA DE MAI SUS CU ORDERS COLECTION, SI PENTRU DELIVERYDETAILSINPUTS. REMEMBER TO UNCOMMENT IN ORDERS.JS (THE MODEL) AND IN INDEX.JS SERVER
   return (
     <>
       <NavBar
@@ -53,7 +60,10 @@ export default function CheckoutPage(props) {
         setAddress={setAddress}
         setCity={setCity}
       />
-      <DeliveryDetails />
+      <DeliveryDetails
+        setDeliveryTime={setDeliveryTime}
+        setDeliveryWay={setDeliveryWay}
+      />
       <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
       <CustomButton
         title={"Plaseaza Comanda"}

@@ -9,10 +9,12 @@ const usePostToOrders = () => {
     cart,
     address,
     city,
-    phoneNumber
+    phoneNumber,
+    deliveryTime
+    // deliveryWay
   ) => {
     var name = firstName + " " + lastName;
-    var addressAndCity = address + city;
+    var addressAndCity = address + ", " + city;
     try {
       Axios.post("http://localhost:3001/insertIntoOrders", {
         Name: name,
@@ -21,7 +23,7 @@ const usePostToOrders = () => {
         Address: addressAndCity,
         PhoneNumber: phoneNumber,
         // commented below is for later, dont ferget to add in submit parameters above
-        // DeliveryTime: deliveryTime,
+        DeliveryTime: deliveryTime,
         // DeliveryWay: deliveryWay,
       });
       console.log("Inserted data into Orders collection!");
