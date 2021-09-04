@@ -31,9 +31,11 @@ const useHistoryData = () => {
         .reverse();
 
       // To get id for orders from data
-      var ids = data.map((e) => {
-        return e._id;
-      });
+      var ids = data
+        .map((e) => {
+          return e._id;
+        })
+        .reverse();
 
       // Set the cart to historyProductList
       setHistoryProductList(orders);

@@ -34,6 +34,7 @@ const HistoryBody = (props) => {
   } = props;
   // Calculate total price for particular order using this custom hook
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(e);
+
   return (
     <Card key={idx} className={"m-3"}>
       <Card.Title>

@@ -107,7 +107,7 @@ export default function Main() {
           />
         ) : null}
         {pageState === "TrackOrder" ? (
-          <TrackOrderPage idOfOrder={idOfOrder} cart={cart} />
+          <TrackOrderPage idOfOrder={idOfOrder} />
         ) : null}
       </>
     );

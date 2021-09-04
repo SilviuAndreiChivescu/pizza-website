@@ -10,8 +10,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
 
-// plan for things MAIU sent pic on whatsapp from diniasi after taking the order and for every pic. Think it good and make a plan to integrate them in order and to do it properly
-
 // You know when you put specific things for each page in NavBar. Well, now I think that I should put at least for the setPage prop, I should have it in NavBar's arguments <NavBar onClick={setPage} />
 // For history page, make that button track order only show when order is made not more than 50 mins ago && Maybe put address for each order as you did with time stamp
 
