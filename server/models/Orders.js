@@ -28,10 +28,10 @@ const OrdersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // DeliveryWay: {
-  //   type: String,
-  //   required: true,
-  // },
+  DeliveryWay: {
+    type: String,
+    required: true,
+  },
 });
 
 const orders = mongoose.model("orders", OrdersSchema);

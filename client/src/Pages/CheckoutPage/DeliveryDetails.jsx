@@ -47,16 +47,20 @@ export default function DeliveryDetails(props) {
       <Form.Group as={Row} className="mb-3">
         <Col sm={10}>
           <Form.Check
+            onChange={(e) => setDeliveryWay(e.target.value)}
             type="radio"
             label="Livrare la domiciliu"
-            name="delivery"
-            id="repede"
+            name="deliveryWay"
+            value="Livrare la domiciliu"
+            id="homeOrder"
           />
           <Form.Check
+            onChange={(e) => setDeliveryWay(e.target.value)}
             type="radio"
             label="Ridicare personala"
-            name="delivery"
-            id="alege"
+            name="deliveryWay"
+            value="Ridicare personala"
+            id="pickUp"
           />
         </Col>
         <Form.Group className="mb-3" id="formGridCheckbox">

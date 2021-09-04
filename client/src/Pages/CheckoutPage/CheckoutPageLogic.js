@@ -10,8 +10,8 @@ const usePostToOrders = () => {
     address,
     city,
     phoneNumber,
-    deliveryTime
-    // deliveryWay
+    deliveryTime,
+    deliveryWay
   ) => {
     var name = firstName + " " + lastName;
     var addressAndCity = address + ", " + city;
@@ -22,9 +22,8 @@ const usePostToOrders = () => {
         Cart: cart,
         Address: addressAndCity,
         PhoneNumber: phoneNumber,
-        // commented below is for later, dont ferget to add in submit parameters above
         DeliveryTime: deliveryTime,
-        // DeliveryWay: deliveryWay,
+        DeliveryWay: deliveryWay,
       });
       console.log("Inserted data into Orders collection!");
     } catch (err) {

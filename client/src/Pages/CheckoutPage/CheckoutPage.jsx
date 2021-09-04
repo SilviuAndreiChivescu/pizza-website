@@ -40,7 +40,8 @@ export default function CheckoutPage(props) {
       address,
       city,
       phoneNo,
-      deliveryTime
+      deliveryTime,
+      deliveryWay
     );
   };
   // AICI AM RAMAS, TREBUIE SA FAC FUNCTIONALITATEA DE MAI SUS CU ORDERS COLECTION, SI PENTRU DELIVERYDETAILSINPUTS. REMEMBER TO UNCOMMENT IN ORDERS.JS (THE MODEL) AND IN INDEX.JS SERVER
