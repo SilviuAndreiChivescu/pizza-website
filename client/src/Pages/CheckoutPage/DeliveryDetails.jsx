@@ -6,13 +6,13 @@ export default function DeliveryDetails(props) {
   const { setDeliveryWay, setDeliveryTime } = props;
   // useState for if the user decides to choose a time to get his food
   const [time, setTime] = useState(false);
-
+  //AICI AM RAMAS, INCERCAM SA FAC INPUTURILE REQUIRED GEN, SI NU MERGE DOAR SA PUN REQUIRED PE CONTROL FORMS, TREBUIE PROBABIL SA FAC TOT FORMU UN COPIL, EU MOMENTAN AM MAI MULTE FORMURI SI BUTONU IN AFARA GEN, FA IN CHECKOUT PAGE FORMU SI BAGA CA CHILDREN TOATE ASTEA, VEZI AT
   return (
-    <fieldset className={"m-5"}>
+    <>
       <Form.Label as="legend" column sm={2}>
         Cand se va face livrarea? *
       </Form.Label>
-      <Form.Group as={Row} className="mb-3">
+      <Form.Group required as={Row} className="mb-3">
         <Col sm={10}>
           <Form.Check
             onClick={(e) => {
@@ -24,6 +24,7 @@ export default function DeliveryDetails(props) {
             name="deliveryTime"
             value="Cat mai repede"
             id="repede"
+            required
           />
           <Form.Check
             onChange={() => setTime(true)}
@@ -31,11 +32,13 @@ export default function DeliveryDetails(props) {
             label="Alege ora"
             name="deliveryTime"
             id="alege"
+            required
           />
           {time ? (
             <Form.Control
               onChange={(e) => setDeliveryTime(e.target.value)}
               placeholder="Exemplu: 16:30"
+              required
             />
           ) : null}
         </Col>
@@ -53,6 +56,7 @@ export default function DeliveryDetails(props) {
             name="deliveryWay"
             value="Livrare la domiciliu"
             id="homeOrder"
+            required
           />
           <Form.Check
             onChange={(e) => setDeliveryWay(e.target.value)}
@@ -61,6 +65,7 @@ export default function DeliveryDetails(props) {
             name="deliveryWay"
             value="Ridicare personala"
             id="pickUp"
+            required
           />
         </Col>
         <Form.Group className="mb-3" id="formGridCheckbox">
@@ -76,6 +81,6 @@ export default function DeliveryDetails(props) {
           />
         </Form.Group>
       </Form.Group>
-    </fieldset>
+    </>
   );
 }

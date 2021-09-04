@@ -6,6 +6,8 @@ import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 import { useState } from "react";
 import { usePostToOrders } from "./CheckoutPageLogic";
 
+import Form from "react-bootstrap/Form";
+
 export default function CheckoutPage(props) {
   const {
     pageState,
@@ -43,8 +45,12 @@ export default function CheckoutPage(props) {
       deliveryTime,
       deliveryWay
     );
+    setLastOrder(cart);
+    setCart([]);
+    setPageState("Receipt");
+    setLastOrderTime(getCurrentDate("/"));
   };
-  // AICI AM RAMAS, TREBUIE SA FAC FUNCTIONALITATEA DE MAI SUS CU ORDERS COLECTION, SI PENTRU DELIVERYDETAILSINPUTS. REMEMBER TO UNCOMMENT IN ORDERS.JS (THE MODEL) AND IN INDEX.JS SERVER
+
   return (
     <>
       <NavBar
@@ -52,31 +58,26 @@ export default function CheckoutPage(props) {
         pageState={pageState}
         setPageState={setPageState}
       />
-      <UserDetailsInputs
-        setPageState={setPageState}
-        setFirstName={setFirstName}
-        setLastName={setLastName}
-        setEmail={setEmail}
-        setPhoneNo={setPhoneNo}
-        setAddress={setAddress}
-        setCity={setCity}
-      />
-      <DeliveryDetails
-        setDeliveryTime={setDeliveryTime}
-        setDeliveryWay={setDeliveryWay}
-      />
-      <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-      <CustomButton
-        title={"Plaseaza Comanda"}
-        onClick={() => {
-          // For now commented everything to test what I will be sending to Orders collection and maybe email to catalin
-          // setLastOrder(cart);
-          // setCart([]);
-          handleSubmit();
-          // setPageState("Receipt");
-          // setLastOrderTime(getCurrentDate("/"));
-        }}
-      />
+      <Form className={"m-5"}>
+        <UserDetailsInputs
+          setPageState={setPageState}
+          setFirstName={setFirstName}
+          setLastName={setLastName}
+          setEmail={setEmail}
+          setPhoneNo={setPhoneNo}
+          setAddress={setAddress}
+          setCity={setCity}
+        />
+        <DeliveryDetails
+          setDeliveryTime={setDeliveryTime}
+          setDeliveryWay={setDeliveryWay}
+        />
+        <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
+        <CustomButton
+          title={"Plaseaza Comanda"}
+          onClick={() => handleSubmit()}
+        />
+      </Form>
     </>
   );
 }
