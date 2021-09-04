@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 
 export default function DeliveryDetails(props) {
-  const { setDeliveryWay, setDeliveryTime } = props;
+  const { setDeliveryWay, setDeliveryTime, setKeepData } = props;
   // useState for if the user decides to choose a time to get his food
   const [time, setTime] = useState(false);
   //AICI AM RAMAS, INCERCAM SA FAC INPUTURILE REQUIRED GEN, SI NU MERGE DOAR SA PUN REQUIRED PE CONTROL FORMS, TREBUIE PROBABIL SA FAC TOT FORMU UN COPIL, EU MOMENTAN AM MAI MULTE FORMURI SI BUTONU IN AFARA GEN, FA IN CHECKOUT PAGE FORMU SI BAGA CA CHILDREN TOATE ASTEA, VEZI AT
@@ -70,6 +70,7 @@ export default function DeliveryDetails(props) {
         </Col>
         <Form.Group className="mb-3" id="formGridCheckbox">
           <Form.Check
+            onClick={() => setKeepData((data) => !data)}
             type="checkbox"
             label="Pastreaza-mi datele pentru urmatoarea comanda"
           />
