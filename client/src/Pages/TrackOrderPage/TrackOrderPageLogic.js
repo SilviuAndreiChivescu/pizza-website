@@ -17,7 +17,7 @@ const useOrder = (id) => {
 
   return { order, loaded };
 };
-// AM RAMAS AICI, ACU TREBUIE SA INTEGRES FEATURE CU GEN, CAND SUNT SUB 50 MIN, SA APARAR MINUTELE SI CAT MAI E LEFT SI COMANDA ESTE PREPARATA .THEN LIVRATA
+
 // Custom hook to get the difference between date of particular Order and the current date
 const useDate = (id) => {
   // State of difference
@@ -29,6 +29,7 @@ const useDate = (id) => {
   );
   // Set current date
   const [currentDate, setCurrentDate] = useState(() => new Date());
+  setInterval(() => setCurrentDate(() => new Date()), 60 * 1000);
 
   // Calculate the difference between the two dates and return answer in minutes
   const dateDiff = (date, currentDate) => {
@@ -36,16 +37,11 @@ const useDate = (id) => {
   };
 
   useEffect(() => {
-    console.log(dateDiff(date, currentDate)); // TESTING PURPOSE - DELETE LATER
-
     // Set minsDiff state to result
     setMinsDiff(dateDiff(date, currentDate));
-  }, [date, currentDate]);
 
-  useEffect(() => {
     // Call setInterval to update current date every minute
-    setInterval(() => setCurrentDate(() => new Date()), 60 * 1000);
-  }, []);
+  }, [currentDate]);
 
   return { minsDiff };
 };
