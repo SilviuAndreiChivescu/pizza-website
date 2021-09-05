@@ -1,8 +1,9 @@
 import Axios from "axios";
+import { useState } from "react";
 
 // Post request to Orders collection // I need to refactor this to match Orders model
 const usePostToOrders = () => {
-  const submit = (
+  const addToOrders = (
     firstName,
     lastName,
     email,
@@ -13,14 +14,14 @@ const usePostToOrders = () => {
     deliveryTime,
     deliveryWay
   ) => {
-    var name = firstName + " " + lastName;
-    var addressAndCity = address + ", " + city;
     try {
       Axios.post("http://localhost:3001/insertIntoOrders", {
-        Name: name,
-        Email: email, // Think a little bit about this, when user is not logged in, it should be email from input field, either way, even if he is logged in, Auth will put his email in checkout page, so here i have to get the email as well
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
         Cart: cart,
-        Address: addressAndCity,
+        Address: address,
+        City: city,
         PhoneNumber: phoneNumber,
         DeliveryTime: deliveryTime,
         DeliveryWay: deliveryWay,
@@ -30,7 +31,61 @@ const usePostToOrders = () => {
       console.log(err);
     }
   };
-  return { submit };
+  return { addToOrders };
 };
 
-export { usePostToOrders };
+// MAYBE COMBINE THOSE TWO BELOW
+const usePostToUsers = () => {
+  const addToUsers = (
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    phoneNumber
+  ) => {
+    try {
+      Axios.post("http://localhost:3001/insertIntoUsers", {
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
+        Address: address,
+        City: city,
+        PhoneNumber: phoneNumber,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return { addToUsers };
+};
+
+// This custom hook is used to check if the user is already in Users Collection
+const useCheckIfUserInDb = () => {
+  const checkIfUserInDb = (
+    email,
+    addToUsers,
+    firstName,
+    lastName,
+    address,
+    city,
+    phoneNo
+  ) => {
+    try {
+      // Send reqeust to MongoDB to check if for this email we have data.
+      Axios.get(`http://localhost:3001/readFromUsers/${email}`).then(
+        (response) => {
+          // If there is no data, then add user to Users Collection
+          if (response.data.length === 0)
+            addToUsers(firstName, lastName, email, address, city, phoneNo);
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return { checkIfUserInDb };
+};
+
+export { usePostToOrders, usePostToUsers, useCheckIfUserInDb };

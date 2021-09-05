@@ -4,16 +4,21 @@ import DeliveryDetails from "./DeliveryDetails";
 import CustomButton from "./CustomButton";
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 import { useEffect, useState } from "react";
-import { usePostToOrders } from "./CheckoutPageLogic";
+
+import Axios from "axios";
+import {
+  usePostToOrders,
+  usePostToUsers,
+  useCheckIfUserInDb,
+} from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
+import { useAuth0 } from "@auth0/auth0-react";
 // AM RAMAS AICI, TREBUIE SA FAC ORI ASTA ORI MYACCOUNTPAGE FUNCTIONALITY. AU AMANDOUA UN SHARED HOOK DECI E OK
 // For this page there is to implement the following:
-// "confirm ca am citit..." checkbox should be required
-// "pastreaza-mi datele...". If true, get the values and put them in localstorage and put this as what gets initialized that useState for all inputs fields
 // Also, to send details to Users Collection if user does not have account
 // Also, if user is Auth, it should request data from Users Collection, but that's only once in MainLogic I suppose and it would be shared between this and MyAccountPage to do same thing
-
+// "confirm ca am citit..." checkbox should be required
 export default function CheckoutPage(props) {
   const {
     pageState,
@@ -47,13 +52,35 @@ export default function CheckoutPage(props) {
     }
   }, []);
 
+  // for Users collection
+  // if users email is not in Users collection. Post it
+  // if it is, nothing
+  const { addToUsers } = usePostToUsers();
+  // *** end users collection
+
   // States for DeliveryDetails
   const [deliveryTime, setDeliveryTime] = useState("");
   const [deliveryWay, setDeliveryWay] = useState("");
   const [keepData, setKeepData] = useState(false);
 
   // Get from CartLogic function to post request to Orders collection
-  const { submit } = usePostToOrders();
+  const { addToOrders } = usePostToOrders();
+
+  // Get function to check if this user is already in Users Collection
+  const { checkIfUserInDb, userInDb } = useCheckIfUserInDb();
+
+  // useEffect(() => {
+  //   try {
+  //     Axios.get(`http://localhost:3001/readFromUsers/${email}`).then(
+  //       (response) => {
+  //         console.log(response.data);
+  //       }
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
+
   const handleSubmit = () => {
     // If any of the inputs is empty, don't execute button functionality
     if (
@@ -84,21 +111,38 @@ export default function CheckoutPage(props) {
       };
       window.localStorage.setItem("userDetails", JSON.stringify(data));
     }
-    submit(
+
+    // This function checksif the user is already in Users Collection. If users is not in Users Collection, it adds it to it. (passing as arguments the addToUsers function with its arguments)
+    // FOR LATER, MAYBE CHANGE NAME OF THIS FUNCTION TO, CHECK IF USER AND THEN ADD ORSOMETHING, AND COMBINE THEM IN THE CHECKOUTPAGELOGIC
+    checkIfUserInDb(
+      email,
+      addToUsers,
       firstName,
       lastName,
-      email,
-      cart,
       address,
       city,
-      phoneNo,
-      deliveryTime,
-      deliveryWay
+      phoneNo
     );
-    setLastOrder(cart);
-    setCart([]);
-    setPageState("Receipt");
-    setLastOrderTime(getCurrentDate());
+    // addToUsers(firstName, lastName, email, address, city, phoneNo);
+
+    // if (userInDb === false)
+
+    // Commented below to test what I am working at, uncommend after
+    // addToOrders(
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   cart,
+    //   address,
+    //   city,
+    //   phoneNo,
+    //   deliveryTime,
+    //   deliveryWay
+    // );
+    // setLastOrder(cart);
+    // setCart([]);
+    // setPageState("Receipt");
+    // setLastOrderTime(getCurrentDate());
   };
 
   return (
@@ -108,33 +152,33 @@ export default function CheckoutPage(props) {
         pageState={pageState}
         setPageState={setPageState}
       />
-      <Form className={"m-5"}>
-        <UserDetailsInputs
-          setPageState={setPageState}
-          setFirstName={setFirstName}
-          firstName={firstName}
-          setLastName={setLastName}
-          lastName={lastName}
-          setEmail={setEmail}
-          email={email}
-          setPhoneNo={setPhoneNo}
-          phoneNo={phoneNo}
-          setAddress={setAddress}
-          address={address}
-          setCity={setCity}
-          city={city}
-        />
-        <DeliveryDetails
-          setDeliveryTime={setDeliveryTime}
-          setDeliveryWay={setDeliveryWay}
-          setKeepData={setKeepData}
-        />
-        <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-        <CustomButton
-          title={"Plaseaza Comanda"}
-          onClick={() => handleSubmit()}
-        />
-      </Form>
+
+      <UserDetailsInputs
+        setPageState={setPageState}
+        setFirstName={setFirstName}
+        firstName={firstName}
+        setLastName={setLastName}
+        lastName={lastName}
+        setEmail={setEmail}
+        email={email}
+        setPhoneNo={setPhoneNo}
+        phoneNo={phoneNo}
+        setAddress={setAddress}
+        address={address}
+        setCity={setCity}
+        city={city}
+      />
+      <DeliveryDetails
+        setDeliveryTime={setDeliveryTime}
+        setDeliveryWay={setDeliveryWay}
+        setKeepData={setKeepData}
+      />
+      <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
+      <CustomButton title={"Plaseaza Comanda"} onClick={() => handleSubmit()} />
+
+      {/* <button onClick={() => checkIfUserInDb(email)}>
+        Check if users is in db
+      </button> */}
     </>
   );
 }

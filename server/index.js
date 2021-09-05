@@ -6,6 +6,7 @@ const mongoPassword = require("./mongoPassword");
 
 const ProductsModel = require("./models/Products");
 const OrdersModel = require("./models/Orders");
+const UsersModel = require("./models/Users");
 
 app.use(express.json());
 app.use(cors());
@@ -80,20 +81,25 @@ app.delete("/delete/:id", async (req, res) => {
 // **** END OF Products Collection ****
 
 // **** Orders collection ****
+// Post to Orders collection
 app.post("/insertIntoOrders", async (req, res) => {
-  const name = req.body.Name;
+  const firstName = req.body.FirstName;
+  const lastName = req.body.LastName;
   const email = req.body.Email;
   const cart = req.body.Cart;
   const address = req.body.Address;
+  const city = req.body.City;
   const phoneNumber = req.body.PhoneNumber;
   const deliveryTime = req.body.DeliveryTime;
   const deliveryWay = req.body.DeliveryWay;
 
   const products = new OrdersModel({
-    Name: name,
+    FirstName: firstName,
+    LastName: lastName,
     Email: email,
     Cart: cart,
     Address: address,
+    City: city,
     PhoneNumber: phoneNumber,
     DeliveryTime: deliveryTime,
     DeliveryWay: deliveryWay,
@@ -133,6 +139,48 @@ app.get("/readbyid/:id", (req, res) => {
 });
 
 // **** END OF ORDERS COLLECTION ****
+
+// **** Users Collection ****
+// Post to Users collection
+app.post("/insertIntoUsers", async (req, res) => {
+  const firstName = req.body.FirstName;
+  const lastName = req.body.LastName;
+  const email = req.body.Email;
+  const address = req.body.Address;
+  const city = req.body.City;
+  const phoneNumber = req.body.PhoneNumber;
+
+  const products = new UsersModel({
+    FirstName: firstName,
+    LastName: lastName,
+    Email: email,
+    Address: address,
+    City: city,
+    PhoneNumber: phoneNumber,
+  });
+
+  try {
+    await products.save();
+    res.send("inserted data into users");
+    console.log("inserted data into users");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Get request to see if particular User is already in Users Collection
+app.get("/readFromUsers/:email", (req, res) => {
+  const email = req.params.email;
+  try {
+    UsersModel.find({ Email: email }, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// **** END OF USERS COLLECTION ****
 app.listen(3001, () => {
   console.log("Server running on port 3001");
 });

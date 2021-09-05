@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Mongo pluralizes the name of the collection. This is the command to stop it
 mongoose.pluralize(null);
 
-const OrdersSchema = new mongoose.Schema({
+const UsersSchema = new mongoose.Schema({
   FirstName: {
     type: String,
     required: true,
@@ -14,10 +14,6 @@ const OrdersSchema = new mongoose.Schema({
   },
   Email: {
     type: String,
-    required: true,
-  },
-  Cart: {
-    type: Array,
     required: true,
   },
   Address: {
@@ -32,15 +28,7 @@ const OrdersSchema = new mongoose.Schema({
     type: Number,
     require: true,
   },
-  DeliveryTime: {
-    type: String,
-    required: true,
-  },
-  DeliveryWay: {
-    type: String,
-    required: true,
-  },
 });
 
-const orders = mongoose.model("orders", OrdersSchema);
-module.exports = orders;
+const users = mongoose.model("users", UsersSchema);
+module.exports = users;
