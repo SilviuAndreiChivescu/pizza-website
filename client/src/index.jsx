@@ -19,7 +19,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Solve problem with Loading. Sometime it just stops on loading. Make a catch or something that when not finish to load, reload or smthing
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
 
-// Design (make plan) History component
 // DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
 
 // II
