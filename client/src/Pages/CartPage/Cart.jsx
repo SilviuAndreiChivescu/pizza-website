@@ -1,9 +1,19 @@
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
+import CustomButton from "../CheckoutPage/CustomButton";
 import { useQuantitySelector } from "./CartLogic";
 
 export default function Cart(props) {
   const { setPageState, cart, setCart, totalPrice } = props;
+  const today = new Date();
+  const time = today.getHours() + ":" + today.getMinutes();
+  const handleSubmit = () => {
+    if (cart.length === 0)
+      alert(
+        "Cosul tau este gol. Mai intai adauga mancare gustoasa din meniul nostru"
+      );
+    else setPageState("Checkout");
+  };
   return (
     <>
       <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
@@ -19,7 +29,12 @@ export default function Cart(props) {
         <div className="mb-5 border-bottom border-2 border-secondary">
           <p className="fw-bold">Total: {totalPrice} lei</p>
         </div>
-        <DeliveryHours setPageState={setPageState} />
+        {/* Below is a conditional rendering to see if time is past the delivery hours. If so, does not let user procede with order */}
+        {time > "22:29" && time < "8:59" ? (
+          <PastDeliveryHours />
+        ) : (
+          <CustomButton title="Comanda" onClick={handleSubmit} />
+        )}
       </section>
     </>
   );
@@ -94,35 +109,14 @@ const FoodBox = (props) => {
   );
 };
 
-// This function is to render the "Order" button depending on the time.
-const DeliveryHours = (props) => {
-  const { setPageState } = props;
-
-  const today = new Date();
-  const time = today.getHours() + ":" + today.getMinutes();
-
-  // Closed
-  if (time > "22:29" && time < "8:59") {
-    return (
-      <div className="mb-5 text-secondary">
-        <h5>
-          Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in
-          intervalul 09:00 - 22:30. Va multumim !
-        </h5>
-      </div>
-    );
-  }
-  // Open
-  else {
-    return (
-      <div className="container">
-        <button
-          onClick={() => setPageState("Checkout")}
-          className="black-bg text-white border border-2 border-dark rounded p-2"
-        >
-          Comanda
-        </button>
-      </div>
-    );
-  }
+// This component is to render if time is past delivery hours
+const PastDeliveryHours = () => {
+  return (
+    <div className="mb-5 text-secondary">
+      <h5>
+        Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul
+        09:00 - 22:30. Va multumim !
+      </h5>
+    </div>
+  );
 };

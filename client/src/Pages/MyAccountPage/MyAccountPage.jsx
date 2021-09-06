@@ -5,7 +5,6 @@ import {
   useUpdateUserDetails,
 } from "../MyAccountPage/MyAccountPageLogic";
 
-// AICI AM RAMAS, TREBUIE SA IMPLEMENTEZ UPDATE MONGODB USERS WITH INPUTS IF USER DOES THIS.
 export default function MyAccountPage(props) {
   // States for User Input fields
   const {
