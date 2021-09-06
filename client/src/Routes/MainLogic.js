@@ -58,23 +58,25 @@ const useTotalNoOfProductAndTotalPrice = (cart) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    // This is for totalQuantitys
-    setTotalQuantity(
-      cart
-        .map((e, key) => {
-          return cart[key].Quantity;
-        })
-        .reduce((total, value) => total + value, 0)
-    );
+    if (cart) {
+      // This is for totalQuantitys
+      setTotalQuantity(() =>
+        cart
+          .map((e, key) => {
+            return cart[key].Quantity;
+          })
+          .reduce((total, value) => total + value, 0)
+      );
 
-    // This is for totalPrice
-    setTotalPrice(
-      cart
-        .map((e, key) => {
-          return cart[key].Quantity * cart[key].Price;
-        })
-        .reduce((total, value) => total + value, 0)
-    );
+      // This is for totalPrice
+      setTotalPrice(() =>
+        cart
+          .map((e, key) => {
+            return cart[key].Quantity * cart[key].Price;
+          })
+          .reduce((total, value) => total + value, 0)
+      );
+    }
   }, [cart]);
 
   return { totalQuantity, totalPrice };

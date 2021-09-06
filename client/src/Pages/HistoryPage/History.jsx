@@ -20,7 +20,7 @@ export default function History(props) {
         />
       );
     });
-  } else return null;
+  } else return <h1>Nicio comanda pt dvs</h1>;
 }
 
 const HistoryBody = (props) => {

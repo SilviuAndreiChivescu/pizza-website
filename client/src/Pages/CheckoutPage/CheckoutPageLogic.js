@@ -34,9 +34,7 @@ const usePostToOrders = () => {
   return { addToOrders };
 };
 
-// AM RAMAS AICI, SA COMBIN ASTEA 2 SI GEN SI PE CHECKOUTPAGE, AM SI ACOLO NISTE COMMENTS.
-//DUPA DAI CHECK LA LAST COMMIT CA MI-AM SCRIS ACOLO
-// MAYBE COMBINE THOSE TWO BELOW
+// Post request to Users Collection
 const usePostToUsers = () => {
   const addToUsers = (
     firstName,
