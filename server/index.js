@@ -180,6 +180,30 @@ app.get("/readFromUsers/:email", (req, res) => {
   }
 });
 
+// Update Users collection for MyAccountPage
+app.put("/updateUsers", async (req, res) => {
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+  const city = req.body.city;
+  const phoneNo = req.body.phoneNo;
+
+  const filter = { Email: email };
+  const update = {
+    FirstName: firstName,
+    LastName: lastName,
+    Address: address,
+    City: city,
+    PhoneNumber: phoneNo,
+  };
+  try {
+    await UsersModel.findOneAndUpdate(filter, update);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // **** END OF USERS COLLECTION ****
 app.listen(3001, () => {
   console.log("Server running on port 3001");

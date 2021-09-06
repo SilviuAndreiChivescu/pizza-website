@@ -1,6 +1,9 @@
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 import CustomButton from "../../pages/CheckoutPage/CustomButton";
-import { useSetDefaultValues } from "../MyAccountPage/MyAccountPageLogic";
+import {
+  useSetDefaultValues,
+  useUpdateUserDetails,
+} from "../MyAccountPage/MyAccountPageLogic";
 
 // AICI AM RAMAS, TREBUIE SA IMPLEMENTEZ UPDATE MONGODB USERS WITH INPUTS IF USER DOES THIS.
 export default function MyAccountPage(props) {
@@ -20,6 +23,8 @@ export default function MyAccountPage(props) {
     setCity,
   } = useSetDefaultValues();
 
+  // Function to update user details in Users Collection
+  const { updateUser } = useUpdateUserDetails();
   const { setPageState } = props;
   return (
     <>
@@ -40,7 +45,13 @@ export default function MyAccountPage(props) {
         // readOnly is for the email input field
         readOnly={"readOnly"}
       >
-        <CustomButton title={"Salveaza noile informatii"} />
+        <CustomButton
+          title={"Salveaza noile informatii"}
+          onClick={() => {
+            updateUser(email, firstName, lastName, address, city, phoneNo);
+            alert("Detaliile tale au fost modificate cu succes");
+          }}
+        />
       </UserDetailsInputs>
     </>
   );

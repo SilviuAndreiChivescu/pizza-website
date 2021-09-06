@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
+import Axios from "axios";
 
 const useSetDefaultValues = () => {
   // States for UserDetailsInputs
@@ -41,4 +42,19 @@ const useSetDefaultValues = () => {
   };
 };
 
-export { useSetDefaultValues };
+// Update user details in Users Collection
+const useUpdateUserDetails = () => {
+  const updateUser = (email, firstName, lastName, address, city, phoneNo) => {
+    Axios.put("http://localhost:3001/updateUsers", {
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      city: city,
+      phoneNo: phoneNo,
+    });
+  };
+  return { updateUser };
+};
+
+export { useSetDefaultValues, useUpdateUserDetails };

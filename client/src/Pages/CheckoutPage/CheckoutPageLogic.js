@@ -62,9 +62,10 @@ const usePostToUsers = () => {
   return { addToUsers };
 };
 
-// This custom hook is used to check if the user is already in Users Collection
+// This custom hook is used to check if the user is already in Users Collection and if negative, then Add user to Users Collection
 const useCheckIfUserInDb = () => {
   const { addToUsers } = usePostToUsers();
+
   const checkIfUserInDb = (
     email,
     firstName,
