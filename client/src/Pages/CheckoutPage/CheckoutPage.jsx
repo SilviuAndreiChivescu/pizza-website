@@ -16,7 +16,6 @@ import Form from "react-bootstrap/Form";
 import { useAuth0 } from "@auth0/auth0-react";
 // AM RAMAS AICI, TREBUIE SA FAC ORI ASTA ORI MYACCOUNTPAGE FUNCTIONALITY. AU AMANDOUA UN SHARED HOOK DECI E OK
 // For this page there is to implement the following:
-// Also, to send details to Users Collection if user does not have account
 // Also, if user is Auth, it should request data from Users Collection, but that's only once in MainLogic I suppose and it would be shared between this and MyAccountPage to do same thing
 // "confirm ca am citit..." checkbox should be required
 export default function CheckoutPage(props) {
@@ -52,12 +51,6 @@ export default function CheckoutPage(props) {
     }
   }, []);
 
-  // for Users collection
-  // if users email is not in Users collection. Post it
-  // if it is, nothing
-  const { addToUsers } = usePostToUsers();
-  // *** end users collection
-
   // States for DeliveryDetails
   const [deliveryTime, setDeliveryTime] = useState("");
   const [deliveryWay, setDeliveryWay] = useState("");
@@ -66,20 +59,8 @@ export default function CheckoutPage(props) {
   // Get from CartLogic function to post request to Orders collection
   const { addToOrders } = usePostToOrders();
 
-  // Get function to check if this user is already in Users Collection
-  const { checkIfUserInDb, userInDb } = useCheckIfUserInDb();
-
-  // useEffect(() => {
-  //   try {
-  //     Axios.get(`http://localhost:3001/readFromUsers/${email}`).then(
-  //       (response) => {
-  //         console.log(response.data);
-  //       }
-  //     );
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
+  // Function to check if this user is already in Users Collection
+  const { checkIfUserInDb } = useCheckIfUserInDb();
 
   const handleSubmit = () => {
     // If any of the inputs is empty, don't execute button functionality
@@ -112,20 +93,8 @@ export default function CheckoutPage(props) {
       window.localStorage.setItem("userDetails", JSON.stringify(data));
     }
 
-    // This function checksif the user is already in Users Collection. If users is not in Users Collection, it adds it to it. (passing as arguments the addToUsers function with its arguments)
-    // FOR LATER, MAYBE CHANGE NAME OF THIS FUNCTION TO, CHECK IF USER AND THEN ADD ORSOMETHING, AND COMBINE THEM IN THE CHECKOUTPAGELOGIC
-    checkIfUserInDb(
-      email,
-      addToUsers,
-      firstName,
-      lastName,
-      address,
-      city,
-      phoneNo
-    );
-    // addToUsers(firstName, lastName, email, address, city, phoneNo);
-
-    // if (userInDb === false)
+    // This function checksif the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
+    checkIfUserInDb(email, firstName, lastName, address, city, phoneNo);
 
     // Commented below to test what I am working at, uncommend after
     // addToOrders(

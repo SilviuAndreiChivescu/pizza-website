@@ -34,6 +34,8 @@ const usePostToOrders = () => {
   return { addToOrders };
 };
 
+// AM RAMAS AICI, SA COMBIN ASTEA 2 SI GEN SI PE CHECKOUTPAGE, AM SI ACOLO NISTE COMMENTS.
+//DUPA DAI CHECK LA LAST COMMIT CA MI-AM SCRIS ACOLO
 // MAYBE COMBINE THOSE TWO BELOW
 const usePostToUsers = () => {
   const addToUsers = (
@@ -63,9 +65,9 @@ const usePostToUsers = () => {
 
 // This custom hook is used to check if the user is already in Users Collection
 const useCheckIfUserInDb = () => {
+  const { addToUsers } = usePostToUsers();
   const checkIfUserInDb = (
     email,
-    addToUsers,
     firstName,
     lastName,
     address,
