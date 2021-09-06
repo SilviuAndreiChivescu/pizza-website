@@ -90,7 +90,7 @@ const useCheckIfUserInDb = () => {
 };
 
 const useSetDefaultValues = () => {
-  // States for UserDetailsInput
+  // States for UserDetailsInputs
   const {
     firstName,
     setFirstName,
