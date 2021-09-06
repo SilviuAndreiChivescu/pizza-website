@@ -1,5 +1,6 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import Axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Post request to Orders collection // I need to refactor this to match Orders model
 const usePostToOrders = () => {
@@ -88,4 +89,65 @@ const useCheckIfUserInDb = () => {
   return { checkIfUserInDb };
 };
 
-export { usePostToOrders, usePostToUsers, useCheckIfUserInDb };
+const useInputValues = () => {
+  const { user, isAuthenticated } = useAuth0();
+  // States for UserDetailsInput
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNo, setPhoneNo] = useState(0);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+
+  // Set Default states for if user has data on local storage or in Users Collection
+  useEffect(() => {
+    // Get details from local storage if user has been ordered before from the same browser and if user ticked "remember my details" checkbox
+    var localStorageData = JSON.parse(
+      window.localStorage.getItem("userDetails")
+    );
+    // If there is data on local storage, set Input Values to it
+    if (localStorageData) {
+      setFirstName(localStorageData.firstName);
+      setLastName(localStorageData.lastName);
+      setEmail(localStorageData.email);
+      setPhoneNo(localStorageData.phoneNo);
+      setAddress(localStorageData.address);
+      setCity(localStorageData.city);
+    }
+    // If there is nothing on local storage, send get request to Users collection
+    else {
+      if (isAuthenticated)
+        Axios.get(`http://localhost:3001/readFromUsers/${user.email}`).then(
+          (response) => {
+            // To get data from request (Using indexing and it's set to 0 because we only query for one row)
+            var data = response.data[0];
+
+            // Set Input Values to data from request
+            setFirstName(data.FirstName);
+            setLastName(data.LastName);
+            setEmail(data.Email);
+            setPhoneNo(data.PhoneNumber);
+            setAddress(data.Address);
+            setCity(data.City);
+          }
+        );
+    }
+  }, []);
+
+  return {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    phoneNo,
+    setPhoneNo,
+    address,
+    setAddress,
+    city,
+    setCity,
+  };
+};
+
+export { usePostToOrders, usePostToUsers, useCheckIfUserInDb, useInputValues };
