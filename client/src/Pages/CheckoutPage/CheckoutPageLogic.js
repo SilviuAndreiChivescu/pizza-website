@@ -1,6 +1,6 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
 
 // Post request to Orders collection // I need to refactor this to match Orders model
 const usePostToOrders = () => {
@@ -89,15 +89,23 @@ const useCheckIfUserInDb = () => {
   return { checkIfUserInDb };
 };
 
-const useInputValues = () => {
-  const { user, isAuthenticated } = useAuth0();
+const useSetDefaultValues = () => {
   // States for UserDetailsInput
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState(0);
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    phoneNo,
+    setPhoneNo,
+    address,
+    setAddress,
+    city,
+    setCity,
+    getRequestToUsers,
+  } = useInputValues();
 
   // Set Default states for if user has data on local storage or in Users Collection
   useEffect(() => {
@@ -116,21 +124,7 @@ const useInputValues = () => {
     }
     // If there is nothing on local storage, send get request to Users collection
     else {
-      if (isAuthenticated)
-        Axios.get(`http://localhost:3001/readFromUsers/${user.email}`).then(
-          (response) => {
-            // To get data from request (Using indexing and it's set to 0 because we only query for one row)
-            var data = response.data[0];
-
-            // Set Input Values to data from request
-            setFirstName(data.FirstName);
-            setLastName(data.LastName);
-            setEmail(data.Email);
-            setPhoneNo(data.PhoneNumber);
-            setAddress(data.Address);
-            setCity(data.City);
-          }
-        );
+      getRequestToUsers();
     }
   }, []);
 
@@ -150,4 +144,9 @@ const useInputValues = () => {
   };
 };
 
-export { usePostToOrders, usePostToUsers, useCheckIfUserInDb, useInputValues };
+export {
+  usePostToOrders,
+  usePostToUsers,
+  useCheckIfUserInDb,
+  useSetDefaultValues,
+};

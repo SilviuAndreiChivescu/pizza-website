@@ -9,7 +9,7 @@ import Axios from "axios";
 import {
   usePostToOrders,
   useCheckIfUserInDb,
-  useInputValues,
+  useSetDefaultValues,
 } from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
@@ -43,7 +43,7 @@ export default function CheckoutPage(props) {
     setAddress,
     city,
     setCity,
-  } = useInputValues();
+  } = useSetDefaultValues();
 
   // States for DeliveryDetails
   const [deliveryTime, setDeliveryTime] = useState("");
