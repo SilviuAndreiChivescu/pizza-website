@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Form } from "react-bootstrap";
 import { useQuantitySelector, useAddToCart } from "./ModalContentLogic";
 
 // Content of Modal in NoCartPage
@@ -11,23 +13,37 @@ export default function ModalContent(props) {
 
   // **** END ModalContentLogic ****
 
+  // State for Pizza's sizes
+  const [size, setSize] = useState("0");
+  const [sizeName, setSizeName] = useState("");
+
   // If the Product Category === "pizza", make options for size
   const PizzaSize = () => {
+    // This Array is used to keep the checked value for the <Form.Check />
+    const values = [{ Mica: "0" }, { Medie: "1" }, { Mare: "2" }];
     return (
-      <div className="mt-2 mb-2">
-        <input type="radio" id="mica" name="timp" defaultChecked />
-        <label className="ms-2 me-5" htmlFor="mica">
-          Mica
-        </label>
-        <input type="radio" id="medie" name="timp" />
-        <label className="ms-2 me-5" htmlFor="medie">
-          Medie
-        </label>
-        <input type="radio" id="mare" name="timp" />
-        <label className="ms-2" htmlFor="mare">
-          Mare
-        </label>
-      </div>
+      <>
+        <Form.Group className="mb-3">
+          {values.map((e) => {
+            return (
+              <>
+                <Form.Check
+                  type="radio"
+                  name="pizzaSize"
+                  label={Object.keys(e)}
+                  id={Object.keys(e)}
+                  value={Object.values(e)}
+                  checked={size == Object.values(e)} // using "==" instead of "===" because this is the only way it works. (I belive because values array has objects in it and it points to object value)
+                  onChange={(e) => {
+                    setSize(e.currentTarget.value);
+                    setSizeName(e.currentTarget.id);
+                  }}
+                />
+              </>
+            );
+          })}
+        </Form.Group>
+      </>
     );
   };
 
@@ -38,8 +54,8 @@ export default function ModalContent(props) {
         src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"
       ></img>
       <p className="pt-3">{content.Description}</p>
-      <h5 className="fw-bold">{content.Price} lei</h5>
-      {content.Category === "pizza" ? <PizzaSize /> : null}
+      <h5 className="fw-bold">{content.Price[size]} lei</h5>
+      {content.Category === "pizza" ? <PizzaSize setSize={setSize} /> : null}
       <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
         Alte informatii (optional)
         <input
@@ -85,7 +101,14 @@ export default function ModalContent(props) {
             <button
               onClick={() => {
                 onClose();
-                addToCart(cart, setCart, content, quantity);
+                addToCart(
+                  cart,
+                  setCart,
+                  content,
+                  quantity,
+                  content.Price[size],
+                  sizeName
+                );
               }}
               className="container-fluid black-bg text-white border border-2 border-dark rounded p-2"
             >

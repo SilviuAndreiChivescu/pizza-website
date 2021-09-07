@@ -56,7 +56,8 @@ const FoodBox = (props) => {
 
           <Card.Text>Description</Card.Text>
           <Card.Subtitle className="mb-2 text-muted">
-            {val.Price} lei
+            {/* [0] - because Pizza has 3 sizes, first option is the smallest and default for the others with only one option */}
+            {val.Price[0]} lei
           </Card.Subtitle>
         </Card.Body>
       </Card>
