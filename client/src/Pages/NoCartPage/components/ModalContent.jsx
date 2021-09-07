@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useQuantitySelector, useAddToCart } from "./ModalContentLogic";
+// AM RAMAS AICI
+//Now there is to fix a bug in Cart that does not recognize if there's two pizzas of same size, it should be one product with two quantity. See on browser
+// I think I fixed it, check if works ok everywhere cart is, all pages all things
 
 // Content of Modal in NoCartPage
 export default function ModalContent(props) {
