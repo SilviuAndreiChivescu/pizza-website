@@ -6,18 +6,18 @@ export function MongoDB() {
   // States to post
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [numberOfProduct, setNumberOfProduct] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const addToList = () => {
     Axios.post("http://localhost:3001/insert", {
       name: name,
       price: price,
-      numberOfProduct: numberOfProduct,
+      quantity: quantity,
       category: "pizza",
     });
     setProductsList([
       ...productsList,
-      { Name: name, Price: price, NumberOfProduct: numberOfProduct },
+      { Name: name, Price: price, Quantity: quantity },
     ]);
   };
   // state to read/get
