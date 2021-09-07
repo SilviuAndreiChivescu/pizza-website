@@ -9,6 +9,7 @@ import Whoops404 from "./routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
+// Cart page, instead of Alert if cart empty, try to not show button if cart empty, maybe even the total price
 
 // You know when you put specific things for each page in NavBar. Well, now I think that I should put at least for the setPage prop, I should have it in NavBar's arguments <NavBar onClick={setPage} />
 // For history page, make that button track order only show when order is made not more than 50 mins ago && Maybe put address for each order as you did with time stamp
