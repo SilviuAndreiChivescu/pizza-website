@@ -1,8 +1,9 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
+import { useTotalNoOfProductAndTotalPrice } from "./../../routes/MainLogic";
 
-// Post request to Orders collection // I need to refactor this to match Orders model
+// Post request to Orders collection // I need to refactor this to match Orders model -  ?
 const usePostToOrders = () => {
   const addToOrders = (
     firstName,
@@ -145,9 +146,34 @@ const useSetDefaultValues = () => {
   };
 };
 
+// GMAIL API
+const useGmailAPI = (cart) => {
+  // Function to calculate total price
+  const { totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
+  const sendEmail = () => {
+    // Map over cart state
+    var emailText = cart
+      .map((e) => {
+        return `${e.Quantity} X ${e.Name} - ${e.Price} lei \n`;
+      })
+      // Make it a string joined by words
+      .join("")
+      // Add total price at the end
+      .concat(` ${totalPrice} lei`);
+    try {
+      Axios.post("http://localhost:3001/sendEmail", { text: emailText });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return { sendEmail };
+};
+// *** END GMAIL API ***
+
 export {
   usePostToOrders,
   usePostToUsers,
   useCheckIfUserInDb,
   useSetDefaultValues,
+  useGmailAPI,
 };

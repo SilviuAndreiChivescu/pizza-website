@@ -10,11 +10,11 @@ import {
   usePostToOrders,
   useCheckIfUserInDb,
   useSetDefaultValues,
+  useGmailAPI,
 } from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
 
-// AM RAMAS AICI, TREBUIE SA FAC MYACCOUNTPAGE FUNCTIONALITY. AU AMANDOUA UN SHARED HOOK DECI E OK - that's only once in MainLogic I suppose and it would be shared between this and MyAccountPage to do same thing
 // For this page there is to implement the following:
 // "confirm ca am citit..." checkbox should be required
 // encapsulate states and stuff if needed later
@@ -56,6 +56,9 @@ export default function CheckoutPage(props) {
   // Function to check if this user is already in Users Collection
   const { checkIfUserInDb } = useCheckIfUserInDb();
 
+  // GMAIL API
+  const { sendEmail } = useGmailAPI(cart);
+
   const handleSubmit = () => {
     // If any of the inputs is empty, don't execute button functionality
     if (
@@ -87,10 +90,9 @@ export default function CheckoutPage(props) {
       window.localStorage.setItem("userDetails", JSON.stringify(data));
     }
 
-    // This function checksif the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
+    // // This function checksif the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
     checkIfUserInDb(email, firstName, lastName, address, city, phoneNo);
 
-    // Commented below to test what I am working at, uncommend after
     addToOrders(
       firstName,
       lastName,
@@ -103,6 +105,7 @@ export default function CheckoutPage(props) {
       deliveryWay
     );
     setLastOrder(cart);
+    sendEmail(); // To send email with the order
     setCart([]);
     setPageState("Receipt");
     setLastOrderTime(getCurrentDate());
@@ -115,33 +118,30 @@ export default function CheckoutPage(props) {
         pageState={pageState}
         setPageState={setPageState}
       />
-      <Form className={"m-5"}>
-        <UserDetailsInputs
-          setPageState={setPageState}
-          setFirstName={setFirstName}
-          firstName={firstName}
-          setLastName={setLastName}
-          lastName={lastName}
-          setEmail={setEmail}
-          email={email}
-          setPhoneNo={setPhoneNo}
-          phoneNo={phoneNo}
-          setAddress={setAddress}
-          address={address}
-          setCity={setCity}
-          city={city}
-        />
-        <DeliveryDetails
-          setDeliveryTime={setDeliveryTime}
-          setDeliveryWay={setDeliveryWay}
-          setKeepData={setKeepData}
-        />
-        <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-        <CustomButton
-          title={"Plaseaza Comanda"}
-          onClick={() => handleSubmit()}
-        />
-      </Form>
+      {/* <Form className={"m-5"}>  - UNCOMMENT LATER AFTER TESTING WITH EMAIL FUNCTONALITY */}
+      <UserDetailsInputs
+        setPageState={setPageState}
+        setFirstName={setFirstName}
+        firstName={firstName}
+        setLastName={setLastName}
+        lastName={lastName}
+        setEmail={setEmail}
+        email={email}
+        setPhoneNo={setPhoneNo}
+        phoneNo={phoneNo}
+        setAddress={setAddress}
+        address={address}
+        setCity={setCity}
+        city={city}
+      />
+      <DeliveryDetails
+        setDeliveryTime={setDeliveryTime}
+        setDeliveryWay={setDeliveryWay}
+        setKeepData={setKeepData}
+      />
+      <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
+      <CustomButton title={"Plaseaza Comanda"} onClick={() => handleSubmit()} />
+      {/* </Form> */}
     </>
   );
 }
