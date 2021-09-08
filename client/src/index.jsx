@@ -9,7 +9,10 @@ import Whoops404 from "./routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 // TODO:
+// IMPORTANT ISH, FOR WHEN GMAIL API REACHES LIMIT OF > 250 QUOTAS, TRY FIND SOMETHING TO GET YOU THAT ANSWER IF IT REACHES, AND IF IT DOES, ALERT USER TO TRY AGAIN
+
 // Cart page, instead of Alert if cart empty, try to not show button if cart empty, maybe even the total price
+// For EMAIL. Idk, make it better for how Cata should get it
 
 // You know when you put specific things for each page in NavBar. Well, now I think that I should put at least for the setPage prop, I should have it in NavBar's arguments <NavBar onClick={setPage} />
 // For history page, make that button track order only show when order is made not more than 50 mins ago && Maybe put address for each order as you did with time stamp
