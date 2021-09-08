@@ -351,9 +351,9 @@ app.post("/sendEmail", (req, res) => {
 // *** END GMAIL API ***
 
 // test to see if server to heroku has been deployed
-// app.get("/", (req, res) => {
-//   res.send("Hello from Express!");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello from Express!");
+});
 
 app.listen(process.env.PORT || 3001, () => {
   console.log("Server running on port 3001");
