@@ -19,193 +19,193 @@ mongoose.connect(mongoPassword, {
 // To handle deprecation of findAndModify mongo
 mongoose.set("useFindAndModify", false);
 
-// // MongoDB
-// // ************ Products collection ************
-// app.post("/insert", async (req, res) => {
-//   const name = req.body.name;
-//   const price = req.body.price;
-//   const quantity = req.body.quantity;
-//   const category = req.body.category;
+// MongoDB
+// ************ Products collection ************
+app.post("/insert", async (req, res) => {
+  const name = req.body.name;
+  const price = req.body.price;
+  const quantity = req.body.quantity;
+  const category = req.body.category;
 
-//   const products = new ProductsModel({
-//     Name: name,
-//     Price: price,
-//     Description: "Acu bag din front-end",
-//     Quantity: quantity,
-//     Category: category,
-//   });
+  const products = new ProductsModel({
+    Name: name,
+    Price: price,
+    Description: "Acu bag din front-end",
+    Quantity: quantity,
+    Category: category,
+  });
 
-//   try {
-//     await products.save();
-//     res.send("inserted data");
-//     console.log("inserted data");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+  try {
+    await products.save();
+    res.send("inserted data");
+    console.log("inserted data");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// app.get("/read", (req, res) => {
-//   try {
-//     ProductsModel.find({}, (err, result) => {
-//       res.send(result);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+app.get("/read", (req, res) => {
+  try {
+    ProductsModel.find({}, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// app.put("/update", async (req, res) => {
-//   const newNumberOfProduct = req.body.newNumberOfProduct;
-//   const id = req.body.id;
+app.put("/update", async (req, res) => {
+  const newNumberOfProduct = req.body.newNumberOfProduct;
+  const id = req.body.id;
 
-//   try {
-//     await ProductsModel.findById(id, (err, updatedProduct) => {
-//       updatedProduct.quantity = newNumberOfProduct;
-//       updatedProduct.save();
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+  try {
+    await ProductsModel.findById(id, (err, updatedProduct) => {
+      updatedProduct.quantity = newNumberOfProduct;
+      updatedProduct.save();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// app.delete("/delete/:id", async (req, res) => {
-//   const id = req.params.id;
-//   res.send(id);
+app.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  res.send(id);
 
-//   try {
-//     await ProductsModel.findByIdAndRemove(id).exec();
-//     console.log("deleted");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-// // **** END OF Products Collection ****
+  try {
+    await ProductsModel.findByIdAndRemove(id).exec();
+    console.log("deleted");
+  } catch (err) {
+    console.log(err);
+  }
+});
+// **** END OF Products Collection ****
 
-// // **** Orders collection ****
-// // Post to Orders collection
-// app.post("/insertIntoOrders", async (req, res) => {
-//   const firstName = req.body.FirstName;
-//   const lastName = req.body.LastName;
-//   const email = req.body.Email;
-//   const cart = req.body.Cart;
-//   const address = req.body.Address;
-//   const city = req.body.City;
-//   const phoneNumber = req.body.PhoneNumber;
-//   const deliveryTime = req.body.DeliveryTime;
-//   const deliveryWay = req.body.DeliveryWay;
+// **** Orders collection ****
+// Post to Orders collection
+app.post("/insertIntoOrders", async (req, res) => {
+  const firstName = req.body.FirstName;
+  const lastName = req.body.LastName;
+  const email = req.body.Email;
+  const cart = req.body.Cart;
+  const address = req.body.Address;
+  const city = req.body.City;
+  const phoneNumber = req.body.PhoneNumber;
+  const deliveryTime = req.body.DeliveryTime;
+  const deliveryWay = req.body.DeliveryWay;
 
-//   const products = new OrdersModel({
-//     FirstName: firstName,
-//     LastName: lastName,
-//     Email: email,
-//     Cart: cart,
-//     Address: address,
-//     City: city,
-//     PhoneNumber: phoneNumber,
-//     DeliveryTime: deliveryTime,
-//     DeliveryWay: deliveryWay,
-//   });
+  const products = new OrdersModel({
+    FirstName: firstName,
+    LastName: lastName,
+    Email: email,
+    Cart: cart,
+    Address: address,
+    City: city,
+    PhoneNumber: phoneNumber,
+    DeliveryTime: deliveryTime,
+    DeliveryWay: deliveryWay,
+  });
 
-//   try {
-//     await products.save();
-//     res.send("inserted data");
-//     console.log("inserted data");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+  try {
+    await products.save();
+    res.send("inserted data");
+    console.log("inserted data");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// // Read all Cart data from Orders collection for a particular user(received from params)
-// app.get("/read/:email", (req, res) => {
-//   const email = req.params.email;
-//   try {
-//     OrdersModel.find({ Email: email }, { Cart: 1 }, (err, result) => {
-//       res.send(result);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+// Read all Cart data from Orders collection for a particular user(received from params)
+app.get("/read/:email", (req, res) => {
+  const email = req.params.email;
+  try {
+    OrdersModel.find({ Email: email }, { Cart: 1 }, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// // Read order find by idOfOrder for TracKOrderPage
-// app.get("/readbyid/:id", (req, res) => {
-//   const id = req.params.id;
-//   try {
-//     OrdersModel.find({ _id: id }, (err, result) => {
-//       res.send(result);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+// Read order find by idOfOrder for TracKOrderPage
+app.get("/readbyid/:id", (req, res) => {
+  const id = req.params.id;
+  try {
+    OrdersModel.find({ _id: id }, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// // **** END OF ORDERS COLLECTION ****
+// **** END OF ORDERS COLLECTION ****
 
-// // **** Users Collection ****
-// // Post to Users collection
-// app.post("/insertIntoUsers", async (req, res) => {
-//   const firstName = req.body.FirstName;
-//   const lastName = req.body.LastName;
-//   const email = req.body.Email;
-//   const address = req.body.Address;
-//   const city = req.body.City;
-//   const phoneNumber = req.body.PhoneNumber;
+// **** Users Collection ****
+// Post to Users collection
+app.post("/insertIntoUsers", async (req, res) => {
+  const firstName = req.body.FirstName;
+  const lastName = req.body.LastName;
+  const email = req.body.Email;
+  const address = req.body.Address;
+  const city = req.body.City;
+  const phoneNumber = req.body.PhoneNumber;
 
-//   const products = new UsersModel({
-//     FirstName: firstName,
-//     LastName: lastName,
-//     Email: email,
-//     Address: address,
-//     City: city,
-//     PhoneNumber: phoneNumber,
-//   });
+  const products = new UsersModel({
+    FirstName: firstName,
+    LastName: lastName,
+    Email: email,
+    Address: address,
+    City: city,
+    PhoneNumber: phoneNumber,
+  });
 
-//   try {
-//     await products.save();
-//     res.send("inserted data into users");
-//     console.log("inserted data into users");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+  try {
+    await products.save();
+    res.send("inserted data into users");
+    console.log("inserted data into users");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// // Get request to see if particular User is already in Users Collection
-// app.get("/readFromUsers/:email", (req, res) => {
-//   const email = req.params.email;
-//   try {
-//     UsersModel.find({ Email: email }, (err, result) => {
-//       res.send(result);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+// Get request to see if particular User is already in Users Collection
+app.get("/readFromUsers/:email", (req, res) => {
+  const email = req.params.email;
+  try {
+    UsersModel.find({ Email: email }, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// // Update Users collection for MyAccountPage
-// app.put("/updateUsers", async (req, res) => {
-//   const email = req.body.email;
-//   const firstName = req.body.firstName;
-//   const lastName = req.body.lastName;
-//   const address = req.body.address;
-//   const city = req.body.city;
-//   const phoneNo = req.body.phoneNo;
+// Update Users collection for MyAccountPage
+app.put("/updateUsers", async (req, res) => {
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+  const city = req.body.city;
+  const phoneNo = req.body.phoneNo;
 
-//   const filter = { Email: email };
-//   const update = {
-//     FirstName: firstName,
-//     LastName: lastName,
-//     Address: address,
-//     City: city,
-//     PhoneNumber: phoneNo,
-//   };
-//   try {
-//     await UsersModel.findOneAndUpdate(filter, update);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+  const filter = { Email: email };
+  const update = {
+    FirstName: firstName,
+    LastName: lastName,
+    Address: address,
+    City: city,
+    PhoneNumber: phoneNo,
+  };
+  try {
+    await UsersModel.findOneAndUpdate(filter, update);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// // **** END OF USERS COLLECTION ****
+// **** END OF USERS COLLECTION ****
 
 // **** GMAIL API ****
 /**
