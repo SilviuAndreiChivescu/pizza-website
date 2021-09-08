@@ -334,12 +334,14 @@ app.post("/sendEmail", (req, res) => {
   // Send message
 
   // Load client secrets from a local file.
-  fs.readFile("credentials.json", (err, content) => {
-    if (err) return console.log("Error loading client secret file:", err);
-    // Authorize a client with credentials, then call the Gmail API.
-    authorize(JSON.parse(content), sendMessage);
-  });
-
+  const submit = () => {
+    fs.readFile("credentials.json", (err, content) => {
+      if (err) return console.log("Error loading client secret file:", err);
+      // Authorize a client with credentials, then call the Gmail API.
+      authorize(JSON.parse(content), sendMessage);
+    });
+  };
+  submit();
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
   res.json({ status: "Email sent" });
