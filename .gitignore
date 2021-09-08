@@ -2,6 +2,8 @@
 
 # dependencies
 mongoPassword.js
+credentials.json
+token.json
 node_modules/
 /.pnp
 .pnp.js
