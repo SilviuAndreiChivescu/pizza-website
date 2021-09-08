@@ -8,7 +8,7 @@ import Main from "./routes/Main";
 import Whoops404 from "./routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-// TODO:
+// TODO: // GEN NU MI MAI IA CU ULTIMELE CHANGES PE HEROKU DUPA CE II DAU PUSH, PROB FAC O ALTA APP SI PLM INCERC IAR, VEZI
 // IMPORTANT ISH, FOR WHEN GMAIL API REACHES LIMIT OF > 250 QUOTAS, TRY FIND SOMETHING TO GET YOU THAT ANSWER IF IT REACHES, AND IF IT DOES, ALERT USER TO TRY AGAIN
 
 // Cart page, instead of Alert if cart empty, try to not show button if cart empty, maybe even the total price
