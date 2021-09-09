@@ -1,0 +1,1 @@
+web: MONGODB_URI=$MONGODB_URI node ./index.js
