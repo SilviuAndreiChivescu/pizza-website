@@ -228,10 +228,12 @@ app.put("/updateUsers", async (req, res) => {
 const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
+const { OAuth2Client, GoogleAuth } = require("google-auth-library");
 
 const MIMEText = require("mimetext");
 
 // ** AUTHENTICATION **
+
 // If modifying these scopes, delete token.json.
 const SCOPES = ["https://www.googleapis.com/auth/gmail.modify"];
 // The file token.json stores the user's access and refresh tokens, and is
@@ -299,6 +301,7 @@ function getNewToken(oAuth2Client, callback) {
   });
 }
 // ** END AUTHENTICATION **
+
 var count = 0;
 // Send message
 function sendMessage(auth) {
@@ -325,6 +328,7 @@ message.setSender("medievalpizzacomanda@gmail.com");
 message.setRecipient("gypandy00@gmail.com");
 message.setSubject("Comanda");
 message.setMessage("THE RESTART MESSAGE");
+sendMessage();
 app.post("/sendEmail", (req, res) => {
   // text variable to store the message passed from front-end
   const text = req.body.text;
@@ -334,14 +338,12 @@ app.post("/sendEmail", (req, res) => {
   // Send message
 
   // Load client secrets from a local file.
-  const submit = () => {
-    fs.readFile("credentials.json", (err, content) => {
-      if (err) return console.log("Error loading client secret file:", err);
-      // Authorize a client with credentials, then call the Gmail API.
-      authorize(JSON.parse(content), sendMessage);
-    });
-  };
-  submit();
+  fs.readFile("credentials.json", (err, content) => {
+    if (err) return console.log("Error loading client secret file:", err);
+    // Authorize a client with credentials, then call the Gmail API.
+    authorize(JSON.parse(content), sendMessage);
+  });
+
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
   res.json({ status: "Email sent" });
@@ -349,11 +351,6 @@ app.post("/sendEmail", (req, res) => {
 // [END gmail_quickstart]
 
 // *** END GMAIL API ***
-
-// test to see if server to heroku has been deployed
-app.get("/", (req, res) => {
-  res.send("Hello from Express!");
-});
 
 app.listen(process.env.PORT || 3001, () => {
   console.log("Server running on port 3001");
