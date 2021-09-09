@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const mongoPassword = require("./mongoPassword");
+// const mongoPassword = require("./mongoPassword");
 
 const ProductsModel = require("./models/Products");
 const OrdersModel = require("./models/Orders");
@@ -11,7 +11,8 @@ const UsersModel = require("./models/Users");
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(mongoPassword, {
+// Change this process.env with mongoDbPassword from above if using for local host
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
