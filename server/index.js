@@ -251,7 +251,7 @@ const TOKEN_PATH = "token.json";
 // });
 
 // FROM NOW
-authorize(JSON.parse(`${process.env.CREDENTIALS_GMAILAPI}`), sendMessage);
+authorize(process.env.CREDENTIALS_GMAILAPI, sendMessage);
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -350,7 +350,7 @@ app.post("/sendEmail", (req, res) => {
   // });
 
   // FROM NOW
-  authorize(JSON.parse(`${process.env.CREDENTIALS_GMAILAPI}`), sendMessage);
+  authorize(process.env.CREDENTIALS_GMAILAPI, sendMessage);
 
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
