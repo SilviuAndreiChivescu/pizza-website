@@ -7,9 +7,11 @@ const app = express();
 const ProductsModel = require("./models/Products");
 const OrdersModel = require("./models/Orders");
 const UsersModel = require("./models/Users");
-// AM RAMAS AICI, CAN''T ACCESS ENV VARIABLE FROM HEROKU, THE MONGODB PASS, DELETE THIS ROW WITHOUT SAVING
+
 app.use(express.json());
 app.use(cors());
+console.log(typeof process.env.MONGODB_URI);
+console.log(process.env.MONGODB_URI);
 const mongoPassword = `mongodb+srv://Andrew:${process.env.MONGODB_URI}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
 // Change this process.env with mongoDbPassword from above if using for local host
 mongoose.connect(mongoPassword, {
@@ -243,7 +245,7 @@ const SCOPES = ["https://www.googleapis.com/auth/gmail.modify"];
 const TOKEN_PATH = "token.json";
 
 // Load client secrets from a local file.
-
+// AM RAMAS AICI, VAD CA CU CREDENTIALS FILE MERGE SA TE LOG LA EA...
 fs.readFile("credentials.json", (err, content) => {
   if (err) return console.log("Error loading client secret file:", err);
   // Authorize a client with credentials, then call the Gmail API.
