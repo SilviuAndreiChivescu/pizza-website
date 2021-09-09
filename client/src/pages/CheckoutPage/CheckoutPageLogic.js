@@ -17,7 +17,7 @@ const usePostToOrders = () => {
     deliveryWay
   ) => {
     try {
-      Axios.post("http://localhost:3001/insertIntoOrders", {
+      Axios.post("https://pizza-website2021.herokuapp.com/insertIntoOrders", {
         FirstName: firstName,
         LastName: lastName,
         Email: email,
@@ -47,7 +47,7 @@ const usePostToUsers = () => {
     phoneNumber
   ) => {
     try {
-      Axios.post("http://localhost:3001/insertIntoUsers", {
+      Axios.post("https://pizza-website2021.herokuapp.com/insertIntoUsers", {
         FirstName: firstName,
         LastName: lastName,
         Email: email,
@@ -77,13 +77,13 @@ const useCheckIfUserInDb = () => {
   ) => {
     try {
       // Send reqeust to MongoDB to check if for this email we have data.
-      Axios.get(`http://localhost:3001/readFromUsers/${email}`).then(
-        (response) => {
-          // If there is no data, then add user to Users Collection
-          if (response.data.length === 0)
-            addToUsers(firstName, lastName, email, address, city, phoneNo);
-        }
-      );
+      Axios.get(
+        `https://pizza-website2021.herokuapp.com/readFromUsers/${email}`
+      ).then((response) => {
+        // If there is no data, then add user to Users Collection
+        if (response.data.length === 0)
+          addToUsers(firstName, lastName, email, address, city, phoneNo);
+      });
     } catch (err) {
       console.log(err);
     }
@@ -161,7 +161,9 @@ const useGmailAPI = (cart) => {
       // Add total price at the end
       .concat(` ${totalPrice} lei`);
     try {
-      Axios.post("http://localhost:3001/sendEmail", { text: emailText });
+      Axios.post("https://pizza-website2021.herokuapp.com/sendEmail", {
+        text: emailText,
+      });
     } catch (err) {
       console.log(err);
     }

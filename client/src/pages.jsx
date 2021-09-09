@@ -9,7 +9,7 @@ export function MongoDB() {
   const [quantity, setQuantity] = useState(1);
 
   const addToList = () => {
-    Axios.post("http://localhost:3001/insert", {
+    Axios.post("https://pizza-website2021.herokuapp.com/insert", {
       name: name,
       price: price,
       quantity: quantity,
@@ -24,20 +24,25 @@ export function MongoDB() {
   const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setProductsList(response.data);
-    });
+    Axios.get("https://pizza-website2021.herokuapp.com/read").then(
+      (response) => {
+        setProductsList(response.data);
+      }
+    );
   }, []);
 
   // state to update
   const [newName, setNewName] = useState("");
 
   const updateProduct = (id) => {
-    Axios.put("http://localhost:3001/update", { id: id, newName: newName });
+    Axios.put("https://pizza-website2021.herokuapp.com/update", {
+      id: id,
+      newName: newName,
+    });
   };
 
   const deleteProduct = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`);
+    Axios.delete(`https://pizza-website2021.herokuapp.com/delete/${id}`);
   };
 
   return (

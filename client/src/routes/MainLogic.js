@@ -41,10 +41,12 @@ const usePageState = () => {
 const useProductsList = (setAppState) => {
   const [productsList, setProductsList] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setProductsList(response.data);
-      setAppState("loaded");
-    });
+    Axios.get("https://pizza-website2021.herokuapp.com/read").then(
+      (response) => {
+        setProductsList(response.data);
+        setAppState("loaded");
+      }
+    );
   }, []);
 
   return { productsList };

@@ -9,7 +9,9 @@ const useHistoryData = () => {
   const [loaded, setLoaded] = useState(false);
   const { user } = useAuth0();
   useEffect(() => {
-    Axios.get(`http://localhost:3001/read/${user.email}`).then((response) => {
+    Axios.get(
+      `https://pizza-website2021.herokuapp.com/read/${user.email}`
+    ).then((response) => {
       // To get data from request
       var data = response.data;
 

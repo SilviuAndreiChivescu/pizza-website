@@ -14,7 +14,7 @@ const useInputValues = () => {
 
   const getRequestToUsers = () => {
     if (isAuthenticated)
-      Axios.get(`http://localhost:3001/readFromUsers/${user.email}`).then(
+      Axios.get(`https://pizza-website2021.herokuapp.com/${user.email}`).then(
         (response) => {
           // To get data from request (Using indexing and it's set to 0 because this is an object in an array and we only have one row)
           var data = response.data[0];

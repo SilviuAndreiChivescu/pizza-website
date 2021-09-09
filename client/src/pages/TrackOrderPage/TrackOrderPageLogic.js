@@ -8,18 +8,20 @@ const useOrder = (id) => {
   // Below functionality commented is for when adding to Orders collection a Address field
   // const [address, setAddress] = useState([]);
   useEffect(() => {
-    Axios.get(`http://localhost:3001/readbyid/${id}`).then((response) => {
-      var order = response.data.map((e) => {
-        return e.Cart;
-      });
-      // Below functionality commented is for when adding to Orders collection a Address field
-      // var address = response.data.map((e) => {
-      //   return e.address; - check here
-      // })
-      // setAddress();
-      setOrder(order);
-      setLoaded(true);
-    });
+    Axios.get(`https://pizza-website2021.herokuapp.com/readbyid/${id}`).then(
+      (response) => {
+        var order = response.data.map((e) => {
+          return e.Cart;
+        });
+        // Below functionality commented is for when adding to Orders collection a Address field
+        // var address = response.data.map((e) => {
+        //   return e.address; - check here
+        // })
+        // setAddress();
+        setOrder(order);
+        setLoaded(true);
+      }
+    );
   }, []);
 
   return { order, loaded };
