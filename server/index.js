@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 console.log(typeof process.env.MONGODB_URI);
 console.log(process.env.MONGODB_URI);
-const mongoPassword = `mongodb+srv://Andrew:${process.env.MONGODB_URI}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
+const mongoPassword = `mongodb+srv://Andrew:descarcare@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
 // Change this process.env with mongoDbPassword from above if using for local host
 mongoose.connect(mongoPassword, {
   useNewUrlParser: true,
