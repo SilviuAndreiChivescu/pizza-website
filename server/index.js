@@ -352,6 +352,10 @@ app.post("/sendEmail", (req, res) => {
 
 // *** END GMAIL API ***
 
+app.get("/", (req, res) => {
+  res.send("Hello from express");
+});
+
 app.listen(process.env.PORT || 3001, () => {
   console.log("Server running on port 3001");
 });
