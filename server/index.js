@@ -10,7 +10,7 @@ const UsersModel = require("./models/Users");
 
 app.use(express.json());
 app.use(cors());
-const mongoPassword = REACT_APP_process.env.MONGODB_URI;
+const mongoPassword = process.env.REACT_APP_MONGODB_URI;
 // Change this process.env with mongoDbPassword from above if using for local host
 mongoose.connect(mongoPassword, {
   useNewUrlParser: true,
