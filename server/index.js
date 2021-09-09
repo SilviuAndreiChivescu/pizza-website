@@ -10,9 +10,9 @@ const UsersModel = require("./models/Users");
 
 app.use(express.json());
 app.use(cors());
-
+const mongoPassword = process.env.MONGODB_URI.toString(2);
 // Change this process.env with mongoDbPassword from above if using for local host
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(mongoPassword, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
