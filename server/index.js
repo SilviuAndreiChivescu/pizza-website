@@ -243,15 +243,12 @@ const SCOPES = ["https://www.googleapis.com/auth/gmail.modify"];
 const TOKEN_PATH = "token.json";
 
 // Load client secrets from a local file.
-// FROM BEFORE  - DELETE LATER
-// fs.readFile("credentials.json", (err, content) => {
-//   if (err) return console.log("Error loading client secret file:", err);
-//   // Authorize a client with credentials, then call the Gmail API.
-//   authorize(JSON.parse(content), sendMessage);
-// });
 
-// FROM NOW
-authorize(JSON.parse(`${process.env.CREDENTIALS_GMAILAPI}`), sendMessage);
+fs.readFile("credentials.json", (err, content) => {
+  if (err) return console.log("Error loading client secret file:", err);
+  // Authorize a client with credentials, then call the Gmail API.
+  authorize(JSON.parse(content), sendMessage);
+});
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -342,15 +339,11 @@ app.post("/sendEmail", (req, res) => {
   // Send message
 
   // Load client secrets from a local file.
-  // FROM BEFORE _ DELETE LATER
-  // fs.readFile("credentials.json", (err, content) => {
-  //   if (err) return console.log("Error loading client secret file:", err);
-  //   // Authorize a client with credentials, then call the Gmail API.
-  //   authorize(JSON.parse(content), sendMessage);
-  // });
-
-  // FROM NOW
-  authorize(JSON.parse(process.env.CREDENTIALS_GMAILAPI), sendMessage);
+  fs.readFile("credentials.json", (err, content) => {
+    if (err) return console.log("Error loading client secret file:", err);
+    // Authorize a client with credentials, then call the Gmail API.
+    authorize(JSON.parse(content), sendMessage);
+  });
 
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
