@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 // const mongoPassword = require("./mongoPassword");
 
+require("dotenv").config();
 const ProductsModel = require("./models/Products");
 const OrdersModel = require("./models/Orders");
 const UsersModel = require("./models/Users");
@@ -12,9 +13,11 @@ app.use(express.json());
 app.use(cors());
 console.log(typeof process.env.MONGODB_URI);
 console.log(process.env.MONGODB_URI);
-const mongoPassword = `mongodb+srv://Andrew:descarcare@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
+// Take password from .env
+const password = process.env.MONGODB_URI;
+const mongoURL = `mongodb+srv://Andrew:${password}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
 // Change this process.env with mongoDbPassword from above if using for local host
-mongoose.connect(mongoPassword, {
+mongoose.connect(mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
