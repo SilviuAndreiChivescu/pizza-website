@@ -328,7 +328,6 @@ message.setSender("medievalpizzacomanda@gmail.com");
 message.setRecipient("gypandy00@gmail.com");
 message.setSubject("Comanda");
 message.setMessage("THE RESTART MESSAGE");
-sendMessage();
 app.post("/sendEmail", (req, res) => {
   // text variable to store the message passed from front-end
   const text = req.body.text;
