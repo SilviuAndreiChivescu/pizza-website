@@ -10,7 +10,7 @@ const UsersModel = require("./models/Users");
 // AM RAMAS AICI, CAN''T ACCESS ENV VARIABLE FROM HEROKU, THE MONGODB PASS, DELETE THIS ROW WITHOUT SAVING
 app.use(express.json());
 app.use(cors());
-const mongoPassword = process.env.MONGODB_URI;
+const mongoPassword = `mongodb+srv://Andrew:${process.env.MONGODB_URI}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
 // Change this process.env with mongoDbPassword from above if using for local host
 mongoose.connect(mongoPassword, {
   useNewUrlParser: true,
