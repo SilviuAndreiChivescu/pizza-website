@@ -350,7 +350,7 @@ app.post("/sendEmail", (req, res) => {
   // });
 
   // FROM NOW
-  authorize(JSON.parse(`${process.env.CREDENTIALS_GMAILAPI}`), sendMessage);
+  authorize(JSON.parse(process.env.CREDENTIALS_GMAILAPI), sendMessage);
 
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
