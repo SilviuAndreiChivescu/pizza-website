@@ -224,7 +224,11 @@ var count = 1;
 // Create post request to send message
 app.post("/sendEmail", (req, res) => {
   // text variable to store the message passed from front-end
-  const text = req.body.text;
+  const nameText = req.body.nameText;
+  const contactText = req.body.contactText;
+  const addressText = req.body.addressText;
+  const deliveryText = req.body.deliveryText;
+  const cartText = req.body.cartText;
   // Set email message to the text passed via request
 
   const request = mailjet.post("send", { version: "v3.1" }).request({
@@ -240,7 +244,8 @@ app.post("/sendEmail", (req, res) => {
           },
         ],
         Subject: "Comanda Noua!",
-        HTMLPart: `<h3> Comanda ta va fi asta: </h3> <p>${text}</p>`,
+        TextPart: `Detalii comanda:  ${nameText} ${contactText} ${addressText} ${deliveryText} ${cartText}`,
+        HTMLPart: `<h5>Detalii comanda: </h5> <ul> <li>${nameText}</li> <li>${contactText}</li> <li>${addressText}</li> <li>${deliveryText}</li> Produse: ${cartText}</ul>`,
       },
     ],
   });
