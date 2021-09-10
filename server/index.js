@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-// const mongoPassword = require("./mongoPassword");
 
 require("dotenv").config();
 const ProductsModel = require("./models/Products");
@@ -234,7 +233,6 @@ app.put("/updateUsers", async (req, res) => {
 const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
-const { OAuth2Client, GoogleAuth } = require("google-auth-library");
 
 const MIMEText = require("mimetext");
 
@@ -248,7 +246,6 @@ const SCOPES = ["https://www.googleapis.com/auth/gmail.modify"];
 const TOKEN_PATH = "token.json";
 
 // Load client secrets from a local file.
-// AM RAMAS AICI, VAD CA CU CREDENTIALS FILE MERGE SA TE LOG LA EA...
 fs.readFile("credentials.json", (err, content) => {
   if (err) return console.log("Error loading client secret file:", err);
   // Authorize a client with credentials, then call the Gmail API.
@@ -328,6 +325,14 @@ function sendMessage(auth) {
       console.log(err);
     });
 }
+// AM RAMAS AICI, TREBUIE SA INCERC SA FAC TREABA ASTA CU EMAIL-UL CU ALT EMAIL PROVIDER.
+// Vezi sa faci un alt branch, ori de aici ori de la master branch (first check what stage that branch is)
+// Asta acu merge gen dar trebuie sa te loghezi tu personal, si am vaz ca pe heroku nu poti sa fol conosla la server, adica ba da dar dupa ce ii dau run si inchid consola, se stinge app.
+// Try first to read thru all how other email features are until I start do with it
+// Ai grija cu gitignore si fisierele astea, vezi care sunt pe github, care nu, si care ar trebui sa fie
+
+// Going on with Mailjet. I kept a copy of this server folder on Desktop to have as reference if needed.
+
 // Create post request to send message
 // Create message
 const message = new MIMEText();
@@ -347,7 +352,7 @@ app.post("/sendEmail", (req, res) => {
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
     // Authorize a client with credentials, then call the Gmail API.
-    authorize(JSON.parse(content), sendMessage);
+    // authorize(JSON.parse(content), sendMessage);
   });
 
   // Testing purpose
@@ -358,9 +363,6 @@ app.post("/sendEmail", (req, res) => {
 
 // *** END GMAIL API ***
 
-app.get("/", (req, res) => {
-  res.send("Hello from express");
-});
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
