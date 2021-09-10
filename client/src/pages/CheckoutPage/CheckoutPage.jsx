@@ -105,7 +105,16 @@ export default function CheckoutPage(props) {
       deliveryWay
     );
     setLastOrder(cart);
-    sendEmail(); // To send email with the order
+    sendEmail(
+      firstName,
+      lastName,
+      email,
+      phoneNo,
+      address,
+      city,
+      deliveryWay,
+      deliveryTime
+    ); // To send email with the order
     setCart([]);
     setPageState("Receipt");
     setLastOrderTime(getCurrentDate());

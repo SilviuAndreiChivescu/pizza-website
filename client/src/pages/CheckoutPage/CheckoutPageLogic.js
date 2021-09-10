@@ -150,19 +150,37 @@ const useSetDefaultValues = () => {
 const useMailjetAPI = (cart) => {
   // Function to calculate total price
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
-  const sendEmail = () => {
+  const sendEmail = (
+    firstName,
+    lastName,
+    email,
+    phoneNo,
+    address,
+    city,
+    deliveryWay,
+    deliveryTime
+  ) => {
+    // Create the email
+    var nameText = `${firstName} ${lastName}`;
+    var contactText = `${phoneNo} ${email}`;
+    var addressText = `${city} ${address}`;
+    var deliveryText = `${deliveryWay} - ${deliveryTime}`;
     // Map over cart state
-    var emailText = cart
+    var cartText = cart
       .map((e) => {
-        return `${e.Quantity} X ${e.Name} - ${e.Price} lei \n`;
+        return `<li> ${e.Quantity} X ${e.Name} - ${e.Price} lei </li>`;
       })
       // Make it a string joined by words
       .join("")
       // Add total price at the end
-      .concat(` ${totalPrice} lei`);
+      .concat(` Total plata comanda: ${totalPrice} lei`);
     try {
       Axios.post("http://localhost:3001/sendEmail", {
-        text: emailText,
+        nameText: nameText,
+        contactText: contactText,
+        addressText: addressText,
+        deliveryText: deliveryText,
+        cartText: cartText,
       });
     } catch (err) {
       console.log(err);
