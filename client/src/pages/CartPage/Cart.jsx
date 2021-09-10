@@ -8,11 +8,7 @@ export default function Cart(props) {
   const today = new Date();
   const time = today.getHours() + ":" + today.getMinutes();
   const handleSubmit = () => {
-    if (cart.length === 0)
-      alert(
-        "Cosul tau este gol. Mai intai adauga mancare gustoasa din meniul nostru"
-      );
-    else setPageState("Checkout");
+    setPageState("Checkout");
   };
   return (
     <>
@@ -26,14 +22,16 @@ export default function Cart(props) {
           return <FoodBox cart={cart} setCart={setCart} value={value} />;
         })}
 
-        <div className="mb-5 border-bottom border-2 border-secondary">
-          <p className="fw-bold">Total: {totalPrice} lei</p>
-        </div>
-        {/* Below is a conditional rendering to see if time is past the delivery hours. If so, does not let user procede with order */}
-        {time > "22:29" && time < "8:59" ? (
-          <PastDeliveryHours />
-        ) : (
-          <CustomButton title="Comanda" onClick={handleSubmit} />
+        {/* Render only if it's not past delivery hours */}
+        {time > "22:29" && time < "8:59" ? <PastDeliveryHours /> : null}
+        {/* Render only if cart is not empty */}
+        {cart.length === 0 ? null : (
+          <>
+            <div className="mb-5 border-bottom border-2 border-secondary">
+              <p className="fw-bold">Total: {totalPrice} lei</p>
+            </div>
+            <CustomButton title="Comanda" onClick={handleSubmit} />
+          </>
         )}
       </section>
     </>
