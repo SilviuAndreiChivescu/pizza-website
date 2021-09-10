@@ -70,7 +70,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="dev-6rdeed8o.eu.auth0.com"
     clientId="10Iwn9shn6ROfe3HTASmfmvDJ5l5QHEz"
-    redirectUri="http://localhost:3000/"
+    redirectUri="https://hardcore-poincare-73f729.netlify.app/"
   >
     <Router>
       <App />
