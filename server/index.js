@@ -213,6 +213,11 @@ app.put("/updateUsers", async (req, res) => {
 
 // **** MAILJET ****
 
+const mailjet = require("node-mailjet").connect(
+  process.env.MJ_APIKEY_PUBLIC,
+  process.env.MJ_APIKEY_PRIVATE
+);
+
 // Create post request to send message
 app.post("/sendEmail", (req, res) => {
   // text variable to store the message passed from front-end
@@ -221,6 +226,33 @@ app.post("/sendEmail", (req, res) => {
 
   // Send message
 
+  const request = mailjet.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "medievalpizzacomanda@gmail.com",
+          Name: "Medieval Pizza",
+        },
+        To: [
+          {
+            Email: "gypandy00@gmail.com",
+            Name: "Andi bossu",
+          },
+        ],
+        Subject: "Comanda Noua!",
+        TextPart: `Comanda ta va fi asta: ${text}`,
+        // HTMLPart:
+        //   '<h3>Dear passenger 1, welcome to <a href="https://www.mailjet.com/">Mailjet</a>!</h3><br />May the delivery force be with you!',
+      },
+    ],
+  });
+  request
+    .then((result) => {
+      console.log(result.body);
+    })
+    .catch((err) => {
+      console.log(err.statusCode);
+    });
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
   res.json({ status: "Email sent" });
