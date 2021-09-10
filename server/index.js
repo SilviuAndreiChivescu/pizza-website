@@ -325,13 +325,7 @@ function sendMessage(auth) {
       console.log(err);
     });
 }
-// AM RAMAS AICI, TREBUIE SA INCERC SA FAC TREABA ASTA CU EMAIL-UL CU ALT EMAIL PROVIDER.
-// Vezi sa faci un alt branch, ori de aici ori de la master branch (first check what stage that branch is)
-// Asta acu merge gen dar trebuie sa te loghezi tu personal, si am vaz ca pe heroku nu poti sa fol conosla la server, adica ba da dar dupa ce ii dau run si inchid consola, se stinge app.
-// Try first to read thru all how other email features are until I start do with it
-// Ai grija cu gitignore si fisierele astea, vezi care sunt pe github, care nu, si care ar trebui sa fie
-
-// Going on with Mailjet. I kept a copy of this server folder on Desktop to have as reference if needed.
+// Incep pe branchu asta, online branch, cu Mailjet
 
 // Create post request to send message
 // Create message
