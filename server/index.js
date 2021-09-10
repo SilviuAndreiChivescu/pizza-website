@@ -218,32 +218,6 @@ const mailjet = require("node-mailjet").connect(
   process.env.MJ_APIKEY_PRIVATE
 );
 
-const request = mailjet.post("send", { version: "v3.1" }).request({
-  Messages: [
-    {
-      From: {
-        Email: "medievalpizzacomanda@gmail.com",
-        Name: "Medieval Pizza",
-      },
-      To: [
-        {
-          Email: "gypandy00@gmail.com",
-          Name: "Andi bossu",
-        },
-      ],
-      Subject: "Comanda Noua!",
-      TextPart: `Comanda ta va fi asta: `,
-      HTMLPart: `<h3>Dear Andi bossu, Comanda ta va fi asta: </h3> <p></p>`,
-    },
-  ],
-});
-request
-  .then((result) => {
-    console.log(result.body);
-  })
-  .catch((err) => {
-    console.log(err.statusCode);
-  });
 var count = 1;
 // Create post request to send message
 app.post("/sendEmail", (req, res) => {
@@ -252,7 +226,6 @@ app.post("/sendEmail", (req, res) => {
   // Set email message to the text passed via request
 
   // Send message
-
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
