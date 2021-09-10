@@ -218,6 +218,7 @@ const mailjet = require("node-mailjet").connect(
   process.env.MJ_APIKEY_PRIVATE
 );
 
+var count = 1;
 // Create post request to send message
 app.post("/sendEmail", (req, res) => {
   // text variable to store the message passed from front-end
@@ -241,8 +242,7 @@ app.post("/sendEmail", (req, res) => {
         ],
         Subject: "Comanda Noua!",
         TextPart: `Comanda ta va fi asta: ${text}`,
-        // HTMLPart:
-        //   '<h3>Dear passenger 1, welcome to <a href="https://www.mailjet.com/">Mailjet</a>!</h3><br />May the delivery force be with you!',
+        HTMLPart: `<h3>Dear Andi bossu, Comanda ta va fi asta: </h3> <p>${text}</p>`,
       },
     ],
   });
