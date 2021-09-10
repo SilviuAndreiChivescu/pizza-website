@@ -146,8 +146,8 @@ const useSetDefaultValues = () => {
   };
 };
 
-// GMAIL API
-const useGmailAPI = (cart) => {
+// Mailjet API
+const useMailjetAPI = (cart) => {
   // Function to calculate total price
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
   const sendEmail = () => {
@@ -161,7 +161,7 @@ const useGmailAPI = (cart) => {
       // Add total price at the end
       .concat(` ${totalPrice} lei`);
     try {
-      Axios.post("https://pizza-website2021.herokuapp.com/sendEmail", {
+      Axios.post("http://localhost:3001/sendEmail", {
         text: emailText,
       });
     } catch (err) {
@@ -170,12 +170,12 @@ const useGmailAPI = (cart) => {
   };
   return { sendEmail };
 };
-// *** END GMAIL API ***
+// *** END Mailjet API ***
 
 export {
   usePostToOrders,
   usePostToUsers,
   useCheckIfUserInDb,
   useSetDefaultValues,
-  useGmailAPI,
+  useMailjetAPI,
 };

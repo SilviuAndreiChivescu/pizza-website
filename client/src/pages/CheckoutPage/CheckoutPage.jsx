@@ -10,7 +10,7 @@ import {
   usePostToOrders,
   useCheckIfUserInDb,
   useSetDefaultValues,
-  useGmailAPI,
+  useMailjetAPI,
 } from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
@@ -56,8 +56,8 @@ export default function CheckoutPage(props) {
   // Function to check if this user is already in Users Collection
   const { checkIfUserInDb } = useCheckIfUserInDb();
 
-  // GMAIL API
-  const { sendEmail } = useGmailAPI(cart);
+  // Mailjet API
+  const { sendEmail } = useMailjetAPI(cart);
 
   const handleSubmit = () => {
     // If any of the inputs is empty, don't execute button functionality
