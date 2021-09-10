@@ -219,29 +219,28 @@ const mailjet = require("node-mailjet").connect(
 );
 
 var count = 1;
+
+// Send message
 // Create post request to send message
 app.post("/sendEmail", (req, res) => {
   // text variable to store the message passed from front-end
   const text = req.body.text;
   // Set email message to the text passed via request
 
-  // Send message
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
         From: {
           Email: "medievalpizzacomanda@gmail.com",
-          Name: "Medieval Pizza",
+          Name: "no-reply",
         },
         To: [
           {
             Email: "gypandy00@gmail.com",
-            Name: "Andi bossu",
           },
         ],
         Subject: "Comanda Noua!",
-        TextPart: `Comanda ta va fi asta: ${text}`,
-        HTMLPart: `<h3>Dear Andi bossu, Comanda ta va fi asta: </h3> <p>${text}</p>`,
+        HTMLPart: `<h3> Comanda ta va fi asta: </h3> <p>${text}</p>`,
       },
     ],
   });
