@@ -127,30 +127,33 @@ export default function CheckoutPage(props) {
         pageState={pageState}
         setPageState={setPageState}
       />
-      {/* <Form className={"m-5"}>  - UNCOMMENT LATER AFTER TESTING WITH EMAIL FUNCTONALITY */}
-      <UserDetailsInputs
-        setPageState={setPageState}
-        setFirstName={setFirstName}
-        firstName={firstName}
-        setLastName={setLastName}
-        lastName={lastName}
-        setEmail={setEmail}
-        email={email}
-        setPhoneNo={setPhoneNo}
-        phoneNo={phoneNo}
-        setAddress={setAddress}
-        address={address}
-        setCity={setCity}
-        city={city}
-      />
-      <DeliveryDetails
-        setDeliveryTime={setDeliveryTime}
-        setDeliveryWay={setDeliveryWay}
-        setKeepData={setKeepData}
-      />
-      <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-      <CustomButton title={"Plaseaza Comanda"} onClick={() => handleSubmit()} />
-      {/* </Form> */}
+      <Form className={"m-5"}>
+        <UserDetailsInputs
+          setPageState={setPageState}
+          setFirstName={setFirstName}
+          firstName={firstName}
+          setLastName={setLastName}
+          lastName={lastName}
+          setEmail={setEmail}
+          email={email}
+          setPhoneNo={setPhoneNo}
+          phoneNo={phoneNo}
+          setAddress={setAddress}
+          address={address}
+          setCity={setCity}
+          city={city}
+        />
+        <DeliveryDetails
+          setDeliveryTime={setDeliveryTime}
+          setDeliveryWay={setDeliveryWay}
+          setKeepData={setKeepData}
+        />
+        <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
+        <CustomButton
+          title={"Plaseaza Comanda"}
+          onClick={() => handleSubmit()}
+        />
+      </Form>
     </>
   );
 }
