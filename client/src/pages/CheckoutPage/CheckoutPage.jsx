@@ -90,7 +90,7 @@ export default function CheckoutPage(props) {
       window.localStorage.setItem("userDetails", JSON.stringify(data));
     }
 
-    // // This function checksif the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
+    // // This function checks if the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
     checkIfUserInDb(email, firstName, lastName, address, city, phoneNo);
 
     addToOrders(
@@ -105,6 +105,7 @@ export default function CheckoutPage(props) {
       deliveryWay
     );
     setLastOrder(cart);
+    // To send email with the order
     sendEmail(
       firstName,
       lastName,
@@ -114,7 +115,7 @@ export default function CheckoutPage(props) {
       city,
       deliveryWay,
       deliveryTime
-    ); // To send email with the order
+    );
     setCart([]);
     setPageState("Receipt");
     setLastOrderTime(getCurrentDate());

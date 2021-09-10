@@ -45,7 +45,7 @@ const useSetDefaultValues = () => {
 // Update user details in Users Collection
 const useUpdateUserDetails = () => {
   const updateUser = (email, firstName, lastName, address, city, phoneNo) => {
-    Axios.put("https://pizza-website2021.herokuapp.com/updateUsers", {
+    Axios.put(`${process.env.REACT_APP_ENDPOINT}/updateUsers`, {
       email: email,
       firstName: firstName,
       lastName: lastName,

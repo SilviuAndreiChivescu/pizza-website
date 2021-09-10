@@ -17,7 +17,7 @@ const usePostToOrders = () => {
     deliveryWay
   ) => {
     try {
-      Axios.post("https://pizza-website2021.herokuapp.com/insertIntoOrders", {
+      Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoOrders`, {
         FirstName: firstName,
         LastName: lastName,
         Email: email,
@@ -47,7 +47,7 @@ const usePostToUsers = () => {
     phoneNumber
   ) => {
     try {
-      Axios.post("https://pizza-website2021.herokuapp.com/insertIntoUsers", {
+      Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoUsers`, {
         FirstName: firstName,
         LastName: lastName,
         Email: email,
@@ -78,7 +78,7 @@ const useCheckIfUserInDb = () => {
     try {
       // Send reqeust to MongoDB to check if for this email we have data.
       Axios.get(
-        `https://pizza-website2021.herokuapp.com/readFromUsers/${email}`
+        `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${email}`
       ).then((response) => {
         // If there is no data, then add user to Users Collection
         if (response.data.length === 0)
@@ -175,7 +175,7 @@ const useMailjetAPI = (cart) => {
       // Add total price at the end
       .concat(` Total plata comanda: ${totalPrice} lei`);
     try {
-      Axios.post("http://localhost:3001/sendEmail", {
+      Axios.post(`${process.env.REACT_APP_ENDPOINT}/sendEmail`, {
         nameText: nameText,
         contactText: contactText,
         addressText: addressText,

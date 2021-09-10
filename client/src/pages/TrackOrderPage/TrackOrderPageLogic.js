@@ -8,7 +8,7 @@ const useOrder = (id) => {
   // Below functionality commented is for when adding to Orders collection a Address field
   // const [address, setAddress] = useState([]);
   useEffect(() => {
-    Axios.get(`https://pizza-website2021.herokuapp.com/readbyid/${id}`).then(
+    Axios.get(`${process.env.REACT_APP_ENDPOINT}/readbyid/${id}`).then(
       (response) => {
         var order = response.data.map((e) => {
           return e.Cart;
