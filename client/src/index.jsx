@@ -7,10 +7,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { Auth0Provider } from "@auth0/auth0-react";
 
-// MAYBE WHEN REFRESHING RECEIPT, TO TAKE U BACK TO / HOME PAGE
-
-// Modal content. I have the optional field with User's preference with its food. I have to add that to email at least.
-
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
 // For history page, make that button track order only show when order is made not more than 50 mins ago, if past 50 mins, make a button that takes you to the fb page to rate us
 // UI for all pages, finish. Also add NavBar and what else you want to add to them
@@ -39,6 +35,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Clean index.html
 // Delete all non used components & rename all components acordinagly
 
+// See if cata can do with emails like this, to only show a number on tab, or he needs a push up notification. If so, maybe try with another email, try from yahoo or smthing, like to receive
 // Check if there are npm modules unused and uninstall them
 // Unit tests?
 
