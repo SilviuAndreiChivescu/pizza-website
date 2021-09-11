@@ -27,11 +27,11 @@ const useHistoryData = () => {
             var dateOfOrder = new Date(
               parseInt(e._id.substring(0, 8), 16) * 1000
             );
-            return dateOfOrder;
+            return dateOfOrder.toLocaleString("ro-RO");
           })
           .reverse();
 
-        // To get id for orders from data
+        // To get id for orders from data (using .reverse() to get most curent time order at the top)
         var ids = data
           .map((e) => {
             return e._id;
