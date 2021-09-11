@@ -24,7 +24,7 @@ export default function NoCartPage(props) {
 
   return (
     <>
-      <NavBar title={<TitleForNavbar />} setPageState={setPageState} />
+      <NavBar title={<TitleForNavbar />} />
       <Menu
         cart={cart}
         setCart={setCart}
