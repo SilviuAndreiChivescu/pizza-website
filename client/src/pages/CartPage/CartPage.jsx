@@ -2,14 +2,10 @@ import NavBar from "../../shared components/NavBar";
 import Cart from "./Cart";
 
 export default function CartPage(props) {
-  const { pageState, setPageState, cart, setCart, totalPrice } = props;
+  const { setPageState, cart, setCart, totalPrice } = props;
   return (
     <>
-      <NavBar
-        title={"Cosul tau"}
-        pageState={pageState}
-        setPageState={setPageState}
-      />
+      <NavBar title={"Cosul tau"} setPageState={() => setPageState("NoCart")} />
       <Cart
         cart={cart}
         setCart={setCart}

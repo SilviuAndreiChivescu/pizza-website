@@ -9,7 +9,6 @@ import { useContent, useShow } from "./NoCartPageLogic";
 
 export default function NoCartPage(props) {
   const {
-    pageState,
     setPageState,
     cart,
     setCart,
@@ -26,11 +25,7 @@ export default function NoCartPage(props) {
 
   return (
     <>
-      <NavBar
-        title={"Orice comanda va fi confirmata in 5 minute."}
-        pageState={pageState}
-        setPageState={setPageState}
-      />
+      <NavBar title={<TitleForNavbar />} />
       <Menu
         cart={cart}
         setCart={setCart}
@@ -60,3 +55,14 @@ export default function NoCartPage(props) {
     </>
   );
 }
+
+// This component is used as title parameter for <NavBar />
+const TitleForNavbar = () => {
+  return (
+    <img
+      className="d-inline p-2 ms-2"
+      src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"
+      alt="medieval pizza logo"
+    ></img>
+  );
+};

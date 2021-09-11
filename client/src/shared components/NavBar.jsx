@@ -5,39 +5,17 @@ import Drawer from "./Drawer";
 
 export default function NavBar(props) {
   // Destructuring props
-  const { pageState, setPageState, title } = props;
+  const { setPageState, title } = props;
 
   // State for Modal
   const [show, setShow] = useState(false);
 
-  // Below can be found the particular differences NavBar has on each Page State
-  const NoCartNavBar = () => {
-    return (
-      <img
-        className="d-inline p-2 ms-2"
-        src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"
-        alt="medieval pizza logo"
-      ></img>
-    );
-  };
-
-  const CartNavBar = () => {
+  // Arrow component to render a left arrow HTML entity with the functionality to go to previous page
+  const Arrow = () => {
     return (
       <h5
         style={{ display: "inline", cursor: "pointer" }}
-        onClick={() => setPageState("NoCart")}
-        className="fs-1"
-      >
-        &#8592;
-      </h5>
-    );
-  };
-
-  const CheckoutNavBar = () => {
-    return (
-      <h5
-        style={{ display: "inline", cursor: "pointer" }}
-        onClick={() => setPageState("Cart")}
+        onClick={() => setPageState()}
         className="fs-1"
       >
         &#8592;
@@ -49,10 +27,8 @@ export default function NavBar(props) {
     <header>
       <div className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
         <div className="mt-2">
-          {/* Render something different for each Page State */}
-          {pageState === "NoCart" ? <NoCartNavBar /> : null}
-          {pageState === "Cart" ? <CartNavBar /> : null}
-          {pageState === "Checkout" ? <CheckoutNavBar /> : null}
+          {/* If on NoCartPage, don't render the Arrow because it's home page. If on any other page, render the arrow with the setPageState to go back one page (specified in <NavBar setPageState={() => setPageState("PreviousName")} /> ) */}
+          {setPageState ? <Arrow /> : null}
           <a
             href="https://www.facebook.com/pizzamedievalmangalia/"
             target="_blank"
