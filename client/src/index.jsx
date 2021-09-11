@@ -8,19 +8,21 @@ import Main from "./routes/Main";
 import Whoops404 from "./routes/Whoops404";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-// TODO: // GEN NU MI MAI IA CU ULTIMELE CHANGES PE HEROKU DUPA CE II DAU PUSH, PROB FAC O ALTA APP SI PLM INCERC IAR, VEZI
-// IMPORTANT ISH, FOR WHEN GMAIL API REACHES LIMIT OF > 250 QUOTAS, TRY FIND SOMETHING TO GET YOU THAT ANSWER IF IT REACHES, AND IF IT DOES, ALERT USER TO TRY AGAIN
+// Make another branch from this one before you do restructure
+// Do the restructure with Routes and the pages first, because I think it's kind of messy right now
 
-// Cart page, instead of Alert if cart empty, try to not show button if cart empty, maybe even the total price
-// For EMAIL. Idk, make it better for how Cata should get it
-
-// You know when you put specific things for each page in NavBar. Well, now I think that I should put at least for the setPage prop, I should have it in NavBar's arguments <NavBar onClick={setPage} />
-// For history page, make that button track order only show when order is made not more than 50 mins ago && Maybe put address for each order as you did with time stamp
+// Refactor Modal content's MarkUp. Make it in react-bootstrap. Maybe there are others files that need this
+// Modal content. I have the optional field with User's preference with its food. I have to add that to email at least.
 
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
+// For history page, make that button track order only show when order is made not more than 50 mins ago, if past 50 mins, make a button that takes you to the fb page to rate us
+// UI for all pages, finish. Also add NavBar and what else you want to add to them
+
 // Maybe make it so that it takes pageState from localStorage, so that if u refresh u get to where u were, ofc with some exceptions if needed becauese of errors
 
 // Solve problem with Loading. Sometime it just stops on loading. Make a catch or something that when not finish to load, reload or smthing
+
+// In relation with below. I am thinking I can put setAppState("loading") everytime I do a request, and in that request's .then, I can setAppState("loaded"). Also, I can put for catch(err) in that request try, setAppState("error") and I can render a text with error please refresh or come back later if not ok
 // TO MANAGE STATE OF THE ENTIRE APP, LOADING ETC -  After all the request do .then or await(check what await does and if it is same as with .then) LOOK AT SS TAKEN
 
 // DELETE pages.js, now is just my mongoDB route from which I get directions to build the rest of the App
