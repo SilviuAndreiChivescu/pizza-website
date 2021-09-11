@@ -19,7 +19,7 @@ export default function ModalContent(props) {
 
   // If the Product Category === "pizza", make options for size
   const PizzaSize = () => {
-    // This Array is used to keep the checked value for the <Form.Check />
+    // This Array is used to set size for pizza and to keep the checked value for the <Form.Check />
     const values = [{ Mica: "0" }, { Medie: "1" }, { Mare: "2" }];
     return (
       <>
