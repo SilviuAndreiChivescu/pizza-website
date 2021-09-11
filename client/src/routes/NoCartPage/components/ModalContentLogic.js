@@ -14,8 +14,7 @@ const useQuantitySelector = () => {
 
   return { quantity, incrementItem, decreaseItem };
 };
-// AM RAMAS AICI, MA GANDEAM CUM SA FAC SA ADAUG SI FIELDU OPTIONAL CU DETALII DESPRE PIZZA SAU ASA
-// IDEEA E CA NUJ DACA AS VREA SA ARATE SI IN CARTPAGE TREABA ASTA, SAU AS VREA? IA VEZI CUM E DUPA CE PUI AICI MAI JOS DACA E VAR OPTIONAL, SA ADAUGE LA NAME
+
 // Add / Update the product to the cart State Array
 const useAddToCart = () => {
   const addToCart = (
