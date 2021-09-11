@@ -12,7 +12,7 @@ export default function MyModal(props) {
       backdrop="true"
       onHide={onClose}
     >
-      <Modal.Header closeButton onClick={onClose}>
+      <Modal.Header closeButton toggle={onClose}>
         <Modal.Title id="contained-modal-title-vcenter">{Name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{props.children}</Modal.Body>
