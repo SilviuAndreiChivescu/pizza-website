@@ -29,6 +29,9 @@ export default function ModalContent(props) {
   const [size, setSize] = useState("0");
   const [sizeName, setSizeName] = useState("");
 
+  // State for specifics for product
+  const [specifics, setSpecifics] = useState("");
+
   // If the Product Category === "pizza", make options for size
   const PizzaSize = () => {
     // This Array is used to set size for pizza and to keep the checked value for the <Form.Check />
@@ -59,7 +62,15 @@ export default function ModalContent(props) {
 
   const handleSubmit = () => {
     onClose();
-    addToCart(cart, setCart, content, quantity, content.Price[size], sizeName);
+    addToCart(
+      cart,
+      setCart,
+      content,
+      quantity,
+      content.Price[size],
+      sizeName,
+      specifics
+    );
   };
 
   return (
@@ -79,7 +90,10 @@ export default function ModalContent(props) {
           ) : null}
           <Card.Text>
             Alte informatii (optional):{" "}
-            <FormControl placeholder="Exemplu: Fara ardei" />
+            <FormControl
+              onChange={(e) => setSpecifics(e.target.value)}
+              placeholder="Exemplu: Fara ardei"
+            />
           </Card.Text>
           <Row className="justify-content-md-center" sm={2} lg={2}>
             <Col xs lg="3">

@@ -14,12 +14,25 @@ const useQuantitySelector = () => {
 
   return { quantity, incrementItem, decreaseItem };
 };
-
+// AM RAMAS AICI, MA GANDEAM CUM SA FAC SA ADAUG SI FIELDU OPTIONAL CU DETALII DESPRE PIZZA SAU ASA
+// IDEEA E CA NUJ DACA AS VREA SA ARATE SI IN CARTPAGE TREABA ASTA, SAU AS VREA? IA VEZI CUM E DUPA CE PUI AICI MAI JOS DACA E VAR OPTIONAL, SA ADAUGE LA NAME
 // Add / Update the product to the cart State Array
 const useAddToCart = () => {
-  const addToCart = (cart, setCart, content, quantity, price, sizeName) => {
+  const addToCart = (
+    cart,
+    setCart,
+    content,
+    quantity,
+    price,
+    sizeName,
+    specifics
+  ) => {
     // Name of product
     let name = content.Name;
+
+    // For specifics
+    if (specifics) name += ` - (${specifics})`;
+
     if (content.Category === "pizza") {
       // If sizeName is the default, it will not get its id because the event is onChange and nothing changed. In that case, I need to make sure if the sizeName is default, to get its name
       if (sizeName === "") sizeName = "Mica";
