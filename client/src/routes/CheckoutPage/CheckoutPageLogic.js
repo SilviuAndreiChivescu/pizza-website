@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
-import { useTotalNoOfProductAndTotalPrice } from "./../../routes/MainLogic";
+import { useTotalNoOfProductAndTotalPrice } from "./../../AppLogic";
 
 // Post request to Orders collection // I need to refactor this to match Orders model -  ?
 const usePostToOrders = () => {

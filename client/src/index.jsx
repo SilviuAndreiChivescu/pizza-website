@@ -15,8 +15,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // For history page, make that button track order only show when order is made not more than 50 mins ago, if past 50 mins, make a button that takes you to the fb page to rate us
 // UI for all pages, finish. Also add NavBar and what else you want to add to them
 
-// Maybe make it so that it takes pageState from localStorage, so that if u refresh u get to where u were, ofc with some exceptions if needed becauese of errors
-
 // Solve problem with Loading. Sometime it just stops on loading. Make a catch or something that when not finish to load, reload or smthing
 
 // In relation with below. I am thinking I can put setAppState("loading") everytime I do a request, and in that request's .then, I can setAppState("loaded"). Also, I can put for catch(err) in that request try, setAppState("error") and I can render a text with error please refresh or come back later if not ok

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTotalNoOfProductAndTotalPrice } from "../../routes/MainLogic";
+import { useTotalNoOfProductAndTotalPrice } from "../../AppLogic";
 import Details from "../../shared components/Details";
 import { useDate, useOrder } from "./TrackOrderPageLogic";
 

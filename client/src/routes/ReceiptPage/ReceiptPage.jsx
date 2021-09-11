@@ -1,4 +1,4 @@
-import { useTotalNoOfProductAndTotalPrice } from "../../routes/MainLogic";
+import { useTotalNoOfProductAndTotalPrice } from "../../AppLogic";
 import Details from "../../shared components/Details";
 
 export default function ReceiptPage(props) {
