@@ -54,11 +54,14 @@ export default function App() {
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
   const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
 
+  // If loading
   if (appState === "loading" || isLoading) return <Loading />;
+  // If loaded
   else if (appState === "loaded") {
     return (
       <>
         <Routes>
+          {/* NoCartPage */}
           <Route
             path="/"
             element={
