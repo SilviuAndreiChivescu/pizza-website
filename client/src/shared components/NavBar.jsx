@@ -51,7 +51,7 @@ export default function NavBar(props) {
           ></i>
         </div>
         <h5 style={{ cursor: "default" }} className="d-inline p-2 ms-5">
-          {title}
+          {title ? title : "Orice comanda este confirmata in maxim 5 minute."}
         </h5>
         <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} />
       </div>
