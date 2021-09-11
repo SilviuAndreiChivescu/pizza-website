@@ -1,11 +1,11 @@
 import { useState } from "react";
 import MyModal from "./MyModal";
-// import "./Modal.css";
 import Drawer from "./Drawer";
+import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
   // Destructuring props
-  const { setPageState, to, title } = props;
+  const { to, title } = props;
 
   // State for Modal
   const [show, setShow] = useState(false);
@@ -13,13 +13,11 @@ export default function NavBar(props) {
   // Arrow component to render a left arrow HTML entity with the functionality to go to previous page
   const Arrow = () => {
     return (
-      <h5
-        style={{ display: "inline", cursor: "pointer" }}
-        onClick={() => setPageState(to)}
-        className="fs-1"
-      >
-        &#8592;
-      </h5>
+      <Link style={{ textDecoration: "none", color: "white" }} to={`/${to}`}>
+        <h5 style={{ display: "inline" }} className="fs-1">
+          &#8592;
+        </h5>
+      </Link>
     );
   };
 
@@ -55,10 +53,7 @@ export default function NavBar(props) {
         <h5 style={{ cursor: "default" }} className="d-inline p-2 ms-5">
           {title}
         </h5>
-        <Drawer
-          setPageState={setPageState}
-          Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>}
-        />
+        <Drawer Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>} />
       </div>
       <MyModal
         Name="Despre noi"

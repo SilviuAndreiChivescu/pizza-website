@@ -1,12 +1,13 @@
-import CustomButton from "../CheckoutPage/CustomButton";
+import CustomButton from "../../shared components/CustomButton";
 import { useHistoryData } from "./HistoryLogic";
 import { Card } from "react-bootstrap";
 import { useTotalNoOfProductAndTotalPrice } from "../../routes/MainLogic";
+import { Link } from "react-router-dom";
 
 export default function History(props) {
   const { historyProductList, timeOfOrder, loaded, idOfHistoryProductList } =
     useHistoryData();
-  const { setPageState, setIdOfOrder } = props;
+  const { setIdOfOrder } = props;
   if (loaded) {
     return historyProductList.map((e, idx) => {
       return (
@@ -14,7 +15,6 @@ export default function History(props) {
           timeOfOrder={timeOfOrder}
           e={e}
           idx={idx}
-          setPageState={setPageState}
           idOfHistoryProductList={idOfHistoryProductList}
           setIdOfOrder={setIdOfOrder}
         />
@@ -24,14 +24,7 @@ export default function History(props) {
 }
 
 const HistoryBody = (props) => {
-  const {
-    e,
-    idx,
-    setPageState,
-    timeOfOrder,
-    idOfHistoryProductList,
-    setIdOfOrder,
-  } = props;
+  const { e, idx, timeOfOrder, idOfHistoryProductList, setIdOfOrder } = props;
   // Calculate total price for particular order using this custom hook
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(e);
 
@@ -54,13 +47,14 @@ const HistoryBody = (props) => {
         </ul>
       </Card.Body>
 
-      <CustomButton
-        title={"Urmareste comanda"}
-        onClick={() => {
-          setIdOfOrder(idOfHistoryProductList[idx]);
-          setPageState("TrackOrder");
-        }}
-      />
+      <Link to="/trackorder">
+        <CustomButton
+          title={"Urmareste comanda"}
+          onClick={() => {
+            setIdOfOrder(idOfHistoryProductList[idx]);
+          }}
+        />
+      </Link>
     </Card>
   );
 };

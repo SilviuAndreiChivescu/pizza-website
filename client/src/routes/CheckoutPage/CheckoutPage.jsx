@@ -1,7 +1,7 @@
 import Details from "../../shared components/Details";
 import NavBar from "../../shared components/NavBar";
 import DeliveryDetails from "./DeliveryDetails";
-import CustomButton from "./CustomButton";
+import CustomButton from "../../shared components/CustomButton";
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 import { useEffect, useState } from "react";
 
@@ -14,20 +14,13 @@ import {
 } from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 // For this page there is to implement the following:
 // "confirm ca am citit..." checkbox should be required
 // encapsulate states and stuff if needed later
 export default function CheckoutPage(props) {
-  const {
-    pageState,
-    setPageState,
-    cart,
-    setCart,
-    totalPrice,
-    setLastOrder,
-    setLastOrderTime,
-  } = props;
+  const { cart, setCart, totalPrice, setLastOrder, setLastOrderTime } = props;
 
   // States for User Input fields
   const {
@@ -117,20 +110,14 @@ export default function CheckoutPage(props) {
       deliveryTime
     );
     setCart([]);
-    setPageState("Receipt");
     setLastOrderTime(getCurrentDate());
   };
 
   return (
     <>
-      <NavBar
-        title={"Aici dai comanda"}
-        setPageState={setPageState}
-        to={"Cart"}
-      />
+      <NavBar title={"Aici dai comanda"} to={"Cart"} />
       <Form className={"m-5"}>
         <UserDetailsInputs
-          setPageState={setPageState}
           setFirstName={setFirstName}
           firstName={firstName}
           setLastName={setLastName}
@@ -150,10 +137,12 @@ export default function CheckoutPage(props) {
           setKeepData={setKeepData}
         />
         <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-        <CustomButton
-          title={"Plaseaza Comanda"}
-          onClick={() => handleSubmit()}
-        />
+        <Link to="/receipt">
+          <CustomButton
+            title={"Plaseaza Comanda"}
+            onClick={() => handleSubmit()}
+          />
+        </Link>
       </Form>
     </>
   );

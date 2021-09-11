@@ -7,14 +7,7 @@ import ModalContent from "./components/ModalContent";
 import { useContent, useShow } from "./NoCartPageLogic";
 
 export default function NoCartPage(props) {
-  const {
-    setPageState,
-    cart,
-    setCart,
-    totalPrice,
-    totalQuantity,
-    productsList,
-  } = props;
+  const { cart, setCart, totalPrice, totalQuantity, productsList } = props;
 
   // Content for modal
   const { content, setContent } = useContent();
@@ -24,7 +17,7 @@ export default function NoCartPage(props) {
 
   return (
     <>
-      <NavBar title={<TitleForNavbar />} setPageState={setPageState} />
+      <NavBar title={<TitleForNavbar />} />
       <Menu
         cart={cart}
         setCart={setCart}
@@ -46,11 +39,7 @@ export default function NoCartPage(props) {
           onClose={() => setShow((currShow) => !currShow)}
         />
       </MyModal>
-      <CartBar
-        totalPrice={totalPrice}
-        totalQuantity={totalQuantity}
-        setPageState={() => setPageState("Cart")}
-      />
+      <CartBar totalPrice={totalPrice} totalQuantity={totalQuantity} />
     </>
   );
 }

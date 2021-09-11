@@ -1,15 +1,13 @@
+import { Link } from "react-router-dom";
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
-import CustomButton from "../CheckoutPage/CustomButton";
+import CustomButton from "../../shared components/CustomButton";
 import { useQuantitySelector } from "./CartLogic";
 
 export default function Cart(props) {
-  const { setPageState, cart, setCart, totalPrice } = props;
+  const { cart, setCart, totalPrice } = props;
   const today = new Date();
   const time = today.getHours() + ":" + today.getMinutes();
-  const handleSubmit = () => {
-    setPageState("Checkout");
-  };
   return (
     <>
       <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
@@ -30,7 +28,9 @@ export default function Cart(props) {
             <div className="mb-5 border-bottom border-2 border-secondary">
               <p className="fw-bold">Total: {totalPrice} lei</p>
             </div>
-            <CustomButton title="Comanda" onClick={handleSubmit} />
+            <Link to="/checkout">
+              <CustomButton title="Comanda" />
+            </Link>
           </>
         )}
       </section>

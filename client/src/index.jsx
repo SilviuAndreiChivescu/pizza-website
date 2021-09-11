@@ -2,16 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { MongoDB } from "./pages";
-import Main from "./routes/Main";
-import Whoops404 from "./routes/Whoops404";
+import App from "./App";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import { Auth0Provider } from "@auth0/auth0-react";
 
-// Make another branch from this one before you do restructure
-// Do the restructure with Routes and the pages first, because I think it's kind of messy right now
+// MAYBE WHEN REFRESHING RECEIPT, TO TAKE U BACK TO / HOME PAGE
 
-// Refactor Modal content's MarkUp. Make it in react-bootstrap. Maybe there are others files that need this
 // Modal content. I have the optional field with User's preference with its food. I have to add that to email at least.
 
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
@@ -55,18 +52,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // Cica useEffect daca nu i dai nici un argument, o sa dea run de fiecare data cand un state din componenta respectiva se va schimba.
 // <React.strictmode> makes ur code render two times at the begging
 // TS is very good for maintaining application and is not too much to learn
-
-function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="*" element={<Whoops404 />} />
-        <Route path="/mongodb" element={<MongoDB />} />
-      </Routes>
-    </>
-  );
-}
 
 ReactDOM.render(
   <Auth0Provider

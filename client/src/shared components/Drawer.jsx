@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Drawer(props) {
-  const { setPageState } = props;
   // **** Authentification dependent ****
   const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
@@ -17,11 +16,7 @@ export default function Drawer(props) {
     // My account button
     const MyAccount = () => {
       return (
-        <ListItem
-          onClick={() => setPageState("MyAccount")}
-          button
-          key="MyAccount"
-        >
+        <ListItem component={Link} to="/myaccount" button key="MyAccount">
           <ListItemText primary="Contul meu" />
         </ListItem>
       );
@@ -30,7 +25,7 @@ export default function Drawer(props) {
     // History button
     const History = () => {
       return (
-        <ListItem onClick={() => setPageState("History")} button key="History">
+        <ListItem component={Link} to="/history" button key="History">
           <ListItemText primary="Comenzile mele" />
         </ListItem>
       );

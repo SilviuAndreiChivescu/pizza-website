@@ -1,5 +1,5 @@
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
-import CustomButton from "../../pages/CheckoutPage/CustomButton";
+import CustomButton from "../../shared components/CustomButton";
 import {
   useSetDefaultValues,
   useUpdateUserDetails,
