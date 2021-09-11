@@ -1,7 +1,19 @@
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  FormControl,
+  Row,
+} from "react-bootstrap";
+import CustomButton from "../../../shared components/CustomButton";
 import { useQuantitySelector, useAddToCart } from "./ModalContentLogic";
 
+// SI SA FAC DUPA FUNCTIONALITATE CU FIELD U DE FARA CEAPA ETC,
+// SA LE TRIMIT SI PE ASTEA LANGA RESPECTIVA COMANDA LA EMAIL.
+// SI GANDESTE TE INTRE TIMP DACA MAI TREBUIE UNDEVA INFO ASTA
 // Content of Modal in NoCartPage
 export default function ModalContent(props) {
   const { content, cart, setCart, onClose } = props;
@@ -22,28 +34,26 @@ export default function ModalContent(props) {
     // This Array is used to set size for pizza and to keep the checked value for the <Form.Check />
     const values = [{ Mica: "0" }, { Medie: "1" }, { Mare: "2" }];
     return (
-      <>
-        <Form.Group className="mb-3">
-          {values.map((e) => {
-            return (
-              <>
-                <Form.Check
-                  type="radio"
-                  name="pizzaSize"
-                  label={Object.keys(e)}
-                  id={Object.keys(e)}
-                  value={Object.values(e)}
-                  checked={size == Object.values(e)} // using "==" instead of "===" because this is the only way it works. (I belive because values array has objects in it and it points to object value)
-                  onChange={(e) => {
-                    setSize(e.currentTarget.value);
-                    setSizeName(e.currentTarget.id);
-                  }}
-                />
-              </>
-            );
-          })}
-        </Form.Group>
-      </>
+      <Form.Group className="mb-3">
+        {values.map((e) => {
+          return (
+            <>
+              <Form.Check
+                type="radio"
+                name="pizzaSize"
+                label={Object.keys(e)}
+                id={Object.keys(e)}
+                value={Object.values(e)}
+                checked={size == Object.values(e)} // using "==" instead of "===" because this is the only way it works. (I belive because values array has objects in it and it points to object value)
+                onChange={(e) => {
+                  setSize(e.currentTarget.value);
+                  setSizeName(e.currentTarget.id);
+                }}
+              />
+            </>
+          );
+        })}
+      </Form.Group>
     );
   };
 
@@ -53,65 +63,53 @@ export default function ModalContent(props) {
   };
 
   return (
-    <>
-      <img
-        style={{ maxWidth: "100%" }}
-        src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"
-      ></img>
-      <p className="pt-3">{content.Description}</p>
-      <h5 className="fw-bold">{content.Price[size]} lei</h5>
-      {content.Category === "pizza" ? <PizzaSize setSize={setSize} /> : null}
-      <label className="mt-2 mb-2" htmlFor="alteInformatiiInput">
-        Alte informatii (optional)
-        <input
-          className="ms-3"
-          id="alteInformatiiInput"
-          type="text"
-          name="e-mail"
-          placeholder="Fara ardei, etc."
+    <Container>
+      <Card>
+        <Card.Img
+          variant="top"
+          src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"
+          rounded
+          fluid
         />
-      </label>
-      <br></br>
-      <div className="modal-footer">
-        <div className="row container-fluid">
-          <div className="col d-inline-flex fs-3 ps-0">
-            <div>
-              <button
+        <Card.Body>
+          <Card.Title>{content.Price[size]} lei </Card.Title>
+          <Card.Subtitle> {content.Description} </Card.Subtitle>
+          {content.Category === "pizza" ? (
+            <PizzaSize setSize={setSize} />
+          ) : null}
+          <Card.Text>
+            Alte informatii (optional):{" "}
+            <FormControl placeholder="Exemplu: Fara ardei" />
+          </Card.Text>
+          <Row className="justify-content-md-center" sm={2} lg={2}>
+            <Col xs lg="3">
+              <Button
+                size="lg"
                 onClick={() => decreaseItem()}
-                className="border-1 border-dark bg-light rounded-start"
-                style={{ width: "50px" }}
+                variant="outline-dark"
               >
                 -
-              </button>
-            </div>
-            <div>
-              <button
-                className="border-1 border-dark bg-light"
-                style={{ width: "50px", pointerEvents: "none" }}
-              >
+              </Button>
+              <Button size="lg" disabled variant="outline-dark">
                 {quantity}
-              </button>
-            </div>
-            <div>
-              <button
+              </Button>
+              <Button
+                size="lg"
                 onClick={() => incrementItem()}
-                className="border-1 border-dark bg-light rounded-end"
-                style={{ width: "50px" }}
+                variant="outline-dark"
               >
                 +
-              </button>
-            </div>
-          </div>
-          <div className="col pe-0 ps-0">
-            <button
-              onClick={() => handleSubmit()}
-              className="container-fluid black-bg text-white border border-2 border-dark rounded p-2"
-            >
-              Adauga in cos
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
+              </Button>
+            </Col>
+            <Col xs lg="4">
+              <CustomButton
+                title="Adauga in cos"
+                onClick={() => handleSubmit()}
+              />
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
