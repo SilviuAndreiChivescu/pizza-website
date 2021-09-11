@@ -47,6 +47,11 @@ export default function ModalContent(props) {
     );
   };
 
+  const handleSubmit = () => {
+    onClose();
+    addToCart(cart, setCart, content, quantity, content.Price[size], sizeName);
+  };
+
   return (
     <>
       <img
@@ -99,17 +104,7 @@ export default function ModalContent(props) {
           </div>
           <div className="col pe-0 ps-0">
             <button
-              onClick={() => {
-                onClose();
-                addToCart(
-                  cart,
-                  setCart,
-                  content,
-                  quantity,
-                  content.Price[size],
-                  sizeName
-                );
-              }}
+              onClick={() => handleSubmit()}
               className="container-fluid black-bg text-white border border-2 border-dark rounded p-2"
             >
               Adauga in cos
