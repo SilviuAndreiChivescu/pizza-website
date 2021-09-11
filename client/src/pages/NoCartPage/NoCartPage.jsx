@@ -2,8 +2,7 @@ import NavBar from "../../shared components/NavBar";
 import Menu from "./components/Menu";
 import CartBar from "./components/CartBar";
 
-import Modal from "../../shared components/Modal";
-import "../../shared components/Modal.css";
+import MyModal from "../../shared components/MyModal";
 import ModalContent from "./components/ModalContent";
 import { useContent, useShow } from "./NoCartPageLogic";
 
@@ -35,7 +34,7 @@ export default function NoCartPage(props) {
         setShow={setShow}
         setContent={setContent}
       />
-      <Modal
+      <MyModal
         Name={content.Name}
         onClose={() => setShow((currShow) => !currShow)}
         show={show}
@@ -46,7 +45,7 @@ export default function NoCartPage(props) {
           content={content}
           onClose={() => setShow((currShow) => !currShow)}
         />
-      </Modal>
+      </MyModal>
       <CartBar
         totalPrice={totalPrice}
         totalQuantity={totalQuantity}

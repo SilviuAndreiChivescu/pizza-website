@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Modal from "./Modal";
-import "./Modal.css";
+import MyModal from "./MyModal";
+// import "./Modal.css";
 import Drawer from "./Drawer";
 
 export default function NavBar(props) {
@@ -60,14 +60,14 @@ export default function NavBar(props) {
           Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>}
         />
       </div>
-      <Modal
+      <MyModal
         Name="Despre noi"
         onClose={() => setShow((currShow) => !currShow)}
         show={show}
       >
         {/* ModalContent is locally and can be found below this function */}
         <ModalContent />
-      </Modal>
+      </MyModal>
     </header>
   );
 }
