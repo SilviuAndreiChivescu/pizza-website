@@ -11,9 +11,6 @@ import {
 import CustomButton from "../../../shared components/CustomButton";
 import { useQuantitySelector, useAddToCart } from "./ModalContentLogic";
 
-// SI SA FAC DUPA FUNCTIONALITATE CU FIELD U DE FARA CEAPA ETC,
-// SA LE TRIMIT SI PE ASTEA LANGA RESPECTIVA COMANDA LA EMAIL.
-// SI GANDESTE TE INTRE TIMP DACA MAI TREBUIE UNDEVA INFO ASTA
 // Content of Modal in NoCartPage
 export default function ModalContent(props) {
   const { content, cart, setCart, onClose } = props;
