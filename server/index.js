@@ -236,16 +236,17 @@ app.post("/sendEmail", (req, res) => {
       {
         From: {
           Email: "medievalpizzacomanda@gmail.com",
-          Name: "MEDIEVAL PIZZA WEBSITE",
+          Name: "Medieval Pizza",
         },
         To: [
           {
+            Name: "Angajat al Medieval Pizza",
             Email: "gypandy00@gmail.com",
           },
         ],
-        Subject: "Comanda Noua!",
-        TextPart: `Detalii comanda:  ${nameText} ${contactText} ${addressText} ${deliveryText} ${cartText}`,
-        HTMLPart: `<h3>Detalii comanda: </h3> <ul> <li>${nameText}</li> <li>${contactText}</li> <li>${addressText}</li> <li>${deliveryText}</li> Produse: ${cartText}</ul>`,
+        Subject: `Comanda nr ${count}`,
+        TextPart: `Hey Angajat al Medieval Pizza, Detalii comanda:  ${nameText} ${contactText} ${addressText} ${deliveryText} ${cartText}`,
+        HTMLPart: `<h3>Dear Angajat al Medieval Pizza<h3> <h3>Detalii comanda: </h3> <ul> <li>${nameText}</li> <li>${contactText}</li> <li>${addressText}</li> <li>${deliveryText}</li> Produse: ${cartText}</ul>`,
       },
     ],
   });
