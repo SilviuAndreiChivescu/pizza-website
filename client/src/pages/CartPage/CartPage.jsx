@@ -5,7 +5,7 @@ export default function CartPage(props) {
   const { setPageState, cart, setCart, totalPrice } = props;
   return (
     <>
-      <NavBar title={"Cosul tau"} setPageState={() => setPageState("NoCart")} />
+      <NavBar title={"Cosul tau"} setPageState={setPageState} to={"NoCart"} />
       <Cart
         cart={cart}
         setCart={setCart}

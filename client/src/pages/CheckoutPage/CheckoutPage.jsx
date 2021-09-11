@@ -125,7 +125,8 @@ export default function CheckoutPage(props) {
     <>
       <NavBar
         title={"Aici dai comanda"}
-        setPageState={() => setPageState("Cart")}
+        setPageState={setPageState}
+        to={"Cart"}
       />
       <Form className={"m-5"}>
         <UserDetailsInputs

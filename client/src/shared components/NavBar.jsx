@@ -5,7 +5,7 @@ import Drawer from "./Drawer";
 
 export default function NavBar(props) {
   // Destructuring props
-  const { setPageState, title } = props;
+  const { setPageState, to, title } = props;
 
   // State for Modal
   const [show, setShow] = useState(false);
@@ -15,7 +15,7 @@ export default function NavBar(props) {
     return (
       <h5
         style={{ display: "inline", cursor: "pointer" }}
-        onClick={() => setPageState()}
+        onClick={() => setPageState(to)}
         className="fs-1"
       >
         &#8592;
@@ -28,7 +28,7 @@ export default function NavBar(props) {
       <div className="black-bg container-fluid d-inline-flex justify-content-between pe-3 ps-3 text-white">
         <div className="mt-2">
           {/* If on NoCartPage, don't render the Arrow because it's home page. If on any other page, render the arrow with the setPageState to go back one page (specified in <NavBar setPageState={() => setPageState("PreviousName")} /> ) */}
-          {setPageState ? <Arrow /> : null}
+          {to ? <Arrow /> : null}
           <a
             href="https://www.facebook.com/pizzamedievalmangalia/"
             target="_blank"
