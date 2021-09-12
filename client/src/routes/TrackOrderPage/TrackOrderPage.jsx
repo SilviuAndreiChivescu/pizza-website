@@ -30,7 +30,7 @@ export default function TrackOrderPage(props) {
 
   if (loaded) {
     return (
-      <>
+      <main className="page">
         <h1>Track Order page ID OF ORDER IS: {idOfOrder}</h1>
         <h1>Date of this order is: </h1>
         <h1>Minutes difference {minsDiff}</h1>
@@ -41,7 +41,7 @@ export default function TrackOrderPage(props) {
             return <CartBody e={e} />;
           })}
         </h2>
-      </>
+      </main>
     );
   } else return null;
 }

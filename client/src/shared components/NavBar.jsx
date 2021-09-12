@@ -13,7 +13,7 @@ export default function NavBar(props) {
   // Arrow component to render a left arrow HTML entity with the functionality to go to previous page
   const Arrow = () => {
     return (
-      <Link style={{ textDecoration: "none", color: "white" }} to={`/${to}`}>
+      <Link style={{ textDecoration: "none", color: "white" }} to={`${to}`}>
         <h5 style={{ display: "inline" }} className="fs-1">
           &#8592;
         </h5>

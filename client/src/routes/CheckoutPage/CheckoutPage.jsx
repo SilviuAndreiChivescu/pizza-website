@@ -127,7 +127,7 @@ export default function CheckoutPage(props) {
   };
 
   return (
-    <>
+    <main className="page">
       <NavBar title={"Aici dai comanda"} to={"cart"} />
       <Form className={"m-5"}>
         <UserDetailsInputs
@@ -156,7 +156,7 @@ export default function CheckoutPage(props) {
           onClick={() => handleSubmit()}
         />
       </Form>
-    </>
+    </main>
   );
 }
 

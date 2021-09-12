@@ -10,7 +10,7 @@ export default function ReceiptPage(props) {
   if (!lastOrderTime) window.location.replace("http://localhost:3000/");
   else {
     return (
-      <>
+      <main className="page">
         <h1>Receipt page</h1>
         <Details
           title={"Detalii comanda"}
@@ -19,7 +19,7 @@ export default function ReceiptPage(props) {
         >
           <p>Data: {lastOrderTime}</p>
         </Details>
-      </>
+      </main>
     );
   }
 }

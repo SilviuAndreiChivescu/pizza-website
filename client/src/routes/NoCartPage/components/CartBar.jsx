@@ -12,10 +12,13 @@ export default function CartBar(props) {
         className="position-fixed bottom-0 text-white pt-2"
         style={{ backgroundColor: "#000000" }}
       >
+        {/* INCEARCA AICI GEN UNDE UNDE AI BOTTOM, SA PUI SI LEFT SI RIGHT OLEACA, CA SA NU MAI FIE FULL WIDTH */}
         <Row>
           <Col>
             <h3>
-              <FaShoppingBag style={{ marginBottom: "0.85vh" }} />{" "}
+              <FaShoppingBag
+                style={{ marginBottom: "0.85vh", marginRight: "0.2vw" }}
+              />
               {totalQuantity}
             </h3>
           </Col>

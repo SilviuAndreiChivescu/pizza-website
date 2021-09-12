@@ -24,9 +24,8 @@ export default function MyAccountPage(props) {
 
   // Function to update user details in Users Collection
   const { updateUser } = useUpdateUserDetails();
-  const { setPageState } = props;
   return (
-    <>
+    <main className="page">
       <h1>Informatii personale</h1>
       <UserDetailsInputs
         setFirstName={setFirstName}
@@ -52,6 +51,6 @@ export default function MyAccountPage(props) {
           }}
         />
       </UserDetailsInputs>
-    </>
+    </main>
   );
 }

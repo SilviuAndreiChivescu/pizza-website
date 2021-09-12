@@ -16,7 +16,7 @@ export default function NoCartPage(props) {
   const { show, setShow } = useShow();
 
   return (
-    <>
+    <main className="page">
       <NavBar />
       <Menu
         cart={cart}
@@ -40,6 +40,6 @@ export default function NoCartPage(props) {
         />
       </MyModal>
       <CartBar totalPrice={totalPrice} totalQuantity={totalQuantity} />
-    </>
+    </main>
   );
 }

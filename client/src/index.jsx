@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-
 import { Auth0Provider } from "@auth0/auth0-react";
+
+// I am working on NoCartPage UI + a little design. And figuring out functionality if needed. NoCartPage and go from here after finish
 
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
 // For history page, make that button track order only show when order is made not more than 50 mins ago, if past 50 mins, make a button that takes you to the fb page to rate us

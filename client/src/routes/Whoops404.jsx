@@ -4,8 +4,8 @@ export default function Whoops404() {
   let location = useLocation();
 
   return (
-    <div>
+    <main className="page">
       <h1>Resource not found at {location.pathname}!</h1>
-    </div>
+    </main>
   );
 }
