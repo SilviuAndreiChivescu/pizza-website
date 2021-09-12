@@ -17,7 +17,7 @@ export default function Menu(props) {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="xl">
         <Container>
           <Navbar.Brand>
             <Brand />
