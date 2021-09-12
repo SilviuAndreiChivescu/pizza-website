@@ -1,6 +1,11 @@
 import { MongoDB } from "./pages";
 import Whoops404 from "./routes/Whoops404";
-import { Routes, Route } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
+
+import "./App.css";
+
+// Animate between Routes
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 // Pages / Routes
 import NoCartPage from "./routes/NoCartPage/NoCartPage";
@@ -54,73 +59,91 @@ export default function App() {
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
   const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
 
+  // Animation between Routes
+  const AnimatedSwitch = withRouter(({ location }) => (
+    <TransitionGroup>
+      <CSSTransition key={location.key} classNames="page" timeout={300}>
+        <Switch location={location}>
+          <MyRoutes />
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  ));
+
+  // MyRoutes
+  const MyRoutes = () => {
+    return (
+      <>
+        {/* NoCartPage */}
+        <Route exact path="/">
+          <NoCartPage
+            cart={cart}
+            setCart={setCart}
+            totalPrice={totalPrice}
+            totalQuantity={totalQuantity}
+            productsList={productsList}
+          />
+        </Route>
+
+        {/* CartPage */}
+        <Route path="/cart">
+          <CartPage cart={cart} setCart={setCart} totalPrice={totalPrice} />
+        </Route>
+
+        {/* CheckoutPage */}
+        <Route path="/checkout">
+          <CheckoutPage
+            cart={cart}
+            totalPrice={totalPrice}
+            setCart={setCart}
+            setLastOrder={setLastOrder}
+            setLastOrderTime={setLastOrderTime}
+          />
+        </Route>
+
+        {/* HistoryPage */}
+        <Route path="/history">
+          <HistoryPage setIdOfOrder={setIdOfOrder} />
+        </Route>
+
+        {/* MyAccountPage */}
+        <Route path="/myaccount">
+          <MyAccountPage />
+        </Route>
+
+        {/* ReceiptPage */}
+        <Route path="/receipt">
+          <ReceiptPage
+            lastOrder={lastOrder}
+            lastOrderTime={lastOrderTime}
+            totalPrice={totalPrice}
+          />
+        </Route>
+
+        {/* TrackOrderPage */}
+        <Route path="/trackorder">
+          <TrackOrderPage idOfOrder={idOfOrder} />
+        </Route>
+
+        {/* Redirect to if not a Route path */}
+        <Route path="*">
+          <Whoops404 />
+        </Route>
+
+        <Route path="/mongodb">
+          <MongoDB />
+        </Route>
+      </>
+    );
+  };
+
   // If loading
   if (appState === "loading" || isLoading) return <Loading />;
   // If loaded
   else if (appState === "loaded") {
     return (
       <>
-        <Routes>
-          {/* NoCartPage */}
-          <Route
-            path="/"
-            element={
-              <NoCartPage
-                cart={cart}
-                setCart={setCart}
-                totalPrice={totalPrice}
-                totalQuantity={totalQuantity}
-                productsList={productsList}
-              />
-            }
-          />
-          {/* CartPage */}
-          <Route
-            path="/cart"
-            element={
-              <CartPage cart={cart} setCart={setCart} totalPrice={totalPrice} />
-            }
-          />
-          {/* CheckoutPage */}
-          <Route
-            path="/checkout"
-            element={
-              <CheckoutPage
-                cart={cart}
-                totalPrice={totalPrice}
-                setCart={setCart}
-                setLastOrder={setLastOrder}
-                setLastOrderTime={setLastOrderTime}
-              />
-            }
-          />
-          {/* HistoryPage */}
-          <Route
-            path="/history"
-            element={<HistoryPage setIdOfOrder={setIdOfOrder} />}
-          />
-          {/* MyAccountPage */}
-          <Route path="/myaccount" element={<MyAccountPage />} />
-          {/* ReceiptPage */}
-          <Route
-            path="/receipt"
-            element={
-              <ReceiptPage
-                lastOrder={lastOrder}
-                lastOrderTime={lastOrderTime}
-                totalPrice={totalPrice}
-              />
-            }
-          />
-          {/* TrackOrderPage */}
-          <Route
-            path="/trackorder"
-            element={<TrackOrderPage idOfOrder={idOfOrder} />}
-          />
-          {/* Redirect to if not a Route path */}
-          <Route path="*" element={<Whoops404 />} />
-          <Route path="/mongodb" element={<MongoDB />} />
-        </Routes>
+        <AnimatedSwitch />
       </>
     );
   }
