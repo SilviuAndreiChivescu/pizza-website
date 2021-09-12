@@ -1,6 +1,6 @@
 import { MongoDB } from "./pages";
 import Whoops404 from "./routes/Whoops404";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
 import "./App.css";
 
@@ -63,17 +63,15 @@ export default function App() {
   const AnimatedSwitch = withRouter(({ location }) => (
     <TransitionGroup>
       <CSSTransition key={location.key} classNames="page" timeout={300}>
-        <Switch location={location}>
-          <MyRoutes />
-        </Switch>
+        <MyRoutes location={location} />
       </CSSTransition>
     </TransitionGroup>
   ));
 
   // MyRoutes
-  const MyRoutes = () => {
+  const MyRoutes = ({ location }) => {
     return (
-      <>
+      <Switch location={location}>
         {/* NoCartPage */}
         <Route exact path="/">
           <NoCartPage
@@ -86,12 +84,12 @@ export default function App() {
         </Route>
 
         {/* CartPage */}
-        <Route path="/cart">
+        <Route exact path="/cart">
           <CartPage cart={cart} setCart={setCart} totalPrice={totalPrice} />
         </Route>
 
         {/* CheckoutPage */}
-        <Route path="/checkout">
+        <Route exact path="/checkout">
           <CheckoutPage
             cart={cart}
             totalPrice={totalPrice}
@@ -102,17 +100,17 @@ export default function App() {
         </Route>
 
         {/* HistoryPage */}
-        <Route path="/history">
+        <Route exact path="/history">
           <HistoryPage setIdOfOrder={setIdOfOrder} />
         </Route>
 
         {/* MyAccountPage */}
-        <Route path="/myaccount">
+        <Route exact path="/myaccount">
           <MyAccountPage />
         </Route>
 
         {/* ReceiptPage */}
-        <Route path="/receipt">
+        <Route exact path="/receipt">
           <ReceiptPage
             lastOrder={lastOrder}
             lastOrderTime={lastOrderTime}
@@ -121,19 +119,19 @@ export default function App() {
         </Route>
 
         {/* TrackOrderPage */}
-        <Route path="/trackorder">
+        <Route exact path="/trackorder">
           <TrackOrderPage idOfOrder={idOfOrder} />
+        </Route>
+
+        <Route exact path="/mongodb">
+          <MongoDB />
         </Route>
 
         {/* Redirect to if not a Route path */}
         <Route path="*">
           <Whoops404 />
         </Route>
-
-        <Route path="/mongodb">
-          <MongoDB />
-        </Route>
-      </>
+      </Switch>
     );
   };
 
