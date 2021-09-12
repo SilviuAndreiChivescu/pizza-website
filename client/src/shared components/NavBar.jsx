@@ -25,7 +25,7 @@ export default function NavBar(props) {
   return (
     <Container fluid className="p-0">
       <Navbar className="black-bg container-fluid">
-        <Col sm={1} lg={4} className="text-start ms-2">
+        <Col sm={1} lg={4} className="text-start ms-3">
           <h5>
             {/* Render the Arrow only if the "to" path is specified */}
             {to ? <Arrow /> : null}
