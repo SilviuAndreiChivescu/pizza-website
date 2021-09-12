@@ -10,19 +10,6 @@ body {
   background-position: center; */
 }
 
-.brown-color {
-  background-image: linear-gradient(160deg, #000000 0%, #281911 100%);
-}
-
-nav > a {
-  text-decoration: none;
-  color: white;
-}
-
-nav > a:hover {
-  color: black;
-}
-
 ul {
   list-style-type: none;
 }
