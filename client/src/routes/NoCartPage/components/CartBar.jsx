@@ -14,9 +14,8 @@ export default function CartBar(props) {
         <Row>
           <Col>
             <h4>
-              <FaShoppingBag
-                style={{ marginBottom: "0.85vh", marginRight: "0.8vw" }}
-              />
+              <FaShoppingBag style={{ marginBottom: "0.85vh" }} />
+              &nbsp;
               {totalQuantity}
             </h4>
           </Col>
