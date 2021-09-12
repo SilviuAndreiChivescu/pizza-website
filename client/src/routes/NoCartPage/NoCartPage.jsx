@@ -16,7 +16,7 @@ export default function NoCartPage(props) {
   const { show, setShow } = useShow();
 
   return (
-    <main className="page">
+    <main className="page slide-in-bck-center">
       <NavBar title="Meniu" />
       <Menu
         cart={cart}
