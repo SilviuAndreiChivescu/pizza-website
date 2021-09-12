@@ -14,7 +14,7 @@ import {
 } from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // For this page there is to implement the following:
 // "confirm ca am citit..." checkbox should be required
@@ -51,6 +51,9 @@ export default function CheckoutPage(props) {
 
   // Mailjet API
   const { sendEmail } = useMailjetAPI(cart);
+
+  // History to redirect to receipt page
+  let history = useHistory();
 
   const handleSubmit = () => {
     // If any of the inputs is empty, don't execute button functionality
@@ -97,7 +100,13 @@ export default function CheckoutPage(props) {
       deliveryTime,
       deliveryWay
     );
+
+    // Last order is used for receipt page to show the order that was ordered
     setLastOrder(cart);
+
+    // Get the time of order for the Receipt Page
+    setLastOrderTime(getCurrentDate());
+
     // To send email with the order
     sendEmail(
       firstName,
@@ -109,13 +118,17 @@ export default function CheckoutPage(props) {
       deliveryWay,
       deliveryTime
     );
+
+    // Clean up cart state for next order
     setCart([]);
-    setLastOrderTime(getCurrentDate());
+
+    // Redirect to Receipt Page
+    history.push("/receipt");
   };
 
   return (
     <>
-      <NavBar title={"Aici dai comanda"} to={"Cart"} />
+      <NavBar title={"Aici dai comanda"} to={"cart"} />
       <Form className={"m-5"}>
         <UserDetailsInputs
           setFirstName={setFirstName}
@@ -137,12 +150,11 @@ export default function CheckoutPage(props) {
           setKeepData={setKeepData}
         />
         <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
-        <Link to="/receipt">
-          <CustomButton
-            title={"Plaseaza Comanda"}
-            onClick={() => handleSubmit()}
-          />
-        </Link>
+
+        <CustomButton
+          title={"Plaseaza Comanda"}
+          onClick={() => handleSubmit()}
+        />
       </Form>
     </>
   );
