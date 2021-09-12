@@ -1,3 +1,4 @@
+import { Col, Container, Navbar, Row } from "react-bootstrap";
 import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -5,20 +6,27 @@ import { Link } from "react-router-dom";
 export default function CartBar(props) {
   const { totalQuantity, totalPrice } = props;
   return (
-    <Link to="/cart">
-      <section
-        style={{ cursor: "pointer", backgroundColor: "#000000" }}
-        className="text-white d-flex justify-content-between container-fluid position-fixed bottom-0 pe-4 ps-3 pt-2"
+    <Link style={{ textDecoration: "none" }} to="/cart">
+      <Container
+        fluid
+        className="position-fixed bottom-0 text-white pt-2"
+        style={{ backgroundColor: "#000000" }}
       >
-        <div className="row">
-          <h5 className="col" style={{ backgroundColor: "#000000" }}>
-            <FaShoppingBag />
-          </h5>
-          <h4 className="col ps-0">{totalQuantity}</h4>
-        </div>
-        <h5 className="fw-bold">Vezi cosul tau</h5>
-        <h4 className="fw-bold">{totalPrice} lei</h4>
-      </section>
+        <Row>
+          <Col>
+            <h3>
+              <FaShoppingBag style={{ marginBottom: "0.85vh" }} />{" "}
+              {totalQuantity}
+            </h3>
+          </Col>
+          <Col className="text-center">
+            <h3>Vezi cosul tau</h3>
+          </Col>
+          <Col className="text-end">
+            <h3>{totalPrice} lei</h3>
+          </Col>
+        </Row>
+      </Container>
     </Link>
   );
 }
