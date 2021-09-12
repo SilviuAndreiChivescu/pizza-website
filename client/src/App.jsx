@@ -29,6 +29,7 @@ import {
 import { CircularProgress } from "@material-ui/core";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useBeforeunload } from "react-beforeunload";
+import { useState } from "react";
 
 export default function App() {
   // State of Application
@@ -62,7 +63,11 @@ export default function App() {
   // Animation between Routes
   const AnimatedSwitch = withRouter(({ location }) => (
     <TransitionGroup>
-      <CSSTransition key={location.key} classNames="page" timeout={300}>
+      <CSSTransition
+        key={location.key}
+        classNames="slide-in-bck-center"
+        timeout={400}
+      >
         <MyRoutes location={location} />
       </CSSTransition>
     </TransitionGroup>

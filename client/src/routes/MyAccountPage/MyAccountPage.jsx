@@ -27,7 +27,7 @@ export default function MyAccountPage(props) {
   // Function to update user details in Users Collection
   const { updateUser } = useUpdateUserDetails();
   return (
-    <main className="page">
+    <main className="page slide-in-bck-center">
       <NavBar title="Informatii personale" to="/" />
       <Form className="m-5">
         <UserDetailsInputs
