@@ -12,7 +12,13 @@ export default function MyModal(props) {
       backdrop="true"
       onHide={onClose}
     >
-      <Modal.Header closeButton toggle={onClose}>
+      <Modal.Header
+        closeButton
+        closeLabel
+        closeVariant="white"
+        toggle={onClose}
+        className="black-bg text-white"
+      >
         <Modal.Title id="contained-modal-title-vcenter">{Name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{props.children}</Modal.Body>
