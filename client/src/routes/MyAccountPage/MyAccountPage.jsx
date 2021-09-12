@@ -1,9 +1,11 @@
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 import CustomButton from "../../shared components/CustomButton";
+import NavBar from "../../shared components/NavBar";
 import {
   useSetDefaultValues,
   useUpdateUserDetails,
 } from "../MyAccountPage/MyAccountPageLogic";
+import { Container, Form } from "react-bootstrap";
 
 export default function MyAccountPage(props) {
   // States for User Input fields
@@ -26,31 +28,36 @@ export default function MyAccountPage(props) {
   const { updateUser } = useUpdateUserDetails();
   return (
     <main className="page">
-      <h1>Informatii personale</h1>
-      <UserDetailsInputs
-        setFirstName={setFirstName}
-        firstName={firstName}
-        setLastName={setLastName}
-        lastName={lastName}
-        setEmail={setEmail}
-        email={email}
-        setPhoneNo={setPhoneNo}
-        phoneNo={phoneNo}
-        setAddress={setAddress}
-        address={address}
-        setCity={setCity}
-        city={city}
-        // readOnly is for the email input field
-        readOnly={"readOnly"}
-      >
-        <CustomButton
-          title={"Salveaza noile informatii"}
-          onClick={() => {
-            updateUser(email, firstName, lastName, address, city, phoneNo);
-            alert("Detaliile tale au fost modificate cu succes");
-          }}
-        />
-      </UserDetailsInputs>
+      <NavBar title="Informatii personale" to="/" />
+      <Form className="m-5">
+        <UserDetailsInputs
+          setFirstName={setFirstName}
+          firstName={firstName}
+          setLastName={setLastName}
+          lastName={lastName}
+          setEmail={setEmail}
+          email={email}
+          setPhoneNo={setPhoneNo}
+          phoneNo={phoneNo}
+          setAddress={setAddress}
+          address={address}
+          setCity={setCity}
+          city={city}
+          // readOnly is for the email input field
+          readOnly={"readOnly"}
+        >
+          <Container className="text-center">
+            <CustomButton
+              title={"Salveaza noile informatii"}
+              className="mt-5"
+              onClick={() => {
+                updateUser(email, firstName, lastName, address, city, phoneNo);
+                alert("Detaliile tale au fost modificate cu succes");
+              }}
+            />{" "}
+          </Container>
+        </UserDetailsInputs>
+      </Form>
     </main>
   );
 }
