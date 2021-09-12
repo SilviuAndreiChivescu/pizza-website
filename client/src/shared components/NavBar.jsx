@@ -15,9 +15,7 @@ export default function NavBar(props) {
   const Arrow = () => {
     return (
       <Link style={{ textDecoration: "none", color: "white" }} to={`${to}`}>
-        <h5 style={{ display: "inline" }} className="fs-1">
-          &#8592;
-        </h5>
+        <h5 className="fs-1 d-inline m-1">&#8592;</h5>
       </Link>
     );
   };
@@ -25,7 +23,7 @@ export default function NavBar(props) {
   return (
     <Container fluid className="p-0">
       <Navbar className="black-bg container-fluid">
-        <Col sm={1} lg={4} className="text-start ms-3">
+        <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4} className="text-start ">
           <h5>
             {/* Render the Arrow only if the "to" path is specified */}
             {to ? <Arrow /> : null}
@@ -56,10 +54,10 @@ export default function NavBar(props) {
         </Col>
         <Col className="text-center">
           <Navbar.Brand style={{ cursor: "default" }} className="text-white">
-            {title ? title : "Orice comanda este confirmata in maxim 5 minute."}
+            {title ? title : null}
           </Navbar.Brand>
         </Col>
-        <Col className="text-end">
+        <Col className="text-end ">
           <Drawer Icon={<i className="fas fa-lg text-white fa-bars"></i>} />
         </Col>
       </Navbar>
@@ -82,7 +80,7 @@ const ModalContent = () => {
         <Card.Body>
           <Card.Title>Pizzeria Medieval</Card.Title>
           <Card.Text>
-            Str. Petru Maior 20, Mangalia, 905500(In spatele Scolii nr.2)
+            Str. Petru Maior 20, Mangalia, 905500 (In spatele Scolii nr.2)
           </Card.Text>
           <Card.Text>
             <a className="text-decoration-none text-dark" href="tel:0754911062">
