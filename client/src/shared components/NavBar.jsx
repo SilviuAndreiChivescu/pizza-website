@@ -15,7 +15,7 @@ export default function NavBar(props) {
   const Arrow = () => {
     return (
       <Link style={{ textDecoration: "none", color: "white" }} to={`${to}`}>
-        <h5 className="fs-1 d-inline m-1">&#8592;</h5>
+        <h2 className=" d-inline">&#8592;</h2>
       </Link>
     );
   };
@@ -23,7 +23,15 @@ export default function NavBar(props) {
   return (
     <Container fluid className="p-0">
       <Navbar className="black-bg container-fluid">
-        <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4} className="text-start ">
+        <Col
+          xs={4}
+          sm={4}
+          md={4}
+          lg={4}
+          xl={4}
+          xxl={4}
+          className="text-start mt-3"
+        >
           <h5>
             {/* Render the Arrow only if the "to" path is specified */}
             {to ? <Arrow /> : null}
@@ -32,7 +40,7 @@ export default function NavBar(props) {
               target="_blank"
               rel="noreferrer"
             >
-              <i className="fab  fa-facebook m-1 text-white"></i>
+              <i className="fab fa-facebook m-1 text-white"></i>
             </a>
 
             <a
