@@ -1,18 +1,8 @@
 import { MongoDB } from "./pages";
 import Whoops404 from "./routes/Whoops404";
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import "./App.css";
-
-// AM RAMASS AICI
-// think good about this, why do you think will work
-// Make new branch for this
-// Deci m-am gandit bine si cred ca pentru ca am incorporat treaba asta cu Routes si App.js, isi da rerender ca cacatu pentru ca se intoarce la cart in afara routes.
-// Cred ca ramane sa implementez la loc cu pageState, probabil pentru asta e facut react pe bune, single page app...
-// Ai grija cu CSS transition, pt ca e facuta pt routes acu.. nici nu stiu :))
-
-// Animate between Routes
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 // Pages / Routes
 import NoCartPage from "./routes/NoCartPage/NoCartPage";
@@ -36,7 +26,6 @@ import {
 import { CircularProgress } from "@material-ui/core";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useBeforeunload } from "react-beforeunload";
-import { useState } from "react";
 
 export default function App() {
   // State of Application
@@ -66,18 +55,6 @@ export default function App() {
 
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
   const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
-
-  // const AnimatedSwitch = withRouter(({ location }) => (
-  //   <TransitionGroup>
-  //     <CSSTransition
-  //       key={location.key}
-  //       classNames="slide-in-bck-center"
-  //       timeout={400}
-  //     >
-  //       <MyRoutes location={location} />
-  //     </CSSTransition>
-  //   </TransitionGroup>
-  // ));
 
   // If loading
   if (appState === "loading" || isLoading) return <Loading />;
