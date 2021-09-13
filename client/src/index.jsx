@@ -5,11 +5,14 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-// I am working on NoCartPage UI + a little design. And figuring out functionality if needed. NoCartPage and go from here after finish
+// I am working on CartPage UI and functionality ATM
+// UI for all pages, finish. Also add NavBar and what else you want to add to them
 
 // Generate pages for the sideNav and put content in them like Privacy policy and termeni si conditii, there is a generator for them; Those are Routes
 // For history page, make that button track order only show when order is made not more than 50 mins ago, if past 50 mins, make a button that takes you to the fb page to rate us
-// UI for all pages, finish. Also add NavBar and what else you want to add to them
+
+// For later, in NoCartPage, the NavBar for menu, I want its functionality not to take the user to that #. But to filter the values with what he presses on
+// At some point, if not changed so far, put corect copyright for animation from animista
 
 // Solve problem with Loading. Sometime it just stops on loading. Make a catch or something that when not finish to load, reload or smthing
 
@@ -30,7 +33,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // Use best practice for fetching with API, make a file where to put the create, get ... and use it by calling that file easily as I have seen in that video "React Interconnection with db"
 // Hide the key for the db as it shoulf if I should
-// Change boostrap 5 with react-bootstrap (Last and if needed) & Semantic UI
+// Change boostrap 5 with react-bootstrap CDN or something
 // Redux(read a lot about this and I think i fit in the situation where I don't really need it in my App, this might change later)
 // Clean index.html
 // Delete all non used components & rename all components acordinagly
