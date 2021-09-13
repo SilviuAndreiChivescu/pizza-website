@@ -3,7 +3,7 @@ import { useState } from "react";
 // This custom hook modifies the cart state, by increasing or decreasing quantity up to deleting it if quantity is 0.
 const useQuantitySelector = (cart, setCart, value) => {
   // Initiate a state for each product in list
-  const [quantity, setQuantity] = useState(() => value.Quantity);
+  const [quantity, setQuantity] = useState(value.Quantity);
   const incrementItem = (Name) => {
     // Increment the particular state
     setQuantity((prevNumber) => prevNumber + 1);
