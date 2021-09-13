@@ -14,9 +14,9 @@ export default function NoCartPage(props) {
 
   // State to show modal
   const { show, setShow } = useShow();
-
+  // this was in the class name below  slide-in-bck-center
   return (
-    <main className="page slide-in-bck-center">
+    <main className="page">
       <NavBar title="Meniu" />
       <Menu
         cart={cart}
