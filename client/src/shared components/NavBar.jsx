@@ -6,7 +6,7 @@ import { Col, Container, Navbar, Card } from "react-bootstrap";
 
 export default function NavBar(props) {
   // Destructuring props
-  const { to, title } = props;
+  const { to, title, setAnimation } = props;
 
   // State for Modal
   const [show, setShow] = useState(false);
@@ -14,7 +14,11 @@ export default function NavBar(props) {
   // Arrow component to render a left arrow HTML entity with the functionality to go to previous page
   const Arrow = () => {
     return (
-      <Link style={{ textDecoration: "none", color: "white" }} to={`${to}`}>
+      <Link
+        onClick={() => setAnimation("slide-in-left")}
+        style={{ textDecoration: "none", color: "white" }}
+        to={`${to}`}
+      >
         <h2 className=" d-inline">&#8592;</h2>
       </Link>
     );

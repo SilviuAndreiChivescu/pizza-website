@@ -10,7 +10,7 @@ export default function ReceiptPage(props) {
   if (!lastOrderTime) window.location.replace("http://localhost:3000/");
   else {
     return (
-      <main className="page">
+      <main className="page slide-in-right">
         <h1>Receipt page</h1>
         <Details
           title={"Detalii comanda"}

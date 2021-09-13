@@ -26,6 +26,7 @@ import {
 import { CircularProgress } from "@material-ui/core";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useBeforeunload } from "react-beforeunload";
+import { useState } from "react";
 
 export default function App() {
   // State of Application
@@ -56,6 +57,10 @@ export default function App() {
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
   const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
 
+  // Animations for Routes
+  const [noCartAnimation, setNoCartAnimation] = useState("scale-in-center");
+  const [cartAnimation, setCartAnimation] = useState("slide-in-bottom");
+
   // If loading
   if (appState === "loading" || isLoading) return <Loading />;
   // If loaded
@@ -71,12 +76,19 @@ export default function App() {
               totalPrice={totalPrice}
               totalQuantity={totalQuantity}
               productsList={productsList}
+              noCartAnimation={noCartAnimation}
             />
           </Route>
 
           {/* CartPage */}
           <Route exact path="/cart">
-            <CartPage cart={cart} setCart={setCart} totalPrice={totalPrice} />
+            <CartPage
+              cart={cart}
+              setCart={setCart}
+              totalPrice={totalPrice}
+              cartAnimation={cartAnimation}
+              setNoCartAnimation={setNoCartAnimation}
+            />
           </Route>
 
           {/* CheckoutPage */}
@@ -87,6 +99,7 @@ export default function App() {
               setCart={setCart}
               setLastOrder={setLastOrder}
               setLastOrderTime={setLastOrderTime}
+              setCartAnimation={setCartAnimation}
             />
           </Route>
 
@@ -97,7 +110,7 @@ export default function App() {
 
           {/* MyAccountPage */}
           <Route exact path="/myaccount">
-            <MyAccountPage />
+            <MyAccountPage setNoCartAnimation={setNoCartAnimation} />
           </Route>
 
           {/* ReceiptPage */}

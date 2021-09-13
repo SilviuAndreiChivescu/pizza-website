@@ -7,16 +7,23 @@ import ModalContent from "./components/ModalContent";
 import { useContent, useShow } from "./NoCartPageLogic";
 
 export default function NoCartPage(props) {
-  const { cart, setCart, totalPrice, totalQuantity, productsList } = props;
+  const {
+    cart,
+    setCart,
+    totalPrice,
+    totalQuantity,
+    productsList,
+    noCartAnimation,
+  } = props;
 
   // Content for modal
   const { content, setContent } = useContent();
 
   // State to show modal
   const { show, setShow } = useShow();
-  // this was in the class name below  slide-in-bck-center
+
   return (
-    <main className="page slide-in-bck-center">
+    <main className={`page ${noCartAnimation}`}>
       <NavBar title="Meniu" />
       <Menu
         cart={cart}

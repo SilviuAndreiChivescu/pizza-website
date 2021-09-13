@@ -20,7 +20,14 @@ import { useHistory } from "react-router-dom";
 // "confirm ca am citit..." checkbox should be required
 // encapsulate states and stuff if needed later
 export default function CheckoutPage(props) {
-  const { cart, setCart, totalPrice, setLastOrder, setLastOrderTime } = props;
+  const {
+    cart,
+    setCart,
+    totalPrice,
+    setLastOrder,
+    setLastOrderTime,
+    setCartAnimation,
+  } = props;
 
   // States for User Input fields
   const {
@@ -127,8 +134,12 @@ export default function CheckoutPage(props) {
   };
 
   return (
-    <main className="page">
-      <NavBar title={"Aici dai comanda"} to={"cart"} />
+    <main className="page slide-in-right">
+      <NavBar
+        setAnimation={setCartAnimation}
+        title={"Aici dai comanda"}
+        to={"cart"}
+      />
       <Form className={"m-5"}>
         <UserDetailsInputs
           setFirstName={setFirstName}

@@ -8,6 +8,8 @@ import {
 import { Container, Form } from "react-bootstrap";
 
 export default function MyAccountPage(props) {
+  const { setNoCartAnimation } = props;
+
   // States for User Input fields
   const {
     firstName,
@@ -28,7 +30,11 @@ export default function MyAccountPage(props) {
   const { updateUser } = useUpdateUserDetails();
   return (
     <main className="page slide-in-bck-center">
-      <NavBar title="Informatii personale" to="/" />
+      <NavBar
+        title="Informatii personale"
+        to="/"
+        setAnimation={setNoCartAnimation}
+      />
       <Form className="m-5">
         <UserDetailsInputs
           setFirstName={setFirstName}
