@@ -1,40 +1,39 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Image, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
 import CustomButton from "../../shared components/CustomButton";
-import { useQuantitySelector } from "./CartLogic";
+import { useQuantitySelector, useTime } from "./CartLogic";
 
 export default function Cart(props) {
   const { cart, setCart, totalPrice } = props;
-  const today = new Date();
-  const time = today.getHours() + ":" + today.getMinutes();
+  const { time } = useTime();
   return (
     <>
-      <section className="container-fluid position-absolute h-100 w-100 overflow-hidden bg-white text-center">
-        <div className="text-secondary border-bottom border-2 border-secondary">
-          {/* When empty, show a different .svg */}
-          {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
-        </div>
-
-        {cart.map((value) => {
-          return <FoodBox cart={cart} setCart={setCart} value={value} />;
-        })}
+      <Container fluid className="text-center">
+        {/* When empty, show a different .svg */}
+        {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
+        <Card className="mt-5 p-3">
+          {cart.map((value) => {
+            return <FoodBox cart={cart} setCart={setCart} value={value} />;
+          })}
+        </Card>
 
         {/* Render only if it's not past delivery hours */}
         {time > "22:29" && time < "8:59" ? <PastDeliveryHours /> : null}
-        {/* Render only if cart is not empty */}
-        {cart.length === 0 ? null : (
+        {/* Render only if cart is not empty and is not past delivery hours */}
+        {cart.length === 0 || (time > "22:29" && time < "8:59") ? null : (
           <>
-            <div className="mb-5 border-bottom border-2 border-secondary">
-              <p className="fw-bold">Total: {totalPrice} lei</p>
-            </div>
+            <Card.Title className="fw-bold mt-5 mb-5">
+              Total: {totalPrice} lei
+            </Card.Title>
+
             <Link to="/checkout">
               <CustomButton title="Comanda" />
             </Link>
           </>
         )}
-      </section>
+      </Container>
     </>
   );
 }
@@ -43,22 +42,22 @@ export default function Cart(props) {
 const NoProductInCart = () => {
   return (
     <>
-      <img
-        className="img-fluid mt-5"
+      <Image
+        className="mt-5 mb-5"
         src={iconEmptyBasket}
         style={{ width: "70px" }}
       />
-      <h5 className="mb-5">
+      <Card.Title className="mb-5">
         Adauga mancare gustoasa din meniu si apoi plaseaza comanda
-      </h5>
+      </Card.Title>
     </>
   );
 };
 const ProductInCart = () => {
   return (
     <>
-      <img
-        className="img-fluid mt-5"
+      <Image
+        className="mt-5"
         src={iconPizzaSharing}
         style={{ width: "400px" }}
       />
@@ -76,49 +75,35 @@ const FoodBox = (props) => {
   );
 
   return (
-    <div key={value._id} className="row container-fluid ">
-      <div className="col d-inline-flex ps-0 justify-content-center pt-3">
-        <p>{value.Quantity} X </p>
-        <p className="ps-2 pe-2">{value.Name}</p>
-        <div>
-          <Button
-            size="lg"
-            onClick={() => decreaseItem(value.Name)}
-            variant="outline-dark"
-          >
-            -
-          </Button>
-          <Button
-            size="lg"
-            onClick={() => incrementItem(value.Name)}
-            variant="outline-dark"
-          >
-            +
-          </Button>
-          {/* <button
-            onClick={() => {
-              decreaseItem(value.Name);
-            }}
-            className="border-1 border-dark bg-light rounded-start"
-            style={{ width: "30px" }}
-          >
-            -
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => {
-              incrementItem(value.Name);
-            }}
-            className="border-1 border-dark bg-light rounded-end"
-            style={{ width: "30px" }}
-          >
-            +
-          </button> */}
-        </div>
-        <p className="ps-2 pe-2">{value.Price * value.Quantity} lei</p>
-      </div>
-    </div>
+    <Row className="mb-2 mt-2" xs={3} sm={3} md={3} lg={3} xl={3} xxl={3}>
+      <Col>
+        <Card.Title>
+          {value.Quantity} X {value.Name}
+        </Card.Title>
+      </Col>
+      <Col>
+        <Button
+          className="me-2"
+          size="lg"
+          onClick={() => decreaseItem(value.Name)}
+          variant="outline-dark"
+        >
+          -
+        </Button>
+        <Button
+          size="lg"
+          onClick={() => incrementItem(value.Name)}
+          variant="outline-dark"
+        >
+          +
+        </Button>
+      </Col>
+      <Col>
+        <Card.Title className="ps-2 pe-2">
+          {value.Price * value.Quantity} lei
+        </Card.Title>
+      </Col>
+    </Row>
   );
 };
 
