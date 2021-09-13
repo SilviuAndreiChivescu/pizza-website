@@ -1,3 +1,4 @@
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
@@ -80,7 +81,21 @@ const FoodBox = (props) => {
         <p>{value.Quantity} X </p>
         <p className="ps-2 pe-2">{value.Name}</p>
         <div>
-          <button
+          <Button
+            size="lg"
+            onClick={() => decreaseItem(value.Name)}
+            variant="outline-dark"
+          >
+            -
+          </Button>
+          <Button
+            size="lg"
+            onClick={() => incrementItem(value.Name)}
+            variant="outline-dark"
+          >
+            +
+          </Button>
+          {/* <button
             onClick={() => {
               decreaseItem(value.Name);
             }}
@@ -99,7 +114,7 @@ const FoodBox = (props) => {
             style={{ width: "30px" }}
           >
             +
-          </button>
+          </button> */}
         </div>
         <p className="ps-2 pe-2">{value.Price * value.Quantity} lei</p>
       </div>
@@ -107,14 +122,14 @@ const FoodBox = (props) => {
   );
 };
 
-// This component is to render if time is past delivery hours
+// This component is to render if curren time is past the delivery hours
 const PastDeliveryHours = () => {
   return (
-    <div className="mb-5 text-secondary">
+    <Card.Subtitle className="text-secondary">
       <h5>
         Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul
         09:00 - 22:30. Va multumim !
       </h5>
-    </div>
+    </Card.Subtitle>
   );
 };
