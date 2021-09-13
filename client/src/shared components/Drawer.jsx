@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+
+// The Delay Link is used so that the animations don't interfere with each other
+import { Link, useHistory } from "react-router-dom";
+const DelayLink = ({ to, children, delay }) => {
+  const history = useHistory();
+
+  function delayAndGo(e) {
+    e.preventDefault();
+
+    setTimeout(() => history.push(to), delay);
+  }
+
+  return (
+    <Link
+      style={{ textDecoration: "none", color: "inherit" }}
+      to={to}
+      onClick={delayAndGo}
+    >
+      {children}
+    </Link>
+  );
+};
 
 export default function Drawer(props) {
   // **** Authentification dependent ****
@@ -16,18 +37,22 @@ export default function Drawer(props) {
     // My account button
     const MyAccount = () => {
       return (
-        <ListItem component={Link} to="/myaccount" button key="MyAccount">
-          <ListItemText primary="Contul meu" />
-        </ListItem>
+        <DelayLink to="/myaccount" delay={300}>
+          <ListItem button key="MyAccount">
+            <ListItemText primary="Contul meu" />
+          </ListItem>
+        </DelayLink>
       );
     };
 
     // History button
     const History = () => {
       return (
-        <ListItem component={Link} to="/history" button key="History">
-          <ListItemText primary="Comenzile mele" />
-        </ListItem>
+        <DelayLink to="/history" delay={300}>
+          <ListItem button key="History">
+            <ListItemText primary="Comenzile mele" />
+          </ListItem>
+        </DelayLink>
       );
     };
     // LogOut button
@@ -72,7 +97,7 @@ export default function Drawer(props) {
   // **** END Authentification dependent ****
 
   // **** Drawer functionality ****
-  const [state, setState] = React.useState({ right: false });
+  const [state, setState] = useState({ right: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
