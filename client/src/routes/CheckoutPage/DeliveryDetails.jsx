@@ -1,19 +1,20 @@
 import Form from "react-bootstrap/Form";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useState } from "react";
+import Feedback from "react-bootstrap/esm/Feedback";
 
 export default function DeliveryDetails(props) {
-  const { setDeliveryWay, setDeliveryTime, setKeepData } = props;
+  const { setDeliveryWay, setDeliveryTime, setKeepData, setTerms } = props;
   // useState for if the user decides to choose a time to get his food
   const [time, setTime] = useState(false);
 
   return (
-    <>
+    <Container className="mb-4">
       <Form.Label as="legend" column sm={2}>
         Cand se va face livrarea? *
       </Form.Label>
-      <Form.Group required as={Row} className="mb-3">
-        <Col sm={10}>
+      <Form.Group as={Row} className="mb-3">
+        <Col>
           <Form.Check
             onClick={(e) => {
               setTime(false);
@@ -24,6 +25,7 @@ export default function DeliveryDetails(props) {
             name="deliveryTime"
             value="Cat mai repede"
             id="repede"
+            required
           />
           <Form.Check
             onChange={() => setTime(true)}
@@ -31,6 +33,7 @@ export default function DeliveryDetails(props) {
             label="Alege ora"
             name="deliveryTime"
             id="alege"
+            required
           />
           {time ? (
             <Form.Control
@@ -45,7 +48,7 @@ export default function DeliveryDetails(props) {
         Metoda de livrare *
       </Form.Label>
       <Form.Group as={Row} className="mb-3">
-        <Col sm={10}>
+        <Col>
           <Form.Check
             onChange={(e) => setDeliveryWay(e.target.value)}
             type="radio"
@@ -65,20 +68,31 @@ export default function DeliveryDetails(props) {
             required
           />
         </Col>
-        <Form.Group className="mb-3" id="formGridCheckbox">
+      </Form.Group>
+      <Form.Group as={Row}>
+        <Col>
           <Form.Check
             onClick={() => setKeepData((data) => !data)}
             type="checkbox"
+            id="data"
+            name="keepData"
             label="Pastreaza-mi datele pentru urmatoarea comanda"
           />
-        </Form.Group>
-        <Form.Group className="mb-3" id="formGridCheckbox">
-          <Form.Check
-            type="checkbox"
-            label="Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. In cazul comenzilor nelivrate, suma va fi returnata pe acelasi card utilizat la tranzactionare, in decurs de 14 zile de la acceptarea returului, in functie de banca emitenta a cardului. *"
-          />
-        </Form.Group>
+        </Col>
       </Form.Group>
-    </>
+      <Form.Group as={Row}>
+        <Col>
+          <Form.Check
+            onClick={() => setTerms(true)}
+            type="checkbox"
+            id="confirm"
+            name="terms"
+            label="Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. *"
+            required
+          />
+          <Feedback type="invalid">Yo this is required</Feedback>
+        </Col>
+      </Form.Group>
+    </Container>
   );
 }

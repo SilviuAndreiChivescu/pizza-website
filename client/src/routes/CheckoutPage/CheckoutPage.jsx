@@ -3,9 +3,8 @@ import NavBar from "../../shared components/NavBar";
 import DeliveryDetails from "./DeliveryDetails";
 import CustomButton from "../../shared components/CustomButton";
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import Axios from "axios";
 import {
   usePostToOrders,
   useCheckIfUserInDb,
@@ -15,9 +14,8 @@ import {
 
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
-// For this page there is to implement the following:
-// "confirm ca am citit..." checkbox should be required
 // encapsulate states and stuff if needed later
 export default function CheckoutPage(props) {
   const {
@@ -49,6 +47,7 @@ export default function CheckoutPage(props) {
   const [deliveryTime, setDeliveryTime] = useState("");
   const [deliveryWay, setDeliveryWay] = useState("");
   const [keepData, setKeepData] = useState(false);
+  const [terms, setTerms] = useState(false);
 
   // Get from CartLogic function to post request to Orders collection
   const { addToOrders } = usePostToOrders();
@@ -72,7 +71,9 @@ export default function CheckoutPage(props) {
       address === "" ||
       city === "" ||
       deliveryTime === "" ||
-      deliveryWay === ""
+      deliveryWay === "" ||
+      // If checkbox with Terms not checked
+      !terms
     ) {
       return;
     }
@@ -159,13 +160,17 @@ export default function CheckoutPage(props) {
           setDeliveryTime={setDeliveryTime}
           setDeliveryWay={setDeliveryWay}
           setKeepData={setKeepData}
+          setTerms={setTerms}
         />
         <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
 
-        <CustomButton
-          title={"Plaseaza Comanda"}
-          onClick={() => handleSubmit()}
-        />
+        <Container className="text-center">
+          <CustomButton
+            className=""
+            title={"Plaseaza Comanda"}
+            onClick={() => handleSubmit()}
+          />
+        </Container>
       </Form>
     </main>
   );
