@@ -4,6 +4,13 @@ import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
 import "./App.css";
 
+// AM RAMASS AICI
+// think good about this, why do you think will work
+// Make new branch for this
+// Deci m-am gandit bine si cred ca pentru ca am incorporat treaba asta cu Routes si App.js, isi da rerender ca cacatu pentru ca se intoarce la cart in afara routes.
+// Cred ca ramane sa implementez la loc cu pageState, probabil pentru asta e facut react pe bune, single page app...
+// Ai grija cu CSS transition, pt ca e facuta pt routes acu.. nici nu stiu :))
+
 // Animate between Routes
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
