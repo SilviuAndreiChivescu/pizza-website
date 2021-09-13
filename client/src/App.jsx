@@ -67,85 +67,17 @@ export default function App() {
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
   const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
 
-  // Animation between Routes
-  const AnimatedSwitch = withRouter(({ location }) => (
-    <TransitionGroup>
-      <CSSTransition
-        key={location.key}
-        classNames="slide-in-bck-center"
-        timeout={400}
-      >
-        <MyRoutes location={location} />
-      </CSSTransition>
-    </TransitionGroup>
-  ));
-
-  // MyRoutes
-  const MyRoutes = ({ location }) => {
-    return (
-      <Switch location={location}>
-        {/* NoCartPage */}
-        <Route exact path="/">
-          <NoCartPage
-            cart={cart}
-            setCart={setCart}
-            totalPrice={totalPrice}
-            totalQuantity={totalQuantity}
-            productsList={productsList}
-          />
-        </Route>
-
-        {/* CartPage */}
-        <Route exact path="/cart">
-          <CartPage cart={cart} setCart={setCart} totalPrice={totalPrice} />
-        </Route>
-
-        {/* CheckoutPage */}
-        <Route exact path="/checkout">
-          <CheckoutPage
-            cart={cart}
-            totalPrice={totalPrice}
-            setCart={setCart}
-            setLastOrder={setLastOrder}
-            setLastOrderTime={setLastOrderTime}
-          />
-        </Route>
-
-        {/* HistoryPage */}
-        <Route exact path="/history">
-          <HistoryPage setIdOfOrder={setIdOfOrder} />
-        </Route>
-
-        {/* MyAccountPage */}
-        <Route exact path="/myaccount">
-          <MyAccountPage />
-        </Route>
-
-        {/* ReceiptPage */}
-        <Route exact path="/receipt">
-          <ReceiptPage
-            lastOrder={lastOrder}
-            lastOrderTime={lastOrderTime}
-            totalPrice={totalPrice}
-          />
-        </Route>
-
-        {/* TrackOrderPage */}
-        <Route exact path="/trackorder">
-          <TrackOrderPage idOfOrder={idOfOrder} />
-        </Route>
-
-        <Route exact path="/mongodb">
-          <MongoDB />
-        </Route>
-
-        {/* Redirect to if not a Route path */}
-        <Route path="*">
-          <Whoops404 />
-        </Route>
-      </Switch>
-    );
-  };
+  // const AnimatedSwitch = withRouter(({ location }) => (
+  //   <TransitionGroup>
+  //     <CSSTransition
+  //       key={location.key}
+  //       classNames="slide-in-bck-center"
+  //       timeout={400}
+  //     >
+  //       <MyRoutes location={location} />
+  //     </CSSTransition>
+  //   </TransitionGroup>
+  // ));
 
   // If loading
   if (appState === "loading" || isLoading) return <Loading />;
@@ -153,7 +85,67 @@ export default function App() {
   else if (appState === "loaded") {
     return (
       <>
-        <AnimatedSwitch />
+        <Switch>
+          {/* NoCartPage */}
+          <Route exact path="/">
+            <NoCartPage
+              cart={cart}
+              setCart={setCart}
+              totalPrice={totalPrice}
+              totalQuantity={totalQuantity}
+              productsList={productsList}
+            />
+          </Route>
+
+          {/* CartPage */}
+          <Route exact path="/cart">
+            <CartPage cart={cart} setCart={setCart} totalPrice={totalPrice} />
+          </Route>
+
+          {/* CheckoutPage */}
+          <Route exact path="/checkout">
+            <CheckoutPage
+              cart={cart}
+              totalPrice={totalPrice}
+              setCart={setCart}
+              setLastOrder={setLastOrder}
+              setLastOrderTime={setLastOrderTime}
+            />
+          </Route>
+
+          {/* HistoryPage */}
+          <Route exact path="/history">
+            <HistoryPage setIdOfOrder={setIdOfOrder} />
+          </Route>
+
+          {/* MyAccountPage */}
+          <Route exact path="/myaccount">
+            <MyAccountPage />
+          </Route>
+
+          {/* ReceiptPage */}
+          <Route exact path="/receipt">
+            <ReceiptPage
+              lastOrder={lastOrder}
+              lastOrderTime={lastOrderTime}
+              totalPrice={totalPrice}
+            />
+          </Route>
+
+          {/* TrackOrderPage */}
+          <Route exact path="/trackorder">
+            <TrackOrderPage idOfOrder={idOfOrder} />
+          </Route>
+
+          <Route exact path="/mongodb">
+            <MongoDB />
+          </Route>
+
+          {/* Redirect to if not a Route path */}
+          <Route path="*">
+            <Whoops404 />
+          </Route>
+        </Switch>
       </>
     );
   }
