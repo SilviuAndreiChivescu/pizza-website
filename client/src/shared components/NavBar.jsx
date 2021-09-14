@@ -34,7 +34,7 @@ export default function NavBar(props) {
             {to ? <Arrow /> : null}
             <i
               style={{ cursor: "pointer" }}
-              className="fas fa-info-circle text-white mt-2"
+              className="fas fa-info-circle text-white ms-2 mt-2"
               onClick={() => setShow(true)}
             ></i>
           </h5>
@@ -51,7 +51,7 @@ export default function NavBar(props) {
         </Col>
 
         <MyModal
-          Name="Despre noi"
+          name="Despre noi"
           onClose={() => setShow((currShow) => !currShow)}
           show={show}
         >
