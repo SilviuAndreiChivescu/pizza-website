@@ -32,27 +32,9 @@ export default function NavBar(props) {
           <h5>
             {/* Render the Arrow only if the "to" path is specified */}
             {to ? <Arrow /> : null}
-            <a
-              href="https://www.facebook.com/pizzamedievalmangalia/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fab fa-facebook m-1 text-white"></i>
-            </a>
-
-            <a
-              href="https://www.instagram.com/medievalpizzamangalia/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fab fa-instagram m-1 text-white"></i>
-            </a>
-            <a href="tel:0754911062">
-              <i className="fas fa-phone-square m-1 text-white"></i>
-            </a>
             <i
               style={{ cursor: "pointer" }}
-              className="fas fa-info-circle text-white m-1"
+              className="fas fa-info-circle text-white mt-2"
               onClick={() => setShow(true)}
             ></i>
           </h5>
@@ -86,7 +68,23 @@ const ModalContent = () => {
     <>
       <Card className="mt-2 mb-4 shadow border-1">
         <Card.Body>
-          <Card.Title>Pizzeria Medieval</Card.Title>
+          <Card.Title>
+            Pizzeria Medieval{" "}
+            <a
+              href="https://www.facebook.com/pizzamedievalmangalia/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-lg fa-facebook m-1 text-black"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/medievalpizzamangalia/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-lg fa-instagram m-1 text-black"></i>
+            </a>
+          </Card.Title>
           <Card.Text>
             Str. Petru Maior 20, Mangalia, 905500 (In spatele Scolii nr.2)
           </Card.Text>
