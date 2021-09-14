@@ -35,7 +35,7 @@ export default function NoCartPage(props) {
         setContent={setContent}
       />
       <MyModal
-        Name={content.Name}
+        name={content.Name}
         onClose={() => setShow((currShow) => !currShow)}
         show={show}
       >
