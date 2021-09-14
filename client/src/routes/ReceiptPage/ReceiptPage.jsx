@@ -3,7 +3,7 @@ import { useBeforeunload } from "react-beforeunload";
 import { Card } from "react-bootstrap";
 import { useTotalQuantityOrTotalPrice } from "../../AppLogic";
 import Details from "../../shared components/Details";
-import NavBar from "../../shared components/NavBar";
+import MyNavbar from "../../shared components/MyNavbar";
 
 import SuccessMessage from "./SuccessMessage";
 
@@ -28,7 +28,7 @@ export default function ReceiptPage(props) {
   else {
     return (
       <main className="page slide-in-right">
-        <NavBar setAnimation={setNoCartAnimation} title={"Bon"} to={"/"} />
+        <MyNavbar setAnimation={setNoCartAnimation} title={"Bon"} to={"/"} />
         <SuccessMessage />
         <Details title={"Detalii comanda"} cart={lastOrder}>
           <Card.Body>

@@ -2,7 +2,7 @@ import { Card, Container } from "react-bootstrap";
 import { useTotalQuantityOrTotalPrice } from "../../AppLogic";
 import CustomButton from "../../shared components/CustomButton";
 import Details from "../../shared components/Details";
-import NavBar from "../../shared components/NavBar";
+import MyNavbar from "../../shared components/MyNavbar";
 import { useDate, useOrder } from "./TrackOrderPageLogic";
 
 export default function TrackOrderPage(props) {
@@ -44,7 +44,7 @@ export default function TrackOrderPage(props) {
   if (loaded) {
     return (
       <main className="page slide-in-right">
-        <NavBar
+        <MyNavbar
           setAnimation={setNoCartAnimation}
           title={"Statusul comenzii"}
           to={"/"}

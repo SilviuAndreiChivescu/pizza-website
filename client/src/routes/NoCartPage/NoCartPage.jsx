@@ -1,4 +1,4 @@
-import NavBar from "../../shared components/NavBar";
+import MyNavbar from "../../shared components/MyNavbar";
 import Menu from "./components/Menu";
 import CartBar from "./components/CartBar";
 
@@ -24,7 +24,7 @@ export default function NoCartPage(props) {
 
   return (
     <main className={`page ${noCartAnimation}`}>
-      <NavBar title="Meniu" />
+      <MyNavbar title="Meniu" />
       <Menu
         cart={cart}
         setCart={setCart}

@@ -1,5 +1,5 @@
 import Details from "../../shared components/Details";
-import NavBar from "../../shared components/NavBar";
+import MyNavbar from "../../shared components/MyNavbar";
 import DeliveryDetails from "./DeliveryDetails";
 import CustomButton from "../../shared components/CustomButton";
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
@@ -126,7 +126,7 @@ export default function CheckoutPage(props) {
 
   return (
     <main className="page slide-in-right">
-      <NavBar
+      <MyNavbar
         setAnimation={setCartAnimation}
         title={"Aici dai comanda"}
         to={"cart"}

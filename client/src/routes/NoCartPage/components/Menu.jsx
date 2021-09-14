@@ -6,6 +6,7 @@ import {
   Form,
   FormControl,
   Image,
+  Row,
 } from "react-bootstrap";
 import { useFilteredProductsList } from "./MenuLogic";
 
@@ -17,33 +18,33 @@ export default function Menu(props) {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand>
-            <Brand />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Form className="d-flex">
-              <FormControl
-                onChange={(e) => setFilter(e.target.value)}
-                type="search"
-                placeholder="Search"
-                className="mr-2"
-                aria-label="Search"
-              />
-            </Form>
-            <Nav className="me-auto">
-              <Nav.Link href="#pizza">Pizza</Nav.Link>
-              <Nav.Link href="#burgari">Burgări</Nav.Link>
-              <Nav.Link href="#chifle">Chifle coapte pe vatră</Nav.Link>
-              <Nav.Link href="#sandwich">Sandwich</Nav.Link>
-              <Nav.Link href="#bauturi">Bauturi</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-
+      <Container fluid>
+        <Navbar bg="light" expand="xl">
+          <Container>
+            <Navbar.Brand>
+              <Brand />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Form className="d-flex ms-5 me-4">
+                <FormControl
+                  onChange={(e) => setFilter(e.target.value)}
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </Form>
+              <Nav className="ms-5">
+                <Nav.Link href="#pizza">Pizza</Nav.Link>
+                <Nav.Link href="#burgari">Burgări</Nav.Link>
+                <Nav.Link href="#chifle">Chifle coapte pe vatră</Nav.Link>
+                <Nav.Link href="#sandwich">Sandwich</Nav.Link>
+                <Nav.Link href="#bauturi">Bauturi</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </Container>
       <Container fluid style={{ backgroundColor: "#efeff4" }}>
         {/* Category component can be found below */}
         <Category

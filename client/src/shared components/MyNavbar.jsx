@@ -4,7 +4,7 @@ import Drawer from "./Drawer";
 import { Link } from "react-router-dom";
 import { Col, Container, Navbar, Card } from "react-bootstrap";
 
-export default function NavBar(props) {
+export default function MyNavbar(props) {
   // Destructuring props
   const { to, title, setAnimation } = props;
 

@@ -1,6 +1,6 @@
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 import CustomButton from "../../shared components/CustomButton";
-import NavBar from "../../shared components/NavBar";
+import MyNavbar from "../../shared components/MyNavbar";
 import {
   useSetDefaultValues,
   useUpdateUserDetails,
@@ -30,7 +30,7 @@ export default function MyAccountPage(props) {
   const { updateUser } = useUpdateUserDetails();
   return (
     <main className="page slide-in-right">
-      <NavBar
+      <MyNavbar
         title="Informatii personale"
         to="/"
         setAnimation={setNoCartAnimation}
