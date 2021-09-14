@@ -74,21 +74,20 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
       <div className="d-flex flex-wrap">
         {mapOver.map((val) => {
           return (
-            <>
-              <div
-                onClick={() => {
-                  setShow((currShow) => !currShow);
-                  setContent({
-                    Name: val.Name,
-                    Price: val.Price,
-                    Category: val.Category,
-                  });
-                }}
-                className={"m-4"}
-              >
-                <FoodBox key={val._id} val={val} />
-              </div>
-            </>
+            <div
+              key={val._id}
+              onClick={() => {
+                setShow((currShow) => !currShow);
+                setContent({
+                  Name: val.Name,
+                  Price: val.Price,
+                  Category: val.Category,
+                });
+              }}
+              className={"m-4"}
+            >
+              <FoodBox val={val} />
+            </div>
           );
         })}
       </div>
