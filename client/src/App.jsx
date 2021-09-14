@@ -109,6 +109,14 @@ export default function App() {
             />
           </Route>
 
+          {/* TrackOrderPage */}
+          <Route exact path="/trackorder">
+            <TrackOrderPage
+              idOfOrder={idOfOrder}
+              setNoCartAnimation={setNoCartAnimation}
+            />
+          </Route>
+
           {/* MyAccountPage */}
           <Route exact path="/myaccount">
             <MyAccountPage setNoCartAnimation={setNoCartAnimation} />
@@ -122,11 +130,6 @@ export default function App() {
               totalPrice={totalPrice}
               setNoCartAnimation={setNoCartAnimation}
             />
-          </Route>
-
-          {/* TrackOrderPage */}
-          <Route exact path="/trackorder">
-            <TrackOrderPage idOfOrder={idOfOrder} />
           </Route>
 
           <Route exact path="/mongodb">
