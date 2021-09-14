@@ -14,7 +14,7 @@ export default function Details(props) {
             <Card.Body>
               <ListGroup as="ul">
                 {cart.map((value) => {
-                  return <DetailsRow value={value} />;
+                  return <DetailsRow key={value.Name} value={value} />;
                 })}
               </ListGroup>
             </Card.Body>

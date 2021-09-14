@@ -22,7 +22,14 @@ export default function Cart(props) {
           <>
             <Card className="mt-5 p-3">
               {cart.map((value) => {
-                return <FoodBox cart={cart} setCart={setCart} value={value} />;
+                return (
+                  <FoodBox
+                    key={value.Name}
+                    cart={cart}
+                    setCart={setCart}
+                    value={value}
+                  />
+                );
               })}
             </Card>
             <Card.Title className="fw-bold mt-5 mb-5">

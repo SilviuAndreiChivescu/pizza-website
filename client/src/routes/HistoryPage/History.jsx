@@ -16,6 +16,7 @@ export default function History(props) {
     return historyProductList.map((e, idx) => {
       return (
         <HistoryBody
+          key={idOfHistoryProductList[idx]}
           timeOfOrder={timeOfOrder}
           e={e}
           idx={idx}
@@ -37,7 +38,7 @@ const HistoryBody = (props) => {
   const { minsDiff } = useDate(idOfHistoryProductList[idx]);
 
   return (
-    <Container className="">
+    <Container key={idOfHistoryProductList[idx]} className="">
       <Row className="justify-content-center">
         <Col xs={14} sm={12} md={10} lg={8} xl={8} xxl={9}>
           <Card key={idx} className="m-3 p-3">
@@ -48,9 +49,9 @@ const HistoryBody = (props) => {
             <Card.Body>
               <strong>Continut </strong>
               <ListGroup className="p-2" as="ul">
-                {e.map((element, index) => {
+                {e.map((element) => {
                   return (
-                    <ListGroup.Item className="mb-3" as="li" key={index}>
+                    <ListGroup.Item className="mb-3" as="li" key={element.Name}>
                       {element.Quantity} &nbsp; X &nbsp; {element.Name} &nbsp;{" "}
                       {element.Price} lei
                     </ListGroup.Item>
