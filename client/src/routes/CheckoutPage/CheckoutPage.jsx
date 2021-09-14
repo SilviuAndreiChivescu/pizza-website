@@ -18,14 +18,7 @@ import { Container } from "react-bootstrap";
 
 // encapsulate states and stuff if needed later
 export default function CheckoutPage(props) {
-  const {
-    cart,
-    setCart,
-    totalPrice,
-    setLastOrder,
-    setLastOrderTime,
-    setCartAnimation,
-  } = props;
+  const { cart, setCart, totalPrice, setLastOrder, setCartAnimation } = props;
 
   // States for User Input fields
   const {
@@ -111,9 +104,6 @@ export default function CheckoutPage(props) {
 
     // Last order is used for receipt page to show the order that was ordered
     setLastOrder(cart);
-
-    // Get the time of order for the Receipt Page
-    setLastOrderTime(getCurrentDate());
 
     // To send email with the order
     sendEmail(
