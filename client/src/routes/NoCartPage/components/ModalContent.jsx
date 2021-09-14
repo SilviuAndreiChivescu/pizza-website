@@ -37,7 +37,7 @@ export default function ModalContent(props) {
       <Form.Group className="mb-3">
         {values.map((e) => {
           return (
-            <>
+            <main key={Object.values(e)}>
               <Form.Check
                 type="radio"
                 name="pizzaSize"
@@ -50,7 +50,7 @@ export default function ModalContent(props) {
                   setSizeName(e.currentTarget.id);
                 }}
               />
-            </>
+            </main>
           );
         })}
       </Form.Group>
@@ -76,8 +76,6 @@ export default function ModalContent(props) {
         <Card.Img
           variant="top"
           src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"
-          rounded
-          fluid
         />
         <Card.Body>
           <Card.Title>{content.Price[size]} lei </Card.Title>
