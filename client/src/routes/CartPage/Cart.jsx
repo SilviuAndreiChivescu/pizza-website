@@ -110,7 +110,7 @@ const FoodBox = (props) => {
 // This component is to render if curren time is past the delivery hours
 const PastDeliveryHours = () => {
   return (
-    <Card.Subtitle className="text-secondary">
+    <Card.Subtitle className="text-secondary mt-5">
       <h5>
         Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul
         09:00 - 22:30. Va multumim !
