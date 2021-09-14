@@ -45,8 +45,7 @@ export default function App() {
   );
 
   // Last order for Receipt - MAYBE IMPLEMENT THE idOfOrder functionality to Receipt page as well TODO
-  const { lastOrder, setLastOrder, lastOrderTime, setLastOrderTime } =
-    useLastOrder();
+  const { lastOrder, setLastOrder } = useLastOrder();
 
   // Pass ID to TrackOrderPage
   const { idOfOrder, setIdOfOrder } = useIdOfOrder();
@@ -98,7 +97,6 @@ export default function App() {
               totalPrice={totalPrice}
               setCart={setCart}
               setLastOrder={setLastOrder}
-              setLastOrderTime={setLastOrderTime}
               setCartAnimation={setCartAnimation}
             />
           </Route>
@@ -120,8 +118,9 @@ export default function App() {
           <Route exact path="/receipt">
             <ReceiptPage
               lastOrder={lastOrder}
-              lastOrderTime={lastOrderTime}
+              setLastOrder={setLastOrder}
               totalPrice={totalPrice}
+              setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
 
