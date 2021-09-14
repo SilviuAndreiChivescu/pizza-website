@@ -13,17 +13,18 @@ export default function Cart(props) {
       <Container fluid className="text-center">
         {/* When empty, show a different .svg */}
         {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
-        <Card className="mt-5 p-3">
-          {cart.map((value) => {
-            return <FoodBox cart={cart} setCart={setCart} value={value} />;
-          })}
-        </Card>
 
         {/* Render only if it's not past delivery hours */}
         {time > "22:29" && time < "8:59" ? <PastDeliveryHours /> : null}
+
         {/* Render only if cart is not empty and is not past delivery hours */}
         {cart.length === 0 || (time > "22:29" && time < "8:59") ? null : (
           <>
+            <Card className="mt-5 p-3">
+              {cart.map((value) => {
+                return <FoodBox cart={cart} setCart={setCart} value={value} />;
+              })}
+            </Card>
             <Card.Title className="fw-bold mt-5 mb-5">
               Total: {totalPrice} lei
             </Card.Title>
