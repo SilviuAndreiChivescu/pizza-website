@@ -1,21 +1,26 @@
-// This component is shared by ReceiptPage and TrackOrderPage and CheckoutPage
+// This component is shared by ReceiptPage, TrackOrderPage and CheckoutPage
 
-import { Card, Container } from "react-bootstrap";
+import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 
 export default function Details(props) {
-  const { cart, totalPrice, title } = props;
+  const { cart, title } = props;
   return (
     <Container>
-      <Card className={"m-3 p-3"}>
-        <Card.Title>{title}</Card.Title>
-        {props.children}
-        {cart.map((value) => {
-          return <DetailsRow value={value} totalPrice={totalPrice} />;
-        })}
-        <Card.Body className="fs-5">
-          <strong>Total:</strong> {totalPrice} lei
-        </Card.Body>
-      </Card>
+      <Row className="justify-content-center">
+        <Col xs={14} sm={12} md={10} lg={8} xl={8} xxl={9}>
+          <Card className={"m-4 p-4"}>
+            <Card.Title className="fs-4">{title}</Card.Title>
+            {props.children}
+            <Card.Body>
+              <ListGroup as="ul">
+                {cart.map((value) => {
+                  return <DetailsRow value={value} />;
+                })}
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 }
@@ -23,9 +28,9 @@ export default function Details(props) {
 const DetailsRow = (props) => {
   const { value } = props;
   return (
-    <Card.Body>
-      {value.Quantity} &nbsp; X &nbsp;{value.Name} &nbsp; {value.Price} lei /
-      buc
-    </Card.Body>
+    <ListGroup.Item className="mb-3 " as="li">
+      <strong>{value.Quantity}</strong> &nbsp; X &nbsp;{value.Name} &nbsp;{" "}
+      <strong>{value.Price}</strong> lei / buc
+    </ListGroup.Item>
   );
 };
