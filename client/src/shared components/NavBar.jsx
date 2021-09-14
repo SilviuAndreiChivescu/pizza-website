@@ -18,24 +18,17 @@ export default function NavBar(props) {
         onClick={() => setAnimation("slide-in-left")}
         style={{ textDecoration: "none", color: "white" }}
         to={`${to}`}
+        className="fs-2"
       >
-        <h2 className=" d-inline">&#8592;</h2>
+        &#8592;
       </Link>
     );
   };
 
   return (
-    <Container fluid className="p-0">
-      <Navbar className="black-bg container-fluid">
-        <Col
-          xs={4}
-          sm={4}
-          md={4}
-          lg={4}
-          xl={4}
-          xxl={4}
-          className="text-start mt-3"
-        >
+    <Navbar style={{ position: "sticky" }} fixed="top" className="black-bg">
+      <Container fluid>
+        <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4} className="text-start">
           <h5>
             {/* Render the Arrow only if the "to" path is specified */}
             {to ? <Arrow /> : null}
@@ -69,19 +62,22 @@ export default function NavBar(props) {
             {title ? title : null}
           </Navbar.Brand>
         </Col>
-        <Col className="text-end ">
-          <Drawer Icon={<i className="fas fa-lg text-white fa-bars"></i>} />
+        <Col className="text-end">
+          <Drawer
+            Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>}
+          />
         </Col>
-      </Navbar>
-      <MyModal
-        Name="Despre noi"
-        onClose={() => setShow((currShow) => !currShow)}
-        show={show}
-      >
-        {/* ModalContent is locally and can be found below this function */}
-        <ModalContent />
-      </MyModal>
-    </Container>
+
+        <MyModal
+          Name="Despre noi"
+          onClose={() => setShow((currShow) => !currShow)}
+          show={show}
+        >
+          {/* ModalContent is locally and can be found below this function */}
+          <ModalContent />
+        </MyModal>
+      </Container>
+    </Navbar>
   );
 }
 
