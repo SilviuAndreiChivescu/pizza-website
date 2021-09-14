@@ -6,7 +6,7 @@ const useOrder = (id) => {
   const [loaded, setLoaded] = useState(false);
   const [order, setOrder] = useState([]);
   // Below functionality commented is for when adding to Orders collection a Address field
-  // const [address, setAddress] = useState([]);
+  const [address, setAddress] = useState([]);
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_ENDPOINT}/readbyid/${id}`).then(
       (response) => {
@@ -14,17 +14,17 @@ const useOrder = (id) => {
           return e.Cart;
         });
         // Below functionality commented is for when adding to Orders collection a Address field
-        // var address = response.data.map((e) => {
-        //   return e.address; - check here
-        // })
-        // setAddress();
+        var address = response.data.map((e) => {
+          return e.Address + ", " + e.City;
+        });
+        setAddress(address);
         setOrder(order);
         setLoaded(true);
       }
     );
   }, []);
 
-  return { order, loaded };
+  return { order, address, loaded };
 };
 
 // Custom hook to get the difference between date of particular Order and the current date

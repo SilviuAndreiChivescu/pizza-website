@@ -1,57 +1,82 @@
-import { useState } from "react";
+import { Card, Container } from "react-bootstrap";
 import { useTotalNoOfProductAndTotalPrice } from "../../AppLogic";
+import CustomButton from "../../shared components/CustomButton";
 import Details from "../../shared components/Details";
+import NavBar from "../../shared components/NavBar";
 import { useDate, useOrder } from "./TrackOrderPageLogic";
 
-// AICI AM RAMAS Mai fa UI la pagina asta,
 export default function TrackOrderPage(props) {
-  const { idOfOrder } = props;
-  const { order, loaded } = useOrder(idOfOrder);
+  const { idOfOrder, setNoCartAnimation } = props;
 
-  // Show order status
-  // Take difference between date of order and current time
+  // Logic
+  const { order, address, loaded } = useOrder(idOfOrder);
+
+  // Difference between date of order and current time
   const { minsDiff } = useDate(idOfOrder);
+
+  // Show order status ( minsDeff < 30 = cooking; minsDeff < 50 = delivery; minsDeff > 50 = delivered )
   const OrderStatus = () => {
     if (minsDiff < 30) {
       return (
-        <h1>
-          Comanda ta este aprobata si in curs de pregatire. {50 - minsDiff} de
-          minute pana la livrare
-        </h1>
+        <>
+          <Card.Title className="fs-2">
+            Comanda ta este aprobata si in curs de pregatire.
+          </Card.Title>
+          <Card.Subtitle>
+            {50 - minsDiff} de minute pana la livrare
+          </Card.Subtitle>
+        </>
       );
     } else if (minsDiff < 50) {
       return (
-        <h1>Comanda ta se livreaa. {50 - minsDiff} minute pana la livrare</h1>
+        <>
+          <Card.Title className="fs-2">Comanda ta se livreaza.</Card.Title>
+          <Card.Subtitle>{50 - minsDiff} minute pana la livrare</Card.Subtitle>
+        </>
       );
     } else {
-      return <h1>Comanda ta a fost livrata</h1>;
+      return (
+        <Card.Title className="fs-2">Comanda ta a fost livrata</Card.Title>
+      );
     }
   };
 
   if (loaded) {
     return (
       <main className="page slide-in-right">
-        <h1>Track Order page ID OF ORDER IS: {idOfOrder}</h1>
-        <h1>Date of this order is: </h1>
-        <h1>Minutes difference {minsDiff}</h1>
-        <OrderStatus />
-        <h2>
-          Cart is:
-          {order.map((e, idx) => {
-            return <CartBody e={e} />;
-          })}
-        </h2>
+        <NavBar
+          setAnimation={setNoCartAnimation}
+          title={"Statusul comenzii"}
+          to={"/"}
+        />
+        <Container className="text-center mt-3">
+          <Card.Body>
+            <OrderStatus />
+          </Card.Body>
+        </Container>
+
+        {order.map((e, idx) => {
+          return <CartBody e={e} address={address} />;
+        })}
       </main>
     );
   } else return null;
 }
 
+// Using another component because Total Price could not have been calculated without. Calling custom hooks in return statement is not possible
 const CartBody = (props) => {
-  const { e } = props;
+  const { e, address } = props;
   const { totalPrice } = useTotalNoOfProductAndTotalPrice(e);
   return (
-    <>
-      <Details cart={e} totalPrice={totalPrice} />
-    </>
+    <Container>
+      <Details cart={e} title="Detalii comanda" totalPrice={totalPrice}>
+        <Card.Subtitle> Adresa: {address}</Card.Subtitle>
+      </Details>
+      <section className="text-center">
+        <a href="tel:0754911062">
+          <CustomButton title={`Suna-ne`} />
+        </a>
+      </section>
+    </Container>
   );
 };
