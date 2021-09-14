@@ -2,7 +2,7 @@ import { Modal } from "react-bootstrap";
 import React from "react";
 
 export default function MyModal(props) {
-  const { onClose, Name } = props;
+  const { onClose, name } = props;
   return (
     <Modal
       {...props}
@@ -14,12 +14,10 @@ export default function MyModal(props) {
     >
       <Modal.Header
         closeButton
-        closeLabel
         closeVariant="white"
-        toggle={onClose}
         className="black-bg text-white"
       >
-        <Modal.Title id="contained-modal-title-vcenter">{Name}</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">{name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{props.children}</Modal.Body>
     </Modal>
