@@ -26,8 +26,7 @@ const useIdOfOrder = () => {
 // Last order is used to show on Receipt
 const useLastOrder = () => {
   const [lastOrder, setLastOrder] = useState([]);
-  const [lastOrderTime, setLastOrderTime] = useState("");
-  return { lastOrder, setLastOrder, lastOrderTime, setLastOrderTime };
+  return { lastOrder, setLastOrder };
 };
 
 // **** State to read/get products from MongoDB products collection
