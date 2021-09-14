@@ -83,7 +83,7 @@ export default function DeliveryDetails(props) {
       <Form.Group as={Row}>
         <Col>
           <Form.Check
-            onClick={() => setTerms(true)}
+            onClick={() => setTerms((currValue) => !currValue)}
             type="checkbox"
             id="confirm"
             name="terms"
