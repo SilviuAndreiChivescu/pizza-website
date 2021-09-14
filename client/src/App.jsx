@@ -105,7 +105,10 @@ export default function App() {
 
           {/* HistoryPage */}
           <Route exact path="/history">
-            <HistoryPage setIdOfOrder={setIdOfOrder} />
+            <HistoryPage
+              setIdOfOrder={setIdOfOrder}
+              setNoCartAnimation={setNoCartAnimation}
+            />
           </Route>
 
           {/* MyAccountPage */}
