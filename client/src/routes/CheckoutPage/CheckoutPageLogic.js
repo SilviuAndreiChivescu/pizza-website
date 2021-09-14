@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
-import { useTotalNoOfProductAndTotalPrice } from "./../../AppLogic";
+import { useTotalQuantityOrTotalPrice } from "./../../AppLogic";
 
 // Post request to Orders collection // I need to refactor this to match Orders model -  ?
 const usePostToOrders = () => {
@@ -149,7 +149,7 @@ const useSetDefaultValues = () => {
 // Mailjet API
 const useMailjetAPI = (cart) => {
   // Function to calculate total price
-  const { totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
+  const { totalPrice } = useTotalQuantityOrTotalPrice(cart);
   const sendEmail = (
     firstName,
     lastName,

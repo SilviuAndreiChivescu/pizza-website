@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useBeforeunload } from "react-beforeunload";
 import { Card } from "react-bootstrap";
-import { useTotalNoOfProductAndTotalPrice } from "../../AppLogic";
+import { useTotalQuantityOrTotalPrice } from "../../AppLogic";
 import Details from "../../shared components/Details";
 import NavBar from "../../shared components/NavBar";
 
@@ -11,7 +11,7 @@ export default function ReceiptPage(props) {
   const { lastOrder, setLastOrder, setNoCartAnimation } = props;
 
   // Total price of order
-  const { totalPrice } = useTotalNoOfProductAndTotalPrice(lastOrder);
+  const { totalPrice } = useTotalQuantityOrTotalPrice(lastOrder);
 
   // Calculate delivery time
   const [time] = useState(() => new Date());

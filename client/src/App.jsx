@@ -17,7 +17,7 @@ import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
 import {
   useAppState,
   useCart,
-  useTotalNoOfProductAndTotalPrice,
+  useTotalQuantityOrTotalPrice,
   useProductsList,
   useLastOrder,
   useIdOfOrder,
@@ -54,7 +54,7 @@ export default function App() {
   const { productsList } = useProductsList(setAppState);
 
   // **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage ****
-  const { totalQuantity, totalPrice } = useTotalNoOfProductAndTotalPrice(cart);
+  const { totalQuantity, totalPrice } = useTotalQuantityOrTotalPrice(cart);
 
   // Animations for Routes
   const [noCartAnimation, setNoCartAnimation] = useState("scale-in-center");

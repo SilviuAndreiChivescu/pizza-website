@@ -1,7 +1,7 @@
 import CustomButton from "../../shared components/CustomButton";
 import { useHistoryData } from "./HistoryLogic";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
-import { useTotalNoOfProductAndTotalPrice } from "../../AppLogic";
+import { useTotalQuantityOrTotalPrice } from "../../AppLogic";
 import { Link } from "react-router-dom";
 import { useDate } from "../TrackOrderPage/TrackOrderPageLogic";
 
@@ -32,7 +32,7 @@ const HistoryBody = (props) => {
   const { e, idx, timeOfOrder, idOfHistoryProductList, setIdOfOrder } = props;
 
   // Total price for particular order
-  const { totalPrice } = useTotalNoOfProductAndTotalPrice(e);
+  const { totalPrice } = useTotalQuantityOrTotalPrice(e);
 
   // Minutes difference between current order and current time
   const { minsDiff } = useDate(idOfHistoryProductList[idx]);

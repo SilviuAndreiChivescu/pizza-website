@@ -42,8 +42,7 @@ const useProductsList = (setAppState) => {
   return { productsList };
 };
 
-// **** Custom hook to get: total price and total quantity for CartBar and Cart components from NoCartPage. Also it has been used either one throught the application. MENTION LATER
-const useTotalNoOfProductAndTotalPrice = (cart) => {
+const useTotalQuantityOrTotalPrice = (cart) => {
   // Get totalQuantity from cart state
   const [totalQuantity, setTotalQuantity] = useState(0);
   // Get totalPrice of all products from cart state
@@ -79,6 +78,6 @@ export {
   useCart,
   useLastOrder,
   useProductsList,
-  useTotalNoOfProductAndTotalPrice,
+  useTotalQuantityOrTotalPrice,
   useIdOfOrder,
 };
