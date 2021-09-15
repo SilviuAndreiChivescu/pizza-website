@@ -1,28 +1,6 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
 
-// **** State of Application
-const useAppState = () => {
-  const [appState, setAppState] = useState("loading");
-
-  return { appState, setAppState };
-};
-
-// **** Cart state to store products.
-const useCart = () => {
-  // Initiate cart with previous cart from localStorage if exists else empty array
-  const [cart, setCart] = useState(
-    JSON.parse(window.localStorage.getItem("cart")) || []
-  );
-  return { cart, setCart };
-};
-
-// State to pass id of order to TrackOrderPage
-const useIdOfOrder = () => {
-  const [idOfOrder, setIdOfOrder] = useState("");
-  return { idOfOrder, setIdOfOrder };
-};
-
 // Last order is used to show on Receipt
 const useLastOrder = () => {
   const [lastOrder, setLastOrder] = useState([]);
@@ -101,12 +79,4 @@ const useDate = (id) => {
   return { minsDiff };
 };
 
-export {
-  useAppState,
-  useCart,
-  useLastOrder,
-  useProductsList,
-  useTotalQuantityOrTotalPrice,
-  useIdOfOrder,
-  useDate,
-};
+export { useLastOrder, useProductsList, useTotalQuantityOrTotalPrice, useDate };

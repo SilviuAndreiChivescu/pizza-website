@@ -15,8 +15,6 @@ import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
 
 // Custom hooks to encapsulate code
 import {
-  useAppState,
-  useCart,
   useTotalQuantityOrTotalPrice,
   useProductsList,
   useLastOrder,
@@ -30,13 +28,16 @@ import { useState } from "react";
 
 export default function App() {
   // State of Application
-  const { appState, setAppState } = useAppState();
+  const [appState, setAppState] = useState("loading");
 
   // **** Auth0 ****
   const { isLoading } = useAuth0();
 
-  // Taking cart and setCart from useCart hook
-  const { cart, setCart } = useCart();
+  // Cart state to store products
+  // Initiate cart with previous cart from localStorage if exists else empty array
+  const [cart, setCart] = useState(
+    JSON.parse(window.localStorage.getItem("cart")) || []
+  );
 
   // Before unload of page, put cart in localStorage && remove cart from localStorage after setting it to the cart state array
   useBeforeunload(
@@ -47,8 +48,8 @@ export default function App() {
   // Last order for Receipt - MAYBE IMPLEMENT THE idOfOrder functionality to Receipt page as well TODO
   const { lastOrder, setLastOrder } = useLastOrder();
 
-  // Pass ID to TrackOrderPage
-  const { idOfOrder, setIdOfOrder } = useIdOfOrder();
+  // State to pass id of order to TrackOrderPage
+  const [idOfOrder, setIdOfOrder] = useState("");
 
   // state to read/get products from MongoDB products collection
   const { productsList } = useProductsList(setAppState);
