@@ -4,7 +4,7 @@ import { useState } from "react";
 import Feedback from "react-bootstrap/esm/Feedback";
 
 export default function DeliveryDetails(props) {
-  const { setDeliveryWay, setDeliveryTime, setKeepData, setTerms } = props;
+  const { setDeliveryDetailsStates, deliveryDetailsStates } = props;
   // useState for if the user decides to choose a time to get his food
   const [time, setTime] = useState(false);
 
@@ -18,7 +18,10 @@ export default function DeliveryDetails(props) {
           <Form.Check
             onClick={(e) => {
               setTime(false);
-              setDeliveryTime(e.target.value);
+              setDeliveryDetailsStates({
+                ...deliveryDetailsStates,
+                deliveryTime: e.target.value,
+              });
             }}
             type="radio"
             label="Cat mai repede"
@@ -37,7 +40,12 @@ export default function DeliveryDetails(props) {
           />
           {time ? (
             <Form.Control
-              onChange={(e) => setDeliveryTime(e.target.value)}
+              onChange={(e) =>
+                setDeliveryDetailsStates({
+                  ...deliveryDetailsStates,
+                  deliveryTime: e.target.value,
+                })
+              }
               placeholder="Exemplu: 16:30"
             />
           ) : null}
@@ -50,7 +58,12 @@ export default function DeliveryDetails(props) {
       <Form.Group as={Row} className="mb-3">
         <Col>
           <Form.Check
-            onChange={(e) => setDeliveryWay(e.target.value)}
+            onChange={(e) =>
+              setDeliveryDetailsStates({
+                ...deliveryDetailsStates,
+                deliveryWay: e.target.value,
+              })
+            }
             type="radio"
             label="Livrare la domiciliu"
             name="deliveryWay"
@@ -59,7 +72,12 @@ export default function DeliveryDetails(props) {
             required
           />
           <Form.Check
-            onChange={(e) => setDeliveryWay(e.target.value)}
+            onChange={(e) =>
+              setDeliveryDetailsStates({
+                ...deliveryDetailsStates,
+                deliveryWay: e.target.value,
+              })
+            }
             type="radio"
             label="Ridicare personala"
             name="deliveryWay"
@@ -72,7 +90,12 @@ export default function DeliveryDetails(props) {
       <Form.Group as={Row}>
         <Col>
           <Form.Check
-            onClick={() => setKeepData((data) => !data)}
+            onClick={() =>
+              setDeliveryDetailsStates({
+                ...deliveryDetailsStates,
+                keepData: !deliveryDetailsStates.keepData,
+              })
+            }
             type="checkbox"
             id="data"
             name="keepData"
@@ -83,14 +106,18 @@ export default function DeliveryDetails(props) {
       <Form.Group as={Row}>
         <Col>
           <Form.Check
-            onClick={() => setTerms((currValue) => !currValue)}
+            onClick={() =>
+              setDeliveryDetailsStates({
+                ...deliveryDetailsStates,
+                terms: !deliveryDetailsStates.terms,
+              })
+            }
             type="checkbox"
             id="confirm"
             name="terms"
             label="Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. *"
             required
           />
-          <Feedback type="invalid">Yo this is required</Feedback>
         </Col>
       </Form.Group>
     </Container>

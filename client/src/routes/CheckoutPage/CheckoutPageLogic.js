@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
 import { useTotalQuantityOrTotalPrice } from "./../../AppLogic";
 
-// Post request to Orders collection // I need to refactor this to match Orders model -  ?
+// Post request to Orders collection
 const usePostToOrders = () => {
   const addToOrders = (
     firstName,
@@ -13,8 +13,7 @@ const usePostToOrders = () => {
     address,
     city,
     phoneNumber,
-    deliveryTime,
-    deliveryWay
+    deliveryDetailsStates
   ) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoOrders`, {
@@ -25,8 +24,8 @@ const usePostToOrders = () => {
         Address: address,
         City: city,
         PhoneNumber: phoneNumber,
-        DeliveryTime: deliveryTime,
-        DeliveryWay: deliveryWay,
+        DeliveryTime: deliveryDetailsStates.deliveryTime,
+        DeliveryWay: deliveryDetailsStates.deliveryWay,
       });
       console.log("Inserted data into Orders collection!");
     } catch (err) {
@@ -146,6 +145,91 @@ const useSetDefaultValues = () => {
   };
 };
 
+const useHandleSubmit = (cart, history) => {
+  const { checkIfUserInDb } = useCheckIfUserInDb();
+  const { addToOrders } = usePostToOrders();
+  const { sendEmail } = useMailjetAPI(cart);
+
+  const handleSubmit = (
+    setLastOrder,
+    setCart,
+    firstName,
+    lastName,
+    email,
+    cart,
+    address,
+    city,
+    phoneNo,
+    deliveryDetailsStates
+  ) => {
+    // If any of the inputs is empty, don't execute button functionality
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      phoneNo === 0 ||
+      address === "" ||
+      city === "" ||
+      deliveryDetailsStates.deliveryTime === "" ||
+      deliveryDetailsStates.deliveryWay === "" ||
+      // If checkbox with Terms not checked
+      !deliveryDetailsStates.terms
+    ) {
+      return;
+    }
+    // Keep data in local storage if user ticks the checkbox
+    if (deliveryDetailsStates.keepData) {
+      // Create object to pass to local storage
+      let data = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        cart: cart,
+        address: address,
+        city: city,
+        phoneNo: phoneNo,
+        deliveryTime: deliveryDetailsStates.deliveryTime,
+        deliveryWay: deliveryDetailsStates.deliveryWay,
+      };
+      window.localStorage.setItem("userDetails", JSON.stringify(data));
+    }
+
+    // // This function checks if the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
+    checkIfUserInDb(email, firstName, lastName, address, city, phoneNo);
+
+    addToOrders(
+      firstName,
+      lastName,
+      email,
+      cart,
+      address,
+      city,
+      phoneNo,
+      deliveryDetailsStates
+    );
+    // Last order is used for receipt page to show the order that was ordered
+    setLastOrder(cart);
+
+    // To send email with the order
+    sendEmail(
+      firstName,
+      lastName,
+      email,
+      phoneNo,
+      address,
+      city,
+      deliveryDetailsStates
+    );
+
+    // Clean up cart state for next order
+    setCart([]);
+
+    // Redirect to Receipt Page
+    history.push("/receipt");
+  };
+  return { handleSubmit };
+};
+
 // Mailjet API
 const useMailjetAPI = (cart) => {
   // Function to calculate total price
@@ -157,14 +241,13 @@ const useMailjetAPI = (cart) => {
     phoneNo,
     address,
     city,
-    deliveryWay,
-    deliveryTime
+    deliveryDetailsStates
   ) => {
     // Create the email
     var nameText = `${firstName} ${lastName}`;
     var contactText = `${phoneNo} ${email}`;
     var addressText = `${city} ${address}`;
-    var deliveryText = `${deliveryWay} - ${deliveryTime}`;
+    var deliveryText = `${deliveryDetailsStates.deliveryWay} - ${deliveryDetailsStates.deliveryTime}`;
     // Map over cart state
     var cartText = cart
       .map((e) => {
@@ -190,10 +273,4 @@ const useMailjetAPI = (cart) => {
 };
 // *** END Mailjet API ***
 
-export {
-  usePostToOrders,
-  usePostToUsers,
-  useCheckIfUserInDb,
-  useSetDefaultValues,
-  useMailjetAPI,
-};
+export { usePostToOrders, useSetDefaultValues, useHandleSubmit };
