@@ -5,13 +5,13 @@ import { useTotalQuantityOrTotalPrice } from "./../../AppLogic";
 
 // Post request to Orders collection
 const usePostToOrders = () => {
-  const addToOrders = (userDetailsStates, deliveryDetailsStates) => {
+  const addToOrders = (cart, userDetailsStates, deliveryDetailsStates) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoOrders`, {
         FirstName: userDetailsStates.firstName,
         LastName: userDetailsStates.lastName,
         Email: userDetailsStates.email,
-        Cart: userDetailsStates.cart,
+        Cart: cart,
         Address: userDetailsStates.address,
         City: userDetailsStates.city,
         PhoneNumber: userDetailsStates.phoneNumber,
@@ -147,7 +147,7 @@ const useHandleSubmit = (cart, history) => {
     // // This function checks if the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
     checkIfUserInDb(userDetailsStates);
 
-    addToOrders(userDetailsStates, deliveryDetailsStates);
+    addToOrders(cart, userDetailsStates, deliveryDetailsStates);
     // Last order is used for receipt page to show the order that was ordered
     setLastOrder(cart);
 
