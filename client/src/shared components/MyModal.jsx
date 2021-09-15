@@ -2,7 +2,7 @@ import { Modal } from "react-bootstrap";
 import React from "react";
 
 export default function MyModal(props) {
-  const { onClose, name } = props;
+  const { onClose, name, children } = props;
   return (
     <Modal
       {...props}
@@ -19,7 +19,7 @@ export default function MyModal(props) {
       >
         <Modal.Title id="contained-modal-title-vcenter">{name}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{props.children}</Modal.Body>
+      <Modal.Body>{children}</Modal.Body>
     </Modal>
   );
 }
