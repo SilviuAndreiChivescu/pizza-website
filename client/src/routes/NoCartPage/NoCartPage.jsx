@@ -1,9 +1,10 @@
 import MyNavbar from "../../shared components/MyNavbar";
+import MyModal from "../../shared components/MyModal";
+
 import Menu from "./components/Menu";
 import CartBar from "./components/CartBar";
-
-import MyModal from "../../shared components/MyModal";
 import ModalContent from "./components/ModalContent";
+
 import { useContent, useShow } from "./NoCartPageLogic";
 
 export default function NoCartPage(props) {
