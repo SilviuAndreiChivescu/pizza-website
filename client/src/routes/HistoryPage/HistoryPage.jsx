@@ -2,7 +2,7 @@ import MyNavbar from "../../shared components/MyNavbar";
 import History from "./History";
 
 export default function HistoryPage(props) {
-  const { setIdOfOrder, setNoCartAnimation } = props;
+  const { setIdOfOrder, setNoCartAnimation, setAppState } = props;
   return (
     <main className="page slide-in-right">
       <MyNavbar
@@ -10,7 +10,7 @@ export default function HistoryPage(props) {
         title={"Istoricul comenzilor"}
         to={"/"}
       />
-      <History setIdOfOrder={setIdOfOrder} />
+      <History setAppState={setAppState} setIdOfOrder={setIdOfOrder} />
     </main>
   );
 }

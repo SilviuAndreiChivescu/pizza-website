@@ -58,6 +58,9 @@ export default function App() {
 
   // If loading
   if (appState === "loading" || isLoading) return <Loading />;
+  // If error
+  if (appState === "error")
+    return <h1>Este o eroare. Va rugam reincercati.</h1>;
   // If loaded
   else if (appState === "loaded") {
     return (
@@ -90,6 +93,7 @@ export default function App() {
           {/* CheckoutPage */}
           <Route exact path="/checkout">
             <CheckoutPage
+              setAppState={setAppState}
               cart={cart}
               totalPrice={totalPrice}
               setCart={setCart}
@@ -101,6 +105,7 @@ export default function App() {
           {/* HistoryPage */}
           <Route exact path="/history">
             <HistoryPage
+              setAppState={setAppState}
               setIdOfOrder={setIdOfOrder}
               setNoCartAnimation={setNoCartAnimation}
             />
@@ -109,6 +114,7 @@ export default function App() {
           {/* TrackOrderPage */}
           <Route exact path="/trackorder">
             <TrackOrderPage
+              setAppState={setAppState}
               idOfOrder={idOfOrder}
               setNoCartAnimation={setNoCartAnimation}
             />
@@ -116,7 +122,10 @@ export default function App() {
 
           {/* MyAccountPage */}
           <Route exact path="/myaccount">
-            <MyAccountPage setNoCartAnimation={setNoCartAnimation} />
+            <MyAccountPage
+              setAppState={setAppState}
+              setNoCartAnimation={setNoCartAnimation}
+            />
           </Route>
 
           {/* ReceiptPage */}

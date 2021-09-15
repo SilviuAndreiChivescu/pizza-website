@@ -14,10 +14,18 @@ import { useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
 export default function CheckoutPage(props) {
-  const { cart, setCart, totalPrice, setLastOrder, setCartAnimation } = props;
+  const {
+    setAppState,
+    cart,
+    setCart,
+    totalPrice,
+    setLastOrder,
+    setCartAnimation,
+  } = props;
 
   // States for User Input fields
-  const { userDetailsStates, setUserDetailsStates } = useSetDefaultValues();
+  const { userDetailsStates, setUserDetailsStates } =
+    useSetDefaultValues(setAppState);
 
   // States for DeliveryDetails
   const [deliveryDetailsStates, setDeliveryDetailsStates] = useState({
@@ -58,7 +66,8 @@ export default function CheckoutPage(props) {
                 setLastOrder,
                 setCart,
                 userDetailsStates,
-                deliveryDetailsStates
+                deliveryDetailsStates,
+                setAppState
               );
             }}
           />

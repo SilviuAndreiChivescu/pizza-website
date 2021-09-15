@@ -13,26 +13,29 @@ const useInputValues = () => {
     city: "",
   });
 
-  const getRequestToUsers = () => {
+  const getRequestToUsers = (setAppState) => {
     if (isAuthenticated)
-      Axios.get(
-        `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${user.email}`
-      ).then((response) => {
-        // To get data from request (Using indexing and it's set to 0 because this is an object in an array and we only have one row)
-        var data = response.data[0];
+      try {
+        Axios.get(
+          `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${user.email}`
+        ).then((response) => {
+          // To get data from request (Using indexing and it's set to 0 because this is an object in an array and we only have one row)
+          var data = response.data[0];
 
-        // Set Input Values to data from request
-        //v2 - IMPORTANT NOTE. SEE AS I DID HERE? DO AS HERE FOR DELIVERYDETAILS AS WELL, I THINK I HAVE NOT DONE THIS AND NOW MY APP WORKS OK, BEFORE THIS, IT DID NOT, AS CAN SEE BELOW COMMENTED
-        setUserDetailsStates({
-          ...userDetailsStates,
-          firstName: data.FirstName,
-          lastName: data.LastName,
-          email: data.Email,
-          phoneNo: data.PhoneNumber,
-          address: data.Address,
-          city: data.City,
+          setUserDetailsStates({
+            ...userDetailsStates,
+            firstName: data.FirstName,
+            lastName: data.LastName,
+            email: data.Email,
+            phoneNo: data.PhoneNumber,
+            address: data.Address,
+            city: data.City,
+          });
         });
-      });
+      } catch (err) {
+        setAppState("error");
+        console.log(err);
+      }
   };
 
   return {

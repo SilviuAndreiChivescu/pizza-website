@@ -8,10 +8,11 @@ import {
 import { Container, Form } from "react-bootstrap";
 
 export default function MyAccountPage(props) {
-  const { setNoCartAnimation } = props;
+  const { setNoCartAnimation, setAppState } = props;
 
   // States for User Input fields
-  const { userDetailsStates, setUserDetailsStates } = useSetDefaultValues();
+  const { userDetailsStates, setUserDetailsStates } =
+    useSetDefaultValues(setAppState);
 
   // Function to update user details in Users Collection
   const { updateUser } = useUpdateUserDetails();
@@ -34,7 +35,7 @@ export default function MyAccountPage(props) {
               title={"Salveaza noile informatii"}
               className="mt-5"
               onClick={() => {
-                updateUser(userDetailsStates);
+                updateUser(userDetailsStates, setAppState);
                 alert("Detaliile tale au fost modificate cu succes");
               }}
             />

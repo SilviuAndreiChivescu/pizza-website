@@ -6,10 +6,10 @@ import MyNavbar from "../../shared components/MyNavbar";
 import { useOrderData } from "./TrackOrderPageLogic";
 
 export default function TrackOrderPage(props) {
-  const { idOfOrder, setNoCartAnimation } = props;
+  const { idOfOrder, setNoCartAnimation, setAppState } = props;
 
   // Logic
-  const { orderData } = useOrderData(idOfOrder);
+  const { orderData } = useOrderData(idOfOrder, setAppState);
 
   // Difference between date of order and current time
   const { minsDiff } = useDate(idOfOrder);

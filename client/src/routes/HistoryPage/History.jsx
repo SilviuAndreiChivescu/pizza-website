@@ -5,10 +5,10 @@ import { useTotalQuantityOrTotalPrice, useDate } from "../../AppLogic";
 import { Link } from "react-router-dom";
 
 export default function History(props) {
-  const { setIdOfOrder } = props;
+  const { setIdOfOrder, setAppState } = props;
 
   // HistoryLogic
-  const { historyData } = useHistoryData();
+  const { historyData } = useHistoryData(setAppState);
 
   // If has loaded
   if (historyData.loaded) {

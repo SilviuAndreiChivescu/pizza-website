@@ -5,7 +5,12 @@ import { useTotalQuantityOrTotalPrice } from "./../../AppLogic";
 
 // Post request to Orders collection
 const usePostToOrders = () => {
-  const addToOrders = (cart, userDetailsStates, deliveryDetailsStates) => {
+  const addToOrders = (
+    cart,
+    userDetailsStates,
+    deliveryDetailsStates,
+    setAppState
+  ) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoOrders`, {
         FirstName: userDetailsStates.firstName,
@@ -20,6 +25,7 @@ const usePostToOrders = () => {
       });
       console.log("Inserted data into Orders collection!");
     } catch (err) {
+      setAppState("error");
       console.log(err);
     }
   };
@@ -28,7 +34,7 @@ const usePostToOrders = () => {
 
 // Post request to Users Collection
 const usePostToUsers = () => {
-  const addToUsers = (userDetailsStates) => {
+  const addToUsers = (userDetailsStates, setAppState) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoUsers`, {
         FirstName: userDetailsStates.firstName,
@@ -39,6 +45,7 @@ const usePostToUsers = () => {
         PhoneNumber: userDetailsStates.phoneNumber,
       });
     } catch (err) {
+      setAppState("error");
       console.log(err);
     }
   };
@@ -50,23 +57,25 @@ const usePostToUsers = () => {
 const useCheckIfUserInDb = () => {
   const { addToUsers } = usePostToUsers();
 
-  const checkIfUserInDb = (userDetailsStates) => {
+  const checkIfUserInDb = (userDetailsStates, setAppState) => {
     try {
       // Send reqeust to MongoDB to check if for this email we have data.
       Axios.get(
         `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${userDetailsStates.email}`
       ).then((response) => {
         // If there is no data, then add user to Users Collection
-        if (response.data.length === 0) addToUsers(userDetailsStates);
+        if (response.data.length === 0)
+          addToUsers(userDetailsStates, setAppState);
       });
     } catch (err) {
+      setAppState("error");
       console.log(err);
     }
   };
   return { checkIfUserInDb };
 };
 
-const useSetDefaultValues = () => {
+const useSetDefaultValues = (setAppState) => {
   // States for UserDetailsInputs
   const { userDetailsStates, setUserDetailsStates, getRequestToUsers } =
     useInputValues();
@@ -91,7 +100,7 @@ const useSetDefaultValues = () => {
     }
     // If there is nothing on local storage, send get request to Users collection
     else {
-      getRequestToUsers();
+      getRequestToUsers(setAppState);
     }
   }, []);
 
@@ -110,7 +119,8 @@ const useHandleSubmit = (cart, history) => {
     setLastOrder,
     setCart,
     userDetailsStates,
-    deliveryDetailsStates
+    deliveryDetailsStates,
+    setAppState
   ) => {
     // If any of the inputs is empty, don't execute button functionality
     if (
@@ -144,15 +154,17 @@ const useHandleSubmit = (cart, history) => {
       window.localStorage.setItem("userDetails", JSON.stringify(data));
     }
 
-    // // This function checks if the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
-    checkIfUserInDb(userDetailsStates);
+    // This function checks if the user is already in Users Collection. If users is not in Users Collection, it adds it
+    checkIfUserInDb(userDetailsStates, setAppState);
 
-    addToOrders(cart, userDetailsStates, deliveryDetailsStates);
+    // Add to Orders collection
+    addToOrders(cart, userDetailsStates, deliveryDetailsStates, setAppState);
+
     // Last order is used for receipt page to show the order that was ordered
     setLastOrder(cart);
 
     // To send email with the order
-    sendEmail(userDetailsStates, deliveryDetailsStates);
+    sendEmail(userDetailsStates, deliveryDetailsStates, setAppState);
 
     // Clean up cart state for next order
     setCart([]);
@@ -167,7 +179,7 @@ const useHandleSubmit = (cart, history) => {
 const useMailjetAPI = (cart) => {
   // Function to calculate total price
   const { totalPrice } = useTotalQuantityOrTotalPrice(cart);
-  const sendEmail = (userDetailsStates, deliveryDetailsStates) => {
+  const sendEmail = (userDetailsStates, deliveryDetailsStates, setAppState) => {
     // Create the email
     const email = {
       nameText: `${userDetailsStates.firstName} ${userDetailsStates.lastName}`,
@@ -193,6 +205,7 @@ const useMailjetAPI = (cart) => {
         cartText: email.cartText,
       });
     } catch (err) {
+      setAppState("error");
       console.log(err);
     }
   };
