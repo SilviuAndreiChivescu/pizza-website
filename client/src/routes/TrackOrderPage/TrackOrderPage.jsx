@@ -3,13 +3,13 @@ import { useTotalQuantityOrTotalPrice, useDate } from "../../AppLogic";
 import CustomButton from "../../shared components/CustomButton";
 import Details from "../../shared components/Details";
 import MyNavbar from "../../shared components/MyNavbar";
-import { useOrder } from "./TrackOrderPageLogic";
+import { useOrderData } from "./TrackOrderPageLogic";
 
 export default function TrackOrderPage(props) {
   const { idOfOrder, setNoCartAnimation } = props;
 
   // Logic
-  const { order, address, loaded } = useOrder(idOfOrder);
+  const { orderData } = useOrderData(idOfOrder);
 
   // Difference between date of order and current time
   const { minsDiff } = useDate(idOfOrder);
@@ -41,7 +41,7 @@ export default function TrackOrderPage(props) {
     }
   };
 
-  if (loaded) {
+  if (orderData.loaded) {
     return (
       <main className="page slide-in-right">
         <MyNavbar
@@ -55,8 +55,8 @@ export default function TrackOrderPage(props) {
           </Card.Body>
         </Container>
 
-        {order.map((e, idx) => {
-          return <CartBody key={e.Name} e={e} address={address} />;
+        {orderData.order.map((e, idx) => {
+          return <CartBody key={e.Name} e={e} address={orderData.address} />;
         })}
       </main>
     );
