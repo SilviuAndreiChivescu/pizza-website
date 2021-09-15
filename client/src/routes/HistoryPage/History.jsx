@@ -8,23 +8,28 @@ export default function History(props) {
   const { setIdOfOrder } = props;
 
   // HistoryLogic
-  const { historyProductList, timeOfOrder, idOfHistoryProductList, loaded } =
-    useHistoryData();
+  const { historyData } = useHistoryData();
 
-  if (loaded) {
-    return historyProductList.map((e, idx) => {
-      return (
-        <HistoryBody
-          key={idOfHistoryProductList[idx]}
-          timeOfOrder={timeOfOrder}
-          e={e}
-          idx={idx}
-          idOfHistoryProductList={idOfHistoryProductList}
-          setIdOfOrder={setIdOfOrder}
-        />
-      );
-    });
-  } else return <h1>Nicio comanda pt dvs</h1>;
+  // If has loaded
+  if (historyData.loaded) {
+    // If there is data
+    if (historyData.historyProductList.length !== 0)
+      return historyData.historyProductList.map((e, idx) => {
+        return (
+          <HistoryBody
+            key={historyData.idOfHistoryProductList[idx]}
+            timeOfOrder={historyData.timeOfOrder}
+            e={e}
+            idx={idx}
+            idOfHistoryProductList={historyData.idOfHistoryProductList}
+            setIdOfOrder={setIdOfOrder}
+          />
+        );
+      });
+    // If no data
+    else return <h1>Nicio comanda pt dvs</h1>;
+    // If can't make the request
+  } else return <h1>A aparut o eroare, va rugam sa dati refresh.</h1>;
 }
 
 const HistoryBody = (props) => {

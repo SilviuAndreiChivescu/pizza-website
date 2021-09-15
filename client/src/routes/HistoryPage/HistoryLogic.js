@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 
 const useHistoryData = () => {
-  const [historyProductList, setHistoryProductList] = useState([]);
-  const [timeOfOrder, setTimeOfOrder] = useState([]);
-  const [idOfHistoryProductList, setIdOfHistoryProductList] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const [historyData, setHistoryData] = useState({
+    historyProductList: [],
+    timeOfOrder: [],
+    idOfHistoryProductList: [],
+    loaded: false,
+  });
+
   const { user } = useAuth0();
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_ENDPOINT}/read/${user.email}`).then(
@@ -32,24 +35,24 @@ const useHistoryData = () => {
           return e._id;
         });
 
-        // Set the cart to the state
-        setHistoryProductList(orders);
-        // Set the ids to the state
-        setIdOfHistoryProductList(ids);
-        // Set the time to the state
-        setTimeOfOrder(times);
-
-        // Confirm data is loaded
-        setLoaded((prevValue) => !prevValue);
+        // Set states
+        setHistoryData({
+          ...historyData,
+          // Set the cart to the state
+          historyProductList: orders,
+          // Set the time to the state
+          timeOfOrder: times,
+          // Set the ids to the state
+          idOfHistoryProductList: ids,
+          // Confirm data has loaded
+          loaded: true,
+        });
       }
     );
   }, []);
 
   return {
-    historyProductList,
-    timeOfOrder,
-    idOfHistoryProductList,
-    loaded,
+    historyData,
   };
 };
 
