@@ -27,7 +27,7 @@ const useHistoryData = () => {
           var dateOfOrder = new Date(
             parseInt(e._id.substring(0, 8), 16) * 1000
           );
-          return dateOfOrder.toLocaleString("ro-RO");
+          return dateOfOrder.toLocaleString(process.env.REACT_APP_LOCALESTRING);
         });
 
         // To get id for orders from data
