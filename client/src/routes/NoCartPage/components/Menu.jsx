@@ -71,27 +71,30 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
   if (mapOver.length === 0) return null;
   return (
     <>
-      <Card.Body id={id}>{title}</Card.Body>
-      <div className="d-flex flex-wrap">
-        {mapOver.map((val) => {
-          return (
-            <div
-              key={val._id}
-              onClick={() => {
-                setShow((currShow) => !currShow);
-                setContent({
-                  Name: val.Name,
-                  Price: val.Price,
-                  Category: val.Category,
-                });
-              }}
-              className={"m-4"}
-            >
-              <FoodBox val={val} />
-            </div>
-          );
-        })}
-      </div>
+      <Container>
+        <Card.Body id={id}>{title}</Card.Body>
+
+        <div className="d-flex flex-wrap">
+          {mapOver.map((val) => {
+            return (
+              <div
+                key={val._id}
+                onClick={() => {
+                  setShow((currShow) => !currShow);
+                  setContent({
+                    Name: val.Name,
+                    Price: val.Price,
+                    Category: val.Category,
+                  });
+                }}
+                className={"m-4"}
+              >
+                <FoodBox val={val} />
+              </div>
+            );
+          })}
+        </div>
+      </Container>
     </>
   );
 };
