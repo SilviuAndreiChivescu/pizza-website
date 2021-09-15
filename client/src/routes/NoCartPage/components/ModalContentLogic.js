@@ -68,4 +68,22 @@ const useAddToCart = () => {
   return { addToCart };
 };
 
-export { useQuantitySelector, useAddToCart };
+const useHandleSubmit = () => {
+  const { addToCart } = useAddToCart();
+  const handleSubmit = (
+    onClose,
+    cart,
+    setCart,
+    content,
+    quantity,
+    price,
+    sizeName,
+    specifics
+  ) => {
+    onClose();
+    addToCart(cart, setCart, content, quantity, price, sizeName, specifics);
+  };
+  return { handleSubmit };
+};
+
+export { useQuantitySelector, useAddToCart, useHandleSubmit };

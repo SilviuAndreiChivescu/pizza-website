@@ -9,7 +9,11 @@ import {
   Row,
 } from "react-bootstrap";
 import CustomButton from "../../../shared components/CustomButton";
-import { useQuantitySelector, useAddToCart } from "./ModalContentLogic";
+import {
+  useQuantitySelector,
+  useAddToCart,
+  useHandleSubmit,
+} from "./ModalContentLogic";
 
 // Content of Modal in NoCartPage
 export default function ModalContent(props) {
@@ -18,7 +22,7 @@ export default function ModalContent(props) {
   // **** From ModalContentLogic ****
 
   const { quantity, incrementItem, decreaseItem } = useQuantitySelector();
-  const { addToCart } = useAddToCart();
+  const { handleSubmit } = useHandleSubmit();
 
   // **** END ModalContentLogic ****
 
@@ -54,19 +58,6 @@ export default function ModalContent(props) {
           );
         })}
       </Form.Group>
-    );
-  };
-
-  const handleSubmit = () => {
-    onClose();
-    addToCart(
-      cart,
-      setCart,
-      content,
-      quantity,
-      content.Price[size],
-      sizeName,
-      specifics
     );
   };
 
@@ -113,7 +104,18 @@ export default function ModalContent(props) {
             <Col xs lg="4">
               <CustomButton
                 title="Adauga in cos"
-                onClick={() => handleSubmit()}
+                onClick={() =>
+                  handleSubmit(
+                    onClose,
+                    cart,
+                    setCart,
+                    content,
+                    quantity,
+                    content.Price[size],
+                    sizeName,
+                    specifics
+                  )
+                }
               />
             </Col>
           </Row>
