@@ -10,6 +10,9 @@ import {
 
 import { useFilteredProductsList } from "./MenuLogic";
 
+import menu_image from "./../../../images/menu_image.jpg";
+// import pizza_margherita from "./../../../images/pizza_margherita.jpg";
+
 export default function Menu(props) {
   const { productsList, setShow, setContent } = props;
 
@@ -18,7 +21,10 @@ export default function Menu(props) {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className="p-0">
+        {/* <Container> */}
+        <Image fluid src={menu_image}></Image>
+        {/* </Container> */}
         <Navbar bg="light" expand="xl">
           <Container>
             <Navbar.Brand>
@@ -85,6 +91,7 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
                     Name: val.Name,
                     Price: val.Price,
                     Category: val.Category,
+                    Image: val.Image,
                   });
                 }}
                 className={"m-4"}
@@ -105,6 +112,7 @@ const FoodBox = (props) => {
   return (
     <>
       <Card style={{ width: "12rem" }}>
+        <Card.Img variant="top" src={`${val.Image}.jpg`} />
         <Card.Body>
           <Card.Title>{val.Name}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
@@ -120,6 +128,7 @@ const FoodBox = (props) => {
 // This component is used as Brand for React Bootstrap Navbar's Brand
 const Brand = () => {
   return (
+    // change src with the actual logo, download it TODO LATER
     <Image
       className="d-inline p-2 ms-2"
       src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"

@@ -64,10 +64,7 @@ export default function ModalContent(props) {
   return (
     <Container>
       <Card>
-        <Card.Img
-          variant="top"
-          src="https:medievalpizza.com\/wp-content\/uploads\/2021\/04\/341-1-scaled.jpg"
-        />
+        <Card.Img variant="top" src={`${content.Image}.jpg`} />
         <Card.Body>
           <Card.Title>{content.Price[size]} lei </Card.Title>
           <Card.Subtitle> {content.Description} </Card.Subtitle>
