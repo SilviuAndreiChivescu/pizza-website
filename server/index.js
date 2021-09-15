@@ -245,8 +245,8 @@ app.post("/sendEmail", (req, res) => {
           },
         ],
         Subject: `Comanda nr ${count}`,
-        TextPart: `Hey Angajat al Medieval Pizza, Detalii comanda:  ${nameText} ${contactText} ${addressText} ${deliveryText} ${cartText}`,
-        HTMLPart: `<h3>Dear Angajat al Medieval Pizza<h3> <h3>Detalii comanda: </h3> <ul> <li>${nameText}</li> <li>${contactText}</li> <li>${addressText}</li> <li>${deliveryText}</li> Produse: ${cartText}</ul>`,
+        TextPart: `Draga Angajat al Medieval Pizza, Detalii comanda:  ${nameText} ${contactText} ${addressText} ${deliveryText} ${cartText}`,
+        HTMLPart: `<h3>Draga Angajat al Medieval Pizza</h3> <h3>Detalii comanda: </h3> <ul> <li>Nume: ${nameText}</li> <li>Contact: ${contactText}</li> <li>Adresa: ${addressText}</li> <li>Detalii de livrare: ${deliveryText}</li> Produse: ${cartText}</ul>`,
       },
     ],
   });
