@@ -4,13 +4,14 @@ import Axios from "axios";
 
 const useInputValues = () => {
   const { user, isAuthenticated } = useAuth0();
-  // States for UserDetailsInput
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState(0);
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+  const [userDetailsStates, setUserDetailsStates] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNo: 0,
+    address: "",
+    city: "",
+  });
 
   const getRequestToUsers = () => {
     if (isAuthenticated)
@@ -21,28 +22,22 @@ const useInputValues = () => {
         var data = response.data[0];
 
         // Set Input Values to data from request
-        setFirstName(data.FirstName);
-        setLastName(data.LastName);
-        setEmail(data.Email);
-        setPhoneNo(data.PhoneNumber);
-        setAddress(data.Address);
-        setCity(data.City);
+        //v2 - IMPORTANT NOTE. SEE AS I DID HERE? DO AS HERE FOR DELIVERYDETAILS AS WELL, I THINK I HAVE NOT DONE THIS AND NOW MY APP WORKS OK, BEFORE THIS, IT DID NOT, AS CAN SEE BELOW COMMENTED
+        setUserDetailsStates({
+          ...userDetailsStates,
+          firstName: data.FirstName,
+          lastName: data.LastName,
+          email: data.Email,
+          phoneNo: data.PhoneNumber,
+          address: data.Address,
+          city: data.City,
+        });
       });
   };
 
   return {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
+    userDetailsStates,
+    setUserDetailsStates,
     getRequestToUsers,
   };
 };

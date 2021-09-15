@@ -5,25 +5,16 @@ import { useTotalQuantityOrTotalPrice } from "./../../AppLogic";
 
 // Post request to Orders collection
 const usePostToOrders = () => {
-  const addToOrders = (
-    firstName,
-    lastName,
-    email,
-    cart,
-    address,
-    city,
-    phoneNumber,
-    deliveryDetailsStates
-  ) => {
+  const addToOrders = (userDetailsStates, deliveryDetailsStates) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoOrders`, {
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
-        Cart: cart,
-        Address: address,
-        City: city,
-        PhoneNumber: phoneNumber,
+        FirstName: userDetailsStates.firstName,
+        LastName: userDetailsStates.lastName,
+        Email: userDetailsStates.email,
+        Cart: userDetailsStates.cart,
+        Address: userDetailsStates.address,
+        City: userDetailsStates.city,
+        PhoneNumber: userDetailsStates.phoneNumber,
         DeliveryTime: deliveryDetailsStates.deliveryTime,
         DeliveryWay: deliveryDetailsStates.deliveryWay,
       });
@@ -37,22 +28,15 @@ const usePostToOrders = () => {
 
 // Post request to Users Collection
 const usePostToUsers = () => {
-  const addToUsers = (
-    firstName,
-    lastName,
-    email,
-    address,
-    city,
-    phoneNumber
-  ) => {
+  const addToUsers = (userDetailsStates) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoUsers`, {
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
-        Address: address,
-        City: city,
-        PhoneNumber: phoneNumber,
+        FirstName: userDetailsStates.firstName,
+        LastName: userDetailsStates.lastName,
+        Email: userDetailsStates.email,
+        Address: userDetailsStates.address,
+        City: userDetailsStates.city,
+        PhoneNumber: userDetailsStates.phoneNumber,
       });
     } catch (err) {
       console.log(err);
@@ -66,22 +50,14 @@ const usePostToUsers = () => {
 const useCheckIfUserInDb = () => {
   const { addToUsers } = usePostToUsers();
 
-  const checkIfUserInDb = (
-    email,
-    firstName,
-    lastName,
-    address,
-    city,
-    phoneNo
-  ) => {
+  const checkIfUserInDb = (userDetailsStates) => {
     try {
       // Send reqeust to MongoDB to check if for this email we have data.
       Axios.get(
-        `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${email}`
+        `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${userDetailsStates.email}`
       ).then((response) => {
         // If there is no data, then add user to Users Collection
-        if (response.data.length === 0)
-          addToUsers(firstName, lastName, email, address, city, phoneNo);
+        if (response.data.length === 0) addToUsers(userDetailsStates);
       });
     } catch (err) {
       console.log(err);
@@ -92,21 +68,8 @@ const useCheckIfUserInDb = () => {
 
 const useSetDefaultValues = () => {
   // States for UserDetailsInputs
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
-    getRequestToUsers,
-  } = useInputValues();
+  const { userDetailsStates, setUserDetailsStates, getRequestToUsers } =
+    useInputValues();
 
   // Set Default states for if user has data on local storage or in Users Collection
   useEffect(() => {
@@ -116,12 +79,15 @@ const useSetDefaultValues = () => {
     );
     // If there is data on local storage, set Input Values to it
     if (localStorageData) {
-      setFirstName(localStorageData.firstName);
-      setLastName(localStorageData.lastName);
-      setEmail(localStorageData.email);
-      setPhoneNo(localStorageData.phoneNo);
-      setAddress(localStorageData.address);
-      setCity(localStorageData.city);
+      setUserDetailsStates({
+        ...userDetailsStates,
+        firstName: localStorageData.firstName,
+        lastName: localStorageData.lastName,
+        email: localStorageData.email,
+        phoneNo: localStorageData.phoneNo,
+        address: localStorageData.address,
+        city: localStorageData.city,
+      });
     }
     // If there is nothing on local storage, send get request to Users collection
     else {
@@ -130,18 +96,8 @@ const useSetDefaultValues = () => {
   }, []);
 
   return {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
+    userDetailsStates,
+    setUserDetailsStates,
   };
 };
 
@@ -153,23 +109,17 @@ const useHandleSubmit = (cart, history) => {
   const handleSubmit = (
     setLastOrder,
     setCart,
-    firstName,
-    lastName,
-    email,
-    cart,
-    address,
-    city,
-    phoneNo,
+    userDetailsStates,
     deliveryDetailsStates
   ) => {
     // If any of the inputs is empty, don't execute button functionality
     if (
-      firstName === "" ||
-      lastName === "" ||
-      email === "" ||
-      phoneNo === 0 ||
-      address === "" ||
-      city === "" ||
+      userDetailsStates.firstName === "" ||
+      userDetailsStates.lastName === "" ||
+      userDetailsStates.email === "" ||
+      userDetailsStates.phoneNo === 0 ||
+      userDetailsStates.address === "" ||
+      userDetailsStates.city === "" ||
       deliveryDetailsStates.deliveryTime === "" ||
       deliveryDetailsStates.deliveryWay === "" ||
       // If checkbox with Terms not checked
@@ -181,13 +131,13 @@ const useHandleSubmit = (cart, history) => {
     if (deliveryDetailsStates.keepData) {
       // Create object to pass to local storage
       let data = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
+        firstName: userDetailsStates.firstName,
+        lastName: userDetailsStates.lastName,
+        email: userDetailsStates.email,
         cart: cart,
-        address: address,
-        city: city,
-        phoneNo: phoneNo,
+        address: userDetailsStates.address,
+        city: userDetailsStates.city,
+        phoneNo: userDetailsStates.phoneNo,
         deliveryTime: deliveryDetailsStates.deliveryTime,
         deliveryWay: deliveryDetailsStates.deliveryWay,
       };
@@ -195,31 +145,14 @@ const useHandleSubmit = (cart, history) => {
     }
 
     // // This function checks if the user is already in Users Collection. If users is not in Users Collection, it adds it. (passing as arguments the email to look for, and the arguments for addToUsers function)
-    checkIfUserInDb(email, firstName, lastName, address, city, phoneNo);
+    checkIfUserInDb(userDetailsStates);
 
-    addToOrders(
-      firstName,
-      lastName,
-      email,
-      cart,
-      address,
-      city,
-      phoneNo,
-      deliveryDetailsStates
-    );
+    addToOrders(userDetailsStates, deliveryDetailsStates);
     // Last order is used for receipt page to show the order that was ordered
     setLastOrder(cart);
 
     // To send email with the order
-    sendEmail(
-      firstName,
-      lastName,
-      email,
-      phoneNo,
-      address,
-      city,
-      deliveryDetailsStates
-    );
+    sendEmail(userDetailsStates, deliveryDetailsStates);
 
     // Clean up cart state for next order
     setCart([]);
@@ -234,19 +167,11 @@ const useHandleSubmit = (cart, history) => {
 const useMailjetAPI = (cart) => {
   // Function to calculate total price
   const { totalPrice } = useTotalQuantityOrTotalPrice(cart);
-  const sendEmail = (
-    firstName,
-    lastName,
-    email,
-    phoneNo,
-    address,
-    city,
-    deliveryDetailsStates
-  ) => {
+  const sendEmail = (userDetailsStates, deliveryDetailsStates) => {
     // Create the email
-    var nameText = `${firstName} ${lastName}`;
-    var contactText = `${phoneNo} ${email}`;
-    var addressText = `${city} ${address}`;
+    var nameText = `${userDetailsStates.firstName} ${userDetailsStates.lastName}`;
+    var contactText = `${userDetailsStates.phoneNo} ${userDetailsStates.email}`;
+    var addressText = `${userDetailsStates.city} ${userDetailsStates.address}`;
     var deliveryText = `${deliveryDetailsStates.deliveryWay} - ${deliveryDetailsStates.deliveryTime}`;
     // Map over cart state
     var cartText = cart

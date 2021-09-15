@@ -13,25 +13,11 @@ import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
-// encapsulate states and stuff if needed later
 export default function CheckoutPage(props) {
   const { cart, setCart, totalPrice, setLastOrder, setCartAnimation } = props;
 
   // States for User Input fields
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
-  } = useSetDefaultValues();
+  const { userDetailsStates, setUserDetailsStates } = useSetDefaultValues();
 
   // States for DeliveryDetails
   const [deliveryDetailsStates, setDeliveryDetailsStates] = useState({
@@ -54,18 +40,8 @@ export default function CheckoutPage(props) {
       />
       <Form className={"m-5"}>
         <UserDetailsInputs
-          setFirstName={setFirstName}
-          firstName={firstName}
-          setLastName={setLastName}
-          lastName={lastName}
-          setEmail={setEmail}
-          email={email}
-          setPhoneNo={setPhoneNo}
-          phoneNo={phoneNo}
-          setAddress={setAddress}
-          address={address}
-          setCity={setCity}
-          city={city}
+          userDetailsStates={userDetailsStates}
+          setUserDetailsStates={setUserDetailsStates}
         />
         <DeliveryDetails
           setDeliveryDetailsStates={setDeliveryDetailsStates}
@@ -81,13 +57,7 @@ export default function CheckoutPage(props) {
               handleSubmit(
                 setLastOrder,
                 setCart,
-                firstName,
-                lastName,
-                email,
-                cart,
-                address,
-                city,
-                phoneNo,
+                userDetailsStates,
                 deliveryDetailsStates
               );
             }}

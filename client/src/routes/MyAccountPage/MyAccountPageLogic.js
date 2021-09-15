@@ -4,21 +4,8 @@ import Axios from "axios";
 
 const useSetDefaultValues = () => {
   // States for UserDetailsInputs
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
-    getRequestToUsers,
-  } = useInputValues();
+  const { userDetailsStates, setUserDetailsStates, getRequestToUsers } =
+    useInputValues();
 
   // Set Default states from Users Collection
   useEffect(() => {
@@ -27,31 +14,21 @@ const useSetDefaultValues = () => {
   }, []);
 
   return {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
+    userDetailsStates,
+    setUserDetailsStates,
   };
 };
 
 // Update user details in Users Collection
 const useUpdateUserDetails = () => {
-  const updateUser = (email, firstName, lastName, address, city, phoneNo) => {
+  const updateUser = (userDetailsStates) => {
     Axios.put(`${process.env.REACT_APP_ENDPOINT}/updateUsers`, {
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      city: city,
-      phoneNo: phoneNo,
+      email: userDetailsStates.email,
+      firstName: userDetailsStates.firstName,
+      lastName: userDetailsStates.lastName,
+      address: userDetailsStates.address,
+      city: userDetailsStates.city,
+      phoneNo: userDetailsStates.phoneNo,
     });
   };
   return { updateUser };

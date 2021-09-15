@@ -11,20 +11,7 @@ export default function MyAccountPage(props) {
   const { setNoCartAnimation } = props;
 
   // States for User Input fields
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phoneNo,
-    setPhoneNo,
-    address,
-    setAddress,
-    city,
-    setCity,
-  } = useSetDefaultValues();
+  const { userDetailsStates, setUserDetailsStates } = useSetDefaultValues();
 
   // Function to update user details in Users Collection
   const { updateUser } = useUpdateUserDetails();
@@ -37,18 +24,8 @@ export default function MyAccountPage(props) {
       />
       <Form className="m-5">
         <UserDetailsInputs
-          setFirstName={setFirstName}
-          firstName={firstName}
-          setLastName={setLastName}
-          lastName={lastName}
-          setEmail={setEmail}
-          email={email}
-          setPhoneNo={setPhoneNo}
-          phoneNo={phoneNo}
-          setAddress={setAddress}
-          address={address}
-          setCity={setCity}
-          city={city}
+          userDetailsStates={userDetailsStates}
+          setUserDetailsStates={setUserDetailsStates}
           // readOnly is for the email input field
           readOnly={"readOnly"}
         >
@@ -57,7 +34,7 @@ export default function MyAccountPage(props) {
               title={"Salveaza noile informatii"}
               className="mt-5"
               onClick={() => {
-                updateUser(email, firstName, lastName, address, city, phoneNo);
+                updateUser(userDetailsStates);
                 alert("Detaliile tale au fost modificate cu succes");
               }}
             />{" "}
