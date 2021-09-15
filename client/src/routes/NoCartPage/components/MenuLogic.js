@@ -8,7 +8,6 @@ const useFilteredProductsList = (productsList) => {
   const [burgers, setBurgers] = useState("");
 
   // Filter the filteredProductsList for each category
-
   useEffect(() => {
     // Filter the entire Products Collection by the value of Search Input Field
     let filteredList = productsList.filter((e) =>

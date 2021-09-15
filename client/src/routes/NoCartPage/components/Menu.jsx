@@ -6,8 +6,8 @@ import {
   Form,
   FormControl,
   Image,
-  Row,
 } from "react-bootstrap";
+
 import { useFilteredProductsList } from "./MenuLogic";
 
 export default function Menu(props) {
