@@ -32,12 +32,8 @@ export default function ReceiptPage(props) {
         <SuccessMessage />
         <Details title={"Detalii comanda"} cart={lastOrder}>
           <Card.Body>
-            Data: {time.toLocaleString(process.env.REACT_APP_LOCALESTRING)}{" "}
-            <br></br>
-            Data si ora livrarii:{" "}
-            {timeOfDelivery.toLocaleString(
-              process.env.REACT_APP_LOCALESTRING
-            )}{" "}
+            Data: {time.toLocaleString("ro-RO")} <br></br>
+            Data si ora livrarii: {timeOfDelivery.toLocaleString("ro-RO")}{" "}
             <br></br>
             Total: <strong>{totalPrice}</strong> lei
           </Card.Body>
