@@ -121,20 +121,26 @@ export default function Drawer(props) {
       <List>
         {/* Rendering different depending on the user's authentification */}
         {isAuthenticated ? <LoggedIN /> : <NotLoggedIn />}
-
         <DelayLink to="/privacypolicy" delay={300}>
           <ListItem button key="Privacy Policy">
             <ListItemText primary="Privacy Policy" />
           </ListItem>
         </DelayLink>
-
         <DelayLink to="/terms" delay={300}>
           <ListItem button key="Termeni si conditii">
             <ListItemText primary="Termeni si conditii" />
           </ListItem>
         </DelayLink>
 
-        <ListItem button key="ANPC">
+        <ListItem
+          component="a"
+          style={{ textDecoration: "none", color: "inherit" }}
+          href="https://anpc.ro/"
+          target="_blank"
+          rel="noreferrer"
+          button
+          key="ANPC"
+        >
           <ListItemText primary="ANPC" />
         </ListItem>
       </List>
