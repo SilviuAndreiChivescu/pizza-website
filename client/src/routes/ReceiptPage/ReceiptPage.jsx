@@ -24,7 +24,7 @@ export default function ReceiptPage(props) {
   useBeforeunload(() => setLastOrder([]));
 
   // If pressing refresh after seeing receipt or going to path '/receipt' without ordering, redirect to '/' - home page
-  if (!lastOrder) window.location.replace("http://localhost:3000/");
+  if (lastOrder.length === 0) window.location.replace("http://localhost:3000/");
   else {
     return (
       <main className="page slide-in-right">
