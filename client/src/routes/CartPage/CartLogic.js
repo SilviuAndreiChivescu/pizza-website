@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // This custom hook modifies the cart state, by increasing or decreasing quantity up to deleting it if quantity is 0.
 const useQuantitySelector = (cart, setCart, value) => {
