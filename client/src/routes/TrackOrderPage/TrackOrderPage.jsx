@@ -1,5 +1,5 @@
 import { Card, Container } from "react-bootstrap";
-import { useTotalQuantityOrTotalPrice, useDate } from "../../AppLogic";
+import { useDate } from "../../AppLogic";
 import CustomButton from "../../shared components/CustomButton";
 import Details from "../../shared components/Details";
 import MyNavbar from "../../shared components/MyNavbar";
@@ -66,10 +66,9 @@ export default function TrackOrderPage(props) {
 // Using another component because Total Price could not have been calculated without. Calling custom hooks in return statement is not possible
 const CartBody = (props) => {
   const { e, address } = props;
-  const { totalPrice } = useTotalQuantityOrTotalPrice(e);
   return (
     <Container>
-      <Details cart={e} title="Detalii comanda" totalPrice={totalPrice}>
+      <Details cart={e} title="Detalii comanda">
         <Card.Subtitle> Adresa: {address}</Card.Subtitle>
       </Details>
       <section className="text-center">
