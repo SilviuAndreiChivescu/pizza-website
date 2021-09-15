@@ -122,9 +122,12 @@ export default function Drawer(props) {
         {/* Rendering different depending on the user's authentification */}
         {isAuthenticated ? <LoggedIN /> : <NotLoggedIn />}
 
-        <ListItem button key="Privacy Policy">
-          <ListItemText primary="Privacy Policy" />
-        </ListItem>
+        <DelayLink to="/privacypolicy" delay={300}>
+          <ListItem button key="Privacy Policy">
+            <ListItemText primary="Privacy Policy" />
+          </ListItem>
+        </DelayLink>
+
         <ListItem button key="Termeni si conditii">
           <ListItemText primary="Termeni si conditii" />
         </ListItem>

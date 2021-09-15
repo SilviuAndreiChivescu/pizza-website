@@ -12,6 +12,7 @@ import HistoryPage from "./routes/HistoryPage/HistoryPage";
 import ReceiptPage from "./routes/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
+import PrivacyPolicyPage from "./routes/PrivacyPolicyPage";
 
 // Custom hooks to encapsulate code
 import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
@@ -136,6 +137,11 @@ export default function App() {
               totalPrice={totalPrice}
               setNoCartAnimation={setNoCartAnimation}
             />
+          </Route>
+
+          {/* Privacy Policy Page */}
+          <Route exact path="/privacypolicy">
+            <PrivacyPolicyPage />
           </Route>
 
           <Route exact path="/mongodb">
