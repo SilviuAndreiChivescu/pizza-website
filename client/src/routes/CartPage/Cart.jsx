@@ -1,8 +1,11 @@
 import { Card, Button, Image, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
+
 import CustomButton from "../../shared components/CustomButton";
+
 import { useQuantitySelector, useTime } from "./CartLogic";
 
 export default function Cart(props) {
