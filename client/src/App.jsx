@@ -14,12 +14,7 @@ import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
 
 // Custom hooks to encapsulate code
-import {
-  useTotalQuantityOrTotalPrice,
-  useProductsList,
-  useLastOrder,
-  useIdOfOrder,
-} from "./AppLogic";
+import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
 
 import { CircularProgress } from "@material-ui/core";
 import { useAuth0 } from "@auth0/auth0-react";
