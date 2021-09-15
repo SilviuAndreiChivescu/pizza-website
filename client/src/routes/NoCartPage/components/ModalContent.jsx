@@ -8,7 +8,7 @@ import {
   FormControl,
   Row,
 } from "react-bootstrap";
-import CustomButton from "../../../shared components/CustomButton";
+import MyButton from "../../../shared components/MyButton";
 import {
   useQuantitySelector,
   useAddToCart,
@@ -102,7 +102,7 @@ export default function ModalContent(props) {
               </Button>
             </Col>
             <Col xs lg="4">
-              <CustomButton
+              <MyButton
                 title="Adauga in cos"
                 onClick={() =>
                   handleSubmit(

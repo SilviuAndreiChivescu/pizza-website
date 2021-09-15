@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 
-export default function CustomButton(props) {
+export default function MyButton(props) {
   const { title, onClick, className } = props;
   return (
     <Button

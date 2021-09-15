@@ -1,6 +1,6 @@
 import { Card, Container } from "react-bootstrap";
 import { useDate } from "../../AppLogic";
-import CustomButton from "../../shared components/CustomButton";
+import MyButton from "../../shared components/MyButton";
 import Details from "../../shared components/Details";
 import MyNavbar from "../../shared components/MyNavbar";
 import { useOrderData } from "./TrackOrderPageLogic";
@@ -73,7 +73,7 @@ const CartBody = (props) => {
       </Details>
       <section className="text-center">
         <a href="tel:0754911062">
-          <CustomButton title={`Suna-ne`} />
+          <MyButton title={`Suna-ne`} />
         </a>
       </section>
     </Container>

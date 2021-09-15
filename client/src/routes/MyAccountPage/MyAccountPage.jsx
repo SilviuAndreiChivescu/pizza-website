@@ -1,5 +1,5 @@
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
-import CustomButton from "../../shared components/CustomButton";
+import MyButton from "../../shared components/MyButton";
 import MyNavbar from "../../shared components/MyNavbar";
 import {
   useSetDefaultValues,
@@ -30,7 +30,7 @@ export default function MyAccountPage(props) {
           readOnly={"readOnly"}
         >
           <Container className="text-center">
-            <CustomButton
+            <MyButton
               title={"Salveaza noile informatii"}
               className="mt-5"
               onClick={() => {

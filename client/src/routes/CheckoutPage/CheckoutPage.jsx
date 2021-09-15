@@ -1,6 +1,6 @@
 import Details from "../../shared components/Details";
 import MyNavbar from "../../shared components/MyNavbar";
-import CustomButton from "../../shared components/CustomButton";
+import MyButton from "../../shared components/MyButton";
 import UserDetailsInputs from "../../shared components/UserDetailsInputs";
 
 import DeliveryDetails from "./DeliveryDetails";
@@ -50,7 +50,7 @@ export default function CheckoutPage(props) {
         <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
 
         <Container className="text-center">
-          <CustomButton
+          <MyButton
             className=""
             title={"Plaseaza Comanda"}
             onClick={() => {

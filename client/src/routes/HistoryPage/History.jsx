@@ -1,4 +1,4 @@
-import CustomButton from "../../shared components/CustomButton";
+import MyButton from "../../shared components/MyButton";
 import { useHistoryData } from "./HistoryLogic";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useTotalQuantityOrTotalPrice, useDate } from "../../AppLogic";
@@ -67,7 +67,7 @@ const HistoryBody = (props) => {
             {/* If less than 100 minutes have passed, show "Track order" Button. Otherwise, show "Leave reveiw" Button */}
             {minsDiff < 100 ? (
               <Link style={{ margin: "0 auto" }} to="/trackorder">
-                <CustomButton
+                <MyButton
                   title={"Urmareste comanda"}
                   onClick={() => {
                     setIdOfOrder(idOfHistoryProductList[idx]);
@@ -81,7 +81,7 @@ const HistoryBody = (props) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <CustomButton title={"Lasa-ne un review"} onClick={() => {}} />
+                <MyButton title={"Lasa-ne un review"} onClick={() => {}} />
               </a>
             )}
             {/*  */}

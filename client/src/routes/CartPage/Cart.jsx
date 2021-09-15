@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
 import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
 
-import CustomButton from "../../shared components/CustomButton";
+import MyButton from "../../shared components/MyButton";
 
 import { useQuantitySelector, useTime } from "./CartLogic";
 
@@ -40,7 +40,7 @@ export default function Cart(props) {
             </Card.Title>
 
             <Link to="/checkout">
-              <CustomButton title="Comanda" />
+              <MyButton title="Comanda" />
             </Link>
           </>
         )}
