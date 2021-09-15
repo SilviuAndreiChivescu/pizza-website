@@ -128,9 +128,12 @@ export default function Drawer(props) {
           </ListItem>
         </DelayLink>
 
-        <ListItem button key="Termeni si conditii">
-          <ListItemText primary="Termeni si conditii" />
-        </ListItem>
+        <DelayLink to="/terms" delay={300}>
+          <ListItem button key="Termeni si conditii">
+            <ListItemText primary="Termeni si conditii" />
+          </ListItem>
+        </DelayLink>
+
         <ListItem button key="ANPC">
           <ListItemText primary="ANPC" />
         </ListItem>

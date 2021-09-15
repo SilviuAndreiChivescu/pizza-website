@@ -13,6 +13,7 @@ import ReceiptPage from "./routes/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
 import PrivacyPolicyPage from "./routes/PrivacyPolicyPage";
+import TermsPage from "./routes/TermsPage";
 
 // Custom hooks to encapsulate code
 import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
@@ -142,6 +143,11 @@ export default function App() {
           {/* Privacy Policy Page */}
           <Route exact path="/privacypolicy">
             <PrivacyPolicyPage />
+          </Route>
+
+          {/* Terms Page */}
+          <Route exact path="/terms">
+            <TermsPage />
           </Route>
 
           <Route exact path="/mongodb">
