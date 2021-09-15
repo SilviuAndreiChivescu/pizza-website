@@ -1,7 +1,6 @@
 import Form from "react-bootstrap/Form";
 import { Col, Container, Row } from "react-bootstrap";
 import { useState } from "react";
-import Feedback from "react-bootstrap/esm/Feedback";
 
 export default function DeliveryDetails(props) {
   const { setDeliveryDetailsStates, deliveryDetailsStates } = props;
