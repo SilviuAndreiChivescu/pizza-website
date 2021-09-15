@@ -80,7 +80,9 @@ const useHandleSubmit = () => {
     sizeName,
     specifics
   ) => {
+    // Close modal
     onClose();
+    // Add to cart
     addToCart(cart, setCart, content, quantity, price, sizeName, specifics);
   };
   return { handleSubmit };
