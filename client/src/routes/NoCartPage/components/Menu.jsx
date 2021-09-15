@@ -74,10 +74,10 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
       <Container>
         <Card.Body id={id}>{title}</Card.Body>
 
-        <div className="d-flex flex-wrap">
+        <section className="d-flex flex-wrap">
           {mapOver.map((val) => {
             return (
-              <div
+              <section
                 key={val._id}
                 onClick={() => {
                   setShow((currShow) => !currShow);
@@ -90,10 +90,10 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
                 className={"m-4"}
               >
                 <FoodBox val={val} />
-              </div>
+              </section>
             );
           })}
-        </div>
+        </section>
       </Container>
     </>
   );
