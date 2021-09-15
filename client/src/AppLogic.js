@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
 
-// Last order is used to show on Receipt
-const useLastOrder = () => {
-  const [lastOrder, setLastOrder] = useState([]);
-  return { lastOrder, setLastOrder };
-};
-
 // **** State to read/get products from MongoDB products collection
 const useProductsList = (setAppState) => {
   const [productsList, setProductsList] = useState([]);
@@ -79,4 +73,4 @@ const useDate = (id) => {
   return { minsDiff };
 };
 
-export { useLastOrder, useProductsList, useTotalQuantityOrTotalPrice, useDate };
+export { useProductsList, useTotalQuantityOrTotalPrice, useDate };

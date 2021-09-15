@@ -45,8 +45,8 @@ export default function App() {
     window.localStorage.setItem("cart", JSON.stringify(cart))
   );
 
-  // Last order for Receipt - MAYBE IMPLEMENT THE idOfOrder functionality to Receipt page as well TODO
-  const { lastOrder, setLastOrder } = useLastOrder();
+  // Last order is used to show on Receipt
+  const [lastOrder, setLastOrder] = useState([]);
 
   // State to pass id of order to TrackOrderPage
   const [idOfOrder, setIdOfOrder] = useState("");
