@@ -45,7 +45,7 @@ export default function TrackOrderPage(props) {
     return (
       <main className="page slide-in-right">
         <MyNavbar
-          setAnimation={setNoCartAnimation}
+          setAnimation={() => setNoCartAnimation("slide-in-left")}
           title={"Statusul comenzii"}
           to={"/"}
         />
