@@ -13,7 +13,7 @@ export default function CartBar(props) {
     >
       <Container
         fluid
-        className="position-fixed bottom-0 text-white pt-2 black-bg"
+        className="position-sticky bottom-0 text-white pt-2 black-bg"
       >
         <Row>
           <Col>
