@@ -56,7 +56,7 @@ export default function TrackOrderPage(props) {
         </Container>
 
         {order.map((e, idx) => {
-          return <CartBody key={e[idx].Name} e={e} address={address} />;
+          return <CartBody key={e.Name} e={e} address={address} />;
         })}
       </main>
     );
