@@ -169,26 +169,28 @@ const useMailjetAPI = (cart) => {
   const { totalPrice } = useTotalQuantityOrTotalPrice(cart);
   const sendEmail = (userDetailsStates, deliveryDetailsStates) => {
     // Create the email
-    var nameText = `${userDetailsStates.firstName} ${userDetailsStates.lastName}`;
-    var contactText = `${userDetailsStates.phoneNo} ${userDetailsStates.email}`;
-    var addressText = `${userDetailsStates.city} ${userDetailsStates.address}`;
-    var deliveryText = `${deliveryDetailsStates.deliveryWay} - ${deliveryDetailsStates.deliveryTime}`;
-    // Map over cart state
-    var cartText = cart
-      .map((e) => {
-        return `<li> ${e.Quantity} X ${e.Name} - ${e.Price} lei </li>`;
-      })
-      // Make it a string joined by words
-      .join("")
-      // Add total price at the end
-      .concat(` Total plata comanda: ${totalPrice} lei`);
+    const email = {
+      nameText: `${userDetailsStates.firstName} ${userDetailsStates.lastName}`,
+      contactText: `${userDetailsStates.phoneNo} ${userDetailsStates.email}`,
+      addressText: `${userDetailsStates.city} ${userDetailsStates.address}`,
+      deliveryText: `${deliveryDetailsStates.deliveryWay} - ${deliveryDetailsStates.deliveryTime}`,
+      cartText: cart
+        .map((e) => {
+          return `<li> ${e.Quantity} X ${e.Name} - ${e.Price} lei </li>`;
+        })
+        // Make it a string joined by words
+        .join("")
+        // Add total price at the end
+        .concat(` Total plata comanda: ${totalPrice} lei`),
+    };
+
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/sendEmail`, {
-        nameText: nameText,
-        contactText: contactText,
-        addressText: addressText,
-        deliveryText: deliveryText,
-        cartText: cartText,
+        nameText: email.nameText,
+        contactText: email.contactText,
+        addressText: email.addressText,
+        deliveryText: email.deliveryText,
+        cartText: email.cartText,
       });
     } catch (err) {
       console.log(err);
