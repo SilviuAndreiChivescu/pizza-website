@@ -1,9 +1,6 @@
 import { Card, Button, Image, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import iconEmptyBasket from "../../images/iconEmptyBasket.svg";
-import iconPizzaSharing from "../../images/iconPizzaSharing.svg";
-
 import MyButton from "../../shared components/MyButton";
 
 import { useQuantitySelector, useTime } from "./CartLogic";
@@ -55,7 +52,7 @@ const NoProductInCart = () => {
     <>
       <Image
         className="mt-5 mb-5"
-        src={iconEmptyBasket}
+        src="images/iconEmptyBasket.svg"
         style={{ width: "70px" }}
       />
       <Card.Title className="mb-5">
@@ -69,7 +66,7 @@ const ProductInCart = () => {
     <>
       <Image
         className="mt-5"
-        src={iconPizzaSharing}
+        src="images/iconPizzaSharing.svg"
         style={{ width: "400px" }}
       />
     </>

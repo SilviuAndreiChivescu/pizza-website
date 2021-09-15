@@ -9,11 +9,7 @@ import {
   Row,
 } from "react-bootstrap";
 import MyButton from "../../../shared components/MyButton";
-import {
-  useQuantitySelector,
-  useAddToCart,
-  useHandleSubmit,
-} from "./ModalContentLogic";
+import { useQuantitySelector, useHandleSubmit } from "./ModalContentLogic";
 
 // Content of Modal in NoCartPage
 export default function ModalContent(props) {
@@ -64,7 +60,7 @@ export default function ModalContent(props) {
   return (
     <Container>
       <Card>
-        <Card.Img variant="top" src={`${content.Image}.jpg`} />
+        <Card.Img variant="top" src={`images/${content.Image}.jpg`} />
         <Card.Body>
           <Card.Title>{content.Price[size]} lei </Card.Title>
           <Card.Subtitle> {content.Description} </Card.Subtitle>

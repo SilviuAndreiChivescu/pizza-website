@@ -10,9 +10,6 @@ import {
 
 import { useFilteredProductsList } from "./MenuLogic";
 
-import menu_image from "./../../../images/menu_image.jpg";
-// import pizza_margherita from "./../../../images/pizza_margherita.jpg";
-
 export default function Menu(props) {
   const { productsList, setShow, setContent } = props;
 
@@ -23,7 +20,7 @@ export default function Menu(props) {
     <>
       <Container fluid className="p-0">
         {/* <Container> */}
-        <Image fluid src={menu_image}></Image>
+        <Image fluid src="images/menu_image.jpg"></Image>
         {/* </Container> */}
         <Navbar bg="light" expand="xl">
           <Container>
@@ -112,7 +109,7 @@ const FoodBox = (props) => {
   return (
     <>
       <Card style={{ width: "12rem" }}>
-        <Card.Img variant="top" src={`${val.Image}.jpg`} />
+        <Card.Img variant="top" src={`images/${val.Image}.jpg`} />
         <Card.Body>
           <Card.Title>{val.Name}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
