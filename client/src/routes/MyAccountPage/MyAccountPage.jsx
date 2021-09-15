@@ -37,7 +37,7 @@ export default function MyAccountPage(props) {
                 updateUser(userDetailsStates);
                 alert("Detaliile tale au fost modificate cu succes");
               }}
-            />{" "}
+            />
           </Container>
         </UserDetailsInputs>
       </Form>
