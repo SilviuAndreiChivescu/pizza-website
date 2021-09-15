@@ -5,7 +5,7 @@ import Menu from "./components/Menu";
 import CartBar from "./components/CartBar";
 import ModalContent from "./components/ModalContent";
 
-import { useContent, useShow } from "./NoCartPageLogic";
+import { useState } from "react";
 
 export default function NoCartPage(props) {
   const {
@@ -19,10 +19,10 @@ export default function NoCartPage(props) {
   } = props;
 
   // Content for modal
-  const { content, setContent } = useContent();
+  const [content, setContent] = useState([]);
 
   // State to show modal
-  const { show, setShow } = useShow();
+  const [show, setShow] = useState(false);
 
   return (
     <main className={`page ${noCartAnimation}`}>
