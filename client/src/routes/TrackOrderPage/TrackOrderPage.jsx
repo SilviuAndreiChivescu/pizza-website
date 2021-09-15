@@ -1,9 +1,9 @@
 import { Card, Container } from "react-bootstrap";
-import { useTotalQuantityOrTotalPrice } from "../../AppLogic";
+import { useTotalQuantityOrTotalPrice, useDate } from "../../AppLogic";
 import CustomButton from "../../shared components/CustomButton";
 import Details from "../../shared components/Details";
 import MyNavbar from "../../shared components/MyNavbar";
-import { useDate, useOrder } from "./TrackOrderPageLogic";
+import { useOrder } from "./TrackOrderPageLogic";
 
 export default function TrackOrderPage(props) {
   const { idOfOrder, setNoCartAnimation } = props;

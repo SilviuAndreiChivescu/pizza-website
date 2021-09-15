@@ -27,32 +27,4 @@ const useOrder = (id) => {
   return { order, address, loaded };
 };
 
-// Custom hook to get the difference between date of particular Order and the current date
-const useDate = (id) => {
-  if (typeof id !== "string" || !(id instanceof String)) id = id.toString();
-  // State of difference
-  const [minsDiff, setMinsDiff] = useState(0);
-
-  // Get timestamp from _id of Order
-  const [date] = useState(
-    () => new Date(parseInt(id.substring(0, 8), 16) * 1000)
-  );
-  // Set current date
-  const [currentDate, setCurrentDate] = useState(() => new Date());
-  // Call setInterval to update current date every minute
-  setInterval(() => setCurrentDate(() => new Date()), 60 * 1000);
-
-  // Calculate the difference between the two dates and return answer in minutes
-  const dateDiff = (date, currentDate) => {
-    return parseInt(Math.abs(date - currentDate) / (1 * 60 * 1000), 10);
-  };
-
-  useEffect(() => {
-    // Set minsDiff state to result
-    setMinsDiff(dateDiff(date, currentDate));
-  }, [currentDate]);
-
-  return { minsDiff };
-};
-
-export { useOrder, useDate };
+export { useOrder };

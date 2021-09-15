@@ -1,9 +1,8 @@
 import CustomButton from "../../shared components/CustomButton";
 import { useHistoryData } from "./HistoryLogic";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
-import { useTotalQuantityOrTotalPrice } from "../../AppLogic";
+import { useTotalQuantityOrTotalPrice, useDate } from "../../AppLogic";
 import { Link } from "react-router-dom";
-import { useDate } from "../TrackOrderPage/TrackOrderPageLogic";
 
 export default function History(props) {
   const { setIdOfOrder } = props;
