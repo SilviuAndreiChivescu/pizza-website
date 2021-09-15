@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 
 // The cart bar at the bottom of the page.
 export default function CartBar(props) {
-  const { totalQuantity, totalPrice } = props;
+  const { totalQuantity, totalPrice, setCartAnimation } = props;
   return (
-    <Link style={{ textDecoration: "none" }} to="/cart">
+    <Link
+      onClick={() => setCartAnimation("slide-in-bottom")}
+      style={{ textDecoration: "none" }}
+      to="/cart"
+    >
       <Container
         fluid
         className="position-fixed bottom-0 text-white pt-2 black-bg"

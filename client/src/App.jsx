@@ -76,6 +76,7 @@ export default function App() {
               totalQuantity={totalQuantity}
               productsList={productsList}
               noCartAnimation={noCartAnimation}
+              setCartAnimation={setCartAnimation}
             />
           </Route>
 

@@ -15,6 +15,7 @@ export default function NoCartPage(props) {
     totalQuantity,
     productsList,
     noCartAnimation,
+    setCartAnimation,
   } = props;
 
   // Content for modal
@@ -47,7 +48,11 @@ export default function NoCartPage(props) {
           onClose={() => setShow((currShow) => !currShow)}
         />
       </MyModal>
-      <CartBar totalPrice={totalPrice} totalQuantity={totalQuantity} />
+      <CartBar
+        totalPrice={totalPrice}
+        totalQuantity={totalQuantity}
+        setCartAnimation={setCartAnimation}
+      />
     </main>
   );
 }
