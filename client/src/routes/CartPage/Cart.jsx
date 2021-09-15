@@ -12,8 +12,8 @@ export default function Cart(props) {
   const { cart, setCart, totalPrice } = props;
   const { time } = useTime();
   return (
-    <>
-      <Container fluid className="text-center">
+    <Container fluid className="text-center">
+      <Container>
         {/* When empty, show a different .svg */}
         {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
 
@@ -45,7 +45,7 @@ export default function Cart(props) {
           </>
         )}
       </Container>
-    </>
+    </Container>
   );
 }
 
