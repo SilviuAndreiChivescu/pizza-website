@@ -46,7 +46,7 @@ export default function TrackOrderPage(props) {
       <main className="page slide-in-right">
         <MyNavbar
           setAnimation={() => setNoCartAnimation("slide-in-left")}
-          title={"Statusul comenzii"}
+          title={"Status"}
           to={"/"}
         />
         <Container className="text-center mt-3">
@@ -55,7 +55,7 @@ export default function TrackOrderPage(props) {
           </Card.Body>
         </Container>
 
-        {orderData.order.map((e, idx) => {
+        {orderData.order.map((e) => {
           return <CartBody key={e.Name} e={e} address={orderData.address} />;
         })}
       </main>
@@ -71,7 +71,7 @@ const CartBody = (props) => {
       <Details cart={e} title="Detalii comanda">
         <Card.Subtitle> Adresa: {address}</Card.Subtitle>
       </Details>
-      <section className="text-center">
+      <section className="text-center mt-4">
         <a href="tel:0754911062">
           <MyButton title={`Suna-ne`} />
         </a>
