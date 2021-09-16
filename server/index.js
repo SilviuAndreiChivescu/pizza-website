@@ -28,21 +28,23 @@ mongoose.set("useFindAndModify", false);
 app.post("/insert", async (req, res) => {
   const name = req.body.name;
   const price = req.body.price;
-  const quantity = req.body.quantity;
+  const description = req.body.description;
+  const imageUrl = req.body.image;
   const category = req.body.category;
 
   const products = new ProductsModel({
     Name: name,
-    Price: price,
-    Description: "Acu bag din front-end",
-    Quantity: quantity,
+    Price: parseFloat(price),
+    Quantity: 1,
+    Description: description,
+    Image: imageUrl,
     Category: category,
   });
 
   try {
     await products.save();
-    res.send("inserted data");
-    console.log("inserted data");
+    res.send("inserted data into products collection");
+    console.log("inserted data into products collection");
   } catch (err) {
     console.log(err);
   }
