@@ -1,7 +1,7 @@
 import { Col, Container, Navbar, Row } from "react-bootstrap";
 import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// AM RAMAS AICI, INCERC SA REZOLV PROBLEMA CU CART BAR PE IPHONE, MAI GOOEL IT
+
 // The cart bar from the bottom of the page.
 export default function CartBar(props) {
   const { totalQuantity, totalPrice, setCartAnimation } = props;
@@ -12,7 +12,11 @@ export default function CartBar(props) {
       to="/cart"
     >
       <Navbar
-        style={{ position: "-webkit-sticky" }}
+        style={{
+          transform: "translate3d(0,0,0)",
+          zIndex: 4,
+          position: "-webkit-sticky",
+        }}
         className="text-white black-bg justify-content-center position-absolute position-sticky bottom-0 container-fluid"
       >
         <Row
