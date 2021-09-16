@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Navbar, Row } from "react-bootstrap";
 import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -11,9 +11,14 @@ export default function CartBar(props) {
       style={{ textDecoration: "none" }}
       to="/cart"
     >
-      <Container
+      {/* <Container
         fluid
-        className="position-sticky bottom-0 text-white pt-2 black-bg"
+        className=" bottom-0 text-white pt-2 black-bg"
+      > */}
+      <Navbar
+        className="bottom-0 text-white pt-2 black-bg"
+        style={{ position: "sticky" }}
+        fixed="bottom"
       >
         <Row
           xs={3}
@@ -38,7 +43,8 @@ export default function CartBar(props) {
             <h4>{totalPrice} lei</h4>
           </Col>
         </Row>
-      </Container>
+      </Navbar>
+      {/* </Container> */}
     </Link>
   );
 }
