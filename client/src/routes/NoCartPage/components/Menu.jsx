@@ -136,6 +136,7 @@ const FoodBox = (props) => {
           style={{ height: "11rem" }}
           variant="top"
           src={imageSrc}
+          alt={val.Image.split("_").join(" ")}
           onError={(e) => {
             e.target.onError = null;
             e.target.src = ``;
@@ -159,10 +160,9 @@ const FoodBox = (props) => {
 // This component is used as Brand for React Bootstrap Navbar's Brand
 const Brand = () => {
   return (
-    // change src with the actual logo, download it TODO LATER
     <Image
       className="d-inline p-2 ms-2"
-      src="https://medievalpizza.com/wp-content/uploads/2021/04/omgggg.png"
+      src="images/brandLogo.png"
       alt="medieval pizza logo"
     ></Image>
   );
