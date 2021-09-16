@@ -104,6 +104,16 @@ export default function App() {
             />
           </Route>
 
+          {/* ReceiptPage */}
+          <Route exact path="/receipt">
+            <ReceiptPage
+              lastOrder={lastOrder}
+              setLastOrder={setLastOrder}
+              totalPrice={totalPrice}
+              setNoCartAnimation={setNoCartAnimation}
+            />
+          </Route>
+
           {/* HistoryPage */}
           <Route exact path="/history">
             <HistoryPage
@@ -126,16 +136,6 @@ export default function App() {
           <Route exact path="/myaccount">
             <MyAccountPage
               setAppState={setAppState}
-              setNoCartAnimation={setNoCartAnimation}
-            />
-          </Route>
-
-          {/* ReceiptPage */}
-          <Route exact path="/receipt">
-            <ReceiptPage
-              lastOrder={lastOrder}
-              setLastOrder={setLastOrder}
-              totalPrice={totalPrice}
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
