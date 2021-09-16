@@ -10,7 +10,7 @@ export default function CartBar(props) {
       style={{
         textDecoration: "none",
         display: "block",
-        position: "-webkit-sticky",
+        position: "-webkit-sticky", // This is for ios
         position: "sticky",
         bottom: 0,
       }}
