@@ -13,7 +13,7 @@ export default function CartBar(props) {
     >
       <Navbar
         style={{ transform: "translate3d(0,0,0)" }}
-        className="text-white black-bg justify-content-center  position-sticky position-fixed bottom-0 container-fluid"
+        className="text-white black-bg justify-content-center position-fixed position-sticky bottom-0 container-fluid"
       >
         <Row
           style={{ width: "100%" }}
