@@ -58,7 +58,7 @@ export default function ModalContent(props) {
   };
 
   return (
-    <Container>
+    <Container fluid="xs">
       <Card>
         <Card.Img variant="top" src={`images/${content.Image}.jpg`} />
         <Card.Body>
@@ -76,28 +76,29 @@ export default function ModalContent(props) {
               placeholder="Exemplu: Fara ardei"
             />
           </Card.Text>
-          <Row className="justify-content-md-center" sm={2} lg={2}>
-            <Col xs lg="3">
+          <Row className="justify-content-center">
+            <Col xs="auto" sm="auto" md="auto" lg="auto" xl="auto" xxl="auto">
               <Button
-                size="lg"
                 onClick={() => decreaseItem()}
                 variant="outline-dark"
+                className="fontSize"
               >
                 -
               </Button>
-              <Button size="lg" disabled variant="outline-dark">
+              <Button disabled variant="outline-dark" className="fontSize">
                 {quantity}
               </Button>
               <Button
-                size="lg"
                 onClick={() => incrementItem()}
                 variant="outline-dark"
+                className="fontSize"
               >
                 +
               </Button>
             </Col>
-            <Col xs lg="4">
+            <Col xs="auto" sm="auto" md="auto" lg="auto" xl="auto" xxl="auto">
               <MyButton
+                className="fontSize"
                 title="Adauga in cos"
                 onClick={() =>
                   handleSubmit(

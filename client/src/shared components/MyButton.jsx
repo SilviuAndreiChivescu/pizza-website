@@ -4,7 +4,6 @@ export default function MyButton(props) {
   const { title, onClick, className } = props;
   return (
     <Button
-      size="lg"
       className={className}
       onClick={onClick}
       variant="dark"

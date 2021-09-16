@@ -95,10 +95,10 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
   if (mapOver.length === 0) return null;
   return (
     <>
-      <Container>
+      <Container className="mb-5">
         <Card.Title id={id}>{title}</Card.Title>
 
-        <section className="d-flex flex-wrap">
+        <section className="d-flex flex-wrap justify-content-center mt-4">
           {mapOver.map((val) => {
             return (
               <section
