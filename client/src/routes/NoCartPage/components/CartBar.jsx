@@ -1,7 +1,6 @@
 import { Col, Container, Navbar, Row } from "react-bootstrap";
 import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
 // The cart bar from the bottom of the page.
 export default function CartBar(props) {
   const { totalQuantity, totalPrice, setCartAnimation } = props;
@@ -12,20 +11,11 @@ export default function CartBar(props) {
         textDecoration: "none",
         display: "block",
         position: "-webkit-sticky",
-        position: "sticky",
         bottom: 0,
       }}
       to="/cart"
     >
-      <Navbar
-        style={{
-          transform: "translate3d(0,0,0)",
-          zIndex: 4,
-          position: "-webkit-sticky",
-          alignSelf: "flex-start",
-        }}
-        className="text-white black-bg justify-content-center position-sticky bottom-0 container-fluid"
-      >
+      <Navbar className="text-white black-bg justify-content-center position-sticky bottom-0 container-fluid">
         <Row
           style={{ width: "100%" }}
           xs={3}
