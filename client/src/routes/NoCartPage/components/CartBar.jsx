@@ -11,10 +11,7 @@ export default function CartBar(props) {
       style={{ textDecoration: "none" }}
       to="/cart"
     >
-      <Navbar
-        className="text-white black-bg justify-content-center position-absolute bottom-0"
-        // style={{ position: "sticky" }}
-      >
+      <Navbar className="text-white black-bg justify-content-center position-sticky position-fixed bottom-0 container-fluid">
         <Row
           style={{ width: "100%" }}
           xs={3}
