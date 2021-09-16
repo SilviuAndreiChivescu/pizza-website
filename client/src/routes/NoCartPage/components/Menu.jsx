@@ -14,7 +14,7 @@ export default function Menu(props) {
   const { productsList, setShow, setContent } = props;
 
   // To filter the productsList
-  const { setFilter, pizzas, burgers } = useFilteredProductsList(productsList);
+  const { setFilter, food } = useFilteredProductsList(productsList);
 
   return (
     <>
@@ -53,14 +53,35 @@ export default function Menu(props) {
         <Category
           title={"Pizza"}
           id={"pizza"}
-          mapOver={pizzas}
+          mapOver={food.pizzas}
           setShow={setShow}
           setContent={setContent}
         />
         <Category
           title={"Burgari"}
           id={"burgari"}
-          mapOver={burgers}
+          mapOver={food.burgers}
+          setShow={setShow}
+          setContent={setContent}
+        />
+        <Category
+          title={"Chifle coapte pe vatra"}
+          id={"chifle"}
+          mapOver={food.chifle}
+          setShow={setShow}
+          setContent={setContent}
+        />
+        <Category
+          title={"Sandwich"}
+          id={"sandwich"}
+          mapOver={food.sandwich}
+          setShow={setShow}
+          setContent={setContent}
+        />
+        <Category
+          title={"Bauturi"}
+          id={"bauturi"}
+          mapOver={food.drinks}
           setShow={setShow}
           setContent={setContent}
         />
@@ -75,7 +96,7 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
   return (
     <>
       <Container>
-        <Card.Body id={id}>{title}</Card.Body>
+        <Card.Title id={id}>{title}</Card.Title>
 
         <section className="d-flex flex-wrap">
           {mapOver.map((val) => {
@@ -86,6 +107,7 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
                   setShow((currShow) => !currShow);
                   setContent({
                     Name: val.Name,
+                    Description: val.Description,
                     Price: val.Price,
                     Category: val.Category,
                     Image: val.Image,
@@ -106,15 +128,27 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
 // The box in which the title & price are shown in the Menu
 const FoodBox = (props) => {
   const { val } = props;
+  const imageSrc = `images/${val.Image}.jpg`;
   return (
     <>
-      <Card style={{ width: "12rem" }}>
-        <Card.Img variant="top" src={`images/${val.Image}.jpg`} />
+      <Card style={{ width: "17rem", height: "22rem" }}>
+        <Card.Img
+          style={{ height: "11rem" }}
+          variant="top"
+          src={imageSrc}
+          onError={(e) => {
+            e.target.onError = null;
+            e.target.src = ``;
+          }}
+        />
         <Card.Body>
-          <Card.Title>{val.Name}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
+          <Card.Title>{val.Name} </Card.Title>
+          <Card.Subtitle className="mb-2">
             {/* [0] - because Pizza has 3 sizes, first option is the smallest and default for the others with only one option */}
             {val.Price[0]} lei
+          </Card.Subtitle>
+          <Card.Subtitle style={{ height: "5rem" }} className="mt-2 text-muted">
+            {val.Description}
           </Card.Subtitle>
         </Card.Body>
       </Card>

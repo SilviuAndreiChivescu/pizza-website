@@ -4,8 +4,13 @@ const useFilteredProductsList = (productsList) => {
   // Filter the productsList by value of Search field
   const [filter, setFilter] = useState("");
 
-  const [pizzas, setPizzas] = useState("");
-  const [burgers, setBurgers] = useState("");
+  const [food, setFood] = useState({
+    pizzas: [],
+    burgers: [],
+    chifle: [],
+    sandwich: [],
+    drinks: [],
+  });
 
   // Filter the filteredProductsList for each category
   useEffect(() => {
@@ -15,14 +20,31 @@ const useFilteredProductsList = (productsList) => {
     );
     // Filter the pizzas
     let pizzas = filteredList.filter((e) => e.Category === "pizza");
-    setPizzas(pizzas);
 
     // Flter the burgers
-    let burgers = filteredList.filter((e) => e.Category === "burgari");
-    setBurgers(burgers);
+    let burgers = filteredList.filter((e) => e.Category === "burgers");
+
+    // Filter the chifles
+    let chifle = filteredList.filter((e) => e.Category === "chifle");
+
+    // Filter the sandwichs
+    let sandwich = filteredList.filter((e) => e.Category === "sandwich");
+
+    // Filter the drinks
+    let drinks = filteredList.filter((e) => e.Category === "drinks");
+
+    // Set the state
+    setFood({
+      ...food,
+      pizzas: pizzas,
+      burgers: burgers,
+      chifle: chifle,
+      sandwich: sandwich,
+      drinks: drinks,
+    });
   }, [filter]);
 
-  return { setFilter, pizzas, burgers };
+  return { setFilter, food };
 };
 
 export { useFilteredProductsList };
