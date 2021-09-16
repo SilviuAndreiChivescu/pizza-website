@@ -19,6 +19,11 @@
     margin-top: 0.5rem;
   }
 }
+@media only screen and (max-width: 540px) {
+  .itemsCenterLT540W {
+    align-items: center;
+  }
+}
 
 .slide-in-bottom {
   -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
