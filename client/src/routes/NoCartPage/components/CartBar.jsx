@@ -6,45 +6,51 @@ import { Link } from "react-router-dom";
 export default function CartBar(props) {
   const { totalQuantity, totalPrice, setCartAnimation } = props;
   return (
-    // <Link
-    //   onClick={() => setCartAnimation("slide-in-bottom")}
-    //   style={{ textDecoration: "none" }}
-    //   to="/cart"
-    // >
-    <Navbar
+    <Link
+      onClick={() => setCartAnimation("slide-in-bottom")}
       style={{
-        transform: "translate3d(0,0,0)",
-        zIndex: 4,
+        textDecoration: "none",
+        display: "block",
         position: "-webkit-sticky",
-        alignSelf: "flex-start",
+        position: "sticky",
+        bottom: 0,
       }}
-      className="text-white black-bg justify-content-center position-sticky bottom-0 container-fluid"
+      to="/cart"
     >
-      <Row
-        style={{ width: "100%" }}
-        xs={3}
-        sm={3}
-        md={3}
-        lg={3}
-        xl={3}
-        xxl={3}
-        className="align-items-center"
+      <Navbar
+        style={{
+          transform: "translate3d(0,0,0)",
+          zIndex: 4,
+          position: "-webkit-sticky",
+          alignSelf: "flex-start",
+        }}
+        className="text-white black-bg justify-content-center position-sticky bottom-0 container-fluid"
       >
-        <Col>
-          <h4>
-            <FaShoppingBag style={{ marginBottom: "0.85vh" }} />
-            &nbsp;
-            {totalQuantity}
-          </h4>
-        </Col>
-        <Col className="text-center">
-          <h4>Cosul tau</h4>
-        </Col>
-        <Col className="text-end">
-          <h4>{totalPrice} lei</h4>
-        </Col>
-      </Row>
-    </Navbar>
-    // </Link>
+        <Row
+          style={{ width: "100%" }}
+          xs={3}
+          sm={3}
+          md={3}
+          lg={3}
+          xl={3}
+          xxl={3}
+          className="align-items-center"
+        >
+          <Col>
+            <h4>
+              <FaShoppingBag style={{ marginBottom: "0.85vh" }} />
+              &nbsp;
+              {totalQuantity}
+            </h4>
+          </Col>
+          <Col className="text-center">
+            <h4>Cosul tau</h4>
+          </Col>
+          <Col className="text-end">
+            <h4>{totalPrice} lei</h4>
+          </Col>
+        </Row>
+      </Navbar>
+    </Link>
   );
 }
