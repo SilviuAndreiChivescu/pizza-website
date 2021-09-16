@@ -11,16 +11,13 @@ export default function CartBar(props) {
       style={{ textDecoration: "none" }}
       to="/cart"
     >
-      {/* <Container
-        fluid
-        className=" bottom-0 text-white pt-2 black-bg"
-      > */}
       <Navbar
-        className="bottom-0 text-white pt-2 black-bg"
+        className="text-white black-bg justify-content-center"
         style={{ position: "sticky" }}
         fixed="bottom"
       >
         <Row
+          style={{ width: "100%" }}
           xs={3}
           sm={3}
           md={3}
@@ -44,7 +41,6 @@ export default function CartBar(props) {
           </Col>
         </Row>
       </Navbar>
-      {/* </Container> */}
     </Link>
   );
 }
