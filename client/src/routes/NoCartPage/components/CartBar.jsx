@@ -11,7 +11,10 @@ export default function CartBar(props) {
       style={{ textDecoration: "none" }}
       to="/cart"
     >
-      <Navbar className="text-white black-bg justify-content-center position-sticky position-fixed bottom-0 container-fluid">
+      <Navbar
+        style={{ transform: "translate3d(0,0,0)" }}
+        className="text-white black-bg justify-content-center position-fixed bottom-0 container-fluid"
+      >
         <Row
           style={{ width: "100%" }}
           xs={3}
