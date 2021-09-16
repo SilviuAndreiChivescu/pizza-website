@@ -10,7 +10,7 @@ import { Container, Form } from "react-bootstrap";
 export default function MyAccountPage(props) {
   const { setNoCartAnimation, setAppState } = props;
 
-  // States for User Input fields
+  // States for User Input fields. Passing setAppState to check if data has loaded
   const { userDetailsStates, setUserDetailsStates } =
     useSetDefaultValues(setAppState);
 
@@ -18,11 +18,7 @@ export default function MyAccountPage(props) {
   const { updateUser } = useUpdateUserDetails();
   return (
     <main className="page slide-in-right">
-      <MyNavbar
-        title="Informatii personale"
-        to="/"
-        setAnimation={setNoCartAnimation}
-      />
+      <MyNavbar title="Contul meu" to="/" setAnimation={setNoCartAnimation} />
       <Form className="m-5">
         <UserDetailsInputs
           userDetailsStates={userDetailsStates}
@@ -33,7 +29,7 @@ export default function MyAccountPage(props) {
           <Container className="text-center">
             <MyButton
               title={"Salveaza noile informatii"}
-              className="mt-5"
+              className="mt-4"
               onClick={() => {
                 updateUser(userDetailsStates, setAppState);
                 alert("Detaliile tale au fost modificate cu succes");
