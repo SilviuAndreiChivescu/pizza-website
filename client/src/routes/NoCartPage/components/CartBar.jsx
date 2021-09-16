@@ -17,7 +17,7 @@ export default function CartBar(props) {
           zIndex: 4,
           position: "-webkit-sticky",
         }}
-        className="text-white black-bg justify-content-center position-absolute position-sticky bottom-0 container-fluid"
+        className="text-white black-bg justify-content-center position-sticky bottom-0 container-fluid"
       >
         <Row
           style={{ width: "100%" }}

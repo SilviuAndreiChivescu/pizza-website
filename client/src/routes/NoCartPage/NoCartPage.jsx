@@ -25,7 +25,7 @@ export default function NoCartPage(props) {
   const [show, setShow] = useState(false);
 
   return (
-    <main className={`page `}>
+    <main className={`page ${noCartAnimation}`}>
       <MyNavbar title="Meniu" />
       <Menu
         cart={cart}
