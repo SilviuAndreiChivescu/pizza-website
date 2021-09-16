@@ -1,8 +1,7 @@
-import { MongoDB } from "./pages";
-import Whoops404 from "./routes/Whoops404";
 import { Route, Switch } from "react-router-dom";
-
-import "./App.css";
+import { useBeforeunload } from "react-beforeunload";
+import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Pages / Routes
 import NoCartPage from "./routes/NoCartPage/NoCartPage";
@@ -14,14 +13,13 @@ import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
 import PrivacyPolicyPage from "./routes/PrivacyPolicyPage";
 import TermsPage from "./routes/TermsPage";
+import Whoops404 from "./routes/Whoops404";
 
-// Custom hooks to encapsulate code
+// Logic
 import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
 
 import { CircularProgress } from "@material-ui/core";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useBeforeunload } from "react-beforeunload";
-import { useState } from "react";
+import "./App.css";
 
 export default function App() {
   // State of Application
@@ -148,10 +146,6 @@ export default function App() {
           {/* Terms Page */}
           <Route exact path="/terms">
             <TermsPage />
-          </Route>
-
-          <Route exact path="/mongodb">
-            <MongoDB />
           </Route>
 
           {/* Redirect to if not a Route path */}
