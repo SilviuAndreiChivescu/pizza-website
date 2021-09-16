@@ -63,8 +63,10 @@ export default function ModalContent(props) {
         <Card.Img variant="top" src={`images/${content.Image}.jpg`} />
         <Card.Body>
           <Card.Title>{content.Price[size]} lei </Card.Title>
-          <Card.Subtitle> {content.Description} </Card.Subtitle>
-          {content.Category === "pizza" ? (
+          <Card.Subtitle className="mb-3">{content.Description}</Card.Subtitle>
+
+          {/* Render sizes for pizza only if content is pizza and particular pizza has multiple sizes */}
+          {content.Category === "pizza" && content.Price[1] ? (
             <PizzaSize setSize={setSize} />
           ) : null}
           <Card.Text>
