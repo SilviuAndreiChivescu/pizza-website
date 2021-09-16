@@ -16,7 +16,7 @@ export default function Menu(props) {
   // To filter the productsList
   const { setFilter, food } = useFilteredProductsList(productsList);
 
-  /* Render only if the filteredFoodList is empty */
+  // Render only if the filteredFoodList is empty
   const NoItemMatch = () => {
     if (
       food.pizzas.length === 0 &&
