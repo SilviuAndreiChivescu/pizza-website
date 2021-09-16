@@ -15,7 +15,15 @@ export default function CartBar(props) {
         fluid
         className="position-sticky bottom-0 text-white pt-2 black-bg"
       >
-        <Row>
+        <Row
+          xs={3}
+          sm={3}
+          md={3}
+          lg={3}
+          xl={3}
+          xxl={3}
+          className="align-items-center"
+        >
           <Col>
             <h4>
               <FaShoppingBag style={{ marginBottom: "0.85vh" }} />
@@ -24,7 +32,7 @@ export default function CartBar(props) {
             </h4>
           </Col>
           <Col className="text-center">
-            <h4>Vezi cosul tau</h4>
+            <h4>Cosul tau</h4>
           </Col>
           <Col className="text-end">
             <h4>{totalPrice} lei</h4>
