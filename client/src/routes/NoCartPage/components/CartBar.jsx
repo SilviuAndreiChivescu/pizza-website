@@ -16,6 +16,7 @@ export default function CartBar(props) {
           transform: "translate3d(0,0,0)",
           zIndex: 4,
           position: "-webkit-sticky",
+          alignSelf: "flex-start",
         }}
         className="text-white black-bg justify-content-center position-sticky bottom-0 container-fluid"
       >
