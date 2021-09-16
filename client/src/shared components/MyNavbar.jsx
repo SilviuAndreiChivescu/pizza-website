@@ -26,7 +26,11 @@ export default function MyNavbar(props) {
   };
 
   return (
-    <Navbar style={{ position: "sticky" }} fixed="top" className="black-bg">
+    <Navbar
+      style={{ position: "-webkit-sticky", position: "sticky" }}
+      fixed="top"
+      className="black-bg"
+    >
       <Container fluid>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4} className="text-start">
           <h5>
