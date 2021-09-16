@@ -20,7 +20,7 @@ export default function Cart(props) {
         {/* Render only if cart is not empty and is not past delivery hours */}
         {cart.length === 0 || (time > "22:29" && time < "8:59") ? null : (
           <>
-            <Card className="mt-5 p-3">
+            <Card className="mt-5 p-3 itemsCenterLT540W">
               {cart.map((value) => {
                 return (
                   <FoodBox
@@ -37,7 +37,7 @@ export default function Cart(props) {
             </Card.Title>
 
             <Link to="/checkout">
-              <MyButton title="Comanda" />
+              <MyButton className="mb-4" title="Comanda" />
             </Link>
           </>
         )}
@@ -51,6 +51,7 @@ const NoProductInCart = () => {
   return (
     <>
       <Image
+        fluid
         className="mt-5 mb-5"
         src="images/iconEmptyBasket.svg"
         style={{ width: "70px" }}
@@ -65,6 +66,7 @@ const ProductInCart = () => {
   return (
     <>
       <Image
+        fluid
         className="mt-5"
         src="images/iconPizzaSharing.svg"
         style={{ width: "400px" }}
@@ -83,7 +85,7 @@ const FoodBox = (props) => {
   );
 
   return (
-    <Row className="mb-2 mt-2" xs={3} sm={3} md={3} lg={3} xl={3} xxl={3}>
+    <Row className="mb-2 mt-2" xs={2} sm={3} md={3} lg={3} xl={3} xxl={3}>
       <Col>
         <Card.Title>
           {value.Quantity} X {value.Name}
@@ -91,15 +93,14 @@ const FoodBox = (props) => {
       </Col>
       <Col>
         <Button
-          className="me-2"
-          size="lg"
+          className="me-2 fontSize"
           onClick={() => decreaseItem(value.Name)}
           variant="outline-dark"
         >
           -
         </Button>
         <Button
-          size="lg"
+          className="fontSize"
           onClick={() => incrementItem(value.Name)}
           variant="outline-dark"
         >
@@ -107,9 +108,7 @@ const FoodBox = (props) => {
         </Button>
       </Col>
       <Col>
-        <Card.Title className="ps-2 pe-2">
-          {value.Price * value.Quantity} lei
-        </Card.Title>
+        <Card.Title className="">{value.Price * value.Quantity} lei</Card.Title>
       </Col>
     </Row>
   );
