@@ -6,9 +6,9 @@ export default function Details(props) {
   const { cart, title } = props;
   return (
     <Container>
-      <Row className="justify-content-center">
-        <Col xs={14} sm={12} md={10} lg={8} xl={8} xxl={9}>
-          <Card className={"m-4 p-4"}>
+      <Row className="justify-content-center ">
+        <Col sm={12} md={10} lg={8} xl={8} xxl={9}>
+          <Card className={"m-2 p-2"}>
             <Card.Title className="fs-4">{title}</Card.Title>
             {props.children}
             <Card.Body>

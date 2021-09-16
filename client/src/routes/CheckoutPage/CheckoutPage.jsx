@@ -41,11 +41,7 @@ export default function CheckoutPage(props) {
 
   return (
     <main className="page slide-in-right">
-      <MyNavbar
-        setAnimation={setCartAnimation}
-        title={"Aici dai comanda"}
-        to={"cart"}
-      />
+      <MyNavbar setAnimation={setCartAnimation} title={"Comanda"} to={"cart"} />
       <Form className={"m-5"}>
         <UserDetailsInputs
           userDetailsStates={userDetailsStates}
@@ -57,7 +53,7 @@ export default function CheckoutPage(props) {
         />
         <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
 
-        <Container className="text-center">
+        <Container className="text-center mt-3">
           <MyButton
             className=""
             title={"Plaseaza Comanda"}
