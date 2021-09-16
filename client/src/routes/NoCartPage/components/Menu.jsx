@@ -16,6 +16,23 @@ export default function Menu(props) {
   // To filter the productsList
   const { setFilter, food } = useFilteredProductsList(productsList);
 
+  /* Render only if the filteredFoodList is empty */
+  const NoItemMatch = () => {
+    if (
+      food.pizzas.length === 0 &&
+      food.burgers.length === 0 &&
+      food.chifle.length === 0 &&
+      food.sandwich.length === 0 &&
+      food.drinks.length === 0
+    )
+      return (
+        <Container style={{ height: "70vh" }} className="mb-5 text-center">
+          <Card.Title>Nu avem acel produs, ne pare rau!</Card.Title>
+        </Container>
+      );
+    else return null;
+  };
+
   return (
     <>
       <Container fluid className="p-0">
@@ -49,6 +66,8 @@ export default function Menu(props) {
         </Navbar>
       </Container>
       <Container fluid style={{ backgroundColor: "#efeff4" }}>
+        {/* If the filtered list is empty, render this component */}
+        <NoItemMatch />
         {/* Category component can be found below */}
         <Category
           title={"Pizza"}
