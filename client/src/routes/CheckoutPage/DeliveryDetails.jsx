@@ -30,7 +30,13 @@ export default function DeliveryDetails(props) {
             required
           />
           <Form.Check
-            onChange={() => setTime(true)}
+            onChange={() => {
+              setTime(true);
+              setDeliveryDetailsStates({
+                ...deliveryDetailsStates,
+                deliveryTime: "",
+              });
+            }}
             type="radio"
             label="Alege ora"
             name="deliveryTime"
@@ -45,6 +51,7 @@ export default function DeliveryDetails(props) {
                   deliveryTime: e.target.value,
                 })
               }
+              required
               placeholder="Exemplu: 16:30"
             />
           ) : null}
