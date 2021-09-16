@@ -36,7 +36,7 @@ export default function UserDetailsInputs(props) {
           />
         </Form.Group>
       </Row>
-      <Row className="mb-e">
+      <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridPhone">
           <Form.Label>Email *</Form.Label>
           <Form.Control
