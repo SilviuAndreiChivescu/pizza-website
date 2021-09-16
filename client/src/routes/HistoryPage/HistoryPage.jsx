@@ -5,11 +5,7 @@ export default function HistoryPage(props) {
   const { setIdOfOrder, setNoCartAnimation, setAppState } = props;
   return (
     <main className="page slide-in-right">
-      <MyNavbar
-        setAnimation={setNoCartAnimation}
-        title={"Istoricul comenzilor"}
-        to={"/"}
-      />
+      <MyNavbar setAnimation={setNoCartAnimation} title={"Istoric"} to={"/"} />
       <History setAppState={setAppState} setIdOfOrder={setIdOfOrder} />
     </main>
   );
