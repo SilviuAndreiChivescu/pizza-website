@@ -11,11 +11,12 @@ export default function Cart(props) {
   return (
     <Container fluid className="text-center">
       <Container>
-        {/* When empty, show a different .svg */}
-        {cart.length === 0 ? <NoProductInCart /> : <ProductInCart />}
-
-        {/* Render only if it's not past delivery hours */}
-        {time > "22:29" && time < "8:59" ? <PastDeliveryHours /> : null}
+        {/* Render different if it's past the delivery hours */}
+        {time > "22:29" && time < "8:59" ? (
+          <PastDeliveryHours />
+        ) : (
+          <CartEmptyOrNot cart={cart} />
+        )}
 
         {/* Render only if cart is not empty and is not past delivery hours */}
         {cart.length === 0 || (time > "22:29" && time < "8:59") ? null : (
@@ -46,33 +47,33 @@ export default function Cart(props) {
   );
 }
 
-// The next two components are used to return different UI for when Cart state is empty or not.
-const NoProductInCart = () => {
-  return (
-    <>
-      <Image
-        fluid
-        className="mt-5 mb-5"
-        src="images/iconEmptyBasket.svg"
-        style={{ width: "70px" }}
-      />
-      <Card.Title className="mb-5">
-        Adauga mancare gustoasa din meniu si apoi plaseaza comanda
-      </Card.Title>
-    </>
-  );
-};
-const ProductInCart = () => {
-  return (
-    <>
-      <Image
-        fluid
-        className="mt-5"
-        src="images/iconPizzaSharing.svg"
-        style={{ width: "400px" }}
-      />
-    </>
-  );
+// The next component is used to return different UI for when Cart state is empty or not.
+const CartEmptyOrNot = ({ cart }) => {
+  if (cart.length === 0)
+    return (
+      <>
+        <Image
+          fluid
+          className="mt-5 mb-5"
+          src="images/iconEmptyBasket.svg"
+          style={{ width: "70px" }}
+        />
+        <Card.Title className="mb-5">
+          Adauga mancare gustoasa din meniu si apoi plaseaza comanda
+        </Card.Title>
+      </>
+    );
+  else
+    return (
+      <>
+        <Image
+          fluid
+          className="mt-5"
+          src="images/iconPizzaSharing.svg"
+          style={{ width: "400px" }}
+        />
+      </>
+    );
 };
 
 // This Component is the row for particular item. It has option to add or substract from quantity.
