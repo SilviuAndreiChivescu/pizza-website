@@ -16,7 +16,7 @@ export default function CartBar(props) {
       }}
       to="/cart"
     >
-      <Navbar className="text-white black-bg justify-content-center container-fluid">
+      <Navbar className="text-white black-bg justify-content-center container-fluid pt-1 pb-0 ps-1 pe-1">
         <Row
           style={{ width: "100%" }}
           xs={3}
