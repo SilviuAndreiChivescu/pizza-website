@@ -23,7 +23,7 @@ export default function ReceiptPage(props) {
   // Before unload, setLastOrder to empty array
   useBeforeunload(() => setLastOrder([]));
 
-  // If pressing refresh after seeing receipt or going to path '/receipt' without ordering, redirect to '/' - home page
+  // If page refresh after seeing the receipt or going to path '/receipt' without ordering, redirect to '/' - home page
   if (lastOrder.length === 0) window.location.replace("http://localhost:3000/");
   else {
     return (
