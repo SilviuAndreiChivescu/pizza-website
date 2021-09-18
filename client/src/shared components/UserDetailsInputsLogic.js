@@ -19,8 +19,7 @@ const useInputValues = () => {
         Axios.get(
           `${process.env.REACT_APP_ENDPOINT}/readFromUsers/${user.email}`
         ).then((response) => {
-          // To get data from request (Using indexing and it's set to 0 because this is an object in an array and we only have one row)
-          var data = response.data[0];
+          var data = response.data;
 
           setUserDetailsStates({
             ...userDetailsStates,

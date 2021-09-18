@@ -37,12 +37,7 @@ const usePostToUsers = () => {
   const addToUsers = (userDetailsStates, setAppState) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoUsers`, {
-        FirstName: userDetailsStates.firstName,
-        LastName: userDetailsStates.lastName,
-        Email: userDetailsStates.email,
-        Address: userDetailsStates.address,
-        City: userDetailsStates.city,
-        PhoneNumber: userDetailsStates.phoneNumber,
+        UserDetails: userDetailsStates,
       });
     } catch (err) {
       setAppState("error");

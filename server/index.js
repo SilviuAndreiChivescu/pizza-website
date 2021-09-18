@@ -148,70 +148,10 @@ app.get("/readbyid/:id", (req, res) => {
 // **** END OF ORDERS COLLECTION ****
 
 // **** Users Collection ****
-// Post to Users collection
-app.post("/insertIntoUsers", async (req, res) => {
-  const firstName = req.body.FirstName;
-  const lastName = req.body.LastName;
-  const email = req.body.Email;
-  const address = req.body.Address;
-  const city = req.body.City;
-  const phoneNumber = req.body.PhoneNumber;
-
-  const products = new UsersModel({
-    FirstName: firstName,
-    LastName: lastName,
-    Email: email,
-    Address: address,
-    City: city,
-    PhoneNumber: phoneNumber,
-  });
-
-  try {
-    await products.save();
-    res.send("inserted data into users");
-    console.log("inserted data into users");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-// Get request to see if particular User is already in Users Collection
-app.get("/readFromUsers/:email", (req, res) => {
-  const email = req.params.email;
-  try {
-    UsersModel.find({ Email: email }, (err, result) => {
-      res.send(result);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-// Update Users collection for MyAccountPage
-app.put("/updateUsers", async (req, res) => {
-  const email = req.body.email;
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const address = req.body.address;
-  const city = req.body.city;
-  const phoneNo = req.body.phoneNo;
-
-  const filter = { Email: email };
-  const update = {
-    FirstName: firstName,
-    LastName: lastName,
-    Address: address,
-    City: city,
-    PhoneNumber: phoneNo,
-  };
-  try {
-    await UsersModel.findOneAndUpdate(filter, update);
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-// **** END OF USERS COLLECTION ****
+// MVC STRUCTURING
+const usersRoute = require("./routes/Users");
+// Here endpoint is '/' because user goes to endpoint set in usersRoute
+app.use("/", usersRoute);
 
 // **** MAILJET ****
 
@@ -252,13 +192,9 @@ app.post("/sendEmail", (req, res) => {
       },
     ],
   });
-  request
-    .then((result) => {
-      console.log(result.body);
-    })
-    .catch((err) => {
-      console.log(err.statusCode);
-    });
+  request.catch((err) => {
+    console.log(err.statusCode);
+  });
   // Testing purpose
   console.log(`Email ${count++} sent successfully`);
   res.json({ status: "Email sent" });

@@ -24,12 +24,7 @@ const useUpdateUserDetails = () => {
   const updateUser = (userDetailsStates, setAppState) => {
     try {
       Axios.put(`${process.env.REACT_APP_ENDPOINT}/updateUsers`, {
-        email: userDetailsStates.email,
-        firstName: userDetailsStates.firstName,
-        lastName: userDetailsStates.lastName,
-        address: userDetailsStates.address,
-        city: userDetailsStates.city,
-        phoneNo: userDetailsStates.phoneNo,
+        UserDetails: userDetailsStates,
       });
     } catch (err) {
       console.log(err);
