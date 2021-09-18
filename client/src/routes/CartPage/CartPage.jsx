@@ -6,7 +6,7 @@ export default function CartPage(props) {
     props;
 
   return (
-    <main className={`page ${cartAnimation}`}>
+    <main className={`${cartAnimation}`}>
       <MyNavbar
         setAnimation={setNoCartAnimation}
         title={"Cosul tau"}

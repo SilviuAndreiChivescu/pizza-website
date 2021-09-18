@@ -40,7 +40,7 @@ export default function CheckoutPage(props) {
   const { handleSubmit } = useHandleSubmit(cart, history);
 
   return (
-    <main className="page slide-in-right">
+    <main className="slide-in-right">
       <MyNavbar setAnimation={setCartAnimation} title={"Comanda"} to={"cart"} />
       <Form className={"m-5"}>
         <UserDetailsInputs

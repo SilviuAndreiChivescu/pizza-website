@@ -27,7 +27,7 @@ export default function ReceiptPage(props) {
   if (lastOrder.length === 0) window.location.replace("http://localhost:3000/");
   else {
     return (
-      <main className="page slide-in-right">
+      <main className="slide-in-right">
         <MyNavbar setAnimation={setNoCartAnimation} title={"Bon"} to={"/"} />
         <SuccessMessage />
         <Details title={"Detalii comanda"} cart={lastOrder}>

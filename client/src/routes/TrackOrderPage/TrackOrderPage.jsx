@@ -43,7 +43,7 @@ export default function TrackOrderPage(props) {
 
   if (orderData.loaded) {
     return (
-      <main className="page slide-in-right">
+      <main className="slide-in-right">
         <MyNavbar
           setAnimation={() => setNoCartAnimation("slide-in-left")}
           title={"Status"}

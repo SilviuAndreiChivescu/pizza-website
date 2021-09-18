@@ -17,7 +17,7 @@ export default function MyAccountPage(props) {
   // Function to update user details in Users Collection
   const { updateUser } = useUpdateUserDetails();
   return (
-    <main className="page slide-in-right">
+    <main className="slide-in-right">
       <MyNavbar title="Contul meu" to="/" setAnimation={setNoCartAnimation} />
       <Form className="m-5">
         <UserDetailsInputs
