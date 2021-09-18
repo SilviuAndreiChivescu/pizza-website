@@ -1,4 +1,4 @@
-import { Col, Container, Navbar, Row } from "react-bootstrap";
+import { Col, Navbar, Row } from "react-bootstrap";
 import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 // The cart bar from the bottom of the page.
