@@ -18,7 +18,6 @@ const InsertIntoOrders = async (cart, userDetails, deliveryDetails) => {
 
   try {
     await order.save();
-    console.log("inserted data into orders");
   } catch (err) {
     console.log(err);
   }

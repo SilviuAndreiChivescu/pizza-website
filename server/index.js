@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 
@@ -10,10 +9,10 @@ app.use(cors());
 
 // **** MONGODB ****
 
-// Take password from .env
-const password = process.env.MONGODB_URI;
-const mongoURL = `mongodb+srv://Andrew:${password}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
-// Change this process.env with mongoDbPassword from above if using for local host
+const mongoose = require("mongoose");
+// **** CONFIG ****
+
+const { mongoURL } = require("./src/config/DatabaseConfig.js");
 mongoose.connect(mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,18 +21,20 @@ mongoose.connect(mongoURL, {
 // To handle deprecation of findAndModify mongo
 mongoose.set("useFindAndModify", false);
 
-const productsRoute = require("./routes/Products");
+// **** END CONFIG ****
+
+const productsRoute = require("./src/routes/Products");
 app.use("/", productsRoute);
 
-const ordersRoute = require("./routes/Orders");
+const ordersRoute = require("./src/routes/Orders");
 app.use("/", ordersRoute);
 
-const usersRoute = require("./routes/Users");
+const usersRoute = require("./src/routes/Users");
 app.use("/", usersRoute);
 
 // **** Mailjet ****
 
-const mailjetRoute = require("./routes/Mailjet");
+const mailjetRoute = require("./src/routes/Mailjet");
 app.use("/", mailjetRoute);
 
 const PORT = process.env.PORT || 3001;
