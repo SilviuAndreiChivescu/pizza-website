@@ -187,11 +187,7 @@ const useMailjetAPI = (cart) => {
 
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/sendEmail`, {
-        nameText: email.nameText,
-        contactText: email.contactText,
-        addressText: email.addressText,
-        deliveryText: email.deliveryText,
-        cartText: email.cartText,
+        Email: email,
       });
     } catch (err) {
       setAppState("error");

@@ -8,6 +8,8 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 
+// **** MONGODB ****
+
 // Take password from .env
 const password = process.env.MONGODB_URI;
 const mongoURL = `mongodb+srv://Andrew:${password}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
@@ -20,23 +22,12 @@ mongoose.connect(mongoURL, {
 // To handle deprecation of findAndModify mongo
 mongoose.set("useFindAndModify", false);
 
-// MongoDB
-// ************ Products collection ************
-
 const productsRoute = require("./routes/Products");
 app.use("/", productsRoute);
 
-// **** END OF Products Collection ****
-
-// **** Orders collection ****
-// Post to Orders collection
 const ordersRoute = require("./routes/Orders");
 app.use("/", ordersRoute);
 
-// **** END OF ORDERS COLLECTION ****
-
-// **** Users Collection ****
-// MVC STRUCTURING
 const usersRoute = require("./routes/Users");
 // Here endpoint is '/' because user goes to endpoint set in usersRoute
 app.use("/", usersRoute);
@@ -53,13 +44,7 @@ var count = 1;
 // Send message
 // Create post request to send message
 app.post("/sendEmail", (req, res) => {
-  // text variable to store the message passed from front-end
-  const nameText = req.body.nameText;
-  const contactText = req.body.contactText;
-  const addressText = req.body.addressText;
-  const deliveryText = req.body.deliveryText;
-  const cartText = req.body.cartText;
-  // Set email message to the text passed via request
+  const email = req.body.Email;
 
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -75,8 +60,8 @@ app.post("/sendEmail", (req, res) => {
           },
         ],
         Subject: `Comanda nr ${count}`,
-        TextPart: `Draga Angajat al Medieval Pizza, Detalii comanda:  ${nameText} ${contactText} ${addressText} ${deliveryText} ${cartText}`,
-        HTMLPart: `<h3>Draga Angajat al Medieval Pizza</h3> <h3>Detalii comanda: </h3> <ul> <li>Nume: ${nameText}</li> <li>Contact: ${contactText}</li> <li>Adresa: ${addressText}</li> <li>Detalii de livrare: ${deliveryText}</li> Produse: ${cartText}</ul>`,
+        TextPart: `Draga Angajat al Medieval Pizza, Detalii comanda:  ${email.nameText} ${email.contactText} ${email.addressText} ${email.deliveryText} ${email.cartText}`,
+        HTMLPart: `<h3>Draga Angajat al Medieval Pizza</h3> <h3>Detalii comanda: </h3> <ul> <li>Nume: ${email.nameText}</li> <li>Contact: ${email.contactText}</li> <li>Adresa: ${email.addressText}</li> <li>Detalii de livrare: ${email.deliveryText}</li> Produse: ${email.cartText}</ul>`,
       },
     ],
   });
