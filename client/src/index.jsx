@@ -5,13 +5,12 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+// I deleted procfile since on the article it says if there is no procfiler, heroku looks for start script in package.json, so I have one
+
 // Html lang tag set it to ro and then check if it translates ok to eng for my portf
 // also check what this lang does
 
 // DO font families with bi
-
-// do file structure for whole project for deployment, and I think I will deploy it only on heroku all together after I sort it out how to deploy it for cata
-// think about this for deploying app on same host, you will need your back end at the top, not in server, in order to deploy it on same host server
 
 // Check if there are npm modules unused and uninstall them
 
