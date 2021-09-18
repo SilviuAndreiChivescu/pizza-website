@@ -41,7 +41,7 @@ export default function TrackOrderPage(props) {
     }
   };
   // If page refresh after seeing TrackOrderPage or going to path '/trackorder' without pressing 'Track Order' button, redirect to '/' - home page
-  if (!idOfOrder) window.location.replace("http://localhost:3000/");
+  if (!idOfOrder) window.location.replace(process.env.REACT_APP_ENDPOINT);
   if (orderData.loaded) {
     return (
       <main className="slide-in-right">
