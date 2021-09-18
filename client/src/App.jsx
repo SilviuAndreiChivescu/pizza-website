@@ -11,9 +11,9 @@ import HistoryPage from "./routes/HistoryPage/HistoryPage";
 import ReceiptPage from "./routes/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
-import PrivacyPolicyPage from "./routes/PrivacyPolicyPage";
-import TermsPage from "./routes/TermsPage";
-import Whoops404 from "./routes/Whoops404";
+import PrivacyPolicyPage from "./routes/PrivacyPolicyPage/PrivacyPolicyPage";
+import TermsPage from "./routes/TermsPage/TermsPage";
+import Whoops404 from "./routes/Whoops404/Whoops404";
 
 // Logic
 import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
