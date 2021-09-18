@@ -40,7 +40,8 @@ export default function TrackOrderPage(props) {
       );
     }
   };
-
+  // If page refresh after seeing TrackOrderPage or going to path '/trackorder' without pressing 'Track Order' button, redirect to '/' - home page
+  if (!idOfOrder) window.location.replace("http://localhost:3000/");
   if (orderData.loaded) {
     return (
       <main className="slide-in-right">
