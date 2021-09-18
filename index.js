@@ -7,10 +7,18 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 
+// **** Config Deploy ****
+const path = require("path");
+app.use(express.static(path.join(__dirname, "client", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+// **** END Config Deploy ****
+
 // **** MONGODB ****
 
 const mongoose = require("mongoose");
-// **** CONFIG ****
+// **** MongoDB Config ****
 
 const { mongoURL } = require("./src/config/DatabaseConfig.js");
 mongoose.connect(mongoURL, {
@@ -21,7 +29,7 @@ mongoose.connect(mongoURL, {
 // To handle deprecation of findAndModify mongo
 mongoose.set("useFindAndModify", false);
 
-// **** END CONFIG ****
+// **** END MongoDB Config ****
 
 const productsRoute = require("./src/routes/Products");
 app.use("/", productsRoute);
@@ -32,8 +40,9 @@ app.use("/", ordersRoute);
 const usersRoute = require("./src/routes/Users");
 app.use("/", usersRoute);
 
-// **** Mailjet ****
+// **** END MongoDB ****
 
+// **** Mailjet ****
 const mailjetRoute = require("./src/routes/Mailjet");
 app.use("/", mailjetRoute);
 

@@ -37,6 +37,7 @@
     "eject": "react-scripts eject",
     "prettier-watch": "onchange '**/*.js' -- prettier --write {{changed}}"
   },
+  "proxy": "http://localhost:8000",
   "eslintConfig": {
     "extends": [
       "react-app",
