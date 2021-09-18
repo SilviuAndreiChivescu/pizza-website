@@ -4,9 +4,6 @@ const cors = require("cors");
 const app = express();
 
 require("dotenv").config();
-const ProductsModel = require("./models/Products");
-const OrdersModel = require("./models/Orders");
-const UsersModel = require("./models/Users");
 
 app.use(express.json());
 app.use(cors());
@@ -25,66 +22,10 @@ mongoose.set("useFindAndModify", false);
 
 // MongoDB
 // ************ Products collection ************
-app.post("/insert", async (req, res) => {
-  const name = req.body.name;
-  const price = req.body.price;
-  const description = req.body.description;
-  const imageUrl = req.body.image;
-  const category = req.body.category;
 
-  const products = new ProductsModel({
-    Name: name,
-    Price: parseFloat(price),
-    Quantity: 1,
-    Description: description,
-    Image: imageUrl,
-    Category: category,
-  });
+const productsRoute = require("./routes/Products");
+app.use("/", productsRoute);
 
-  try {
-    await products.save();
-    res.send("inserted data into products collection");
-    console.log("inserted data into products collection");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.get("/read", (req, res) => {
-  try {
-    ProductsModel.find({}, (err, result) => {
-      res.send(result);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.put("/update", async (req, res) => {
-  const newNumberOfProduct = req.body.newNumberOfProduct;
-  const id = req.body.id;
-
-  try {
-    await ProductsModel.findById(id, (err, updatedProduct) => {
-      updatedProduct.quantity = newNumberOfProduct;
-      updatedProduct.save();
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.delete("/delete/:id", async (req, res) => {
-  const id = req.params.id;
-  res.send(id);
-
-  try {
-    await ProductsModel.findByIdAndRemove(id).exec();
-    console.log("deleted");
-  } catch (err) {
-    console.log(err);
-  }
-});
 // **** END OF Products Collection ****
 
 // **** Orders collection ****
