@@ -6,10 +6,12 @@ const useProductsList = (setAppState) => {
   const [productsList, setProductsList] = useState([]);
   useEffect(() => {
     try {
-      Axios.get(`${process.env.REACT_APP_ENDPOINT}/read`).then((response) => {
-        setProductsList(response.data);
-        setAppState("loaded");
-      });
+      Axios.get(`${process.env.REACT_APP_ENDPOINT}/getFromProducts`).then(
+        (response) => {
+          setProductsList(response.data);
+          setAppState("loaded");
+        }
+      );
     } catch (err) {
       console.log(err);
       setAppState("error");
