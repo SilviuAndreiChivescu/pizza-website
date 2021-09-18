@@ -10,7 +10,7 @@ export default function MyNavbar(props) {
   // State for Modal
   const [show, setShow] = useState(false);
 
-  // Arrow component to render a left arrow HTML entity with the functionality to go to previous page
+  // This component returns a left arrow HTML entity with the functionality to go to previous page
   const Arrow = () => {
     return (
       <Link
