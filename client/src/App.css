@@ -6,6 +6,17 @@
   height: inherit;
 }
 
+.roleway {
+  font-family: "Raleway", sans-serif;
+}
+.ephesis {
+  font-family: "Ephesis", cursive;
+  font-size: 3rem;
+}
+.rajdhani {
+  font-family: "Rajdhani", sans-serif;
+}
+
 .fontSize {
   font-size: 0.9rem;
 }

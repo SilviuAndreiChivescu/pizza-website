@@ -56,7 +56,7 @@ export default function Menu(props) {
                   aria-label="Search"
                 />
               </Form>
-              <Nav className="ms-5">
+              <Nav className="ms-5 rajdhani">
                 <Nav.Link href="#pizza">Pizza</Nav.Link>
                 <Nav.Link href="#burgari">Burgări</Nav.Link>
                 <Nav.Link href="#chifle">Chifle coapte pe vatră</Nav.Link>
@@ -117,9 +117,11 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
   return (
     <>
       <Container className="mb-5">
-        <Card.Title id={id}>{title}</Card.Title>
+        <Card.Title className="ephesis" id={id}>
+          {title}
+        </Card.Title>
 
-        <section className="d-flex flex-wrap justify-content-center mt-4">
+        <section className="d-flex flex-wrap justify-content-center mt-1">
           {mapOver.map((val) => {
             return (
               <section

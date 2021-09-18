@@ -17,7 +17,9 @@ export default function MyModal(props) {
         closeVariant="white"
         className="black-bg text-white"
       >
-        <Modal.Title id="contained-modal-title-vcenter">{name}</Modal.Title>
+        <Modal.Title className="roleway" id="contained-modal-title-vcenter">
+          {name}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
     </Modal>

@@ -27,7 +27,7 @@ export default function MyNavbar(props) {
   return (
     <Navbar
       style={{ position: "sticky", top: 0, zIndex: 5 }}
-      className="black-bg"
+      className="black-bg roleway"
     >
       <Container fluid>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4} className="text-start">

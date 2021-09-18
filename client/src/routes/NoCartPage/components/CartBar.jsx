@@ -16,7 +16,7 @@ export default function CartBar(props) {
       }}
       to="/cart"
     >
-      <Navbar className="text-white black-bg justify-content-center container-fluid pt-1 pb-0 ps-1 pe-1">
+      <Navbar className="text-white roleway black-bg justify-content-center container-fluid pt-1 pb-0 ps-1 pe-1">
         <Row
           style={{ width: "100%" }}
           xs={3}
@@ -29,7 +29,7 @@ export default function CartBar(props) {
         >
           <Col>
             <h4>
-              <FaShoppingBag style={{ marginBottom: "0.85vh" }} />
+              <FaShoppingBag />
               &nbsp;
               {totalQuantity}
             </h4>
