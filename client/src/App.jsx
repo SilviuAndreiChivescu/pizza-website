@@ -15,6 +15,8 @@ import PrivacyPolicyPage from "./routes/PrivacyPolicyPage/PrivacyPolicyPage";
 import TermsPage from "./routes/TermsPage/TermsPage";
 import Whoops404 from "./routes/Whoops404/Whoops404";
 
+import Brand from "./shared components/Brand";
+
 // Logic
 import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
 
@@ -168,6 +170,7 @@ const Loading = () => {
         height: "100vh",
       }}
     >
+      <Brand />
       <CircularProgress disableShrink />
     </main>
   );

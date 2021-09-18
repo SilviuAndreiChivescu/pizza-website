@@ -8,6 +8,8 @@ import {
   Image,
 } from "react-bootstrap";
 
+import Brand from "./../../../shared components/Brand";
+
 import { useFilteredProductsList } from "./MenuLogic";
 
 export default function Menu(props) {
@@ -173,16 +175,5 @@ const FoodBox = (props) => {
         </Card.Body>
       </Card>
     </>
-  );
-};
-
-// This component is used as Brand for React Bootstrap Navbar's Brand
-const Brand = () => {
-  return (
-    <Image
-      className="d-inline p-2 ms-2"
-      src="images/brandLogo.png"
-      alt="medieval pizza logo"
-    ></Image>
   );
 };
