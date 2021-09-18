@@ -11,26 +11,26 @@ const useOrderData = (id, setAppState) => {
 
   useEffect(() => {
     try {
-      Axios.get(`${process.env.REACT_APP_ENDPOINT}/readbyid/${id}`).then(
-        (response) => {
-          // The Cart from response
-          var order = response.data.map((e) => {
-            return e.Cart;
-          });
-          // The address
-          var address = response.data.map((e) => {
-            return e.Address + ", " + e.City;
-          });
+      Axios.get(
+        `${process.env.REACT_APP_ENDPOINT}/readFromOrdersById/${id}`
+      ).then((response) => {
+        // The Cart from response
+        var order = response.data.map((e) => {
+          return e.Cart;
+        });
+        // The address
+        var address = response.data.map((e) => {
+          return e.Address + ", " + e.City;
+        });
 
-          // Set states
-          setDataOrder({
-            ...orderData,
-            order: order,
-            address: address,
-            loaded: true,
-          });
-        }
-      );
+        // Set states
+        setDataOrder({
+          ...orderData,
+          order: order,
+          address: address,
+          loaded: true,
+        });
+      });
     } catch (err) {
       console.log(err);
       setAppState("error");

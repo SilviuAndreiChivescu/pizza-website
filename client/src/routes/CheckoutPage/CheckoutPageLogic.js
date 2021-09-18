@@ -13,15 +13,9 @@ const usePostToOrders = () => {
   ) => {
     try {
       Axios.post(`${process.env.REACT_APP_ENDPOINT}/insertIntoOrders`, {
-        FirstName: userDetailsStates.firstName,
-        LastName: userDetailsStates.lastName,
-        Email: userDetailsStates.email,
         Cart: cart,
-        Address: userDetailsStates.address,
-        City: userDetailsStates.city,
-        PhoneNumber: userDetailsStates.phoneNumber,
-        DeliveryTime: deliveryDetailsStates.deliveryTime,
-        DeliveryWay: deliveryDetailsStates.deliveryWay,
+        UserDetails: userDetailsStates,
+        DeliveryDetails: deliveryDetailsStates,
       });
       console.log("Inserted data into Orders collection!");
     } catch (err) {
