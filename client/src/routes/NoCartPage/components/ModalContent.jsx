@@ -44,7 +44,7 @@ export default function ModalContent(props) {
                 label={Object.keys(e)}
                 id={Object.keys(e)}
                 value={Object.values(e)}
-                checked={size == Object.values(e)} // using "==" instead of "===" because this is the only way it works. (I belive because values array has objects in it and it points to object value)
+                checked={size == Object.values(e)}
                 onChange={(e) => {
                   setSize(e.currentTarget.value);
                   setSizeName(e.currentTarget.id);
