@@ -7,14 +7,6 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 
-// **** Config Deploy ****
-const path = require("path");
-app.use(express.static(path.join(__dirname, "client", "build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-// **** END Config Deploy ****
-
 // **** MONGODB ****
 
 const mongoose = require("mongoose");
@@ -45,6 +37,14 @@ app.use("/", usersRoute);
 // **** Mailjet ****
 const mailjetRoute = require("./src/routes/Mailjet");
 app.use("/", mailjetRoute);
+
+// **** Config Deploy ****
+const path = require("path");
+app.use(express.static(path.join(__dirname, "client", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+// **** END Config Deploy ****
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
