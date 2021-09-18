@@ -38,7 +38,7 @@ const useQuantitySelector = (cart, setCart, value) => {
 
 const useTime = () => {
   const today = new Date();
-  const time = today.getHours() + ":" + today.getMinutes();
+  const [time] = useState(() => today.getHours() + ":" + today.getMinutes());
   return { time };
 };
 
