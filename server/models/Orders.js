@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 mongoose.pluralize(null);
 
 const OrdersSchema = new mongoose.Schema({
+  Cart: {
+    type: Array,
+    required: true,
+  },
   FirstName: {
     type: String,
     required: true,
@@ -14,10 +18,6 @@ const OrdersSchema = new mongoose.Schema({
   },
   Email: {
     type: String,
-    required: true,
-  },
-  Cart: {
-    type: Array,
     required: true,
   },
   Address: {

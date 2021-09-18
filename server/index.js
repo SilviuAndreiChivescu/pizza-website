@@ -89,61 +89,8 @@ app.delete("/delete/:id", async (req, res) => {
 
 // **** Orders collection ****
 // Post to Orders collection
-app.post("/insertIntoOrders", async (req, res) => {
-  const firstName = req.body.FirstName;
-  const lastName = req.body.LastName;
-  const email = req.body.Email;
-  const cart = req.body.Cart;
-  const address = req.body.Address;
-  const city = req.body.City;
-  const phoneNumber = req.body.PhoneNumber;
-  const deliveryTime = req.body.DeliveryTime;
-  const deliveryWay = req.body.DeliveryWay;
-
-  const products = new OrdersModel({
-    FirstName: firstName,
-    LastName: lastName,
-    Email: email,
-    Cart: cart,
-    Address: address,
-    City: city,
-    PhoneNumber: phoneNumber,
-    DeliveryTime: deliveryTime,
-    DeliveryWay: deliveryWay,
-  });
-
-  try {
-    await products.save();
-    res.send("inserted data");
-    console.log("inserted data");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-// Read all Cart data from Orders collection for a particular user(received from params)
-app.get("/read/:email", (req, res) => {
-  const email = req.params.email;
-  try {
-    OrdersModel.find({ Email: email }, { Cart: 1 }, (err, result) => {
-      res.send(result);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-// Read order find by idOfOrder for TracKOrderPage
-app.get("/readbyid/:id", (req, res) => {
-  const id = req.params.id;
-  try {
-    OrdersModel.find({ _id: id }, (err, result) => {
-      res.send(result);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+const ordersRoute = require("./routes/Orders");
+app.use("/", ordersRoute);
 
 // **** END OF ORDERS COLLECTION ****
 
