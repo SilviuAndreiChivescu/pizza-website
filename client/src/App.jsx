@@ -160,7 +160,7 @@ export default function App() {
 
 const Loading = () => {
   return (
-    <div
+    <main
       style={{
         display: "flex",
         alignItems: "center",
@@ -169,6 +169,6 @@ const Loading = () => {
       }}
     >
       <CircularProgress disableShrink />
-    </div>
+    </main>
   );
 };
