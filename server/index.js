@@ -29,51 +29,12 @@ const ordersRoute = require("./routes/Orders");
 app.use("/", ordersRoute);
 
 const usersRoute = require("./routes/Users");
-// Here endpoint is '/' because user goes to endpoint set in usersRoute
 app.use("/", usersRoute);
 
-// **** MAILJET ****
+// **** Mailjet ****
 
-const mailjet = require("node-mailjet").connect(
-  process.env.MJ_APIKEY_PUBLIC,
-  process.env.MJ_APIKEY_PRIVATE
-);
-
-var count = 1;
-
-// Send message
-// Create post request to send message
-app.post("/sendEmail", (req, res) => {
-  const email = req.body.Email;
-
-  const request = mailjet.post("send", { version: "v3.1" }).request({
-    Messages: [
-      {
-        From: {
-          Email: "medievalpizzacomanda@gmail.com",
-          Name: "Medieval Pizza",
-        },
-        To: [
-          {
-            Name: "Angajat al Medieval Pizza",
-            Email: "gypandy00@gmail.com",
-          },
-        ],
-        Subject: `Comanda nr ${count}`,
-        TextPart: `Draga Angajat al Medieval Pizza, Detalii comanda:  ${email.nameText} ${email.contactText} ${email.addressText} ${email.deliveryText} ${email.cartText}`,
-        HTMLPart: `<h3>Draga Angajat al Medieval Pizza</h3> <h3>Detalii comanda: </h3> <ul> <li>Nume: ${email.nameText}</li> <li>Contact: ${email.contactText}</li> <li>Adresa: ${email.addressText}</li> <li>Detalii de livrare: ${email.deliveryText}</li> Produse: ${email.cartText}</ul>`,
-      },
-    ],
-  });
-  request.catch((err) => {
-    console.log(err.statusCode);
-  });
-  // Testing purpose
-  console.log(`Email ${count++} sent successfully`);
-  res.json({ status: "Email sent" });
-});
-
-// *** END MAILJET ***
+const mailjetRoute = require("./routes/Mailjet");
+app.use("/", mailjetRoute);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
