@@ -18,7 +18,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="dev-6rdeed8o.eu.auth0.com"
     clientId="10Iwn9shn6ROfe3HTASmfmvDJ5l5QHEz"
-    redirectUri={process.env.REACT_APP_ENDPOINT}
+    redirectUri={"https://pizza-website2021.herokuapp.com/"}
   >
     <Router>
       <App />
