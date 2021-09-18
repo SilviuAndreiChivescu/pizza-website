@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Col, Container, Navbar, Card } from "react-bootstrap";
 
 export default function MyNavbar(props) {
-  // Destructuring props
   const { to, title, setAnimation } = props;
 
   // State for Modal
@@ -26,7 +25,10 @@ export default function MyNavbar(props) {
   };
 
   return (
-    <Navbar style={{ position: "sticky" }} fixed="top" className="black-bg">
+    <Navbar
+      style={{ position: "sticky", top: 0, zIndex: 5 }}
+      className="black-bg"
+    >
       <Container fluid>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4} className="text-start">
           <h5>
