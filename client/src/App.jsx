@@ -11,6 +11,7 @@ import HistoryPage from "./routes/HistoryPage/HistoryPage";
 import ReceiptPage from "./routes/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
+import AdminPage from "./routes/AdminPage/AdminPage";
 import PrivacyPolicyPage from "./routes/PrivacyPolicyPage/PrivacyPolicyPage";
 import TermsPage from "./routes/TermsPage/TermsPage";
 import Whoops404 from "./routes/Whoops404/Whoops404";
@@ -80,7 +81,6 @@ export default function App() {
               setCartAnimation={setCartAnimation}
             />
           </Route>
-
           {/* CartPage */}
           <Route exact path="/cart">
             <CartPage
@@ -91,7 +91,6 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
-
           {/* CheckoutPage */}
           <Route exact path="/checkout">
             <CheckoutPage
@@ -103,7 +102,6 @@ export default function App() {
               setCartAnimation={setCartAnimation}
             />
           </Route>
-
           {/* ReceiptPage */}
           <Route exact path="/receipt">
             <ReceiptPage
@@ -113,7 +111,6 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
-
           {/* HistoryPage */}
           <Route exact path="/history">
             <HistoryPage
@@ -122,7 +119,6 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
-
           {/* TrackOrderPage */}
           <Route exact path="/trackorder">
             <TrackOrderPage
@@ -131,7 +127,6 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
-
           {/* MyAccountPage */}
           <Route exact path="/myaccount">
             <MyAccountPage
@@ -140,16 +135,19 @@ export default function App() {
             />
           </Route>
 
+          {/* AdminPage */}
+          <Route exact path="/admin">
+            <AdminPage />
+          </Route>
+
           {/* Privacy Policy Page */}
           <Route exact path="/privacypolicy">
             <PrivacyPolicyPage />
           </Route>
-
           {/* Terms Page */}
           <Route exact path="/terms">
             <TermsPage />
           </Route>
-
           {/* Redirect to if not a Route path */}
           <Route path="*">
             <Whoops404 />
