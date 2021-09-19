@@ -1,9 +1,23 @@
 const express = require("express");
 const router = express.Router();
 
-const { GetProducts } = require("../controllers/Products");
+const {
+  GetProducts,
+  InsertProduct,
+  UpdateProduct,
+  DeleteProduct,
+} = require("../controllers/Products");
 
 // Get Products from Products Collection
 router.get("/getFromProducts", GetProducts);
+
+// Insert product in Products Collection
+router.post("/insertIntoProducts", InsertProduct);
+
+// Update product in Products Collection
+router.put("/updateProducts", UpdateProduct);
+
+// Delete product from Products Collection
+router.put("/deleteFromProducts/:id", DeleteProduct);
 
 module.exports = router;
