@@ -1,4 +1,3 @@
-const password = process.env.MONGODB_URI;
-const mongoURL = `mongodb+srv://Andrew:${password}@medieval.zxguo.mongodb.net/medieval?retryWrites=true&w=majority`;
+const mongoURL = process.env.MONGODB_URI;
 
 module.exports = { mongoURL };
