@@ -8,13 +8,13 @@ const SendEmailViaMailjet = (email) => {
     Messages: [
       {
         From: {
-          Email: "medievalpizzacomanda@gmail.com",
+          Email: process.env.SENDER,
           Name: "Medieval Pizza",
         },
         To: [
           {
             Name: "Angajat al Medieval Pizza",
-            Email: "gypandy00@gmail.com",
+            Email: process.env.RECEIVER,
           },
         ],
         Subject: `Comanda pentru ${email.nameText}`,
