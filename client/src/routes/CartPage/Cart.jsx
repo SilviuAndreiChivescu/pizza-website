@@ -94,6 +94,7 @@ const FoodBox = (props) => {
       </Col>
       <Col>
         <Button
+          style={{ width: "35px" }}
           className="me-2 fontSize"
           onClick={() => decreaseItem(value.Name)}
           variant="outline-dark"
