@@ -25,7 +25,7 @@ const UpdateProduct = (req) => {
 };
 
 const DeleteProduct = (req) => {
-  const id = req.body.id;
+  const id = req.params.id;
 
   DeleteProducts(id);
 };

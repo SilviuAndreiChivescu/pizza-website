@@ -18,6 +18,6 @@ router.post("/insertIntoProducts", InsertProduct);
 router.put("/updateProducts", UpdateProduct);
 
 // Delete product from Products Collection
-router.put("/deleteFromProducts/:id", DeleteProduct);
+router.delete("/deleteFromProducts/:id", DeleteProduct);
 
 module.exports = router;
