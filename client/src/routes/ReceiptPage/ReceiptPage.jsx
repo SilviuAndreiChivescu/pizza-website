@@ -24,8 +24,7 @@ export default function ReceiptPage(props) {
   useBeforeunload(() => setLastOrder([]));
 
   // If page refresh after seeing the receipt or going to path '/receipt' without ordering, redirect to '/' - home page
-  if (lastOrder.length === 0)
-    window.location.replace(process.env.REACT_APP_ENDPOINT);
+  if (lastOrder.length === 0) window.location.replace("/");
   else {
     return (
       <main className="slide-in-right">
