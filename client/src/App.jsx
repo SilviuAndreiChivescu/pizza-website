@@ -137,7 +137,7 @@ export default function App() {
 
           {/* AdminPage */}
           <Route exact path="/admin">
-            <AdminPage />
+            <AdminPage setNoCartAnimation={setNoCartAnimation} />
           </Route>
 
           {/* Privacy Policy Page */}
