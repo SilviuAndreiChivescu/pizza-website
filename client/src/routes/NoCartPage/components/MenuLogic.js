@@ -16,7 +16,7 @@ const useFilteredProductsList = (productsList) => {
   useEffect(() => {
     // Filter the entire Products Collection by the value of Search Input Field
     let filteredList = productsList.filter((e) =>
-      e.Name.toLowerCase().match(filter)
+      e.Name.toLowerCase().match(filter.toLowerCase())
     );
     // Filter the pizzas
     let pizzas = filteredList.filter((e) => e.Category === "pizza");
