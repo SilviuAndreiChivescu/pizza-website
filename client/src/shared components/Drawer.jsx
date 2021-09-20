@@ -30,10 +30,23 @@ const DelayLink = ({ to, children, delay }) => {
 
 export default function Drawer(props) {
   // **** Authentification dependent ****
-  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
   // If user is logged in
   const LoggedIN = () => {
+    const Admin = () => {
+      if (user.email === "gypandy00@gmail.com") {
+        return (
+          <DelayLink to="/admin" delay={300}>
+            <ListItem button key="Admin Page">
+              <ListItemText primary="Admin Page" />
+            </ListItem>
+          </DelayLink>
+        );
+      }
+      return null;
+    };
+
     // My account button
     const MyAccount = () => {
       return (
@@ -70,6 +83,7 @@ export default function Drawer(props) {
 
     return (
       <>
+        <Admin />
         <MyAccount />
         <History />
         <LogOut />
