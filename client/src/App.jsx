@@ -79,6 +79,7 @@ export default function App() {
               setCartAnimation={setCartAnimation}
             />
           </Route>
+
           {/* CartPage */}
           <Route exact path="/cart">
             <CartPage
@@ -89,6 +90,7 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
+
           {/* CheckoutPage */}
           <Route exact path="/checkout">
             <CheckoutPage
@@ -100,6 +102,7 @@ export default function App() {
               setCartAnimation={setCartAnimation}
             />
           </Route>
+
           {/* ReceiptPage */}
           <Route exact path="/receipt">
             <ReceiptPage
@@ -109,6 +112,7 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
+
           {/* HistoryPage */}
           <Route exact path="/history">
             <HistoryPage
@@ -117,6 +121,7 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
+
           {/* TrackOrderPage */}
           <Route exact path="/trackorder">
             <TrackOrderPage
@@ -125,6 +130,7 @@ export default function App() {
               setNoCartAnimation={setNoCartAnimation}
             />
           </Route>
+
           {/* MyAccountPage */}
           <Route exact path="/myaccount">
             <MyAccountPage
