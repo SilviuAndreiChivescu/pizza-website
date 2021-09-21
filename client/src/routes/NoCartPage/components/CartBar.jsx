@@ -10,7 +10,7 @@ export default function CartBar(props) {
       style={{
         textDecoration: "none",
         display: "block",
-        position: "-webkit-sticky", // This is for ios
+        position: "-webkit-sticky", // For ios
         position: "sticky",
         bottom: 0,
       }}
@@ -35,10 +35,10 @@ export default function CartBar(props) {
             </h4>
           </Col>
           <Col className="text-center">
-            <h4>Cosul tau</h4>
+            <h4>Your cart</h4>
           </Col>
           <Col className="text-end">
-            <h4>{totalPrice} lei</h4>
+            <h4>{totalPrice} &#163;</h4>
           </Col>
         </Row>
       </Navbar>

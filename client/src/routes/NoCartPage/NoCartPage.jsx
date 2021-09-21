@@ -26,7 +26,7 @@ export default function NoCartPage(props) {
 
   return (
     <main className={`${noCartAnimation}`}>
-      <MyNavbar title="Meniu" />
+      <MyNavbar title="Menu" />
       <Menu
         cart={cart}
         setCart={setCart}

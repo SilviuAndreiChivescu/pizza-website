@@ -105,8 +105,8 @@ const ModalContent = () => {
 
       <Card className="mb-2 shadow ">
         <Card.Body>
-          <Card.Title>Orar de livrari</Card.Title>
-          <Card.Text>Luni-Duminica: 9:00-23:00</Card.Text>
+          <Card.Title>Delivery Hours:</Card.Title>
+          <Card.Text>Monday-Sunday: 9:00-23:00</Card.Text>
         </Card.Body>
       </Card>
     </>

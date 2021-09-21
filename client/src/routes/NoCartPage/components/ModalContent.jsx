@@ -70,10 +70,10 @@ export default function ModalContent(props) {
             <PizzaSize setSize={setSize} />
           ) : null}
           <Card.Text>
-            Alte informatii (optional):{" "}
+            Other info (optional):{" "}
             <FormControl
               onChange={(e) => setSpecifics(e.target.value)}
-              placeholder="Exemplu: Fara ardei"
+              placeholder="Exemple: Hot Ketchup"
             />
           </Card.Text>
           <Row className="justify-content-center">

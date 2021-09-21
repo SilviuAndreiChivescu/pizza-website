@@ -30,7 +30,7 @@ const DetailsRow = (props) => {
   return (
     <ListGroup.Item className="mb-3 " as="li">
       <strong>{value.Quantity}</strong> &nbsp; X &nbsp;{value.Name} &nbsp;{" "}
-      <strong>{value.Price}</strong> lei / buc
+      <strong>{value.Price}</strong> &#163; / unit
     </ListGroup.Item>
   );
 };

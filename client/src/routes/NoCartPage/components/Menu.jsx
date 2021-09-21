@@ -20,16 +20,10 @@ export default function Menu(props) {
 
   // Render only if the filteredFoodList is empty
   const NoItemMatch = () => {
-    if (
-      food.pizzas.length === 0 &&
-      food.burgers.length === 0 &&
-      food.chifle.length === 0 &&
-      food.sandwich.length === 0 &&
-      food.drinks.length === 0
-    )
+    if (food.pizzas.length === 0)
       return (
         <Container style={{ height: "70vh" }} className="mb-5 text-center">
-          <Card.Title>Nu avem acel produs, ne pare rau!</Card.Title>
+          <Card.Title>Sorry but we don't have that product!</Card.Title>
         </Container>
       );
     else return null;
@@ -38,17 +32,19 @@ export default function Menu(props) {
   return (
     <>
       <Container fluid className="p-0">
-        {/* <Container> */}
         <Image fluid src="images/menu_image.jpg"></Image>
-        {/* </Container> */}
+
         <Navbar bg="light" expand="xl">
           <Container>
-            <Navbar.Brand>
-              <Brand />
-            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Form className="d-flex ms-5 me-4">
+            <Navbar.Collapse
+              className=" justify-content-center"
+              id="basic-navbar-nav"
+            >
+              <Navbar.Brand>
+                <Brand />
+              </Navbar.Brand>
+              <Form className="d-flex me-4">
                 <FormControl
                   onChange={(e) => setFilter(e.target.value)}
                   type="search"
@@ -56,12 +52,8 @@ export default function Menu(props) {
                   aria-label="Search"
                 />
               </Form>
-              <Nav className="ms-5 rajdhani">
+              <Nav className="rajdhani">
                 <Nav.Link href="#pizza">Pizza</Nav.Link>
-                <Nav.Link href="#burgari">Burgări</Nav.Link>
-                <Nav.Link href="#chifle">Chifle coapte pe vatră</Nav.Link>
-                <Nav.Link href="#sandwich">Sandwich</Nav.Link>
-                <Nav.Link href="#bauturi">Bauturi</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -75,34 +67,6 @@ export default function Menu(props) {
           title={"Pizza"}
           id={"pizza"}
           mapOver={food.pizzas}
-          setShow={setShow}
-          setContent={setContent}
-        />
-        <Category
-          title={"Burgari"}
-          id={"burgari"}
-          mapOver={food.burgers}
-          setShow={setShow}
-          setContent={setContent}
-        />
-        <Category
-          title={"Chifle coapte pe vatra"}
-          id={"chifle"}
-          mapOver={food.chifle}
-          setShow={setShow}
-          setContent={setContent}
-        />
-        <Category
-          title={"Sandwich"}
-          id={"sandwich"}
-          mapOver={food.sandwich}
-          setShow={setShow}
-          setContent={setContent}
-        />
-        <Category
-          title={"Bauturi"}
-          id={"bauturi"}
-          mapOver={food.drinks}
           setShow={setShow}
           setContent={setContent}
         />
@@ -169,7 +133,7 @@ const FoodBox = (props) => {
           <Card.Title>{val.Name} </Card.Title>
           <Card.Subtitle className="mb-2">
             {/* [0] - because Pizza has 3 sizes, first option is the smallest and default for the others with only one option */}
-            {val.Price[0]} lei
+            {val.Price[0]} &#163;
           </Card.Subtitle>
           <Card.Subtitle style={{ height: "5rem" }} className="mt-2 text-muted">
             {val.Description}

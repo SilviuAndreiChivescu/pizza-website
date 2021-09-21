@@ -8,7 +8,7 @@ export default function UserDetailsInputs(props) {
     <Container>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridLastName">
-          <Form.Label>Nume *</Form.Label>
+          <Form.Label>First Name *</Form.Label>
           <Form.Control
             value={
               userDetailsStates.firstName ? userDetailsStates.firstName : ""
@@ -23,7 +23,7 @@ export default function UserDetailsInputs(props) {
           />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridFirstName">
-          <Form.Label>Prenume *</Form.Label>
+          <Form.Label>Last Name *</Form.Label>
           <Form.Control
             value={userDetailsStates.lastName ? userDetailsStates.lastName : ""}
             onChange={(e) =>
@@ -53,7 +53,7 @@ export default function UserDetailsInputs(props) {
           />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridPhone">
-          <Form.Label>Telefon *</Form.Label>
+          <Form.Label>Mobile *</Form.Label>
           <Form.Control
             value={userDetailsStates.phoneNo ? userDetailsStates.phoneNo : ""}
             onChange={(e) =>
@@ -70,7 +70,7 @@ export default function UserDetailsInputs(props) {
 
       <Row>
         <Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
-          <Form.Label>Adresa *</Form.Label>
+          <Form.Label>Delivery Address *</Form.Label>
           <Form.Control
             value={userDetailsStates.address ? userDetailsStates.address : ""}
             onChange={(e) =>
@@ -79,14 +79,14 @@ export default function UserDetailsInputs(props) {
                 address: e.target.value,
               })
             }
-            placeholder="Nume strada, numar etc."
+            placeholder="Street, city ..."
             required
           />
         </Form.Group>
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>Oras *</Form.Label>
+          <Form.Label>City *</Form.Label>
           <Form.Control
             value={userDetailsStates.city ? userDetailsStates.city : ""}
             onChange={(e) =>
