@@ -24,7 +24,9 @@ const SendEmailViaMailjet = (email) => {
     ],
   });
   request.catch((err) => {
-    console.log(err.statusCode);
+    console.log(
+      `Email status code: ${err.statusCode}. Check if API keys are set`
+    );
   });
 };
 
