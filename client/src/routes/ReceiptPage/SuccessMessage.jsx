@@ -6,7 +6,7 @@ export default function SuccessMessage() {
     <Container className="text-center mt-4">
       <ImCheckboxChecked size={"6em"} />
       <Card.Title className="mt-4">
-        Felicitari! Comanda a fost efectuata cu succes.
+        Congratulations! Your order has been placed.
       </Card.Title>
     </Container>
   );

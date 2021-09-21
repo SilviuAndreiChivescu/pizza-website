@@ -34,11 +34,11 @@ export default function Cart(props) {
               })}
             </Card>
             <Card.Title className="fw-bold mt-5 mb-5">
-              Total: {totalPrice} lei
+              Total: {totalPrice} &#163;
             </Card.Title>
 
             <Link to="/checkout">
-              <MyButton className="mb-4" title="Comanda" />
+              <MyButton className="mb-4" title="Order" />
             </Link>
           </>
         )}
@@ -59,7 +59,7 @@ const CartEmptyOrNot = ({ cart }) => {
           style={{ width: "70px" }}
         />
         <Card.Title className="mb-5">
-          Adauga mancare gustoasa din meniu si apoi plaseaza comanda
+          Add tasty food from the menu and then place the order
         </Card.Title>
       </>
     );
@@ -110,7 +110,9 @@ const FoodBox = (props) => {
         </Button>
       </Col>
       <Col>
-        <Card.Title className="">{value.Price * value.Quantity} lei</Card.Title>
+        <Card.Title className="">
+          {value.Price * value.Quantity} &#163;
+        </Card.Title>
       </Col>
     </Row>
   );
@@ -121,8 +123,8 @@ const PastDeliveryHours = () => {
   return (
     <Card.Subtitle className="text-secondary mt-5">
       <h5>
-        Momentan nu putem prelua comenzi. Va rugam reveniti zilnic in intervalul
-        09:00 - 22:30. Va multumim !
+        We can not take orders at the moment. Please come back daily in our
+        Delivery Times 09:00 - 22:30. Thank you!
       </h5>
     </Card.Subtitle>
   );

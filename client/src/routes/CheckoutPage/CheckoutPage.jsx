@@ -48,7 +48,11 @@ export default function CheckoutPage(props) {
 
   return (
     <main className="slide-in-right">
-      <MyNavbar setAnimation={setCartAnimation} title={"Comanda"} to={"cart"} />
+      <MyNavbar
+        setAnimation={setCartAnimation}
+        title={"Checkout"}
+        to={"cart"}
+      />
       <Form className={"m-5"}>
         <UserDetailsInputs
           userDetailsStates={userDetailsStates}
@@ -58,12 +62,12 @@ export default function CheckoutPage(props) {
           setDeliveryDetailsStates={setDeliveryDetailsStates}
           deliveryDetailsStates={deliveryDetailsStates}
         />
-        <Details title={"Comanda ta"} cart={cart} totalPrice={totalPrice} />
+        <Details title={"Your cart"} cart={cart} totalPrice={totalPrice} />
 
         <Container className="text-center mt-3">
           <MyButton
             className=""
-            title={"Plaseaza Comanda"}
+            title={"Place the order"}
             onClick={() => {
               handleSubmit(
                 count,

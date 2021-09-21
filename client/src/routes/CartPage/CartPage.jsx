@@ -9,7 +9,7 @@ export default function CartPage(props) {
     <main className={`${cartAnimation}`}>
       <MyNavbar
         setAnimation={setNoCartAnimation}
-        title={"Cosul tau"}
+        title={"Your cart"}
         to={"/"}
       />
 

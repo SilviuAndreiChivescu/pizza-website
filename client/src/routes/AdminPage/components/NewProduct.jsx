@@ -12,17 +12,15 @@ export default function NewProduct(props) {
 
   return (
     <Container className="text-center">
-      <Card.Title className="mt-4">Adauga un produs nou</Card.Title>
+      <Card.Title className="mt-4">Add a new product</Card.Title>
       <Card.Subtitle className="mt-4">
-        Daca produsul are mai multe dimensiuni, dimensiunile vor fi setate in
-        lista de produse de mai jos dupa ce adaugati produsul cu pretul pentru
-        prima dimensiune
+        If the product has multiple sizes, the sizes have to be set in the
+        products list below after you add the product with price for first size
       </Card.Subtitle>
       <Row className="mt-4 ">
         <Col>
-          <Form.Label>Numele produsului</Form.Label>
+          <Form.Label>Name of product</Form.Label>
           <Form.Control
-            placeholder="Pizza Medieval"
             onChange={(event) => {
               setProductsStates({
                 ...productsStates,
@@ -34,11 +32,8 @@ export default function NewProduct(props) {
           />
         </Col>
         <Col>
-          <Form.Label>
-            Categoria produsului ( pizza, burgers, chifle, sandwich, drinks )
-          </Form.Label>
+          <Form.Label>Category</Form.Label>
           <Form.Control
-            placeholder="pizza"
             onChange={(event) => {
               setProductsStates({
                 ...productsStates,
@@ -51,9 +46,9 @@ export default function NewProduct(props) {
 
       <Row className="mt-2 mb-2 ">
         <Col>
-          <Form.Label>Pretul pentru prima / singura dimensiune</Form.Label>
+          <Form.Label>Price for only / small size</Form.Label>
           <Form.Control
-            placeholder="Exemplu: 20"
+            placeholder="Example: 20"
             type="number"
             onChange={(event) => {
               setProductsStates({
@@ -65,10 +60,9 @@ export default function NewProduct(props) {
         </Col>
         <Col>
           <Form.Label>
-            Numele imaginii pentru produs (se va completa automat).
+            Image's name (autocomplete from Product's name).
           </Form.Label>
           <Form.Control
-            placeholder="Numele imaginii"
             value={productsStates.imageUrl}
             onChange={(event) => {
               setProductsStates({
@@ -81,11 +75,10 @@ export default function NewProduct(props) {
       </Row>
 
       <Col className="">
-        <Form.Label>Descrierea produsului</Form.Label>
+        <Form.Label>Product's description</Form.Label>
         <Form.Control
           as="textarea"
           rows={4}
-          placeholder="Margine de cascaval etc."
           onChange={(event) => {
             setProductsStates({
               ...productsStates,
@@ -103,7 +96,7 @@ export default function NewProduct(props) {
           window.location.reload();
         }}
       >
-        Adauga noul produsul
+        Add the new product
       </Button>
     </Container>
   );

@@ -70,11 +70,11 @@ const CartBody = (props) => {
   return (
     <Container>
       <Details cart={e} title="Detalii comanda">
-        <Card.Subtitle> Adresa: {address}</Card.Subtitle>
+        <Card.Subtitle> Address: {address}</Card.Subtitle>
       </Details>
       <section className="text-center mt-4">
         <a href="tel:0754911062">
-          <MyButton title={`Suna-ne`} />
+          <MyButton title={`Call us`} />
         </a>
       </section>
     </Container>

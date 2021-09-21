@@ -18,7 +18,7 @@ export default function MyAccountPage(props) {
   const { updateUser } = useUpdateUserDetails();
   return (
     <main className="slide-in-right">
-      <MyNavbar title="Contul meu" to="/" setAnimation={setNoCartAnimation} />
+      <MyNavbar title="My account" to="/" setAnimation={setNoCartAnimation} />
       <Form className="m-5">
         <UserDetailsInputs
           userDetailsStates={userDetailsStates}
@@ -28,11 +28,11 @@ export default function MyAccountPage(props) {
         >
           <Container className="text-center">
             <MyButton
-              title={"Salveaza noile informatii"}
+              title={"Save"}
               className="mt-4"
               onClick={() => {
                 updateUser(userDetailsStates, setAppState);
-                alert("Detaliile tale au fost modificate cu succes");
+                alert("Your account details have been changed!");
               }}
             />
           </Container>

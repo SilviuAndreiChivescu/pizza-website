@@ -24,13 +24,13 @@ export default function ProductsList(props) {
     <Container className="text-center mt-5">
       <Row>
         <Card.Title className="fs-5 mb-3">
-          Lista cu produse ( de la ultimul la primul )
+          Products list ( from last to first )
         </Card.Title>
         <Form className="mb-2">
           <FormControl
             onChange={(e) => setFilter(e.target.value)}
             type="search"
-            placeholder="Cauta un produs"
+            placeholder="Search for a product"
             aria-label="Search"
           />
         </Form>
@@ -56,27 +56,24 @@ const List = (props) => {
     <>
       <Card className="mt-4 p-4" key={key}>
         <Card.Title className="fs-4">
-          {val.Name} la{" "}
+          {val.Name} for{" "}
           {val.Price.length === 1
-            ? `${val.Price} de lei`
-            : `${val.Price[0]}, ${val.Price[1]}, ${val.Price[2]} de lei`}
+            ? `${val.Price} £`
+            : `${val.Price[0]}, ${val.Price[1]}, ${val.Price[2]} £`}
         </Card.Title>
 
         <Card.Title>
-          Scrie in campul pe care vrei sa il schimbi sau sterge produsul
+          Write in the field that you want to change or delete the product
         </Card.Title>
         <Card.Subtitle className="mt-2 mb-4">
-          <strong>Atentie</strong> &nbsp; Daca ai adaugat doua dimensiuni la un
-          produs si vrei sa o stergi pe ultima, va trebui sa stergi tot produsul
-          si sa il introduci din nou. Ai grija sa nu mai introduci la cea de a 3
-          a dimensiune daca produsul nu are 3 dimensiuni. Se aplica si pentru
-          cea de a 2 a dimensiune!
+          <strong>Warning:</strong> &nbsp; If you have added another 2 sizes for
+          a product and you want to delete the last one, you will have to delete
+          the product and add it again. Same goes for 2 sizes.
         </Card.Subtitle>
         <Row>
           <Col>
-            <Form.Label>Noul nume al produsului</Form.Label>
+            <Form.Label>New name</Form.Label>
             <Form.Control
-              placeholder="Nume nou"
               value={newProduct.name}
               onChange={(event) => {
                 setNewProduct({
@@ -92,12 +89,8 @@ const List = (props) => {
             />
           </Col>
           <Col>
-            <Form.Label>
-              Categoria noua a produsului ( pizza, burgers, chifle, sandwich,
-              drinks )
-            </Form.Label>
+            <Form.Label>New category</Form.Label>
             <Form.Control
-              placeholder="Categoria noua"
               value={newProduct.category}
               onChange={(event) => {
                 setNewProduct({
@@ -111,9 +104,8 @@ const List = (props) => {
 
         <Row className="mt-2 mb-2">
           <Col>
-            <Form.Label>Noul pret pentru prima / singura dimensiune</Form.Label>
+            <Form.Label>New price for first size</Form.Label>
             <Form.Control
-              placeholder="Pretul nou"
               type="number"
               value={newProduct.price}
               onChange={(event) => {
@@ -126,10 +118,9 @@ const List = (props) => {
           </Col>
           <Col>
             <Form.Label>
-              Numele imaginii pentru produs (se va completa automat).
+              Image's name (autocomplete from Product's name).
             </Form.Label>
             <Form.Control
-              placeholder="Imagine noua"
               value={newProduct.imageUrl}
               onChange={(event) => {
                 setNewProduct({
@@ -142,9 +133,8 @@ const List = (props) => {
         </Row>
         <Row className="mb-2">
           <Col>
-            <Form.Label>Noul pret pentru a doua dimensiune</Form.Label>
+            <Form.Label>New price for second size</Form.Label>
             <Form.Control
-              placeholder="Pretul 2 ( numar )"
               type="number"
               value={newProduct.price2}
               onChange={(event) => {
@@ -156,9 +146,8 @@ const List = (props) => {
             />
           </Col>
           <Col>
-            <Form.Label>Noul pret pentru a treia dimensiune</Form.Label>
+            <Form.Label>New price for third size</Form.Label>
             <Form.Control
-              placeholder="Pretul 3 ( numar )"
               type="number"
               value={newProduct.price3}
               onChange={(event) => {
@@ -171,7 +160,7 @@ const List = (props) => {
           </Col>
         </Row>
         <Col>
-          <Form.Label>Noua descrierea a produsului</Form.Label>
+          <Form.Label>New description</Form.Label>
           <Form.Control
             as="textarea"
             rows={4}
@@ -194,7 +183,7 @@ const List = (props) => {
                 window.location.reload();
               }}
             >
-              Schimba produsul
+              Change the product
             </Button>
           </Col>
           <Col>
@@ -205,7 +194,7 @@ const List = (props) => {
                 window.location.reload();
               }}
             >
-              Sterge produsul
+              Delete the product
             </Button>
           </Col>
         </Row>

@@ -28,14 +28,20 @@ export default function ReceiptPage(props) {
   else {
     return (
       <main className="slide-in-right">
-        <MyNavbar setAnimation={setNoCartAnimation} title={"Bon"} to={"/"} />
+        <MyNavbar
+          setAnimation={setNoCartAnimation}
+          title={"Receipt"}
+          to={"/"}
+        />
         <SuccessMessage />
-        <Details title={"Detalii comanda"} cart={lastOrder}>
+        <Details title={"Order details"} cart={lastOrder}>
           <Card.Body>
-            Data: {time.toLocaleString("ro-RO")} <br></br>
-            Data si ora livrarii: {timeOfDelivery.toLocaleString("ro-RO")}{" "}
+            Date: {time.toLocaleString("ro-RO")} <br></br>
+            Date and delivery hour: {timeOfDelivery.toLocaleString(
+              "ro-RO"
+            )}{" "}
             <br></br>
-            Total: <strong>{totalPrice}</strong> lei
+            Total: <strong>{totalPrice}</strong> &#163;
           </Card.Body>
         </Details>
       </main>

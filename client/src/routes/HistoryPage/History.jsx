@@ -27,9 +27,9 @@ export default function History(props) {
         );
       });
     // If no data
-    else return <h1>Nicio comanda pt dvs</h1>;
+    else return <h1>No order for you yet.</h1>;
     // If can't make the request
-  } else return <h1>A aparut o eroare, va rugam sa dati refresh.</h1>;
+  } else return <h1>There has been an error. Please try again.</h1>;
 }
 
 const HistoryBody = (props) => {
@@ -47,17 +47,17 @@ const HistoryBody = (props) => {
         <Col xs={14} sm={12} md={10} lg={8} xl={8} xxl={9}>
           <Card key={idx} className="m-3 p-3">
             <Card.Title>
-              Comanda {idx + 1} &nbsp; - &nbsp; {totalPrice} lei
+              Order no. {idx + 1} &nbsp; - &nbsp; {totalPrice} &#163;
             </Card.Title>
             <Card.Subtitle>{timeOfOrder[idx]}</Card.Subtitle>
             <Card.Body>
-              <strong>Continut </strong>
+              <strong>Order details: </strong>
               <ListGroup className="p-2" as="ul">
                 {e.map((element) => {
                   return (
                     <ListGroup.Item className="mb-3" as="li" key={element.Name}>
                       {element.Quantity} &nbsp; X &nbsp; {element.Name} &nbsp;{" "}
-                      {element.Price} lei
+                      {element.Price} &#163;
                     </ListGroup.Item>
                   );
                 })}
@@ -68,7 +68,7 @@ const HistoryBody = (props) => {
             {minsDiff < 100 ? (
               <Link style={{ margin: "0 auto" }} to="/trackorder">
                 <MyButton
-                  title={"Urmareste comanda"}
+                  title={"Track your order"}
                   onClick={() => {
                     setIdOfOrder(idOfHistoryProductList[idx]);
                   }}
@@ -81,7 +81,7 @@ const HistoryBody = (props) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <MyButton title={"Lasa-ne un review"} onClick={() => {}} />
+                <MyButton title={"Give us a review"} onClick={() => {}} />
               </a>
             )}
             {/*  */}

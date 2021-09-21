@@ -53,7 +53,7 @@ export default function MyNavbar(props) {
         </Col>
 
         <MyModal
-          name="Despre noi"
+          name="About us"
           onClose={() => setShow((currShow) => !currShow)}
           show={show}
         >

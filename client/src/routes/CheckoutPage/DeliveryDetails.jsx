@@ -10,7 +10,7 @@ export default function DeliveryDetails(props) {
   return (
     <Container className="mb-4">
       <Form.Label as="legend" column sm={2}>
-        Cand se va face livrarea? *
+        Delivery time *
       </Form.Label>
       <Form.Group as={Row} className="mb-3">
         <Col>
@@ -23,10 +23,10 @@ export default function DeliveryDetails(props) {
               });
             }}
             type="radio"
-            label="Cat mai repede"
+            label="ASAP"
             name="deliveryTime"
-            value="Cat mai repede"
-            id="repede"
+            value="ASAP"
+            id="ASAP"
             required
           />
           <Form.Check
@@ -38,9 +38,9 @@ export default function DeliveryDetails(props) {
               });
             }}
             type="radio"
-            label="Alege ora"
+            label="Choose time"
             name="deliveryTime"
-            id="alege"
+            id="choose"
             required
           />
           {time ? (
@@ -52,14 +52,14 @@ export default function DeliveryDetails(props) {
                 })
               }
               required
-              placeholder="Exemplu: 16:30"
+              placeholder="Exemple: 16:30"
             />
           ) : null}
         </Col>
       </Form.Group>
 
       <Form.Label as="legend" column sm={2}>
-        Metoda de livrare *
+        Delivery / Pick-up *
       </Form.Label>
       <Form.Group as={Row} className="mb-3">
         <Col>
@@ -71,9 +71,9 @@ export default function DeliveryDetails(props) {
               })
             }
             type="radio"
-            label="Livrare la domiciliu"
+            label="Delivery"
             name="deliveryWay"
-            value="Livrare la domiciliu"
+            value="Delivery"
             id="homeOrder"
             required
           />
@@ -85,9 +85,9 @@ export default function DeliveryDetails(props) {
               })
             }
             type="radio"
-            label="Ridicare personala"
+            label="Personal Pick-up"
             name="deliveryWay"
-            value="Ridicare personala"
+            value="Personal Pick-up"
             id="pickUp"
             required
           />
@@ -105,7 +105,7 @@ export default function DeliveryDetails(props) {
             type="checkbox"
             id="data"
             name="keepData"
-            label="Pastreaza-mi datele pentru urmatoarea comanda"
+            label="Keep my data for next orders"
           />
         </Col>
       </Form.Group>
@@ -121,7 +121,7 @@ export default function DeliveryDetails(props) {
             type="checkbox"
             id="confirm"
             name="terms"
-            label="Confirm ca am citit Termenii si conditiile care contin toate informatiile referitoare la modul de procesare a datelor cu carater personal necesare pentru procesarea si executarea comenzilor si declar ca sunt de acord cu acesti termeni si conditii. *"
+            label="I agree to the Terms and Conditions... *"
             required
           />
         </Col>
