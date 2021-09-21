@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInputValues } from "../../shared components/UserDetailsInputsLogic";
 import { useTotalQuantityOrTotalPrice } from "./../../AppLogic";
 
@@ -99,12 +99,59 @@ const useSetDefaultValues = (setAppState) => {
   };
 };
 
+// Count variable to keep count of how many emails will be send via Mailjet. The free plan's limit is 200
+const useCountEmails = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => setCount(0), 43200000);
+  }, []);
+
+  return { count, setCount };
+};
+
+// Mailjet API
+const useMailjetAPI = (cart) => {
+  // Function to calculate total price
+  const { totalPrice } = useTotalQuantityOrTotalPrice(cart);
+  const sendEmail = (userDetailsStates, deliveryDetailsStates, setAppState) => {
+    // Create the email
+    const email = {
+      nameText: `${userDetailsStates.firstName} ${userDetailsStates.lastName}`,
+      contactText: `${userDetailsStates.phoneNo} ${userDetailsStates.email}`,
+      addressText: `${userDetailsStates.city} ${userDetailsStates.address}`,
+      deliveryText: `${deliveryDetailsStates.deliveryWay} - ${deliveryDetailsStates.deliveryTime}`,
+      cartText: cart
+        .map((e) => {
+          return `<li> ${e.Quantity} X ${e.Name} - ${e.Price} lei </li>`;
+        })
+        // Make it a string joined by words
+        .join("")
+        // Add total price at the end
+        .concat(` Total plata comanda: ${totalPrice} lei`),
+    };
+
+    try {
+      Axios.post(`${process.env.REACT_APP_ENDPOINT}/sendEmail`, {
+        Email: email,
+      });
+    } catch (err) {
+      setAppState("error");
+      console.log(err);
+    }
+  };
+  return { sendEmail };
+};
+// *** END Mailjet API ***
+
 const useHandleSubmit = (cart, history) => {
   const { checkIfUserInDb } = useCheckIfUserInDb();
   const { addToOrders } = usePostToOrders();
   const { sendEmail } = useMailjetAPI(cart);
 
   const handleSubmit = (
+    count,
+    setCount,
     setLastOrder,
     setCart,
     userDetailsStates,
@@ -152,8 +199,14 @@ const useHandleSubmit = (cart, history) => {
     // Last order is used for receipt page to show the order that was ordered
     setLastOrder(cart);
 
-    // To send email with the order
-    sendEmail(userDetailsStates, deliveryDetailsStates, setAppState);
+    // Check if the limit has been reached
+    if (count <= 200) {
+      // To send email with the order
+      sendEmail(userDetailsStates, deliveryDetailsStates, setAppState);
+
+      // Email has been sent
+      setCount((currValue) => currValue + 1);
+    }
 
     // Clean up cart state for next order
     setCart([]);
@@ -164,38 +217,9 @@ const useHandleSubmit = (cart, history) => {
   return { handleSubmit };
 };
 
-// Mailjet API
-const useMailjetAPI = (cart) => {
-  // Function to calculate total price
-  const { totalPrice } = useTotalQuantityOrTotalPrice(cart);
-  const sendEmail = (userDetailsStates, deliveryDetailsStates, setAppState) => {
-    // Create the email
-    const email = {
-      nameText: `${userDetailsStates.firstName} ${userDetailsStates.lastName}`,
-      contactText: `${userDetailsStates.phoneNo} ${userDetailsStates.email}`,
-      addressText: `${userDetailsStates.city} ${userDetailsStates.address}`,
-      deliveryText: `${deliveryDetailsStates.deliveryWay} - ${deliveryDetailsStates.deliveryTime}`,
-      cartText: cart
-        .map((e) => {
-          return `<li> ${e.Quantity} X ${e.Name} - ${e.Price} lei </li>`;
-        })
-        // Make it a string joined by words
-        .join("")
-        // Add total price at the end
-        .concat(` Total plata comanda: ${totalPrice} lei`),
-    };
-
-    try {
-      Axios.post(`${process.env.REACT_APP_ENDPOINT}/sendEmail`, {
-        Email: email,
-      });
-    } catch (err) {
-      setAppState("error");
-      console.log(err);
-    }
-  };
-  return { sendEmail };
+export {
+  usePostToOrders,
+  useSetDefaultValues,
+  useCountEmails,
+  useHandleSubmit,
 };
-// *** END Mailjet API ***
-
-export { usePostToOrders, useSetDefaultValues, useHandleSubmit };

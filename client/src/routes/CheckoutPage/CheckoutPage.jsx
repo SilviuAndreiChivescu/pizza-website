@@ -7,7 +7,11 @@ import DeliveryDetails from "./DeliveryDetails";
 
 import { useState } from "react";
 
-import { useSetDefaultValues, useHandleSubmit } from "./CheckoutPageLogic";
+import {
+  useSetDefaultValues,
+  useHandleSubmit,
+  useCountEmails,
+} from "./CheckoutPageLogic";
 
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
@@ -39,6 +43,9 @@ export default function CheckoutPage(props) {
   let history = useHistory();
   const { handleSubmit } = useHandleSubmit(cart, history);
 
+  // Emails's limit
+  const { count, setCount } = useCountEmails();
+
   return (
     <main className="slide-in-right">
       <MyNavbar setAnimation={setCartAnimation} title={"Comanda"} to={"cart"} />
@@ -59,6 +66,8 @@ export default function CheckoutPage(props) {
             title={"Plaseaza Comanda"}
             onClick={() => {
               handleSubmit(
+                count,
+                setCount,
                 setLastOrder,
                 setCart,
                 userDetailsStates,
