@@ -17,9 +17,9 @@ const SendEmailViaMailjet = (email) => {
             Email: process.env.RECEIVER,
           },
         ],
-        Subject: `Comanda pentru ${email.nameText}`,
-        TextPart: `Draga Angajat al Medieval Pizza, Detalii comanda:  ${email.nameText} ${email.contactText} ${email.addressText} ${email.deliveryText} ${email.cartText}`,
-        HTMLPart: `<h3>Draga Angajat al Medieval Pizza</h3> <h3>Detalii comanda: </h3> <ul> <li>Nume: ${email.nameText}</li> <li>Contact: ${email.contactText}</li> <li>Adresa: ${email.addressText}</li> <li>Detalii de livrare: ${email.deliveryText}</li> Produse: ${email.cartText}</ul>`,
+        Subject: `Order for ${email.nameText}`,
+        TextPart: `Dear employee, order details:  ${email.nameText} ${email.contactText} ${email.addressText} ${email.deliveryText} ${email.cartText}`,
+        HTMLPart: `<h3>Dear employee</h3> <h3>Order details: </h3> <ul> <li>Name: ${email.nameText}</li> <li>Contact: ${email.contactText}</li> <li>Address: ${email.addressText}</li> <li>Delivery details: ${email.deliveryText}</li> Cart: ${email.cartText}</ul>`,
       },
     ],
   });
