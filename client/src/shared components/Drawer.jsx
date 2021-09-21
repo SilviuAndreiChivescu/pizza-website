@@ -6,8 +6,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { useAuth0 } from "@auth0/auth0-react";
 
-// The Delay Link is used so that the animations don't interfere with each other
 import { Link, useHistory } from "react-router-dom";
+// The Delay Link is used so that the animations don't interfere with each other
 const DelayLink = ({ to, children, delay }) => {
   const history = useHistory();
 
@@ -52,7 +52,7 @@ export default function Drawer(props) {
       return (
         <DelayLink to="/myaccount" delay={300}>
           <ListItem button key="MyAccount">
-            <ListItemText primary="Contul meu" />
+            <ListItemText primary="My Account" />
           </ListItem>
         </DelayLink>
       );
@@ -63,7 +63,7 @@ export default function Drawer(props) {
       return (
         <DelayLink to="/history" delay={300}>
           <ListItem button key="History">
-            <ListItemText primary="Comenzile mele" />
+            <ListItemText primary="My Orders" />
           </ListItem>
         </DelayLink>
       );
@@ -76,7 +76,7 @@ export default function Drawer(props) {
           key="Log Out"
           onClick={() => logout({ returnTo: window.location.origin })}
         >
-          <ListItemText primary="Deconecteaza-te" />
+          <ListItemText primary="Log out" />
         </ListItem>
       );
     };
@@ -97,7 +97,7 @@ export default function Drawer(props) {
     const LogIn = () => {
       return (
         <ListItem onClick={() => loginWithRedirect()} button key="Log In">
-          <ListItemText primary="Autentificare" />
+          <ListItemText primary="Log in" />
         </ListItem>
       );
     };
@@ -141,8 +141,8 @@ export default function Drawer(props) {
           </ListItem>
         </DelayLink>
         <DelayLink to="/terms" delay={300}>
-          <ListItem button key="Termeni si conditii">
-            <ListItemText primary="Termeni si conditii" />
+          <ListItem button key="Terms and Conditions">
+            <ListItemText primary="Terms and Conditions" />
           </ListItem>
         </DelayLink>
 
