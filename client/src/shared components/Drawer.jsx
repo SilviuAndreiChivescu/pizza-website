@@ -35,7 +35,7 @@ export default function Drawer(props) {
   // If user is logged in
   const LoggedIN = () => {
     const Admin = () => {
-      if (user.email === "gypandy00@gmail.com") {
+      if (process.env.REACT_APP_ADMINS.split(" ").includes(user.email)) {
         return (
           <DelayLink to="/admin" delay={300}>
             <ListItem button key="Admin Page">

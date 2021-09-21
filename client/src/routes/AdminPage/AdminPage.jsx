@@ -10,7 +10,10 @@ import ProductsList from "./components/ProductsList";
 export default function AdminPage(props) {
   // Verify if user is auth and if is admin, otherwise send to home page
   const { user, isAuthenticated } = useAuth0();
-  if (!isAuthenticated || user.email !== "gypandy00@gmail.com")
+  if (
+    !isAuthenticated ||
+    !process.env.REACT_APP_ADMINS.split(" ").includes(user.email)
+  )
     window.location.replace("/");
 
   const { setNoCartAnimation } = props;
