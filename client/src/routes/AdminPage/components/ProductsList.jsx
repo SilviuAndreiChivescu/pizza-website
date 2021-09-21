@@ -68,8 +68,9 @@ const List = (props) => {
         <Card.Subtitle className="mt-2 mb-4">
           <strong>Atentie</strong> &nbsp; Daca ai adaugat doua dimensiuni la un
           produs si vrei sa o stergi pe ultima, va trebui sa stergi tot produsul
-          si il introduci din nou. Si ai grija sa nu mai introduci la cea de a 3
-          a dimensiune.
+          si sa il introduci din nou. Ai grija sa nu mai introduci la cea de a 3
+          a dimensiune daca produsul nu are 3 dimensiuni. Se aplica si pentru
+          cea de a 2 a dimensiune!
         </Card.Subtitle>
         <Row>
           <Col>
