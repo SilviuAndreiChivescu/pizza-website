@@ -12,8 +12,6 @@ import ReceiptPage from "./routes/ReceiptPage/ReceiptPage";
 import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
 import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
 import AdminPage from "./routes/AdminPage/AdminPage";
-import PrivacyPolicyPage from "./routes/PrivacyPolicyPage/PrivacyPolicyPage";
-import TermsPage from "./routes/TermsPage/TermsPage";
 import Whoops404 from "./routes/Whoops404/Whoops404";
 
 import Brand from "./shared components/Brand";
@@ -63,7 +61,7 @@ export default function App() {
   if (appState === "loading" || isLoading) return <Loading />;
   // If error
   if (appState === "error")
-    return <h1>Este o eroare. Va rugam reincercati.</h1>;
+    return <h1>There is an error. Please try again.</h1>;
   // If loaded
   else if (appState === "loaded") {
     return (
@@ -140,14 +138,6 @@ export default function App() {
             <AdminPage setNoCartAnimation={setNoCartAnimation} />
           </Route>
 
-          {/* Privacy Policy Page */}
-          <Route exact path="/privacypolicy">
-            <PrivacyPolicyPage />
-          </Route>
-          {/* Terms Page */}
-          <Route exact path="/terms">
-            <TermsPage />
-          </Route>
           {/* Redirect to if not a Route path */}
           <Route path="*">
             <Whoops404 />
