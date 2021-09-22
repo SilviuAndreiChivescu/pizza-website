@@ -21,7 +21,8 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.7",
     "node-mailjet": "^3.3.4",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "pac-resolver": "^5.0.0"
   },
   "devDependencies": {},
   "description": ""
