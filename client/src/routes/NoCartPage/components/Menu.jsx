@@ -55,6 +55,12 @@ export default function Menu(props) {
               <Nav className="rajdhani">
                 <Nav.Link href="#pizza">Pizza</Nav.Link>
               </Nav>
+              <Nav className="rajdhani">
+                <Nav.Link href="#pizza">Burgers</Nav.Link>
+              </Nav>
+              <Nav className="rajdhani">
+                <Nav.Link href="#pizza">Chifle</Nav.Link>
+              </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
