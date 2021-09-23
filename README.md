@@ -5,7 +5,7 @@
 E-commerce website using MERN stack (Mongo, Express, React, Node).  
 I have built this App for a client from Romania. Please translate to English from browser when you go to my live App in order to see the products in English.
 
-The back-end is in the root directory. 'index.js' is the main file, 'src' folder contains the source code of the API designed following the MVC(Models, Views, Controllers) design pattern.  
+The back-end is in the root directory. 'index.js' is the main file, 'src' folder contains the source code of the API designed following the MVC(Model, View, Controller) design pattern.  
 The front-end is in the 'client' folder from the root directory.
 
 ## Tech Stack
