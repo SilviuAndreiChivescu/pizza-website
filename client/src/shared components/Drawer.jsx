@@ -68,26 +68,25 @@ export default function Drawer(props) {
         </DelayLink>
       );
     };
-    // LogOut button
-    const LogOut = () => {
-      return (
-        <ListItem
-          button
-          key="Log Out"
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          <ListItemText primary="Log out" />
-        </ListItem>
-      );
-    };
 
     return (
       <>
         <Admin />
         <MyAccount />
         <History />
-        <LogOut />
       </>
+    );
+  };
+  // Logout button
+  const LogOut = () => {
+    return (
+      <ListItem
+        button
+        key="Log Out"
+        onClick={() => logout({ returnTo: window.location.origin })}
+      >
+        <ListItemText primary="Log out" />
+      </ListItem>
     );
   };
 
@@ -145,6 +144,7 @@ export default function Drawer(props) {
         <ListItem button key="ANPC">
           <ListItemText primary="ANPC" />
         </ListItem>
+        {isAuthenticated ? <LogOut /> : null}
       </List>
     </div>
   );
