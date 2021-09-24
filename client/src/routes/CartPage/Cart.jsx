@@ -34,7 +34,7 @@ export default function Cart(props) {
               })}
             </Card>
             <Card.Title className="fw-bold mt-5 mb-5">
-              Total: {totalPrice} &#163;
+              Total: &#163; {totalPrice}
             </Card.Title>
 
             <Link to="/checkout">
@@ -111,7 +111,7 @@ const FoodBox = (props) => {
       </Col>
       <Col>
         <Card.Title className="">
-          {value.Price * value.Quantity} &#163;
+          &#163; {value.Price * value.Quantity}
         </Card.Title>
       </Col>
     </Row>

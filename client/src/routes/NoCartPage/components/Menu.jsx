@@ -139,7 +139,7 @@ const FoodBox = (props) => {
           <Card.Title>{val.Name} </Card.Title>
           <Card.Subtitle className="mb-2">
             {/* [0] - because Pizza has 3 sizes, first option is the smallest and default for the others with only one option */}
-            {val.Price[0]} &#163;
+            &#163; {val.Price[0]}
           </Card.Subtitle>
           <Card.Subtitle style={{ height: "5rem" }} className="mt-2 text-muted">
             {val.Description}

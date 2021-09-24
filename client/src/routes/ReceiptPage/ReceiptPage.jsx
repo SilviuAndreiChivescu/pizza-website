@@ -41,7 +41,7 @@ export default function ReceiptPage(props) {
               "ro-RO"
             )}{" "}
             <br></br>
-            Total: <strong>{totalPrice}</strong> &#163;
+            Total: <strong>&#163; {totalPrice}</strong>
           </Card.Body>
         </Details>
       </main>

@@ -47,7 +47,7 @@ const HistoryBody = (props) => {
         <Col xs={14} sm={12} md={10} lg={8} xl={8} xxl={9}>
           <Card key={idx} className="m-3 p-3">
             <Card.Title>
-              Order no. {idx + 1} &nbsp; - &nbsp; {totalPrice} &#163;
+              Order no. {idx + 1} &nbsp; - &nbsp; &#163; {totalPrice}
             </Card.Title>
             <Card.Subtitle>{timeOfOrder[idx]}</Card.Subtitle>
             <Card.Body>
@@ -57,7 +57,7 @@ const HistoryBody = (props) => {
                   return (
                     <ListGroup.Item className="mb-3" as="li" key={element.Name}>
                       {element.Quantity} &nbsp; X &nbsp; {element.Name} &nbsp;{" "}
-                      {element.Price} &#163;
+                      &#163; {element.Price}
                     </ListGroup.Item>
                   );
                 })}
