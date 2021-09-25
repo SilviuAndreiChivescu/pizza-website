@@ -10,6 +10,17 @@
   font-size: 0.9rem;
 }
 
+/* For Cartbar from NoCartPage */
+.slideUp {
+  transition: all 0.3s ease-in-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+}
+.slideUp:hover {
+  transform: translate(0, -5%);
+}
+/* END Cartbar */
+
 .grow {
   transition: all 0.3s ease-in-out;
   animation-duration: 1s;

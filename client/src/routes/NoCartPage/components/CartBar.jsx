@@ -7,6 +7,7 @@ export default function CartBar(props) {
   return (
     <Link
       onClick={() => setCartAnimation("slide-in-bottom")}
+      className="slideUp"
       style={{
         textDecoration: "none",
         display: "block",
