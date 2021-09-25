@@ -20,23 +20,29 @@ export default function TrackOrderPage(props) {
       return (
         <>
           <Card.Title className="fs-2">
-            Comanda ta este aprobata si in curs de pregatire.
+            Your order has been approved and is being prepared.
           </Card.Title>
           <Card.Subtitle>
-            {50 - minsDiff} de minute pana la livrare
+            {50 - minsDiff} minutes until delivered.
           </Card.Subtitle>
         </>
       );
     } else if (minsDiff < 50) {
       return (
         <>
-          <Card.Title className="fs-2">Comanda ta se livreaza.</Card.Title>
-          <Card.Subtitle>{50 - minsDiff} minute pana la livrare</Card.Subtitle>
+          <Card.Title className="fs-2">
+            Your order is being delivered.
+          </Card.Title>
+          <Card.Subtitle>
+            {50 - minsDiff} minutes until delivered.
+          </Card.Subtitle>
         </>
       );
     } else {
       return (
-        <Card.Title className="fs-2">Comanda ta a fost livrata</Card.Title>
+        <Card.Title className="fs-2">
+          Your order has been delivered successfully!
+        </Card.Title>
       );
     }
   };
@@ -69,7 +75,7 @@ const CartBody = (props) => {
   const { e, address } = props;
   return (
     <Container>
-      <Details cart={e} title="Detalii comanda">
+      <Details cart={e} title="Order details">
         <Card.Subtitle> Address: {address}</Card.Subtitle>
       </Details>
       <section className="text-center mt-4">
