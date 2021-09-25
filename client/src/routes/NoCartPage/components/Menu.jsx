@@ -32,7 +32,7 @@ export default function Menu(props) {
   return (
     <>
       <Container fluid className="p-0">
-        <Image fluid src="images/menu_image.jpg"></Image>
+        <Image fluid src="images/menu_image.jpg" alt="Image with pizza"></Image>
 
         <Navbar bg="light" expand="xl">
           <Container>
@@ -46,6 +46,7 @@ export default function Menu(props) {
               </Navbar.Brand>
               <Form className="d-flex me-4">
                 <FormControl
+                  className="grow"
                   onChange={(e) => setFilter(e.target.value)}
                   type="search"
                   placeholder="Search"
@@ -121,7 +122,7 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
 // The box in which the title & price are shown in the Menu
 const FoodBox = (props) => {
   const { val } = props;
-  const imageSrc = `images/${val.Image}.jpg`;
+  const imageSrc = `images/${val.Image}.webp`;
 
   return (
     <>
