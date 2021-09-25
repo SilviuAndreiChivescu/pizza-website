@@ -1,26 +1,29 @@
 import { Route, Switch } from "react-router-dom";
 import { useBeforeunload } from "react-beforeunload";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
-// Pages / Routes
-import NoCartPage from "./routes/NoCartPage/NoCartPage";
-import CartPage from "./routes/CartPage/CartPage";
-import CheckoutPage from "./routes/CheckoutPage/CheckoutPage";
-import HistoryPage from "./routes/HistoryPage/HistoryPage";
-import ReceiptPage from "./routes/ReceiptPage/ReceiptPage";
-import TrackOrderPage from "./routes/TrackOrderPage/TrackOrderPage";
-import MyAccountPage from "./routes/MyAccountPage/MyAccountPage";
-import AdminPage from "./routes/AdminPage/AdminPage";
-import Whoops404 from "./routes/Whoops404/Whoops404";
-
-import Brand from "./shared components/Brand";
 
 // Logic
 import { useTotalQuantityOrTotalPrice, useProductsList } from "./AppLogic";
 
 import { CircularProgress } from "@material-ui/core";
 import "./App.css";
+import Brand from "./shared components/Brand";
+
+// Pages / Routes
+const NoCartPage = lazy(() => import("./routes/NoCartPage/NoCartPage"));
+const CartPage = lazy(() => import("./routes/CartPage/CartPage"));
+const CheckoutPage = lazy(() => import("./routes/CheckoutPage/CheckoutPage"));
+const HistoryPage = lazy(() => import("./routes/HistoryPage/HistoryPage"));
+const ReceiptPage = lazy(() => import("./routes/ReceiptPage/ReceiptPage"));
+const TrackOrderPage = lazy(() =>
+  import("./routes/TrackOrderPage/TrackOrderPage")
+);
+const MyAccountPage = lazy(() =>
+  import("./routes/MyAccountPage/MyAccountPage")
+);
+const AdminPage = lazy(() => import("./routes/AdminPage/AdminPage"));
+const Whoops404 = lazy(() => import("./routes/Whoops404/Whoops404"));
 
 export default function App() {
   // State of Application
@@ -66,89 +69,91 @@ export default function App() {
   else if (appState === "loaded") {
     return (
       <>
-        <Switch>
-          {/* NoCartPage */}
-          <Route exact path="/">
-            <NoCartPage
-              cart={cart}
-              setCart={setCart}
-              totalPrice={totalPrice}
-              totalQuantity={totalQuantity}
-              productsList={productsList}
-              noCartAnimation={noCartAnimation}
-              setCartAnimation={setCartAnimation}
-            />
-          </Route>
+        <Suspense fallback={renderLoading()}>
+          <Switch>
+            {/* NoCartPage */}
+            <Route exact path="/">
+              <NoCartPage
+                cart={cart}
+                setCart={setCart}
+                totalPrice={totalPrice}
+                totalQuantity={totalQuantity}
+                productsList={productsList}
+                noCartAnimation={noCartAnimation}
+                setCartAnimation={setCartAnimation}
+              />
+            </Route>
 
-          {/* CartPage */}
-          <Route exact path="/cart">
-            <CartPage
-              cart={cart}
-              setCart={setCart}
-              totalPrice={totalPrice}
-              cartAnimation={cartAnimation}
-              setNoCartAnimation={setNoCartAnimation}
-            />
-          </Route>
+            {/* CartPage */}
+            <Route exact path="/cart">
+              <CartPage
+                cart={cart}
+                setCart={setCart}
+                totalPrice={totalPrice}
+                cartAnimation={cartAnimation}
+                setNoCartAnimation={setNoCartAnimation}
+              />
+            </Route>
 
-          {/* CheckoutPage */}
-          <Route exact path="/checkout">
-            <CheckoutPage
-              setAppState={setAppState}
-              cart={cart}
-              totalPrice={totalPrice}
-              setCart={setCart}
-              setLastOrder={setLastOrder}
-              setCartAnimation={setCartAnimation}
-            />
-          </Route>
+            {/* CheckoutPage */}
+            <Route exact path="/checkout">
+              <CheckoutPage
+                setAppState={setAppState}
+                cart={cart}
+                totalPrice={totalPrice}
+                setCart={setCart}
+                setLastOrder={setLastOrder}
+                setCartAnimation={setCartAnimation}
+              />
+            </Route>
 
-          {/* ReceiptPage */}
-          <Route exact path="/receipt">
-            <ReceiptPage
-              lastOrder={lastOrder}
-              setLastOrder={setLastOrder}
-              totalPrice={totalPrice}
-              setNoCartAnimation={setNoCartAnimation}
-            />
-          </Route>
+            {/* ReceiptPage */}
+            <Route exact path="/receipt">
+              <ReceiptPage
+                lastOrder={lastOrder}
+                setLastOrder={setLastOrder}
+                totalPrice={totalPrice}
+                setNoCartAnimation={setNoCartAnimation}
+              />
+            </Route>
 
-          {/* HistoryPage */}
-          <Route exact path="/history">
-            <HistoryPage
-              setAppState={setAppState}
-              setIdOfOrder={setIdOfOrder}
-              setNoCartAnimation={setNoCartAnimation}
-            />
-          </Route>
+            {/* HistoryPage */}
+            <Route exact path="/history">
+              <HistoryPage
+                setAppState={setAppState}
+                setIdOfOrder={setIdOfOrder}
+                setNoCartAnimation={setNoCartAnimation}
+              />
+            </Route>
 
-          {/* TrackOrderPage */}
-          <Route exact path="/trackorder">
-            <TrackOrderPage
-              setAppState={setAppState}
-              idOfOrder={idOfOrder}
-              setNoCartAnimation={setNoCartAnimation}
-            />
-          </Route>
+            {/* TrackOrderPage */}
+            <Route exact path="/trackorder">
+              <TrackOrderPage
+                setAppState={setAppState}
+                idOfOrder={idOfOrder}
+                setNoCartAnimation={setNoCartAnimation}
+              />
+            </Route>
 
-          {/* MyAccountPage */}
-          <Route exact path="/myaccount">
-            <MyAccountPage
-              setAppState={setAppState}
-              setNoCartAnimation={setNoCartAnimation}
-            />
-          </Route>
+            {/* MyAccountPage */}
+            <Route exact path="/myaccount">
+              <MyAccountPage
+                setAppState={setAppState}
+                setNoCartAnimation={setNoCartAnimation}
+              />
+            </Route>
 
-          {/* AdminPage */}
-          <Route exact path="/admin">
-            <AdminPage setNoCartAnimation={setNoCartAnimation} />
-          </Route>
+            {/* AdminPage */}
+            <Route exact path="/admin">
+              <AdminPage setNoCartAnimation={setNoCartAnimation} />
+            </Route>
 
-          {/* Redirect to if not a Route path */}
-          <Route path="*">
-            <Whoops404 />
-          </Route>
-        </Switch>
+            {/* Redirect to if not a Route path */}
+            <Route path="*">
+              <Whoops404 />
+            </Route>
+          </Switch>
+        </Suspense>
       </>
     );
   }
@@ -169,3 +174,5 @@ const Loading = () => {
     </main>
   );
 };
+
+const renderLoading = () => <Loading />;
