@@ -35,8 +35,7 @@ export default function MyNavbar(props) {
             {/* Render the Arrow only if the "to" path is specified */}
             {to ? <Arrow /> : null}
             <i
-              style={{ cursor: "pointer" }}
-              className="fas fa-info-circle text-white ms-2 mt-2"
+              className="fas fa-info-circle text-white ms-2 mt-2 cursor grow"
               onClick={() => setShow(true)}
             ></i>
           </h5>
@@ -48,7 +47,7 @@ export default function MyNavbar(props) {
         </Col>
         <Col className="text-end">
           <Drawer
-            Icon={<i className="fas fa-lg text-white fa-bars ms-5"></i>}
+            Icon={<i className="fas fa-lg text-white fa-bars ms-5 grow"></i>}
           />
         </Col>
 
