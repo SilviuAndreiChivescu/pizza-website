@@ -122,7 +122,7 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
 // The box in which the title & price are shown in the Menu
 const FoodBox = (props) => {
   const { val } = props;
-  const imageSrc = `images/${val.Image}.webp`;
+  const imageSrc = `images/${val.Image}.jpg`;
 
   return (
     <>
