@@ -6,7 +6,7 @@ export default function MyButton(props) {
     <Button
       className={className}
       onClick={onClick}
-      variant="dark"
+      variant="outline-dark"
       type="submit"
     >
       {title}
