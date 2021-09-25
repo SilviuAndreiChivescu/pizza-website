@@ -151,7 +151,12 @@ export default function Drawer(props) {
 
   return (
     <React.Fragment key={"right"}>
-      <Button onClick={toggleDrawer("right", true)}>{props.Icon}</Button>
+      <Button
+        onClick={toggleDrawer("right", true)}
+        aria-label="Side Navigation"
+      >
+        {props.Icon}
+      </Button>
       <SwipeableDrawer
         anchor={"right"}
         open={state["right"]}
