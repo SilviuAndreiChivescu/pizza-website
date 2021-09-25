@@ -87,7 +87,7 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
   return (
     <>
       <Container className="mb-5">
-        <Card.Title className="ephesis" id={id}>
+        <Card.Title className="ephesis noPointerEvents" id={id}>
           {title}
         </Card.Title>
 
@@ -122,9 +122,10 @@ const Category = ({ title, id, mapOver, setShow, setContent }) => {
 const FoodBox = (props) => {
   const { val } = props;
   const imageSrc = `images/${val.Image}.jpg`;
+
   return (
     <>
-      <Card style={{ width: "17rem", height: "22rem" }}>
+      <Card className="grow cursor" style={{ width: "17rem", height: "22rem" }}>
         <Card.Img
           style={{ height: "11rem" }}
           variant="top"
