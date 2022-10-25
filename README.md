@@ -1,6 +1,5 @@
 # E-commerce Pizza Restaurant Website
-
-## Live: https://pizza-website2021.herokuapp.com/
+NOT MAINTAINED ANYMORE
 
 E-commerce website using MERN stack (Mongo, Express, React, Node).  
 I have built this App for a client from Romania. Please translate to English from browser when you go to my live App in order to see the products in English.
